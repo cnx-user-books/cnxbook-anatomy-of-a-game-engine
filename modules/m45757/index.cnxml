@@ -1,0 +1,4114 @@
+<document xmlns="http://cnx.rice.edu/cnxml"> 
+<title>Slick0220: Simulating a pandemic</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45757</md:content-id>
+  <md:title>Slick0220: Simulating a pandemic</md:title>
+  <md:abstract>Learn how to write a program that simulates the spread of a fatal communicable disease within a population.</md:abstract>
+  <md:uuid>2643453b-c64f-4e3a-b6b4-2840e1661ae9</md:uuid>
+</metadata>
+
+<content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="h11000">
+<title>
+Table of Contents
+
+</title>
+
+
+
+
+<list id="ul1000" list-type="bulleted">
+
+	
+
+<item id="li1000">
+<link id="a1000" target-id="Preface">
+
+Preface
+
+</link>
+
+
+	
+
+<list id="ul1001" list-type="bulleted">
+
+		
+
+<item id="li1001">
+<link id="a1001" target-id="Viewing_tip">
+
+Viewing tip
+
+</link>
+
+
+<list id="ul1002" list-type="bulleted">
+
+			
+
+<item id="li1002">
+<link id="a1002" target-id="Figures">
+
+Figures
+
+</link>
+
+
+</item>
+
+
+
+			
+
+<item id="li1003">
+<link id="a1003" target-id="Listings">
+
+Listings
+
+</link>
+
+
+</item>
+
+
+		
+
+</list>
+
+
+		
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1004">
+<link id="a1004" target-id="Preview">
+
+Preview
+
+</link>
+
+ 
+
+</item>
+
+
+	
+
+<item id="li1005">
+<link id="a1005" target-id="General_background_information">
+
+General background information
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1006">
+<link id="a1006" target-id="Discussion_and_sample_code">
+
+Discussion and sample code
+
+</link>
+
+
+<list id="ul1003" list-type="bulleted">
+
+		
+
+<item id="li1007">
+<link id="a1007" target-id="The_class_named_Sprite01">
+
+The class named Sprite01
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1008">
+<link id="a1008" target-id="The_class_named_Slick0220_">
+
+The class named Slick0220
+
+</link>
+
+
+<list id="ul1004" list-type="bulleted">
+
+			
+
+<item id="li1009">
+<link id="a1009" target-id="The_init_method">
+
+The init method
+
+</link>
+
+
+</item>
+
+
+			
+
+<item id="li1010">
+<link id="a1010" target-id="The_update_method">
+
+The update method
+
+</link>
+
+
+</item>
+
+
+			
+
+<item id="li1011">
+<link id="a1011" target-id="The_render_method">
+
+The render method
+
+</link>
+
+
+</item>
+
+
+		
+
+</list>
+
+
+		
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1012">
+<link id="a1012" target-id="Run_the_program">
+
+Run the program
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1013">
+<link id="a1013" target-id="Summary">
+
+Summary
+
+</link>
+
+ 
+
+</item>
+
+
+	
+
+<item id="li1014">
+<link id="a1014" target-id="Conclusion">
+
+Conclusion
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1015">
+<link id="a1015" target-id="Miscellaneous">
+
+Miscellaneous
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1016">
+<link id="a1016" target-id="Complete_program_listing">
+
+Complete program listing
+
+</link>
+
+
+</item>
+
+
+
+
+</list>
+
+
+	
+
+	
+
+</section>
+<section id="h11001">
+<title>
+<emphasis id="Preface" effect="bold">
+
+Preface
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+	
+
+<para id="p1000">
+This module is one in a collection of modules designed to teach you about 
+	the anatomy of a game engine.
+
+</para>
+
+
+
+
+<para id="p1001">
+Although the modules in this collection will concentrate on the Java game 
+library named Slick2D, the 
+concepts involved and the knowledge that you will gain is applicable to 
+different game engines written in different programming languages as well.
+
+</para>
+
+
+
+
+<para id="p1002">
+The purpose of this module is to teach you how to write a program that 
+simulates the spread of a fatal communicable disease within a population 
+
+<emphasis id="em1000" effect="italics">
+(a 
+pandemic)
+
+</emphasis>
+.
+
+</para>
+
+
+	
+
+<section id="h21000">
+<title>
+<emphasis id="Viewing_tip" effect="bold">
+
+Viewing tip
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1003">
+I recommend that you open another copy of this module in a separate 
+browser window and use the following links to easily find and view the images 
+and listings while you are reading about them.
+
+</para>
+
+
+	
+
+<section id="h31000">
+<title>
+<emphasis id="Figures" effect="bold">
+
+Figures
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<list id="ul1005" list-type="bulleted">
+
+		
+
+<item id="li1017">
+<link id="a1017" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+. The disease has gained a foothold. 
+
+</item>
+
+
+		
+
+<item id="li1018">
+<link id="a1018" target-id="Figure_2">
+
+Figure 2
+
+</link>
+
+. The disease has spread into the population. 
+
+</item>
+
+
+		
+
+<item id="li1019">
+<link id="a1019" target-id="Figure_3">
+
+Figure 3
+
+</link>
+
+. The disease has receded after killing many in the population. 
+
+</item>
+
+
+
+
+	
+
+</list>
+
+
+	
+
+</section>
+<section id="h31001">
+<title>
+<emphasis id="Listings" effect="bold">
+
+Listings
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<list id="ul1006" list-type="bulleted">
+
+		
+
+<item id="li1020">
+<link id="a1020" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+. Beginning of the class named Slick0220.
+
+</item>
+
+
+		
+
+<item id="li1021">
+<link id="a1021" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+. Beginning of the init method. 
+
+</item>
+
+
+		
+
+<item id="li1022">
+<link id="a1022" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+. Remainder of the init method. 
+
+</item>
+
+
+		
+
+<item id="li1023">
+<link id="a1023" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+. Beginning of the update method.
+
+</item>
+
+
+		
+
+<item id="li1024">
+<link id="a1024" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+. Process collisions.
+
+</item>
+
+
+		
+
+<item id="li1025">
+<link id="a1025" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+. Make a cleanup pass.
+
+</item>
+
+
+		
+
+<item id="li1026">
+<link id="a1026" target-id="Listing_7">
+
+Listing 7
+
+</link>
+
+. The render method.
+
+</item>
+
+
+		
+
+<item id="li1027">
+<link id="a1027" target-id="Listing_8">
+
+Listing 8
+
+</link>
+
+. Source code for Slick0220.
+
+</item>
+
+
+		
+
+<item id="li1028">
+<link id="a1028" target-id="Listing_9">
+
+Listing 9
+
+</link>
+
+. Source code for Sprite01.
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</section>
+</section>
+</section>
+<section id="h11002">
+<title>
+<emphasis id="Preview" effect="bold">
+
+Preview
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1004">
+In an 
+
+<emphasis id="earlier_module" effect="bold">
+
+earlier module
+
+</emphasis>
+
+ titled
+	
+
+<link id="a1029" url="http://cnx.org/contents/7fd862dc-efad-463f-beff-1a1276a4b698">
+
+Slick0210: Collision detection and sound
+
+</link>
+
+, you learned how to write a non-trivial program involving thousands of 
+	sprites, collision detection, and sound. We will take that concept 
+	considerably further in this module by writing a program that simulates the 
+	spread of a fatal communicable disease within a population 
+
+<emphasis id="em1001" effect="italics">
+(a pandemic)
+
+</emphasis>
+ 
+	and displays the results in animated graphic form.
+
+</para>
+
+
+
+
+<para id="p1005">
+<emphasis id="strong1000" effect="bold">
+The disease has gained a foothold
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1006">
+<link id="a1030" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+ shows the result of inserting a single 
+infected sprite into a population of healthy sprites. Healthy sprites are 
+colored green and infected sprites are colored red.
+
+</para>
+
+
+
+
+<para id="p1007">
+By the time the screen shot in 
+
+<link id="a1031" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+ was taken, the 
+disease had gained a foothold, several other sprites had become infected, and 
+eight of the original 1000 sprites had died, leaving only 992 live sprites 
+including the seven that are infected.
+
+</para>
+
+
+
+
+
+
+
+<table id="table1000" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1000">
+<row id="tr1000">
+<entry id="th1000">
+
+
+
+<emphasis id="Figure_1" effect="bold">
+
+Figure 1
+
+</emphasis>
+
+. The disease has gained a foothold.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1000">
+<row id="tr1001">
+<entry id="td1000">
+
+
+
+<media id="media1000" alt="Missing image." display="block">
+<image id="img1000" mime-type="image/jpeg" src="../../media/slick0220a0.jpg" width="506" height="526"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1008">
+<emphasis id="strong1001" effect="bold">
+The disease has spread into the population
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1009">
+<link id="a1032" target-id="Figure_2">
+
+Figure 2
+
+</link>
+
+ shows the situation some time later when the 
+disease has spread considerably. By this point, many sprites have become 
+infected 
+
+<emphasis id="em1002" effect="italics">
+(and are infecting others)
+
+</emphasis>
+ and only 763 of the original 1000 
+sprites are still alive including those that are infected.
+
+</para>
+
+
+
+
+
+
+<table id="table1001" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1001">
+<row id="tr1002">
+<entry id="th1001">
+
+
+
+<emphasis id="Figure_2" effect="bold">
+
+Figure 2
+
+</emphasis>
+
+.  The disease has spread into the population.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1001">
+<row id="tr1003">
+<entry id="td1001">
+
+
+
+<media id="media1001" alt="Missing image." display="block">
+<image id="img1001" mime-type="image/jpeg" src="../../media/slick0220a1.jpg" width="507" height="526"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1010">
+<emphasis id="strong1002" effect="bold">
+The disease has receded
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1011">
+<link id="a1033" target-id="Figure_3">
+
+Figure 3
+
+</link>
+
+ shows the situation much later. For the set of 
+properties used to run this simulation, the pandemic appears to be receding with 341 of the 1000 original sprites 
+still alive.
+
+</para>
+
+
+
+
+
+
+<table id="table1002" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1002">
+<row id="tr1004">
+<entry id="th1002">
+
+
+
+<emphasis id="Figure_3" effect="bold">
+
+Figure 3
+
+</emphasis>
+
+.  The disease has receded after killing many in the 
+	population.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1002">
+<row id="tr1005">
+<entry id="td1002">
+
+
+
+<media id="media1002" alt="Missing image." display="block">
+<image id="img1002" mime-type="image/jpeg" src="../../media/slick0220a2.jpg" width="506" height="524"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1012">
+<emphasis id="strong1003" effect="bold">
+Properties that control the spread
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1013">
+Later on, I will explain the properties that control the spread of the 
+disease. Some sets of property values produce results similar to those shown 
+above where the disease gains a foothold, spreads for awhile killing many 
+sprites, and then recedes 
+without killing the entire population.
+
+</para>
+
+
+
+
+<para id="p1014">
+Other sets of property values end up with all of the sprites having died.
+
+</para>
+
+
+
+
+<para id="p1015">
+Still other 
+sets of property values end up with the disease being unable to gain a foothold and spread beyond just a few 
+individual sprites.
+
+</para>
+
+
+
+
+<para id="p1016">
+<emphasis id="strong1004" effect="bold">
+What you have learned
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1017">
+You have learned how to use a basic Slick2D game engine to create simulations 
+involving thousands of sprites, collision detection, and sound.
+
+</para>
+
+
+
+
+<para id="p1018">
+<emphasis id="strong1005" effect="bold">
+What you will learn
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1019">
+In this module, you will learn how to use what you have previously learned to write a 
+relatively complex 
+
+<emphasis id="em1003" effect="italics">
+(but somewhat simplified)
+
+</emphasis>
+ simulation of a real-world 
+pandemic. 
+
+</para>
+
+
+	
+
+<para id="p1020">
+If you were to study the characteristic of pandemics, you could probably 
+	upgrade this program to produce a better model of a pandemic. For example, 
+	an interesting student project would be to allow healthy sprites to 
+	reproduce when they come in contact based on a random probability function. 
+	This would allow the population to be growing at the same time that it is 
+	dying off due to the disease. Of course, it may then be necessary to deal 
+	with the effects of a population explosion.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11003">
+<title>
+<emphasis id="General_background_information" effect="bold">
+
+General 
+	background information
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1021">
+This program simulates the spread of a fatal
+communicable disease within a population.
+
+
+
+</para>
+
+
+
+
+<para id="p1022">
+A single infected sprite is introduced into a population of sprites. The disease is spread by physical
+contact between a healthy sprite and an infected sprite.
+
+
+
+</para>
+
+
+
+
+<para id="p1023">
+You can watch as the disease either spreads and kills the
+entire population or spreads for awhile, then recedes and
+dies out. 
+
+</para>
+
+
+
+
+<para id="p1024">
+Infected sprites are colored red. Healthy 
+sprites are colored green. A sound is emitted 
+
+<emphasis id="em1004" effect="italics">
+(simply to demonstrate how to 
+emit sounds)
+
+</emphasis>
+
+each time there is contact between an infected sprite and
+a healthy sprite.
+
+
+
+</para>
+
+
+
+
+<para id="p1025">
+<emphasis id="strong1006" effect="bold">
+The final outcome
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1026">
+The final outcome is determined both by chance and by 
+several factors including:
+
+
+
+</para>
+
+
+
+
+<list id="ul1007" list-type="bulleted">
+
+	
+
+<item id="li1029">
+The life expectancy of an infected sprite.
+
+</item>
+
+
+	
+
+<item id="li1030">
+The probability of infection due to contact with
+an infected sprite.
+
+</item>
+
+
+	
+
+<item id="li1031">
+The degree of mobility of both infected and 
+healthy sprites.
+
+</item>
+
+
+	
+
+<item id="li1032">
+The population density of sprites.
+
+
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1027">
+The actual values for the first three factors for each 
+individual are determined by a maximum value multiplied
+by a random number between 0 and 1.0.
+
+
+
+</para>
+
+
+
+
+<para id="p1028">
+<emphasis id="strong1007" effect="bold">
+Experimentation
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1029">
+Instance variables are provided for all four of these factors.
+You can modify the values and recompile the program to 
+experiment with different combinations of the factors.
+
+
+
+</para>
+
+
+
+
+<para id="p1030">
+A good exercise for a student would be to create a GUI 
+that allows the factors to be entered more easily without having to recompile 
+the program for
+purposes of experimentation.
+
+</para>
+
+
+	
+
+	
+
+</section>
+<section id="h11004">
+<title>
+<emphasis id="Discussion_and_sample_code" effect="bold">
+
+Discussion and sample code
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+	
+
+<section id="h21001">
+<title>
+<emphasis id="The_class_named_Sprite01" effect="bold">
+
+The class named Sprite01
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1031">
+The class named 
+
+<emphasis id="strong1008" effect="bold">
+Sprite01
+
+</emphasis>
+ is shown in 
+
+<link id="a1034" target-id="Listing_9">
+
+
+Listing 9
+
+</link>
+
+. There is nothing new in 
+
+<link id="a1035" target-id="Listing_9">
+
+
+Listing 9
+
+</link>
+
+ that I haven't explained in earlier modules.
+
+</para>
+
+
+	
+
+</section>
+<section id="h21002">
+<title>
+<emphasis id="The_class_named_Slick0220_" effect="bold">
+
+The class named Slick0220 
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1032">
+<emphasis id="strong1009" effect="bold">
+Will explain in fragments
+
+
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1033">
+A complete listing of the class named 
+
+<emphasis id="strong1010" effect="bold">
+Slick0220
+
+</emphasis>
+ is provided in 
+
+
+<link id="a1036" target-id="Listing_8">
+
+Listing 8
+
+</link>
+
+. I will break the code down and explain it in fragments.
+
+
+
+</para>
+
+
+
+
+<para id="p1034">
+<emphasis id="strong1011" effect="bold">
+Beginning of the class named Slick0220.
+
+</emphasis>
+ 
+
+</para>
+
+
+
+
+<para id="p1035">
+The beginning of the class named 
+
+<emphasis id="strong1012" effect="bold">
+Slick0220
+
+</emphasis>
+, down through the 
+
+
+<emphasis id="strong1013" effect="bold">
+main
+
+</emphasis>
+ method is shown in 
+
+<link id="a1037" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1003" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1003">
+
+			
+
+<row id="tr1006">
+
+				
+
+<entry id="th1003">
+<emphasis id="Listing_1" effect="bold">
+
+Listing 1
+
+</emphasis>
+
+. Beginning of the class named Slick0220.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1003">
+
+			
+
+<row id="tr1007">
+
+				
+
+<entry id="td1003">
+
+
+
+<code id="pre1000" display="block">
+public class Slick0220 extends BasicGame{
+  
+  //The values of the following variables can be changed
+  // to effect the spread of the disease.
+  
+  //Set the life expectancy of an infected sprite
+  // in frames.
+  int infectedSpriteLife = 96;
+  
+  //Set the maximum fraction of exposed sprites that will
+  // become infected.
+  float probabilityOfInfection = 0.5f;
+  
+  //Set the maximum step size that a sprite will move in
+  // one frame.
+  float maxStepSize = 1;
+  
+  //Set the initial number of sprites in the population.
+  int numberSprites = 1000;
+  
+  //References to Sprite01 objects are stored here.
+  ArrayList &lt;Sprite01&gt; sprites = 
+                                new ArrayList&lt;Sprite01&gt;();
+  
+  //These variables are populated with references to Image
+  // objects later.
+  Image redBallImage;
+  Image greenBallImage;
+  
+  //This variable is populated with a reference to a Sound
+  // object later.
+  Sound blaster;
+  
+  //These variables are populated with information about
+  // the background image later.
+  Image background = null;
+  float backgroundWidth;
+  float backgroundHeight;
+  
+  //This object is used to produce random values for a
+  // variety of purposes.
+  Random random = new Random();
+  
+  //This is the frame rate we would like to see and
+  // the maximum frame rate we will allow.
+  int targetFPS = 24;
+  //----------------------------------------------------//
+
+  public Slick0220(){//constructor
+    //Set the title
+    super("Slick0220, baldwin");
+  }//end constructor
+  //----------------------------------------------------//
+
+  public static void main(String[] args)
+                                    throws SlickException{
+    AppGameContainer app = new AppGameContainer(
+                           new Slick0220(),500,500,false);
+    app.start();
+  }//end main
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1036">
+There is nothing new in 
+
+<link id="a1038" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+, so there 
+	should be no need for an explanation beyond the embedded comments.
+
+</para>
+
+
+
+
+
+	
+
+<section id="h31002">
+<title>
+<emphasis id="The_init_method" effect="bold">
+
+The init method
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1037">
+The 
+
+<emphasis id="strong1014" effect="bold">
+init
+
+</emphasis>
+ method begins in 
+
+<link id="a1039" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1004" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1004">
+
+			
+
+<row id="tr1008">
+
+				
+
+<entry id="th1004">
+<emphasis id="Listing_2" effect="bold">
+
+Listing 2
+
+</emphasis>
+
+. Beginning of the init method.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1004">
+
+			
+
+<row id="tr1009">
+
+				
+
+<entry id="td1004">
+
+
+
+<code id="pre1001" display="block">
+  public void init(GameContainer gc)
+                                   throws SlickException {
+
+    //Create Image objects that will be used to visually
+    // represent the sprites.
+    redBallImage = new Image("redball.png");
+    greenBallImage = new Image("greenball.png");
+    
+    //Create a Sound object.
+    blaster = new Sound("blaster.wav");
+
+    //Create a background image and save information
+    // about it.
+    background = new Image("background01.jpg");
+    backgroundWidth = background.getWidth();
+    backgroundHeight = background.getHeight();
+    
+    //Add a red sprite as the first element in the
+    // ArrayList object. This sprite carries the disease
+    // into the population. 
+    //Put it in the center of the game window. Make the
+    // direction of motion random. Make the speed of
+    // motion (step size)random. Make the size random.
+    // Specify a white (do nothing)color filter.
+    sprites.add(new Sprite01(
+       redBallImage,//image
+       backgroundWidth/2.0f,//initial position
+       backgroundHeight/2.0f,//initial position
+       (random.nextFloat() &gt; 0.5) ? 1f : -1f,//direction
+       (random.nextFloat() &gt; 0.5) ? 1f : -1f,//direction
+       0.1f+random.nextFloat()*2.0f,//step size
+       0.1f+random.nextFloat()*2.0f,//step size
+       0.5f+random.nextFloat()*0.5f,//scale
+       new Color(1.0f,1.0f,1.0f)));//color filter
+
+    //This is an infected object. Set its life
+    // expectancy.
+    sprites.get(0).setLife(
+            (int)(random.nextFloat()*infectedSpriteLife));
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1038">
+<emphasis id="strong1015" effect="bold">
+Sick but not yet dead
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1039">
+The only new code in 
+
+<link id="a1040" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+ is the call to the
+
+
+<emphasis id="strong1016" effect="bold">
+setLife
+
+</emphasis>
+ method at the end. In the earlier module titled 
+
+
+<link id="a1041" url="http://cnx.org/contents/7fd862dc-efad-463f-beff-1a1276a4b698">
+
+Slick0210: Collision detection and sound
+
+</link>
+
+, the 
+
+<emphasis id="strong1017" effect="bold">
+
+life
+
+</emphasis>
+ property of a sprite was always either 0 or 1. A sprite with a
+
+
+<emphasis id="strong1018" effect="bold">
+life
+
+</emphasis>
+ property value of 0 was dead. A sprite with a 
+
+<emphasis id="strong1019" effect="bold">
+life
+
+</emphasis>
+ 
+property value of 1 was alive.
+
+</para>
+
+
+
+
+<para id="p1040">
+This program is more nuanced and uses values other than 0 and 1 for the 
+infected red sprites. A value of 0 still means that a sprite is dead. Any other 
+positive value means that the sprite is sick and dying but not yet dead.
+
+</para>
+
+
+
+
+<para id="p1041">
+The value assigned to the 
+
+<emphasis id="strong1020" effect="bold">
+life
+
+</emphasis>
+ property for this sprite is a 
+random value between 0 and 
+
+<emphasis id="strong1021" effect="bold">
+infectedSpriteLife
+
+</emphasis>
+. This is one of 
+the property values that has an impact on the extent to which the disease 
+spreads through the population. The longer an infected sprite lives after 
+becoming 
+infected, the more healthy sprites it will infect and the more aggressive will 
+be the disease.
+
+</para>
+
+
+
+
+<para id="p1042">
+You can modify this value 
+
+<emphasis id="em1005" effect="italics">
+(see 
+
+<link id="a1042" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+)
+
+</emphasis>
+ 
+and recompile the program to experiment with different values.
+
+</para>
+
+
+
+
+<para id="p1043">
+<emphasis id="strong1022" effect="bold">
+Remainder of the init method
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1044">
+The remainder of the 
+
+<emphasis id="strong1023" effect="bold">
+init
+
+</emphasis>
+ method is shown in
+
+
+<link id="a1043" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1005" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1005">
+
+			
+
+<row id="tr1010">
+
+				
+
+<entry id="th1005">
+<emphasis id="Listing_3" effect="bold">
+
+Listing 3
+
+</emphasis>
+
+. Remainder of the init method.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1005">
+
+			
+
+<row id="tr1011">
+
+				
+
+<entry id="td1005">
+
+
+
+<code id="pre1002" display="block">
+    //Populate the ArrayList object with green sprites.
+    // Make the initial position random. Make the initial
+    // direction of motion random. Make the speed
+    // (step size) random. Make the size (scale) random.
+    // Make the color filter white (do nothing).
+    for(int cnt = 0;cnt &lt; numberSprites;cnt++){
+      sprites.add(new Sprite01(
+         greenBallImage,//image
+         backgroundWidth*random.nextFloat(),//position
+         backgroundHeight*random.nextFloat(),//position
+         (random.nextFloat() &gt; 0.5) ? 1f : -1f,//direction
+         (random.nextFloat() &gt; 0.5) ? 1f : -1f,//direction
+         random.nextFloat()*maxStepSize,//step size
+         random.nextFloat()*maxStepSize,//step size
+         1.0f,//scale
+         new Color(1.0f,1.0f,1.0f)));//color filter 
+    }//end for loop
+
+    gc.setTargetFrameRate(targetFPS);//set frame rate
+
+  }//end init
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1045">
+<emphasis id="strong1024" effect="bold">
+A population of healthy sprites
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1046">
+
+
+
+<link id="a1044" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+ uses a 
+
+<emphasis id="strong1025" effect="bold">
+for
+
+</emphasis>
+ loop to add
+
+
+<emphasis id="strong1026" effect="bold">
+numberSprites
+
+</emphasis>
+ 
+
+<emphasis id="em1006" effect="italics">
+(see 
+
+<link id="a1045" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+)
+
+</emphasis>
+ 
+healthy sprites to the population. This is another property that has an impact 
+on the spread of the disease. Everything else being equal, the more sparse the 
+population, the more difficult it is for the disease to get a foothold in the 
+first place and the more difficult it is for the disease to spread if it does 
+get a foothold.
+
+</para>
+
+
+
+
+<para id="p1047">
+<emphasis id="strong1027" effect="bold">
+The frame rate
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1048">
+
+
+
+<link id="a1046" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+ also sets the frame rate to the value of
+
+
+<emphasis id="strong1028" effect="bold">
+targetFPS 
+
+</emphasis>
+ 
+
+<emphasis id="em1007" effect="italics">
+(see 
+
+<link id="a1047" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+
+<emphasis id="strong1029" effect="bold">
+)
+
+</emphasis>
+</emphasis>
+<emphasis id="strong1030" effect="bold">
+.
+
+
+</emphasis>
+Note that I slowed this program down to the standard movie frame rate 
+of 24 fps 
+
+<emphasis id="em1008" effect="italics">
+(as opposed to the typical 60 fps)
+
+</emphasis>
+ mainly because I wanted to 
+run the simulation more slowly. In other words, I wanted it to be possible to 
+see the disease spread through the population. Also, it is a fairly demanding 
+program so it may not run at 60 fps on some machines.
+
+</para>
+
+
+
+
+<para id="p1049">
+<emphasis id="strong1031" effect="bold">
+End of the init method
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1050">
+
+
+
+<link id="a1048" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+ also signals the end of the 
+
+<emphasis id="strong1032" effect="bold">
+init
+
+</emphasis>
+ 
+method.
+
+</para>
+
+
+
+
+</section>
+<section id="h31003">
+<title>
+<emphasis id="The_update_method" effect="bold">
+
+The update method
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1051">
+The 
+
+<emphasis id="strong1033" effect="bold">
+update
+
+</emphasis>
+ method begins in 
+
+<link id="a1049" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+. 
+This is the method where most of the added complexity in this program resides.
+
+</para>
+
+
+
+
+	
+
+<table id="table1006" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1006">
+
+			
+
+<row id="tr1012">
+
+				
+
+<entry id="th1006">
+<emphasis id="Listing_4" effect="bold">
+
+Listing 4
+
+</emphasis>
+
+. Beginning of the update method.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1006">
+
+			
+
+<row id="tr1013">
+
+				
+
+<entry id="td1006">
+
+
+
+<code id="pre1003" display="block">
+
+  public void update(GameContainer gc, int delta)
+                                    throws SlickException{
+
+    //Move all the sprites to their new positions.
+    for(int cnt = 0;cnt &lt; sprites.size();cnt++){
+      //Get a reference to the current Sprite01 object.
+      Sprite01 thisSprite = sprites.get(cnt);
+      //Ask the sprite to move according to its
+      // properties
+      thisSprite.move();
+
+      //Ask the sprite to bounce off the edge if necessary
+      thisSprite.edgeBounce(
+                        backgroundWidth,backgroundHeight);
+    }//end for loop
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1052">
+<emphasis id="strong1034" effect="bold">
+Nothing new in this code fragment
+
+</emphasis>
+</para>
+
+
+	
+	
+
+<para id="p1053">
+The is nothing new in the code fragment shown in 
+
+<link id="a1050" target-id="Listing_4">
+
+
+	Listing 4
+
+</link>
+
+. The new code begins in 
+
+<link id="a1051" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+.
+
+</para>
+
+
+
+
+<para id="p1054">
+<emphasis id="strong1035" effect="bold">
+An overview of the code
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1055">
+Before getting down into the details of the code, I will give you a 
+descriptive overview.
+
+</para>
+
+
+
+
+<para id="p1056">
+In the outer-most layer, the program uses a 
+
+<emphasis id="strong1036" effect="bold">
+for
+
+</emphasis>
+ loop to 
+examine every sprite in the population looking for red or infected sprites.
+
+</para>
+
+
+
+
+<para id="p1057">
+When it finds an infected sprite, it decreases the value of its life 
+expectancy. Then it uses an inner 
+
+<emphasis id="strong1037" effect="bold">
+for
+
+</emphasis>
+ loop to test that sprite against every 
+sprite in the population looking for collisions.
+
+</para>
+
+
+
+
+<para id="p1058">
+<emphasis id="strong1038" effect="bold">
+Ignore collision with an infected red sprite
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1059">
+If the infected sprite collides with another infected sprite, it ignores the 
+collision and keeps searching the population, looking for collisions with 
+healthy sprites.
+
+</para>
+
+
+
+
+<para id="p1060">
+<emphasis id="strong1039" effect="bold">
+Collision with a healthy green sprite
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1061">
+If the infected sprite collides with a healthy 
+
+<emphasis id="em1009" effect="italics">
+(green)
+
+</emphasis>
+ sprite, it 
+causes that sprite to become 
+
+<emphasis id="em1010" effect="italics">
+exposed
+
+</emphasis>
+ to the disease and plays a sound 
+effect. 
+
+<emphasis id="em1011" effect="italics">
+(As you will see later, sprites that are exposed to the disease don't always contract the 
+disease.)
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1062">
+<emphasis id="strong1040" effect="bold">
+The state of the population
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1063">
+When the infected sprite has been tested for a collision with every healthy 
+sprite, four kinds of sprites exist in the population:
+
+</para>
+
+
+
+
+<list id="ol1000" list-type="enumerated">
+
+	
+
+<item id="li1033">
+Healthy sprites that have not been exposed to the disease.
+
+</item>
+
+
+	
+
+<item id="li1034">
+Healthy sprites that have been exposed to the disease.
+
+</item>
+
+
+	
+
+<item id="li1035">
+Infected sprites that still have some remaining life.
+
+</item>
+
+
+	
+
+<item id="li1036">
+Infected sprites whose 
+
+<emphasis id="strong1041" effect="bold">
+life
+
+</emphasis>
+ property is less than or 
+	equal to zero, meaning that they are dead.
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1064">
+<emphasis id="strong1042" effect="bold">
+A cleanup pass
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1065">
+An 
+
+<emphasis id="strong1043" effect="bold">
+Iterator
+
+</emphasis>
+ is used to make a cleanup pass through the 
+population.
+
+</para>
+
+
+
+
+<para id="p1066">
+<emphasis id="em1012" effect="italics">
+Exposed
+
+</emphasis>
+ sprites are either converted to infected sprites or cleared of the 
+exposure on the basis of a random value that has a maximum value of 
+
+<emphasis id="strong1044" effect="bold">
+probabilityOfInfection
+
+</emphasis>
+
+
+
+<emphasis id="em1013" effect="italics">
+(see 
+
+<link id="a1052" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+)
+
+</emphasis>
+.
+
+</para>
+
+
+
+
+<para id="p1067">
+<emphasis id="em1014" effect="italics">
+Dead
+
+</emphasis>
+ sprites are removed from the population.
+
+</para>
+
+
+
+
+<para id="p1068">
+The code to accomplish all of this begins with the 
+
+<emphasis id="strong1045" effect="bold">
+for
+
+</emphasis>
+ loop in
+
+
+<link id="a1053" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1007" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1007">
+
+			
+
+<row id="tr1014">
+
+				
+
+<entry id="th1007">
+<emphasis id="Listing_5" effect="bold">
+
+Listing 5
+
+</emphasis>
+
+. Process collisions.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1007">
+
+			
+
+<row id="tr1015">
+
+				
+
+<entry id="td1007">
+
+
+
+<code id="pre1004" display="block">
+    //Search for and process collisions between
+    // infected (red) sprites and healthy (green)
+    // sprites. Declare the green sprite to be exposed to
+    // the disease when a collision occurs.
+    for(int ctr = 0;ctr &lt; sprites.size();ctr++){
+      //Get a reference to the Sprite01 object.
+      Sprite01 testSprite = sprites.get(ctr);
+
+      if(testSprite.getImage().equals(redBallImage)){
+        //This is an infected sprite. Reduce its life.
+        testSprite.setLife(testSprite.getLife() - 1);
+      
+        // Do the following for every sprite in the
+        // ArrayList object.
+        for(int cnt = 0;cnt &lt; sprites.size();cnt++){
+          //Get a reference to the Sprite01 object.
+          Sprite01 thisSprite = sprites.get(cnt);
+          
+          //Test for a collision between this sprite and
+          // the infected test sprite.
+          boolean collision = 
+                       thisSprite.isCollision(testSprite);
+    
+          //Process a collision if it has occurred.
+          // Exclude collisions between the testSprite
+          // and itself and with other infected sprites.
+
+          if((collision == true)&amp;&amp;(!thisSprite.getImage().
+                                   equals(redBallImage))){
+
+            //A collision has occurred, set exposed to true
+            thisSprite.setExposed(true);
+
+            //Play a sound to indicate that a collision
+            // has occurred.
+            blaster.play();
+          }//end if
+    
+        }//end for loop
+      }//end if on redBallImage
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1069">
+You should have no difficulty matching up the code in
+	
+
+<link id="a1054" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+ with the verbal description given above.
+
+</para>
+
+
+	
+
+<para id="p1070">
+<emphasis id="strong1046" effect="bold">
+Make a cleanup pass
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1071">
+The code in 
+
+<link id="a1055" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+ uses an 
+
+<emphasis id="strong1047" effect="bold">
+Iterator
+
+</emphasis>
+ 
+to make the cleanup pass described above.
+
+</para>
+
+
+
+
+	
+
+<table id="table1008" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1008">
+
+			
+
+<row id="tr1016">
+
+				
+
+<entry id="th1008">
+<emphasis id="Listing_6" effect="bold">
+
+Listing 6
+
+</emphasis>
+
+. Make a cleanup pass.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1008">
+
+			
+
+<row id="tr1017">
+
+				
+
+<entry id="td1008">
+
+
+
+<code id="pre1005" display="block">
+      //Make a cleanup pass through the ArrayList object
+      Iterator &lt;Sprite01&gt; iterB = sprites.iterator();
+  
+      while(iterB.hasNext()){
+        Sprite01 theSprite = iterB.next();
+        
+        //Cause a percentage of the exposed objects to
+        // contract the disease. Clear the others. 
+        if((theSprite.getExposed() == true) &amp;&amp; 
+           (random.nextFloat() &lt; probabilityOfInfection)){
+          theSprite.setImage(redBallImage);
+          theSprite.setLife((int)(
+                  random.nextFloat()*infectedSpriteLife));
+          theSprite.setExposed(false);
+        }else{
+          //Eliminate the effects of the exposure
+          theSprite.setExposed(false);
+        }//end else
+        
+        //Remove dead sprites
+        if(theSprite.getLife() &lt;= 0){
+          iterB.remove();
+        }//end if
+      }//end while loop
+      
+    }//end outer for loop
+
+  }//end update
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1072">
+Once again, you should have no difficulty matching up the code in
+	
+
+<link id="a1056" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+ with the verbal description given above.
+
+</para>
+
+
+	
+
+</section>
+<section id="h31004">
+<title>
+<emphasis id="The_render_method" effect="bold">
+
+The render method
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1073">
+The render method is shown in 
+
+<link id="a1057" target-id="Listing_7">
+
+Listing 7
+
+</link>
+
+. There is 
+nothing new in 
+
+<link id="a1058" target-id="Listing_7">
+
+Listing 7
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1009" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1009">
+
+			
+
+<row id="tr1018">
+
+				
+
+<entry id="th1009">
+<emphasis id="Listing_7" effect="bold">
+
+Listing 7
+
+</emphasis>
+
+. The render method.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1009">
+
+			
+
+<row id="tr1019">
+
+				
+
+<entry id="td1009">
+
+
+
+<code id="pre1006" display="block">
+  public void render(GameContainer gc, Graphics g)
+                                    throws SlickException{
+
+    //set the drawing mode to honor transparent pixels
+    g.setDrawMode(g.MODE_NORMAL);
+
+    //Draw the background to erase the previous picture.
+    background.draw(0,0);
+
+    //Draw every sprite in the ArrayList object.
+    for(int cnt = 0;cnt &lt; sprites.size();cnt++){
+      sprites.get(cnt).draw();
+    }//end for loop
+    
+    //Display the number of sprites remaining.
+    g.drawString(
+       "Sprites remaining: " + (sprites.size()),100f,10f);
+  }//end render
+
+}//end class Slick0220
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+
+
+
+
+</section>
+</section>
+</section>
+<section id="h11005">
+<title>
+<emphasis id="Run_the_program" effect="bold">
+
+Run the program
+
+</emphasis>
+
+
+</title>
+
+
+
+
+
+
+<para id="p1074">
+I encourage you to copy the code from 
+
+<link id="a1059" target-id="Listing_8">
+
+Listing 8
+
+</link>
+
+ 
+and 
+
+<link id="a1060" target-id="Listing_9">
+
+Listing 9
+
+</link>
+
+. Compile the code and execute 
+it, 
+making changes, and observing the results of your changes. Make certain that you 
+can explain why your changes behave as they do.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11006">
+<title>
+<emphasis id="Summary" effect="bold">
+
+Summary
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1075">
+In this module, you learned how to write a program that simulates the spread of a fatal communicable disease within a population.
+
+</para>
+
+
+
+
+</section>
+<section id="h11007">
+<title>
+<emphasis id="Conclusion" effect="bold">
+
+Conclusion
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1076">
+Although I may come back and add more modules later, for now, this will be the final 
+module in this collection.
+
+</para>
+
+
+
+
+<para id="p1077">
+The objective of the collection was to explain the anatomy of a game 
+engine. I believe I have accomplished that objective and have also provided 
+sample programs to illustrate the use of the game engine.
+
+</para>
+
+
+
+
+<para id="p1078">
+It is worth pointing out that 
+
+<emphasis id="strong1048" effect="bold">
+BasicGame
+
+</emphasis>
+ is not the 
+only game engine architecture available with Slick2D. The
+
+
+<link id="a1061" url="http://slick.ninjacave.com/wiki/index.php?title=Main_Page">
+
+Slick2D Wiki
+
+</link>
+
+ refers to 
+
+<emphasis id="strong1049" effect="bold">
+BasicGame
+
+</emphasis>
+ as a game container and indicates that several 
+others are available including:
+
+</para>
+
+
+
+
+<list id="ul1008" list-type="bulleted">
+
+	
+
+<item id="li1037">
+Applet Game Container
+
+</item>
+
+
+	
+
+<item id="li1038">
+ApplicationGDXContainer/AndroidGDXContainer
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1079">
+The documentation also describes a class named 
+
+<emphasis id="strong1050" effect="bold">
+StateBasedGame
+
+</emphasis>
+, 
+which provides a different anatomy than 
+
+<emphasis id="strong1051" effect="bold">
+BasicGame
+
+</emphasis>
+. Bucky 
+Roberts provides a series of video tutorials on state based games using Slick2D at
+
+
+<link id="a1062" url="http://www.youtube.com/watch?v=AXNDBQfCd08">
+
+
+http://www.youtube.com/watch?v=AXNDBQfCd08
+
+</link>
+
+ 
+
+</para>
+
+
+	
+
+</section>
+<section id="h11008">
+<title>
+<emphasis id="Miscellaneous" effect="bold">
+
+Miscellaneous
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1080">
+This section contains a variety of miscellaneous information.
+
+</para>
+
+
+
+
+
+	
+
+<note id="note1000" type="">
+
+
+		
+
+
+			
+
+
+				
+
+<emphasis id="strong1052" effect="bold">
+Housekeeping material
+
+</emphasis>
+
+				
+
+<list id="ul1009" list-type="bulleted">
+
+					
+
+<item id="li1039">
+Module name: Slick0220: Simulating a pandemic
+
+</item>
+
+
+					
+
+<item id="li1040">
+File: Slick0220.htm
+
+
+</item>
+
+
+					
+
+<item id="li1041">
+Published: 02/07/13
+
+</item>
+
+
+					
+
+<item id="li1042">
+Revised: 06/11/15 for 64-bit
+
+</item>
+
+
+					
+
+<item id="li1043">
+Revised: 10/03/15
+
+</item>
+
+
+				
+
+</list>
+
+
+				
+
+</note>
+
+			
+
+
+		
+
+
+
+	
+
+
+
+
+
+
+	
+
+<note id="note1001" type="">
+
+
+		
+
+
+			
+
+
+				
+
+<emphasis id="strong1053" effect="bold">
+Disclaimers:
+
+</emphasis>
+<para id="p1081">
+<emphasis id="strong1054" effect="bold">
+Financial
+
+</emphasis>
+: Although the Connexions
+site makes it possible for you to download a PDF file for this
+module at no charge, and also makes it possible for you to
+purchase a pre-printed version of the PDF file, you should be
+aware that some of the HTML elements in this module may not translate well into
+PDF.
+
+</para>
+
+
+				
+
+<para id="p1082">
+I also want you to know that, I receive no financial compensation from the Connexions website even if you purchase 
+	the PDF version of the module.
+
+</para>
+
+
+				
+
+<para id="p1083">
+In the past, unknown individuals have copied my modules from cnx.org, converted them to Kindle books, and 
+				placed them for sale on Amazon.com showing me as the author. I 
+				neither receive compensation for those sales nor do I know who does 
+				receive compensation. If you purchase such a book, please be 
+				aware that it is a copy of a module that is freely 
+				available on cnx.org and that it was made and published without 
+				my prior knowledge.
+
+</para>
+
+
+				
+
+<para id="p1084">
+<emphasis id="strong1055" effect="bold">
+Affiliation
+
+</emphasis>
+: I am a professor of Computer Information 
+	Technology at Austin Community College in Austin, TX.
+	
+
+</para>
+
+
+				
+
+</note>
+
+			
+
+
+		
+
+
+
+	
+
+
+
+
+
+</section>
+<section id="h11009">
+<title>
+<emphasis id="Complete_program_listing" effect="bold">
+
+Complete program listing
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1085">
+Complete listings of the code discussed in this module are provided in
+
+
+<link id="a1063" target-id="Listing_8">
+
+Listing 8
+
+</link>
+
+ and 
+
+<link id="a1064" target-id="Listing_9">
+
+Listing 9
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1010" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1010">
+
+			
+
+<row id="tr1020">
+
+				
+
+<entry id="th1010">
+<emphasis id="Listing_8" effect="bold">
+
+Listing 8
+
+</emphasis>
+
+. Source code for 
+				Slick0220.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1010">
+
+			
+
+<row id="tr1021">
+
+				
+
+<entry id="td1010">
+
+
+
+<code id="pre1007" display="block">
+
+/*Slick0220.java
+Copyright 2013, R.G.Baldwin
+
+This program simulates the propagation of a fatal
+communicable disease within a population.
+
+A single infected sprite is introduced into a large 
+population of sprites. The disease is spread by physical
+contact with an infected sprite.
+
+You can watch as the disease either spreads and kills the
+entire population or spreads for awhile, then recedes and
+dies out. Infected sprites are colored red. Healthy 
+sprites are colored green. A sound is emitted (for drama)
+each time there is contact between an infected sprite and
+a healthy sprite.
+
+The final outcome is determined both by chance and by 
+several factors including:
+
+-The maximum life expectancy of an infected sprite
+-The maximum probability of infection due to contact with
+an infected sprite
+-The maximum degree of mobility of both infected and 
+healthy sprites
+-The population density of sprites.
+
+The actual values for the first three factors for each 
+individual are determined by the maximum value multiplied
+by a random number between 0 and 1.0.
+
+Instance variables are provided for each of these factors.
+You can modify the values and recompile the program to 
+experiment with different combinations of the factors.
+
+A good exercise for a student would be to create a GUI 
+that allows the factors to be entered more easily for
+purposes of experimentation.
+
+Tested using JDK 1.7 under WinXP
+*********************************************************/
+
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.Sound;
+
+import java.util.Random;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class Slick0220 extends BasicGame{
+  
+  //The values of the following variables can be changed
+  // to effect the spread of the disease.
+  
+  //Set the life expectancy of an infected sprite
+  // in frames.
+  int infectedSpriteLife = 96;
+  
+  //Set the maximum fraction of exposed sprites that will
+  // become infected.
+  float probabilityOfInfection = 0.5f;
+  
+  //Set the maximum step size that a sprite will move in
+  // one frame.
+  float maxStepSize = 1;
+  
+  //Set the initial number of sprites in the population.
+  int numberSprites = 1000;
+  
+  //References to Sprite01 objects are stored here.
+  ArrayList &lt;Sprite01&gt; sprites = 
+                                new ArrayList&lt;Sprite01&gt;();
+  
+  //These variables are populated with references to Image
+  // objects later.
+  Image redBallImage;
+  Image greenBallImage;
+  
+  //This variable is populated with a reference to a Sound
+  // object later.
+  Sound blaster;
+  
+  //These variables are populated with information about
+  // the background image later.
+  Image background = null;
+  float backgroundWidth;
+  float backgroundHeight;
+  
+  //This object is used to produce random values for a
+  // variety of purposes.
+  Random random = new Random();
+  
+  //This is the frame rate we would like to see and
+  // the maximum frame rate we will allow.
+  int targetFPS = 24;
+  //----------------------------------------------------//
+
+  public Slick0220(){//constructor
+    //Set the title
+    super("Slick0220, baldwin");
+  }//end constructor
+  //----------------------------------------------------//
+
+  public static void main(String[] args)
+                                    throws SlickException{
+    AppGameContainer app = new AppGameContainer(
+                           new Slick0220(),500,500,false);
+    app.start();
+  }//end main
+  //----------------------------------------------------//
+
+  @Override
+  public void init(GameContainer gc)
+                                   throws SlickException {
+
+    //Create Image objects that will be used to visually
+    // represent the sprites.
+    redBallImage = new Image("redball.png");
+    greenBallImage = new Image("greenball.png");
+    
+    //Create a Sound object.
+    blaster = new Sound("blaster.wav");
+
+    //Create a background image and save information
+    // about it.
+    background = new Image("background01.jpg");
+    backgroundWidth = background.getWidth();
+    backgroundHeight = background.getHeight();
+    
+    //Add a red sprite as the first element in the
+    // ArrayList object. This sprite carries the disease
+    // into the population. 
+    //Put it in the center of the game window. Make the
+    // direction of motion random. Make the speed of
+    // motion (step size)random. Make the size random.
+    // Specify a white (do nothing)color filter.
+    sprites.add(new Sprite01(
+       redBallImage,//image
+       backgroundWidth/2.0f,//initial position
+       backgroundHeight/2.0f,//initial position
+       (random.nextFloat() &gt; 0.5) ? 1f : -1f,//direction
+       (random.nextFloat() &gt; 0.5) ? 1f : -1f,//direction
+       0.1f+random.nextFloat()*2.0f,//step size
+       0.1f+random.nextFloat()*2.0f,//step size
+       0.5f+random.nextFloat()*0.5f,//scale
+       new Color(1.0f,1.0f,1.0f)));//color filter
+
+    //This is an infected object. Set its life
+    // expectancy.
+    sprites.get(0).setLife(
+            (int)(random.nextFloat()*infectedSpriteLife));
+
+    //Populate the ArrayList object with green sprites.
+    // Make the initial position random. Make the initial
+    // direction of motion random. Make the speed
+    // (step size) random. Make the size (scale) random.
+    // Make the color filter white (do nothing).
+    for(int cnt = 0;cnt &lt; numberSprites;cnt++){
+      sprites.add(new Sprite01(
+         greenBallImage,//image
+         backgroundWidth*random.nextFloat(),//position
+         backgroundHeight*random.nextFloat(),//position
+         (random.nextFloat() &gt; 0.5) ? 1f : -1f,//direction
+         (random.nextFloat() &gt; 0.5) ? 1f : -1f,//direction
+         random.nextFloat()*maxStepSize,//step size
+         random.nextFloat()*maxStepSize,//step size
+         1.0f,//scale
+         new Color(1.0f,1.0f,1.0f)));//color filter 
+    }//end for loop
+
+    gc.setTargetFrameRate(targetFPS);//set frame rate
+
+  }//end init
+  //----------------------------------------------------//
+
+  @Override
+  public void update(GameContainer gc, int delta)
+                                    throws SlickException{
+
+    //Move all the sprites to their new positions.
+    for(int cnt = 0;cnt &lt; sprites.size();cnt++){
+      //Get a reference to the current Sprite01 object.
+      Sprite01 thisSprite = sprites.get(cnt);
+      //Ask the sprite to move according to its
+      // properties
+      thisSprite.move();
+
+      //Ask the sprite to bounce off the edge if necessary
+      thisSprite.edgeBounce(
+                        backgroundWidth,backgroundHeight);
+    }//end for loop
+
+    //Search for and process collisions between
+    // infected (red) sprites and healthy (green)
+    // sprites. Declare the green sprite to be exposed to
+    // the disease when a collision occurs.
+    for(int ctr = 0;ctr &lt; sprites.size();ctr++){
+      //Get a reference to the Sprite01 object.
+      Sprite01 testSprite = sprites.get(ctr);
+
+      if(testSprite.getImage().equals(redBallImage)){
+        //This is an infected sprite. Reduce its life.
+        testSprite.setLife(testSprite.getLife() - 1);
+      
+        // Do the following for every sprite in the
+        // ArrayList object.
+        for(int cnt = 0;cnt &lt; sprites.size();cnt++){
+          //Get a reference to the Sprite01 object.
+          Sprite01 thisSprite = sprites.get(cnt);
+          
+          //Test for a collision between this sprite and
+          // the infected test sprite.
+          boolean collision = 
+                       thisSprite.isCollision(testSprite);
+    
+          //Process a collision if it has occurred.
+          // Exclude collisions between the testSprite
+          // and itself and with other infected sprites.
+
+          if((collision == true)&amp;&amp;(!thisSprite.getImage().
+                                   equals(redBallImage))){
+
+            //A collision has occurred, set exposed to true
+            thisSprite.setExposed(true);
+
+            //Play a sound to indicate that a collision
+            // has occurred.
+            blaster.play();
+          }//end if
+    
+        }//end for loop
+      }//end if on redBallImage
+      
+      //Make a cleanup pass through the ArrayList object
+      Iterator &lt;Sprite01&gt; iterB = sprites.iterator();
+  
+      while(iterB.hasNext()){
+        Sprite01 theSprite = iterB.next();
+        
+        //Cause a percentage of the exposed objects to
+        // contract the disease. Clear the others. 
+        if((theSprite.getExposed() == true) &amp;&amp; 
+           (random.nextFloat() &lt; probabilityOfInfection)){
+          theSprite.setImage(redBallImage);
+          theSprite.setLife((int)(
+                  random.nextFloat()*infectedSpriteLife));
+          theSprite.setExposed(false);
+        }else{
+          //Eliminate the effects of the exposure
+          theSprite.setExposed(false);
+        }//end else
+        
+        //Remove dead sprites
+        if(theSprite.getLife() &lt;= 0){
+          iterB.remove();
+        }//end if
+      }//end while loop
+      
+    }//end outer for loop
+
+  }//end update
+  //----------------------------------------------------//
+
+  public void render(GameContainer gc, Graphics g)
+                                    throws SlickException{
+
+    //set the drawing mode to honor transparent pixels
+    g.setDrawMode(g.MODE_NORMAL);
+
+    //Draw the background to erase the previous picture.
+    background.draw(0,0);
+
+    //Draw every sprite in the ArrayList object.
+    for(int cnt = 0;cnt &lt; sprites.size();cnt++){
+      sprites.get(cnt).draw();
+    }//end for loop
+    
+    //Display the number of sprites remaining.
+    g.drawString(
+       "Sprites remaining: " + (sprites.size()),100f,10f);
+  }//end render
+
+}//end class Slick0220
+//======================================================//
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1086">
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1011" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1011">
+
+			
+
+<row id="tr1022">
+
+				
+
+<entry id="th1011">
+<emphasis id="Listing_9" effect="bold">
+
+Listing 9
+
+</emphasis>
+
+. Source code for 
+				Sprite01.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1011">
+
+			
+
+<row id="tr1023">
+
+				
+
+<entry id="td1011">
+
+
+
+<code id="pre1008" display="block">
+
+/*Sprite01.java
+Copyright 2013, R.G.Baldwin
+
+An object of this class can be manipulated as a sprite
+in a Slick2D program.
+
+Tested using JDK 1.7 under WinXP
+*********************************************************/
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Color;
+
+public class Sprite01{
+  Image image = null;//The sprite wears this image
+  float X = 0f;//X-Position of the sprite
+  float Y = 0f;//Y-Position of the sprite
+  float width = 0f;//Width of the sprite
+  float height = 0f;//Height of the sprite
+  float xStep = 1f;//Incremental step size in pixels - X
+  float yStep = 1f;//Incremental step size in pixels - Y
+  float scale = 1f;//Scale factor for draw method
+  Color colorFilter = null;//Color filter for draw method
+  
+  float xDirection = 1.0f;//Move to right for positive
+  float yDirection = 1.0f;//Move down for positive
+  
+  int life = 1;//Used to control life or death of sprite
+  
+  boolean exposed = false;//Used in the contagion program
+  
+  //Constructor
+  public Sprite01(Image image,//Sprite wears this image
+                  float X,//Initial position
+                  float Y,//Initial position
+                  float xDirection,//Initial direction
+                  float yDirection,//Initial direction
+                  float xStep,//Initial step size
+                  float yStep,//Initial step size
+                  float scale,//Scale factor for drawing
+                  Color colorFilter)
+                    throws SlickException {
+
+      //Save incoming parameter values
+      this.image = image;
+      this.X = X;
+      this.Y = Y;
+      this.xDirection = xDirection;
+      this.yDirection = yDirection;
+      this.xStep = xStep;
+      this.yStep = yStep;
+      this.scale = scale;
+      this.colorFilter = colorFilter;
+      
+      //Compute and save width and height of image
+      width = image.getWidth();
+      height = image.getHeight();
+
+  }//end constructor
+  //----------------------------------------------------//
+  //The following accessor methods make many of the
+  // important attributes accessible to the using
+  // program.
+  //----------------------------------------------------//
+  
+  public Image getImage(){
+    return image;
+  }//end getSprite
+  //----------------------------------------------------//
+  
+  public void setImage(Image image) throws SlickException{
+    this.image = image;
+    width = image.getWidth();
+    height = image.getHeight();
+  }//end setImage
+  //----------------------------------------------------//
+  
+  public float getWidth(){
+    return width;
+  }//end getWidth
+  //----------------------------------------------------//
+
+  public float getHeight(){
+    return height;
+  }//end getWidth
+  //----------------------------------------------------//
+  
+  public float getX(){
+    return X;
+  }//end getX
+  //----------------------------------------------------//
+  
+  public void setX(float X){
+    this.X = X;
+  }//end setX
+  //----------------------------------------------------//
+  public float getY(){
+    return Y;
+  }//end getY
+  //----------------------------------------------------//
+
+  public void setY(float Y){
+    this.Y = Y;
+  }//end setY
+  //----------------------------------------------------//
+  
+  public float getXDirection(){
+    return xDirection;
+  }// end getXDirection
+  //----------------------------------------------------//
+  
+  public void setXDirection(float xDirection){
+    this.xDirection = xDirection;
+  }//end setXDirection
+  //----------------------------------------------------//
+  
+  public float getYDirection(){
+    return yDirection;
+  }//end getYDirection
+  //----------------------------------------------------//
+  
+  public void setYDirection(float yDirection){
+    this.yDirection = yDirection;
+  }//setYDirection
+  //----------------------------------------------------//
+  
+  public float getXStep(){
+    return xStep;
+  }//end getXStep
+  //----------------------------------------------------//
+  
+  public void setXStep(float xStep){
+    this.xStep = xStep;
+  }//end setXStep
+  //----------------------------------------------------//
+  
+  public float getYStep(){
+    return yStep;
+  }//end getYStep
+  //----------------------------------------------------//
+
+  public void setYStep(float yStep){
+    this.yStep = yStep;
+  }//end setYStep
+  //----------------------------------------------------//
+  
+  public float getScale(){
+    return scale;
+  }//end getScale
+  //----------------------------------------------------//
+
+  public void setScale(float scale){
+    this.scale = scale;
+  }//end setScale
+  //----------------------------------------------------//
+  
+  public Color getColorFilter(){
+    return colorFilter;
+  }//end getColorFilter
+  //----------------------------------------------------//
+  
+  public void setColorFilter(
+                        float red,float green,float blue){
+    colorFilter = new Color(red,green,blue);
+  }//end setColorFilter
+  //----------------------------------------------------//
+ 
+  public int getLife(){
+    return life;
+  }//end getLife
+  //----------------------------------------------------//
+  
+  public void setLife(int life){
+    this.life = life;
+  }//end setLife
+  //----------------------------------------------------//
+  
+  public boolean getExposed(){
+    return exposed;
+  }//end getExposed
+  //----------------------------------------------------//
+  
+  public void setExposed(boolean exposed){
+    this.exposed = exposed;
+  }//end setExposed
+  //----------------------------------------------------//
+  
+  //This method causes the sprite to be drawn each time
+  // it is called.
+  public void draw(){
+    image.draw(X,Y,scale,colorFilter);
+  }//end draw
+  //----------------------------------------------------//
+  
+  //This method detects collisions between this 
+  // rectangular sprite object and another rectangular
+  // sprite object by testing four cases where a
+  // collision could not possibly occur and assuming that
+  // a collision has occurred if none of those cases
+  // are true.
+  public boolean isCollision(Sprite01 other){
+    //Create variable with meaningful names make the
+    // algorithm easier to understand. Can be eliminated
+    // to make the algorithm more efficient.
+    float thisTop = Y;
+    float thisBottom = thisTop + height*scale;
+    float thisLeft = X;
+    float thisRight = thisLeft + width*scale;
+    
+    float otherTop = other.getY();
+    float otherBottom = otherTop + other.getHeight()*other.getScale();
+    float otherLeft = other.getX();
+    float otherRight = otherLeft + other.getWidth()*other.getScale();
+
+    if (thisBottom &lt; otherTop) return(false);
+    if (thisTop &gt; otherBottom) return(false);
+  
+    if (thisRight &lt; otherLeft) return(false);
+    if (thisLeft &gt; otherRight) return(false);
+  
+    return(true);
+
+  }//end isCollision
+  //----------------------------------------------------//
+  
+  public void move(){
+    X += xDirection*xStep;
+    Y += yDirection*yStep;
+  }//end move
+  //----------------------------------------------------//
+  
+  public void edgeBounce(float winWidth,float winHeight){
+    //Test for a collision with one of the edges and
+    // cause to sprite to bounce off the edge if a
+    // collision has occurred.
+    if(X + width*scale &gt;= winWidth){
+      //A collision has occurred.
+      xDirection = -1.0f;//reverse direction
+      //Set the position to the right edge less the
+      // width of the sprite.
+      X = winWidth - width*scale;
+    }//end if
+    
+    //Continue testing for collisions with the edges
+    // and take appropriate action.
+    if(X &lt;= 0){
+      xDirection = 1.0f;
+      X = 0;
+    }//end if
+    
+    if(Y + height*scale &gt;= winHeight){
+      yDirection = -1.0f;
+      Y = winHeight - height*scale;
+    }//end if
+    
+    if(Y &lt;= 0){
+      yDirection = 1.0f;
+      Y = 0;
+    }//end if
+  }//end edgeBounce
+  //----------------------------------------------------//
+
+}//end class Sprite01
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1087">
+-end- 
+
+</para>
+
+
+
+
+
+
+</section>
+</content>
+
+
+
+
+</document>

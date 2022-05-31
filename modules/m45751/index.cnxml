@@ -1,0 +1,3454 @@
+<document xmlns="http://cnx.rice.edu/cnxml"> 
+<title>Slick0180: Sprite sheet animation, part 1</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45751</md:content-id>
+  <md:title>Slick0180: Sprite sheet animation, part 1</md:title>
+  <md:abstract>Learn to use objects of the Slick2D SpriteSheet class and the Animation class to perform simple spritesheet animation.</md:abstract>
+  <md:uuid>0fc6c084-4f60-4497-a2d7-802a396bc985</md:uuid>
+</metadata>
+
+<content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="h11000">
+<title>
+Table of Contents
+
+</title>
+
+
+
+
+<list id="ul1000" list-type="bulleted">
+
+	
+
+<item id="li1000">
+<link id="a1000" target-id="Preface">
+
+Preface
+
+</link>
+
+
+	
+
+<list id="ul1001" list-type="bulleted">
+
+		
+
+<item id="li1001">
+<link id="a1001" target-id="Viewing_tip">
+
+Viewing tip
+
+</link>
+
+
+<list id="ul1002" list-type="bulleted">
+
+			
+
+<item id="li1002">
+<link id="a1002" target-id="Figures">
+
+Figures
+
+</link>
+
+
+</item>
+
+
+
+			
+
+<item id="li1003">
+<link id="a1003" target-id="Listings">
+
+Listings
+
+</link>
+
+
+</item>
+
+
+		
+
+</list>
+
+
+		
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1004">
+<link id="a1004" target-id="Preview">
+
+Preview
+
+</link>
+
+ 
+
+</item>
+
+
+	
+
+<item id="li1005">
+<link id="a1005" target-id="General_background_information">
+
+General background information
+
+</link>
+
+
+<list id="ul1003" list-type="bulleted">
+
+		
+
+<item id="li1006">
+<link id="a1006" target-id="The_SpriteSheet_class">
+
+The SpriteSheet class
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1007">
+<link id="a1007" target-id="The_Animation_class">
+
+The Animation class
+
+</link>
+
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1008">
+<link id="a1008" target-id="Discussion_and_sample_code">
+
+Discussion and sample code
+
+</link>
+
+
+<list id="ul1004" list-type="bulleted">
+
+		
+
+<item id="li1009">
+<link id="a1009" target-id="Beginning_of_the_class_named_Slick0180">
+
+The class named 
+		Slick0180
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1010">
+<link id="a1010" target-id="The_init_method">
+
+The init method
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1011">
+<link id="a1011" target-id="The_update_method">
+
+The update method
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1012">
+<link id="a1012" target-id="The_render_method">
+
+The render method
+
+</link>
+
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1013">
+<link id="a1013" target-id="Run_the_program">
+
+Run the program
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1014">
+<link id="a1014" target-id="Summary">
+
+Summary
+
+</link>
+
+ 
+
+</item>
+
+
+	
+
+<item id="li1015">
+<link id="a1015" target-id="Whats_next">
+
+What's next?
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1016">
+<link id="a1016" target-id="Miscellaneous">
+
+Miscellaneous
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1017">
+<link id="a1017" target-id="Complete_program_listing">
+
+Complete program listing
+
+</link>
+
+
+</item>
+
+
+
+
+</list>
+
+
+	
+
+	
+
+</section>
+<section id="h11001">
+<title>
+<emphasis id="Preface" effect="bold">
+
+Preface
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+	
+
+<para id="p1000">
+This module is one in a collection of modules designed to teach you about 
+	the anatomy of a game engine.
+
+</para>
+
+
+
+
+<para id="p1001">
+Although the modules in this collection will concentrate on the Java game 
+library named Slick2D, the 
+concepts involved and the knowledge that you will gain is applicable to 
+different game engines written in different programming languages as well.
+
+</para>
+
+
+
+
+<para id="p1002">
+The purpose of this module is to teach you how to use objects of the 
+
+<emphasis id="strong1000" effect="bold">
+
+SpriteSheet
+
+</emphasis>
+ class and the 
+
+<emphasis id="strong1001" effect="bold">
+Animation
+
+</emphasis>
+ class to perform 
+simple sprite sheet animation.
+
+</para>
+
+
+	
+
+<section id="h21000">
+<title>
+<emphasis id="Viewing_tip" effect="bold">
+
+Viewing tip
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1003">
+I recommend that you open another copy of this module in a separate 
+browser window and use the following links to easily find and view the images 
+and listings while you are reading about them.
+
+</para>
+
+
+	
+
+<section id="h31000">
+<title>
+<emphasis id="Figures" effect="bold">
+
+Figures
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<list id="ul1005" list-type="bulleted">
+
+		
+
+<item id="li1018">
+<link id="a1018" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+. The sprite sheet. 
+
+</item>
+
+
+		
+
+<item id="li1019">
+<link id="a1019" target-id="Figure_2">
+
+Figure 2
+
+</link>
+
+. Random screen shot of the animation in action. 
+
+</item>
+
+
+		
+
+<item id="li1020">
+<link id="a1020" target-id="Figure_3">
+
+Figure 3
+
+</link>
+
+. Random screen shot of the animation in action. 
+
+</item>
+
+
+		
+
+<item id="li1021">
+<link id="a1021" target-id="Figure_4">
+
+Figure 4
+
+</link>
+
+. Random screen shot of the animation in action.
+
+</item>
+
+
+
+
+	
+
+</list>
+
+
+	
+
+</section>
+<section id="h31001">
+<title>
+<emphasis id="Listings" effect="bold">
+
+Listings
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<list id="ul1006" list-type="bulleted">
+
+		
+
+<item id="li1022">
+<link id="a1022" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+. Beginning of the class named Slick0180. 
+
+</item>
+
+
+		
+
+<item id="li1023">
+<link id="a1023" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+. Beginning of the init method. 
+
+</item>
+
+
+		
+
+<item id="li1024">
+<link id="a1024" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+. Create a SpriteSheet object. 
+
+</item>
+
+
+		
+
+<item id="li1025">
+<link id="a1025" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+. Create a new Animation object. 
+
+</item>
+
+
+		
+
+<item id="li1026">
+<link id="a1026" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+. Set frame rate and display location.
+
+</item>
+
+
+		
+
+<item id="li1027">
+<link id="a1027" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+. The update method.
+
+</item>
+
+
+		
+
+<item id="li1028">
+<link id="a1028" target-id="Listing_7">
+
+Listing 7
+
+</link>
+
+. The render method.
+
+</item>
+
+
+		
+
+<item id="li1029">
+<link id="a1029" target-id="Listing_8">
+
+Listing 8
+
+</link>
+
+. Source code for Slick0180 .
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</section>
+</section>
+</section>
+<section id="h11002">
+<title>
+<emphasis id="Preview" effect="bold">
+
+Preview
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1004">
+I will present a program that uses the top row of sprites from the sprite sheet 
+	shown in 
+
+<link id="a1030" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+ along with
+	a 
+
+<emphasis id="strong1002" effect="bold">
+SpriteSheet
+
+</emphasis>
+ object and an 
+
+<emphasis id="strong1003" effect="bold">
+Animation
+
+</emphasis>
+ object to 
+	produce an animation of a dog playing.
+
+
+
+<emphasis id="em1000" effect="italics">
+(Note that the overall sprite sheet image is quite small, and the image shown in 
+
+<link id="a1031" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+ was enlarged 
+	for this presentation.)
+
+</emphasis>
+</para>
+
+
+
+
+
+
+
+<table id="table1000" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1000">
+<row id="tr1000">
+<entry id="th1000">
+
+
+
+<emphasis id="Figure_1" effect="bold">
+
+Figure 1
+
+</emphasis>
+
+. The sprite sheet.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1000">
+<row id="tr1001">
+<entry id="td1000">
+
+
+
+<media id="media1000" alt="Missing image." display="block">
+<image id="img1000" mime-type="image/jpeg" src="../../media/slick0180a1.jpg" width="438" height="171"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1005">
+<link id="a1032" target-id="Figure_2">
+
+Figure 2
+
+</link>
+
+, 
+
+<link id="a1033" target-id="Figure_3">
+
+Figure 3
+
+</link>
+
+, and
+
+
+<link id="a1034" target-id="Figure_4">
+
+Figure 4
+
+</link>
+
+ show random screen shots taken while the 
+animation was running.
+
+</para>
+
+
+
+
+
+
+<table id="table1001" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1001">
+<row id="tr1002">
+<entry id="th1001">
+
+
+
+<emphasis id="Figure_2" effect="bold">
+
+Figure 2
+
+</emphasis>
+
+.  Random screen shot of the animation in action.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1001">
+<row id="tr1003">
+<entry id="td1001">
+
+
+
+<media id="media1001" alt="Missing image." display="block">
+<image id="img1001" mime-type="image/jpeg" src="../../media/slick0180a2.jpg" width="457" height="161"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1006">
+.
+
+</para>
+
+
+
+
+
+
+<table id="table1002" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1002">
+<row id="tr1004">
+<entry id="th1002">
+
+
+
+<emphasis id="Figure_3" effect="bold">
+
+Figure 3
+
+</emphasis>
+
+.  Random screen shot of the animation in action.
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1002">
+<row id="tr1005">
+<entry id="td1002">
+
+
+
+<media id="media1002" alt="Missing image." display="block">
+<image id="img1002" mime-type="image/jpeg" src="../../media/slick0180a3.jpg" width="457" height="161"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1007">
+.
+
+</para>
+
+
+
+
+
+
+<table id="table1003" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1003">
+<row id="tr1006">
+<entry id="th1003">
+
+
+
+<emphasis id="Figure_4" effect="bold">
+
+Figure 4
+
+</emphasis>
+
+.  Random screen shot of the animation in action.
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1003">
+<row id="tr1007">
+<entry id="td1003">
+
+
+
+<media id="media1003" alt="Missing image." display="block">
+<image id="img1003" mime-type="image/jpeg" src="../../media/slick0180a4.jpg" width="457" height="161"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1008">
+<emphasis id="strong1004" effect="bold">
+Operating characteristics
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1009">
+The program uses only the five sprites in the top row of 
+
+<link id="a1035" target-id="Figure_1">
+
+
+Figure 1
+
+</link>
+
+. The five sprites in the bottom row are ignored. 
+
+<emphasis id="em1001" effect="italics">
+(A program that 
+uses all ten sprites in both rows will be presented in the next module.)
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1010">
+By default, the program displays one cycle of five 
+sprites each second. 
+
+<emphasis id="em1002" effect="italics">
+(Each sprite is displayed for 200 milliseconds, or 0.2 
+seconds.)
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1011">
+<emphasis id="strong1005" effect="bold">
+Clock time
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1012">
+As you can see in 
+
+<link id="a1036" target-id="Figure_4">
+
+Figure 4
+
+</link>
+
+, clock time in seconds is displayed below the 
+animation.
+
+That makes it easy to visually correlate the repetition rate with the clock.
+
+</para>
+
+
+
+
+<para id="p1013">
+<emphasis id="strong1006" effect="bold">
+<emphasis id="Repetition_rate_is_independent_of_the_frame_rate" effect="bold">
+
+Repetition rate is independent of the frame rate
+
+</emphasis>
+
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1014">
+The time that each image of the dog is displayed is
+independent of the frame rate. This can be demonstrated by
+changing the value of a variable named 
+
+<emphasis id="strong1007" effect="bold">
+targetDelta
+
+</emphasis>
+ and observing the
+relationship between the repetition rate and the clock.
+
+However, best results are achieved by keeping 
+
+<emphasis id="strong1008" effect="bold">
+targetDelta
+
+</emphasis>
+ less than the
+display time for each sprite 
+
+<emphasis id="em1003" effect="italics">
+(
+
+<emphasis id="strong1009" effect="bold">
+duration
+
+</emphasis>
+)
+
+</emphasis>
+.
+
+</para>
+
+
+
+
+<para id="p1015">
+<emphasis id="strong1010" effect="bold">
+What you have learned
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1016">
+In the previous module, you learned how to use the following methods of the
+
+
+<link id="a1037" url="http://slick.ninjacave.com/javadoc/org/newdawn/slick/Input.html">
+
+Input
+
+</link>
+
+ class to get user input:
+
+</para>
+
+
+
+
+<list id="ul1007" list-type="bulleted">
+
+	
+
+<item id="li1030">
+isKeyDown
+
+</item>
+
+
+	
+
+<item id="li1031">
+isMouseButtonDown
+
+</item>
+
+
+	
+
+<item id="li1032">
+getMouseX
+
+</item>
+
+
+	
+
+<item id="li1033">
+getMouseY
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1017">
+<emphasis id="strong1011" effect="bold">
+What you will learn
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1018">
+In this module, you will learn how to use objects of the 
+
+<emphasis id="strong1012" effect="bold">
+
+SpriteSheet
+
+</emphasis>
+ class and the 
+
+<emphasis id="strong1013" effect="bold">
+Animation
+
+</emphasis>
+ class to perform 
+simple sprite sheet animation. In the next module, you will learn how to perform 
+more complex animation.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11003">
+<title>
+<emphasis id="General_background_information" effect="bold">
+
+General 
+	background information
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<section id="h21001">
+<title>
+
+
+
+
+<emphasis id="The_SpriteSheet_class" effect="bold">
+
+The SpriteSheet class
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1019">
+
+
+Sprite sheets are individual sprites 
+
+<emphasis id="em1004" effect="italics">
+(or images)
+
+</emphasis>
+ combined into a single image 
+as shown in 
+
+<link id="a1038" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+. Slick2D provides the 
+
+<emphasis id="strong1014" effect="bold">
+SpriteSheet
+
+</emphasis>
+ class that 
+makes it relatively easy for you to access each of the sub-images of the sheet as separate images 
+in your program.
+
+
+
+</para>
+
+
+
+
+<para id="p1020">
+
+
+The 
+
+<emphasis id="strong1015" effect="bold">
+SpriteSheet
+
+</emphasis>
+ class assumes that all the images are evenly spaced. It splits the source image into an even grid 
+of cells and allows you to access the image in each cell as a separate image. 
+
+
+</para>
+
+
+
+
+<para id="p1021">
+
+
+
+
+<emphasis id="em1005" effect="italics">
+(Slick2D also provides the capability to work with packed sprite sheets with 
+fewer restrictions on the organization of the sprite sheet.)
+
+</emphasis>
+</para>
+
+
+
+
+</section>
+<section id="h21002">
+<title>
+<emphasis id="The_Animation_class" effect="bold">
+
+The Animation class
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1022">
+<emphasis id="strong1016" effect="bold">
+A series of images
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1023">
+Since well before the first Disney movies, animations have been created by displaying a 
+series of images one after the 
+other.
+
+</para>
+
+
+
+
+<para id="p1024">
+Each image 
+
+<emphasis id="em1006" effect="italics">
+(or frame)
+
+</emphasis>
+ is typically displayed for the same amount of time, 
+but that is not always the case, as will be demonstrated by the program in the 
+next module.
+
+</para>
+
+
+
+
+<para id="p1025">
+Slick2D provides a class named 
+
+<emphasis id="strong1017" effect="bold">
+Animation
+
+</emphasis>
+ that does most of 
+the heavy lifting in the display of an animation. 
+
+</para>
+
+
+
+
+<para id="p1026">
+<emphasis id="strong1018" effect="bold">
+Create, populate, and configure the object
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1027">
+There are several different 
+ways to create, populate, and configure an 
+
+<emphasis id="strong1019" effect="bold">
+Animation
+
+</emphasis>
+ object containing a series of 
+images, with the same or different display durations for the images.
+
+</para>
+
+
+
+
+<para id="p1028">
+<emphasis id="strong1020" effect="bold">
+Displaying the images
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1029">
+By default, calling one of several overloaded 
+
+<emphasis id="strong1021" effect="bold">
+draw 
+
+</emphasis>
+methods on the
+
+
+<emphasis id="strong1022" effect="bold">
+Animation
+
+</emphasis>
+ object causes it to display the sequence of images 
+and to start over when the last image has been displayed. However, that behavior 
+can be overridden in order to provide more customized behavior.
+
+</para>
+
+
+
+
+<para id="p1030">
+<emphasis id="em1007" effect="italics">
+(It is actually more complicated that that, as you will see later in the 
+discussion of the 
+
+<emphasis id="strong1023" effect="bold">
+render
+
+</emphasis>
+ method.)
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1031">
+Animations can be stopped, started and restarted 
+
+<emphasis id="em1008" effect="italics">
+(returning to the first 
+frame of the animation)
+
+</emphasis>
+. The capabilities of the 
+
+<emphasis id="strong1024" effect="bold">
+Animation
+
+</emphasis>
+ 
+class go far beyond those illustrated in this module and the next.
+
+</para>
+
+
+	
+
+	
+
+</section>
+</section>
+<section id="h11004">
+<title>
+<emphasis id="Discussion_and_sample_code" effect="bold">
+
+Discussion and sample code
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+	
+
+<section id="h21003">
+<title>
+<emphasis id="Beginning_of_the_class_named_Slick0180" effect="bold">
+
+The class named 
+	Slick0180
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1032">
+<emphasis id="strong1025" effect="bold">
+Will discuss in fragments
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1033">
+A complete listing of the program named 
+
+<emphasis id="strong1026" effect="bold">
+Slick0180
+
+</emphasis>
+ is 
+provided in 
+
+<link id="a1039" target-id="Listing_8">
+
+Listing 8
+
+</link>
+
+. I will break the program down 
+and discuss it in fragments.
+
+</para>
+
+
+
+
+<para id="p1034">
+<link id="a1040" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ shows the beginning of the class named
+
+
+<emphasis id="strong1027" effect="bold">
+Slick0180
+
+</emphasis>
+ down through the 
+
+<emphasis id="strong1028" effect="bold">
+main
+
+</emphasis>
+ method.
+
+</para>
+
+
+
+
+	
+
+<table id="table1004" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1004">
+
+			
+
+<row id="tr1008">
+
+				
+
+<entry id="th1004">
+<emphasis id="Listing_1" effect="bold">
+
+Listing 1
+
+</emphasis>
+
+. Beginning of the class 
+				named Slick0180.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1004">
+
+			
+
+<row id="tr1009">
+
+				
+
+<entry id="td1004">
+
+
+
+<code id="pre1000" display="block">
+public class Slick0180 extends BasicGame{
+  Image spriteSheetImage = null;
+
+  float spriteSheetWidth;
+  float spriteSheetHeight;
+  int spritesPerRow = 5;
+  int spritesPerColumn = 2;
+
+  int targetDelta = 16;//msec
+  int duration = 200;//time to display each sprite
+  long totalTime = 0;//accumulate total time for display
+
+  SpriteSheet spriteSheet;
+  Animation animation;
+
+  int spriteWidth;
+  int spriteHeight;
+
+  float spriteX = 0;//sprite drawing location
+  float spriteY = 0;
+  //----------------------------------------------------//
+  public Slick0180(){
+    //Call to superclass constructor is required.
+    super("Slick0180, Baldwin.");
+  }//end constructor
+  //----------------------------------------------------//
+
+  public static void main(String[] args)
+                                    throws SlickException{
+    AppGameContainer app = new AppGameContainer(
+                          new Slick0180(),450,120,false);
+    app.start();//this statement is required
+  }//end main
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1035">
+<emphasis id="strong1029" effect="bold">
+Instance variables
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1036">
+<link id="a1041" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ declares a number of instance variables. 
+The purpose of these variables should become clear based on their names and 
+their usage that I will discuss later.
+
+</para>
+
+
+
+
+<para id="p1037">
+<emphasis id="strong1030" effect="bold">
+The constructor and the main method
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1038">
+There is nothing new in the constructor and the 
+
+<emphasis id="strong1031" effect="bold">
+main
+
+</emphasis>
+ method in
+
+
+<link id="a1042" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+.
+
+</para>
+
+
+
+
+</section>
+<section id="h21004">
+<title>
+<emphasis id="The_init_method" effect="bold">
+
+The init method
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1039">
+The 
+
+<emphasis id="strong1032" effect="bold">
+init
+
+</emphasis>
+ method begins in 
+
+<link id="a1043" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+. 
+The embedded comments should provide a sufficient explanation of the code in 
+
+<link id="a1044" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1005" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1005">
+
+			
+
+<row id="tr1010">
+
+				
+
+<entry id="th1005">
+<emphasis id="Listing_2" effect="bold">
+
+Listing 2
+
+</emphasis>
+
+.  Beginning of the init 
+				method.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1005">
+
+			
+
+<row id="tr1011">
+
+				
+
+<entry id="td1005">
+
+
+
+<code id="pre1001" display="block">
+  public void init(GameContainer gc)
+                                   throws SlickException {
+    spriteSheetImage = new Image("Slick0180a1.png");
+    //Enlarge the sprite sheet.
+    Image temp = spriteSheetImage.getScaledCopy(580,224);
+    spriteSheetImage = temp;
+
+    //Get, save, and display the width and the height
+    // of the sprite sheet.
+    spriteSheetWidth = spriteSheetImage.getWidth();
+    spriteSheetHeight = spriteSheetImage.getHeight();
+
+    System.out.println(
+               "spriteSheetWidth: " + spriteSheetWidth);
+    System.out.println(
+               "spriteSheetHeight: " + spriteSheetHeight);
+               
+	//Compute the width and height of the individual 
+	// sprite images.
+    spriteWidth = (int)(spriteSheetWidth/spritesPerRow);
+    spriteHeight =
+                (int)(spriteSheetHeight/spritesPerColumn);
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1040">
+<emphasis id="strong1033" effect="bold">
+Create a SpriteSheet object
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1041">
+<link id="a1045" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+ creates a new 
+
+<emphasis id="strong1034" effect="bold">
+SpriteSheet
+
+</emphasis>
+ object based on the 
+sprite sheet image along with the width and height of the individual sprites.
+
+</para>
+
+
+
+
+	
+
+<table id="table1006" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1006">
+
+			
+
+<row id="tr1012">
+
+				
+
+<entry id="th1006">
+<emphasis id="Listing_3" effect="bold">
+
+Listing 3
+
+</emphasis>
+
+.  Create a SpriteSheet 
+				object.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1006">
+
+			
+
+<row id="tr1013">
+
+				
+
+<entry id="td1006">
+
+
+
+<code id="pre1002" display="block">
+    //Instantiate a new Spritesheet object based on the
+    // width and height of the tiles.
+    spriteSheet = new SpriteSheet(spriteSheetImage,
+                                  spriteWidth,
+                                  spriteHeight);
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1042">
+<emphasis id="strong1035" effect="bold">
+Create a new Animation object
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1043">
+<link id="a1046" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+ creates a new 
+
+<emphasis id="strong1036" effect="bold">
+Animation
+
+</emphasis>
+ 
+object that will process the 
+
+<emphasis id="strong1037" effect="bold">
+SpriteSheet
+
+</emphasis>
+ object instantiated in
+
+
+<link id="a1047" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1007" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1007">
+
+			
+
+<row id="tr1014">
+
+				
+
+<entry id="th1007">
+<emphasis id="Listing_4" effect="bold">
+
+Listing 4
+
+</emphasis>
+
+.  Create a new Animation 
+				object.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1007">
+
+			
+
+<row id="tr1015">
+
+				
+
+<entry id="td1007">
+
+
+
+<code id="pre1003" display="block">
+    //Create a new animation based on a selection of
+    // sprites from the sprite sheet.
+    animation = new Animation(spriteSheet,
+                              0,//first column
+                              0,//first row
+                              4,//last column
+                              0,//last row
+                              true,//horizontal
+                              duration,//display time
+                              true//autoupdate
+                              );
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1044">
+<emphasis id="strong1038" effect="bold">
+Constructor parameters
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1045">
+Obviously, the first parameter to the constructor for the 
+
+<emphasis id="strong1039" effect="bold">
+Animation
+
+</emphasis>
+ 
+class specifies the 
+
+<emphasis id="strong1040" effect="bold">
+
+	SpriteSheet
+
+</emphasis>
+ object.
+
+</para>
+
+
+
+
+<para id="p1046">
+The second and third parameters specify that the first image in the sequence 
+should be the top-left image in 
+
+<link id="a1048" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+.
+
+</para>
+
+
+
+
+<para id="p1047">
+The fourth and fifth parameters specify that the last image in the sequence 
+should be the top-right image in 
+
+<link id="a1049" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+.
+
+</para>
+
+
+
+
+<para id="p1048">
+The 
+
+<emphasis id="em1009" effect="italics">
+true
+
+</emphasis>
+ value for the sixth parameter specifies that the images should be 
+scanned horizontally.
+
+</para>
+
+
+
+
+<para id="p1049">
+The 
+
+<emphasis id="em1010" effect="italics">
+duration
+
+</emphasis>
+ value in the seventh parameter specifies that each image should 
+be displayed for 200 milliseconds.
+
+</para>
+
+
+
+
+<para id="p1050">
+The 
+
+<emphasis id="em1011" effect="italics">
+true
+
+</emphasis>
+ value for the last parameter specifies that the display should 
+continue cycling through the images until the animation is stopped.
+
+</para>
+
+
+
+
+<para id="p1051">
+<emphasis id="strong1041" effect="bold">
+Set frame rate and display location
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1052">
+The code is 
+
+<link id="a1050" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+ sets the frame 
+rate and specifies the drawing location. The drawing location is the location 
+within the game window where the sprite will be displayed.
+
+</para>
+
+
+
+
+	
+
+<table id="table1008" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1008">
+
+			
+
+<row id="tr1016">
+
+				
+
+<entry id="th1008">
+<emphasis id="Listing_5" effect="bold">
+
+Listing 5
+
+</emphasis>
+
+.  Set frame rate and 
+				display location.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1008">
+
+			
+
+<row id="tr1017">
+
+				
+
+<entry id="td1008">
+
+
+
+<code id="pre1004" display="block">
+    gc.setShowFPS(true);//show FPS
+    ////set frame rate
+    gc.setTargetFrameRate((int)(1000/targetDelta));
+
+    //Set drawing location. This is the location within
+    // the game window where the sprite will be displayed.
+    spriteX = spriteWidth;
+    spriteY = 0;
+  }//end init
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+
+
+</section>
+<section id="h21005">
+<title>
+<emphasis id="The_update_method" effect="bold">
+
+The update method
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1053">
+The 
+
+<emphasis id="strong1042" effect="bold">
+update
+
+</emphasis>
+ method is shown in 
+
+<link id="a1051" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+. 
+As indicated in the comments, the computation of 
+
+<emphasis id="strong1043" effect="bold">
+totalTime
+
+</emphasis>
+ in the method has 
+nothing to do with the animation. Instead, it is used to display the clock time 
+as shown in 
+
+<link id="a1052" target-id="Figure_2">
+
+Figure 2
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1009" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1009">
+
+			
+
+<row id="tr1018">
+
+				
+
+<entry id="th1009">
+<emphasis id="Listing_6" effect="bold">
+
+Listing 6
+
+</emphasis>
+
+.  The update method.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1009">
+
+			
+
+<row id="tr1019">
+
+				
+
+<entry id="td1009">
+
+
+
+<code id="pre1005" display="block">
+  public void update(GameContainer gc, int delta)
+                                    throws SlickException{
+    //Note that the following is for clock time display
+    // only. It does not effect the animation.
+    totalTime += delta;//update total time accumulator
+  }//end update
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+</section>
+<section id="h21006">
+<title>
+<emphasis id="The_render_method" effect="bold">
+
+The render method
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1054">
+The 
+
+<emphasis id="strong1044" effect="bold">
+render
+
+</emphasis>
+ method is shown in 
+
+<link id="a1053" target-id="Listing_7">
+
+
+	Listing 7
+
+</link>
+
+. The only thing that is new here is the call to the 
+
+<emphasis id="strong1045" effect="bold">
+
+	draw
+
+</emphasis>
+ method on the 
+
+<emphasis id="strong1046" effect="bold">
+Animation
+
+</emphasis>
+ object.
+
+</para>
+
+
+
+
+	
+
+<table id="table1010" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1010">
+
+			
+
+<row id="tr1020">
+
+				
+
+<entry id="th1010">
+<emphasis id="Listing_7" effect="bold">
+
+Listing 7
+
+</emphasis>
+
+.  The render method.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1010">
+
+			
+
+<row id="tr1021">
+
+				
+
+<entry id="td1010">
+
+
+
+<code id="pre1006" display="block">
+  public void render(GameContainer gc, Graphics g)
+                                    throws SlickException{
+    g.setDrawMode(g.MODE_NORMAL);
+    g.setBackground(Color.gray);
+
+    //Draw the currently selected animation image at the
+    // specified location
+    animation.draw(spriteX,spriteY);
+
+    g.drawString("totalTime = "+totalTime/1000,10f,100f);
+  }//end render
+
+}//end class Slick0180
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1055">
+<emphasis id="strong1047" effect="bold">
+Powerful behavior
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1056">
+The behavior of the 
+
+<emphasis id="strong1048" effect="bold">
+Animation
+
+</emphasis>
+ object and its 
+
+<emphasis id="strong1049" effect="bold">
+draw
+
+</emphasis>
+ 
+method is very powerful.
+
+</para>
+
+
+
+
+<list id="ul1008" list-type="bulleted">
+
+	
+
+<item id="li1034">
+The 
+
+<emphasis id="strong1050" effect="bold">
+Animation
+
+</emphasis>
+ object keeps track of the scheduling 
+	requirements of the animation, such as which image should be displayed 
+	at the current time.
+
+</item>
+
+
+	
+
+<item id="li1035">
+Calling the 
+
+<emphasis id="strong1051" effect="bold">
+draw
+
+</emphasis>
+ method on the 
+
+<emphasis id="strong1052" effect="bold">
+
+	Animation
+
+</emphasis>
+ object causes that image to actually be displayed.
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1057">
+The image display schedule being managed by the 
+
+<emphasis id="strong1053" effect="bold">
+Animation
+
+</emphasis>
+ 
+object is independent of the frame rate. 
+
+</para>
+
+
+
+
+<para id="p1058">
+The 
+
+<emphasis id="strong1054" effect="bold">
+Animation
+
+</emphasis>
+ object 
+does its thing, and the 
+
+<emphasis id="strong1055" effect="bold">
+render
+
+</emphasis>
+ method does its thing virtually 
+independent of one another. When the
+
+
+<emphasis id="strong1056" effect="bold">
+render
+
+</emphasis>
+ method decides that it is time to display an animation 
+image, it calls the 
+
+<emphasis id="strong1057" effect="bold">
+draw
+
+</emphasis>
+ method on the 
+
+<emphasis id="strong1058" effect="bold">
+Animation
+
+</emphasis>
+ 
+object. 
+
+</para>
+
+
+
+
+<para id="p1059">
+The 
+
+<emphasis id="strong1059" effect="bold">
+Animation
+
+</emphasis>
+ object delivers the image that is scheduled 
+for display at that point in time according to the predetermined animation 
+schedule and the 
+
+<emphasis id="strong1060" effect="bold">
+draw
+
+</emphasis>
+ method causes the image to be displayed. 
+
+</para>
+
+
+
+
+<para id="p1060">
+<emphasis id="strong1061" effect="bold">
+Overloaded draw methods
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1061">
+There are several overloaded versions of the 
+
+<emphasis id="strong1062" effect="bold">
+draw
+
+</emphasis>
+ method 
+including versions to filter the colors and to change the width and height of 
+the displayed image.
+
+</para>
+
+
+
+
+<para id="p1062">
+<emphasis id="strong1063" effect="bold">
+Best results
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1063">
+Now you know why, as mentioned
+
+
+<link id="a1054" target-id="Repetition_rate_is_independent_of_the_frame_rate">
+
+earlier
+
+</link>
+
+, best results are achieved by keeping 
+
+<emphasis id="strong1064" effect="bold">
+targetDelta
+
+</emphasis>
+ less than the
+display time 
+
+<emphasis id="em1012" effect="italics">
+(
+
+<emphasis id="strong1065" effect="bold">
+duration
+
+</emphasis>
+)
+
+</emphasis>
+ for each sprite. If 
+
+<emphasis id="strong1066" effect="bold">
+
+targetDelta
+
+</emphasis>
+ is greater than the 
+
+<emphasis id="strong1067" effect="bold">
+duration
+
+</emphasis>
+, some images 
+will be skipped and not displayed in the proper sequence.
+
+</para>
+
+
+
+
+<para id="p1064">
+For example, if the 
+
+<emphasis id="strong1068" effect="bold">
+Animation
+
+</emphasis>
+ object is switching from one 
+image to the next every 0.10 second, but the 
+
+<emphasis id="strong1069" effect="bold">
+draw
+
+</emphasis>
+ method is 
+only being called every 0.13 seconds, some of the images in the sequence won't 
+be displayed and the quality of the animation will probably be poor. 
+
+</para>
+
+
+
+
+<para id="p1065">
+However, 
+this is also dependent on the amount of change from one image to the next. If 
+the change from one image to the next is small, then skipping an occasional 
+image might not matter that much.
+
+</para>
+
+
+
+
+
+
+</section>
+</section>
+<section id="h11005">
+<title>
+<emphasis id="Run_the_program" effect="bold">
+
+Run the program
+
+</emphasis>
+
+
+</title>
+
+
+
+
+
+
+<para id="p1066">
+I encourage you to copy the code from 
+
+<link id="a1055" target-id="Listing_8">
+
+Listing 8
+
+</link>
+
+. Compile the code and execute 
+it, 
+making changes, and observing the results of your changes. Make certain that you 
+can explain why your changes behave as they do.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11006">
+<title>
+<emphasis id="Summary" effect="bold">
+
+Summary
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1067">
+In this module, you learned how to use objects of the 
+
+<emphasis id="strong1070" effect="bold">
+SpriteSheet
+
+</emphasis>
+ 
+class and the 
+
+<emphasis id="strong1071" effect="bold">
+Animation
+
+</emphasis>
+ class to perform simple sprite sheet 
+animation.
+
+</para>
+
+
+
+
+</section>
+<section id="h11007">
+<title>
+<emphasis id="Whats_next" effect="bold">
+
+What's next?
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1068">
+In the next module, you will learn how to use objects of the 
+
+<emphasis id="strong1072" effect="bold">
+
+SpriteSheet
+
+</emphasis>
+ 
+class and the 
+
+<emphasis id="strong1073" effect="bold">
+Animation
+
+</emphasis>
+ class to perform more complex sprite 
+sheet animations than was the case in this module.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11008">
+<title>
+<emphasis id="Miscellaneous" effect="bold">
+
+Miscellaneous
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1069">
+This section contains a variety of miscellaneous information.
+
+</para>
+
+
+
+
+
+	
+
+<note id="note1000" type="">
+
+
+		
+
+
+			
+
+
+				
+
+<emphasis id="strong1074" effect="bold">
+Housekeeping material
+
+</emphasis>
+
+				
+
+<list id="ul1009" list-type="bulleted">
+
+					
+
+<item id="li1036">
+Module name: Slick0180: Sprite sheet animation, part 1
+
+</item>
+
+
+					
+
+<item id="li1037">
+File: Slick0180.htm
+
+
+</item>
+
+
+					
+
+<item id="li1038">
+Published: 02/05/13
+
+</item>
+
+
+					
+
+<item id="li1039">
+Revised: 06/08/15 for 64-bit
+
+</item>
+
+
+				
+
+</list>
+
+
+				
+
+</note>
+
+			
+
+
+		
+
+
+
+	
+
+
+
+
+
+
+	
+
+<note id="note1001" type="">
+
+
+		
+
+
+			
+
+
+				
+
+<emphasis id="strong1075" effect="bold">
+Disclaimers:
+
+</emphasis>
+<para id="p1070">
+<emphasis id="strong1076" effect="bold">
+Financial
+
+</emphasis>
+: Although the Connexions
+site makes it possible for you to download a PDF file for this
+module at no charge, and also makes it possible for you to
+purchase a pre-printed version of the PDF file, you should be
+aware that some of the HTML elements in this module may not translate well into
+PDF.
+
+</para>
+
+
+				
+
+<para id="p1071">
+I also want you to know that, I receive no financial compensation from the Connexions website even if you purchase 
+	the PDF version of the module.
+
+</para>
+
+
+				
+
+<para id="p1072">
+In the past, unknown individuals have copied my modules from cnx.org, converted them to Kindle books, and 
+				placed them for sale on Amazon.com showing me as the author. I 
+				neither receive compensation for those sales nor do I know who does 
+				receive compensation. If you purchase such a book, please be 
+				aware that it is a copy of a module that is freely 
+				available on cnx.org and that it was made and published without 
+				my prior knowledge.
+
+</para>
+
+
+				
+
+<para id="p1073">
+<emphasis id="strong1077" effect="bold">
+Affiliation
+
+</emphasis>
+: I am a professor of Computer Information 
+	Technology at Austin Community College in Austin, TX.
+	
+
+</para>
+
+
+				
+
+</note>
+
+			
+
+
+		
+
+
+
+	
+
+
+
+
+
+</section>
+<section id="h11009">
+<title>
+<emphasis id="Complete_program_listing" effect="bold">
+
+Complete program listing
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1074">
+A complete listing of the program discussed in this module is provided in
+
+
+<link id="a1056" target-id="Listing_8">
+
+Listing 8
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1011" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1011">
+
+			
+
+<row id="tr1022">
+
+				
+
+<entry id="th1011">
+<emphasis id="Listing_8" effect="bold">
+
+Listing 8
+
+</emphasis>
+
+.  Source code for Slick0180 .
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1011">
+
+			
+
+<row id="tr1023">
+
+				
+
+<entry id="td1011">
+
+
+
+<code id="pre1007" display="block">
+/*Slick0180.java
+Copyright 2013, R.G.Baldwin
+
+Uses one row of sprites from a sprite sheet along with
+an Animation object to draw an animation of a dog playing.
+
+By default, the program displays one cycle of five 
+sprites per second. Clock time is displayed below the 
+animation.
+
+The time that each image of the dog is displayed is
+independent of the frame rate. Demonstrate this by
+changing the value of targetDelta and observing the
+relationship between the animation times and the clock.
+
+For best results, keep the targetDelta less than the
+display time for each sprite (duration).
+
+Tested using JDK 1.7 under WinXP
+*********************************************************/
+
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.Color;
+
+public class Slick0180 extends BasicGame{
+  Image spriteSheetImage = null;
+
+  float spriteSheetWidth;
+  float spriteSheetHeight;
+  int spritesPerRow = 5;
+  int spritesPerColumn = 2;
+
+  int targetDelta = 16;//msec
+  int duration = 200;//time to display each sprite
+  long totalTime = 0;//accumulate total time for display
+
+  SpriteSheet spriteSheet;
+  Animation animation;
+
+  int spriteWidth;
+  int spriteHeight;
+
+  float spriteX = 0;//sprite drawing location
+  float spriteY = 0;
+  //----------------------------------------------------//
+  public Slick0180(){
+    //Call to superclass constructor is required.
+    super("Slick0180, Baldwin.");
+  }//end constructor
+  //----------------------------------------------------//
+
+  public static void main(String[] args)
+                                    throws SlickException{
+    AppGameContainer app = new AppGameContainer(
+                          new Slick0180(),450,120,false);
+    app.start();//this statement is required
+  }//end main
+  //----------------------------------------------------//
+
+  @Override
+  public void init(GameContainer gc)
+                                   throws SlickException {
+    spriteSheetImage = new Image("Slick0180a1.png");
+    //Enlarge the sprite sheet.
+    Image temp = spriteSheetImage.getScaledCopy(580,224);
+    spriteSheetImage = temp;
+
+    spriteSheetWidth = spriteSheetImage.getWidth();
+    spriteSheetHeight = spriteSheetImage.getHeight();
+
+    System.out.println(
+               "spriteSheetWidth: " + spriteSheetWidth);
+    System.out.println(
+               "spriteSheetHeight: " + spriteSheetHeight);
+    spriteWidth = (int)(spriteSheetWidth/spritesPerRow);
+    spriteHeight =
+                (int)(spriteSheetHeight/spritesPerColumn);
+
+    //Instantiate a new spriteSheet object based on the
+    // width and height of the tiles.
+    spriteSheet = new SpriteSheet(spriteSheetImage,
+                                  spriteWidth,
+                                  spriteHeight);
+
+    //Create a new animation based on a selection of
+    // sprites from the sprite sheet.
+    animation = new Animation(spriteSheet,
+                              0,//first column
+                              0,//first row
+                              4,//last column
+                              0,//last row
+                              true,//horizontal
+                              duration,//display time
+                              true//autoupdate
+                              );
+
+    gc.setShowFPS(true);//show FPS
+    ////set frame rate
+    gc.setTargetFrameRate((int)(1000/targetDelta));
+
+    //set drawing location
+    spriteX = spriteWidth;
+    spriteY = 0;
+  }//end init
+  //----------------------------------------------------//
+
+  @Override
+  public void update(GameContainer gc, int delta)
+                                    throws SlickException{
+    //Note that the following is for clock time display
+    // only. It does not effect the animation.
+    totalTime += delta;//update total time accumulator
+  }//end update
+  //----------------------------------------------------//
+
+
+  public void render(GameContainer gc, Graphics g)
+                                    throws SlickException{
+    g.setDrawMode(g.MODE_NORMAL);
+    g.setBackground(Color.gray);
+
+    //Draw the currently selected animation image at the
+    // specified location
+    animation.draw(spriteX,spriteY);
+
+    g.drawString("totalTime = "+totalTime/1000,10f,100f);
+  }//end render
+
+}//end class Slick0180
+//======================================================//
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1075">
+-end- 
+
+</para>
+
+
+
+
+
+
+</section>
+</content>
+
+
+
+
+</document>

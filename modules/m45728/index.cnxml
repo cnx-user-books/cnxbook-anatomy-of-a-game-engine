@@ -1,0 +1,3410 @@
+<document xmlns="http://cnx.rice.edu/cnxml"> 
+<title>Slick0110: Overview</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45728</md:content-id>
+  <md:title>Slick0110: Overview</md:title>
+  <md:abstract>Learn about some of the characteristics of game engines and frameworks in general, and how Slick2D fits those characteristics. Learn how to write a minimal Java application in conjunction with a set of Slick2D jar files to create your own Slick2D game engine.</md:abstract>
+  <md:uuid>fd48bba0-8aeb-4939-88fb-efef6ef66b18</md:uuid>
+</metadata>
+
+<content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="h11000">
+<title>
+Table of Contents
+
+</title>
+
+
+
+
+<list id="ul1000" list-type="bulleted">
+
+	
+
+<item id="li1000">
+<link id="a1000" target-id="Preface">
+
+Preface
+
+</link>
+
+
+	
+
+<list id="ul1001" list-type="bulleted">
+
+		
+
+<item id="li1001">
+<link id="a1001" target-id="Viewing_tip">
+
+Viewing tip
+
+</link>
+
+
+<list id="ul1002" list-type="bulleted">
+
+			
+
+<item id="li1002">
+<link id="a1002" target-id="Figures">
+
+Figures
+
+</link>
+
+
+</item>
+
+
+			
+
+<item id="li1003">
+<link id="a1003" target-id="Listings">
+
+Listings
+
+</link>
+
+
+</item>
+
+
+		
+
+</list>
+
+
+		
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1004">
+<link id="a1004" target-id="The_bottom_line_at_the_top">
+
+The bottom line at the top
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1005">
+<link id="a1005" target-id="Preview">
+
+Preview
+
+</link>
+
+ 
+
+</item>
+
+
+	
+
+<item id="li1006">
+<link id="a1006" target-id="What_is_a_game_engine">
+
+What is a game engine?
+
+</link>
+
+
+<list id="ul1003" list-type="bulleted">
+
+		
+
+<item id="li1007">
+<link id="a1007" target-id="A_software_framework">
+
+A software framework
+
+</link>
+
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1008">
+<link id="a1008" target-id="Background_information">
+
+Background information
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1009">
+<link id="a1009" target-id="Discussion_and_sample_code">
+
+Discussion and sample code
+
+</link>
+
+
+<list id="ul1004" list-type="bulleted">
+
+		
+
+<item id="li1010">
+<link id="a1010" target-id="A_service_provider_program">
+
+A service provider program
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1011">
+<link id="a1011" target-id="Two_primary_objects">
+
+Two primary objects
+
+</link>
+
+
+<list id="ul1005" list-type="bulleted">
+
+			
+
+<item id="li1012">
+<link id="a1012" target-id="Behavior_of_an_object_of_the_AppGameContainer_class">
+
+Behavior of an object of the AppGameContainer class
+
+</link>
+
+
+</item>
+
+
+			
+
+<item id="li1013">
+
+			
+
+<link id="a1013" target-id="Behavior_of_an_object_that_implements_the_Game_interface">
+
+Behavior of an object that implements the Game interface
+
+</link>
+
+
+</item>
+
+
+		
+
+</list>
+
+
+		
+
+</item>
+
+
+		
+
+<item id="li1014">
+<link id="a1014" target-id="Beginning_of_the_class_named_Slick0105a">
+
+Beginning of the 
+		class named Slick0110a
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1015">
+<link id="a1015" target-id="The_Game_interface">
+
+The Game interface
+
+</link>
+
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1016">
+<link id="a1016" target-id="Run_the_program">
+
+Run the program
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1017">
+<link id="a1017" target-id="Summary">
+
+Summary
+
+</link>
+
+ 
+
+</item>
+
+
+	
+
+<item id="li1018">
+<link id="a1018" target-id="Whats_next">
+
+What's next?
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1019">
+<link id="a1019" target-id="Miscellaneous">
+
+Miscellaneous
+
+</link>
+
+
+</item>
+
+
+
+
+</list>
+
+
+	
+
+	
+
+</section>
+<section id="h11001">
+<title>
+<emphasis id="Preface" effect="bold">
+
+Preface
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+	
+
+<para id="p1000">
+This module is one in a collection of modules designed to teach you about 
+	the anatomy of a game engine.
+
+</para>
+
+
+
+
+<para id="p1001">
+Although the modules will concentrate on the Java game library named Slick2D, the 
+concepts involved and the knowledge that you will gain is applicable to 
+different game engines written in different programming languages.
+
+</para>
+
+
+
+
+<para id="p1002">
+The purpose of this module is to teach you about some of the characteristics of game engines in general, and to teach you how 
+Slick2D fits those characteristics.
+
+</para>
+
+
+	
+
+<section id="h21000">
+<title>
+<emphasis id="Viewing_tip" effect="bold">
+
+Viewing tip
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1003">
+I recommend that you open another copy of this module in a separate 
+browser window and use the following links to easily find and view the Figures 
+	and Listings while you are reading about them.
+
+</para>
+
+
+	
+
+<section id="h31000">
+<title>
+<emphasis id="Figures" effect="bold">
+
+Figures
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<list id="ul1006" list-type="bulleted">
+
+		
+
+<item id="li1020">
+<link id="a1020" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+. Steps for writing a Slick2D game program. 
+
+</item>
+
+
+		
+
+<item id="li1021">
+<link id="a1021" target-id="Figure_2">
+
+Figure 2
+
+</link>
+
+. Output from Slick2D during program startup. 
+
+</item>
+
+
+		
+
+<item id="li1022">
+<link id="a1022" target-id="Figure_3">
+
+Figure 3
+
+</link>
+
+. A default Slick2D game window. 
+
+</item>
+
+
+		
+
+<item id="li1023">
+<link id="a1023" target-id="Figure_4">
+
+Figure 4
+
+</link>
+
+. Abstract methods declared in the Game interface. 
+
+</item>
+
+
+
+	
+
+</list>
+
+
+	
+
+</section>
+<section id="h31001">
+<title>
+<emphasis id="Listings" effect="bold">
+
+Listings
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<list id="ul1007" list-type="bulleted">
+
+		
+
+<item id="li1024">
+<link id="a1024" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+. Simplest Slick2D program.
+
+</item>
+
+
+		
+
+<item id="li1025">
+<link id="a1025" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+. The file named CompileAndRun.bat. 
+
+</item>
+
+
+		
+
+<item id="li1026">
+<link id="a1026" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+. Beginning of the class named Slick0110a. 
+
+</item>
+
+
+	
+
+</list>
+
+
+
+
+</section>
+</section>
+</section>
+<section id="h11002">
+<title>
+<emphasis id="The_bottom_line_at_the_top" effect="bold">
+
+The bottom line at the 
+top
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1004">
+In order to write a game program using the Slick2D game library that will run as 
+a Java application, you must, as a minimum, 
+perform the steps shown in 
+
+<link id="a1027" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1000" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1000">
+
+			
+
+<row id="tr1000">
+
+				
+
+<entry id="th1000">
+<emphasis id="Figure_1" effect="bold">
+
+Figure 1
+
+</emphasis>
+
+. Steps for writing a 
+				Slick2D game program.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1000">
+
+			
+
+<row id="tr1001">
+
+				
+
+<entry id="td1000">
+
+
+
+<code id="pre1000" display="block">
+1. Define a class containing a main method that will run as an application.
+
+2. Define and instantiate an object from a class that implements Slick2D's 
+   Game interface. (Can be combined with item 1 above.)
+  
+3. Instantiate an object of Slick2D's AppGameContainer class, passing the
+   Game object's reference (from item 2 	above) as a parameter to the
+   AppGameContainer constructor.
+   
+4. Call the start method on the object of type AppGameContainer
+  (from item 3 above).
+</code>
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+
+
+
+
+	
+
+</section>
+<section id="h11003">
+<title>
+<emphasis id="Preview" effect="bold">
+
+Preview
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1005">
+The purpose of this module is to teach you about some of the characteristics of game engines in general, and to teach you how 
+	Slick2D fits those characteristics.
+
+</para>
+
+
+
+
+<para id="p1006">
+<emphasis id="strong1000" effect="bold">
+What you have learned
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1007">
+In the previous module, you learned how to download Slick2D and how to install 
+Slick2D in such a way that you can easily compile and execute Slick2D programs from 
+the command line with no need for a high level IDE such as Eclipse or NetBeans.
+
+</para>
+
+
+
+
+<para id="p1008">
+<emphasis id="strong1001" effect="bold">
+What you will learn
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1009">
+To begin with, you will learn what we often mean when we speak of a 
+
+<emphasis id="em1000" effect="italics">
+"game 
+engine."
+
+</emphasis>
+ You will also learn how that terminology relates to something that 
+we often refer to as a 
+
+<emphasis id="em1001" effect="italics">
+"software framework."
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1010">
+You will learn how to write a minimal Java application in conjunction with a 
+set of Slick2D jar files to create your own Slick2D game engine. Using that program 
+as an example, you will learn about the overall structure of the Slick2D game 
+engine.
+
+</para>
+
+
+
+
+<para id="p1011">
+You will learn that game engines are typically 
+
+<emphasis id="em1002" effect="italics">
+service provider
+
+</emphasis>
+ 
+programs and you will learn about a common set of services that is provided by 
+many game engines.
+
+</para>
+
+
+
+
+<para id="p1012">
+You will learn about the two cooperating objects that form the heart of the 
+Slick2D game engine.
+
+</para>
+
+
+
+
+<para id="p1013">
+You will learn about the methods declared in the interface named 
+
+<emphasis id="strong1002" effect="bold">
+Game
+
+</emphasis>
+.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11004">
+<title>
+<emphasis id="What_is_a_game_engine" effect="bold">
+
+What is a game engine?
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1014">
+The term "game engine" is jargon for something that is more properly called a 
+
+
+<emphasis id="em1003" effect="italics">
+"software framework."
+
+</emphasis>
+</para>
+
+
+
+
+<section id="h21001">
+<title>
+<emphasis id="A_software_framework" effect="bold">
+
+A software framework
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1015">
+Here is part of what 
+
+
+<link id="a1028" url="http://en.wikipedia.org/wiki/Software_framework">
+
+Wikipedia
+
+</link>
+
+ has to say about a software framework:
+
+
+
+</para>
+
+
+
+
+<para id="p1016">
+A 
+
+<emphasis id="em1004" effect="italics">
+software framework
+
+</emphasis>
+, in computer programming, is an abstraction in which common code providing 
+
+
+<emphasis id="em1005" effect="italics">
+generic functionality
+
+</emphasis>
+ can be selectively overridden or specialized by user code providing 
+
+
+<emphasis id="em1006" effect="italics">
+specific functionality
+
+</emphasis>
+. 
+
+</para>
+
+
+
+
+<para id="p1017">
+Frameworks are a special case of software libraries in that they are reusable abstractions of code wrapped in a well-defined API, yet they contain some key distinguishing features that separate them from normal libraries.
+
+
+
+</para>
+
+
+
+
+<para id="p1018">
+Software frameworks have these distinguishing features that separate them from libraries or 
+
+
+<emphasis id="normal_user_applications" effect="bold">
+
+normal user applications
+
+</emphasis>
+
+:
+
+</para>
+
+
+
+
+<list id="ol1000" list-type="enumerated">
+
+	
+
+<item id="li1027">
+<emphasis id="strong1003" effect="bold">
+inversion of control
+
+</emphasis>
+ - In a framework, unlike in libraries or normal user applications, the overall program's flow of control is not dictated by the caller, but by the framework.
+	
+
+</item>
+
+
+	
+
+<item id="li1028">
+<emphasis id="strong1004" effect="bold">
+default behavior
+
+</emphasis>
+ - A framework has a default behavior. This default behavior must actually be some useful behavior and not a series of no-ops.
+	
+
+</item>
+
+
+	
+
+<item id="li1029">
+<emphasis id="strong1005" effect="bold">
+extensibility
+
+</emphasis>
+ - A framework can be extended by the user by selective overriding 
+	of framework code in order to provide specific functionality 
+
+</item>
+
+
+	
+
+<item id="li1030">
+<emphasis id="strong1006" effect="bold">
+non-modifiable framework code
+
+</emphasis>
+ - The framework code, in general 
+	should not normally be modified by the user. Users can extend the framework, but 
+	normally should not modify its code. 
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1019">
+In short, a framework is a computer program that helps you to write computer programs. 
+
+</para>
+
+
+
+
+<para id="p1020">
+<emphasis id="strong1007" effect="bold">
+Not a game engine
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1021">
+Under this definition, Slick2D in its raw form is not a game engine nor is it a 
+framework. Instead, it is a library of Java classes that you can use to create a 
+framework or game engine.
+
+</para>
+
+
+
+
+<para id="p1022">
+In particular, if you combine the contents of the files named 
+
+<emphasis id="strong1008" effect="bold">
+
+slick.jar
+
+</emphasis>
+ and 
+
+<emphasis id="strong1009" effect="bold">
+lwjgl.jar
+
+</emphasis>
+ with the minimal Java 
+application shown in 
+
+<link id="a1029" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ and described in
+
+
+<link id="a1030" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+, you will have created a 
+game engine. That combination is what I will refer to hereafter as the 
+
+<emphasis id="em1007" effect="italics">
+
+Slick2D 
+game engine
+
+</emphasis>
+.
+
+</para>
+
+
+
+
+<para id="p1023">
+Having done that, the framework description given
+
+
+<link id="a1031" target-id="normal_user_applications">
+
+above
+
+</link>
+
+ 
+is a good match for the Slick2D game engine.
+
+</para>
+
+
+
+
+</section>
+</section>
+<section id="h11005">
+<title>
+<emphasis id="Background_information" effect="bold">
+
+Background information
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1024">
+<link id="a1032" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ shows a very simple Java application 
+	program. 
+	This is possibly the simplest program that can be written using Slick2D that 
+	will run as a Java application.
+
+</para>
+
+
+
+
+<para id="p1025">
+<emphasis id="em1008" effect="italics">
+(A different approach is used to create a Slick2D program that will run as 
+a Java applet, but I probably won't get into Java applets in this collection of 
+modules.)
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1026">
+I will use this program to explain the overall structure of the Slick2D game 
+	engine in this module. I will explain the inner workings of the game engine in more detail in 
+	future modules.
+
+</para>
+
+
+
+
+	
+
+<table id="table1001" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1001">
+
+			
+
+<row id="tr1002">
+
+				
+
+<entry id="th1001">
+<emphasis id="Listing_1" effect="bold">
+
+Listing 1
+
+</emphasis>
+
+. Simplest 
+				Slick2D 
+				program.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1001">
+
+			
+
+<row id="tr1003">
+
+				
+
+<entry id="td1001">
+
+
+
+<code id="pre1001" display="block">
+/*Slick0110a.java
+Copyright 2012, R.G.Baldwin
+
+Possibly the simplest game that can be coded to use the
+Slick2D game engine and run as a Java application.
+
+Compile and run the program by executing the file named
+CompileAndRun.bat.
+
+Tested using JDK 1.7 under WinXP and Win 7
+*********************************************************/
+
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Game;
+
+public class Slick0110a implements Game{
+
+  public static void main(String[] args)
+                                    throws SlickException{
+    AppGameContainer app =
+                   new AppGameContainer(new Slick0110a());
+    app.start();//this statement is required
+  }//end main
+  //----------------------------------------------------//
+
+  public void init(GameContainer gc)
+                                  throws SlickException {
+    //empty body
+  }
+  //----------------------------------------------------//
+
+  public void update(GameContainer gc, int delta)
+                                   throws SlickException{
+    //empty body
+  }
+  //----------------------------------------------------//
+
+  public void render(GameContainer gc, Graphics g)
+                                   throws SlickException{
+    //empty body
+  }
+  //----------------------------------------------------//
+  public String getTitle(){
+    return "Optional title";
+  }//end getTitle
+  //----------------------------------------------------//
+
+  public boolean closeRequested(){
+    return false;
+  }//end closeRequested
+}//end class Slick0110a
+//======================================================//</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1027">
+<emphasis id="strong1010" effect="bold">
+A batch file named CompileAndRun
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1028">
+<link id="a1033" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+ shows the contents of a batch file that you can use to compile 
+	and execute the code in 
+
+<link id="a1034" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ as was explained in 
+an earlier module.
+
+</para>
+
+
+
+
+	
+
+<table id="table1002" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1002">
+
+			
+
+<row id="tr1004">
+
+				
+
+<entry id="th1002">
+<emphasis id="Listing_2" effect="bold">
+
+Listing 2
+
+</emphasis>
+
+. The file named 
+				CompileAndRun.bat.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1002">
+
+			
+
+<row id="tr1005">
+
+				
+
+<entry id="td1002">
+
+
+
+<code id="pre1002" display="block">
+echo off
+del *.class
+
+rem refer to jar files in the folder named jars
+javac -cp .;../jars/slick.jar;../jars/lwjgl.jar Slick0110a.java
+
+rem set the java.library.path and the classpath and run the program
+java -Djava.library.path=../lwjglbin -cp .;../jars/slick.jar;../jars/lwjgl.jar Slick0110a
+
+pause</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1029">
+<emphasis id="strong1011" effect="bold">
+Execute the batch file
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1030">
+If you double-click the batch file named 
+
+<emphasis id="strong1012" effect="bold">
+CompileAndRun.bat
+
+</emphasis>
+ 
+
+<emphasis id="em1009" effect="italics">
+
+(or execute it in whatever manner you prefer), 
+
+</emphasis>
+two new 
+windows should appear on your computer screen. 
+
+</para>
+
+
+
+
+<para id="p1031">
+<emphasis id="strong1013" effect="bold">
+Slick2D output during startup
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1032">
+The first window to appear should look similar to
+
+
+<link id="a1035" target-id="Figure_2">
+
+Figure 2
+
+</link>
+
+.
+
+</para>
+
+
+
+
+
+
+<table id="table1003" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+	
+
+<thead id="thead1003">
+
+		
+
+<row id="tr1006">
+
+			
+
+<entry id="th1003">
+<emphasis id="Figure_2" effect="bold">
+
+Figure 2
+
+</emphasis>
+
+. Output from 
+			Slick2D during program startup. 
+
+</entry>
+
+		
+
+</row>
+
+	
+
+</thead>
+
+
+<tbody id="tbody1003">
+
+	
+
+<row id="tr1007">
+
+		
+
+<entry id="td1003">
+
+		
+
+<media id="media1000" alt="Missing image." display="block">
+<image id="img1000" mime-type="image/jpeg" src="../../media/slick0100a1-10b9.jpg" width="674" height="347"/>
+</media>
+
+
+		
+
+</entry>
+
+	
+
+</row>
+</tbody>
+
+
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+
+<para id="p1033">
+<link id="a1036" target-id="Figure_2">
+
+Figure 2
+
+</link>
+
+ shows typical information 
+produced by Slick2D when the compiled Slick2D program starts running.
+
+</para>
+
+
+
+
+<para id="p1034">
+<emphasis id="strong1014" effect="bold">
+A default Slick2D game window
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1035">
+The second window to appear should look something like
+
+
+<link id="a1037" target-id="Figure_3">
+
+Figure 3
+
+</link>
+
+.
+
+</para>
+
+
+
+
+
+
+
+<table id="table1004" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+	
+
+<thead id="thead1004">
+
+		
+
+<row id="tr1008">
+
+			
+
+<entry id="th1004">
+<emphasis id="Figure_3" effect="bold">
+
+Figure 3
+
+</emphasis>
+
+. A default Slick2D game window.
+			
+
+</entry>
+
+		
+
+</row>
+
+	
+
+</thead>
+
+
+<tbody id="tbody1004">
+
+	
+
+<row id="tr1009">
+
+		
+
+<entry id="td1004">
+
+		
+
+<media id="media1001" alt="Missing image." display="block">
+<image id="img1001" mime-type="image/jpeg" src="../../media/slick0100a2-6d4f.jpg" width="647" height="521"/>
+</media>
+
+
+		
+
+</entry>
+
+	
+
+</row>
+</tbody>
+
+
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1036">
+<link id="a1038" target-id="Figure_3">
+
+Figure 3
+
+</link>
+
+ is a default Slick2D 
+game window. This Slick2D program 
+
+
+<emphasis id="em1010" effect="italics">
+(see 
+
+<link id="a1039" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+)
+
+</emphasis>
+ has no interesting behavior. In effect, it is an "empty" game program. 
+Therefore, the only thing showing in the game window is a counter in the top 
+left corner that shows the execution rate in frames per second. 
+
+<emphasis id="em1011" effect="italics">
+(I will show 
+you how to control the execution rate in a future module.)
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1037">
+The appearance of this empty game window matches the second item in the
+
+
+<link id="a1040" target-id="normal_user_applications">
+
+above list
+
+</link>
+
+ titled 
+
+<emphasis id="strong1015" effect="bold">
+default 
+behavior
+
+</emphasis>
+. In particular, the default behavior of the Slick2D game engine 
+is to display an empty game window with an active FPS counter in the upper-left 
+corner..
+
+</para>
+
+
+	
+
+	
+
+</section>
+<section id="h11006">
+<title>
+<emphasis id="Discussion_and_sample_code" effect="bold">
+
+Discussion and sample code
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+	
+
+<section id="h21002">
+<title>
+<emphasis id="A_service_provider_program" effect="bold">
+
+A service provider program
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1038">
+Many game engines, 
+
+<emphasis id="em1012" effect="italics">
+(and the Slick2D game engine is no exception)
+
+</emphasis>
+, are
+
+
+<emphasis id="em1013" effect="italics">
+"service provider"
+
+</emphasis>
+ programs. They provide services that make it easier to write game programs 
+than would otherwise be the case if you were to 
+
+<emphasis id="em1014" effect="italics">
+"start from scratch"
+
+</emphasis>
+ to write a game 
+program. 
+
+</para>
+
+
+
+
+<para id="p1039">
+Different game engines provide different services. However, most game engines, including 
+Slick2D, provide 
+at least a minimum set of services, which includes the following:
+
+</para>
+
+
+
+
+<list id="ul1008" list-type="bulleted">
+
+	
+
+<item id="li1031">
+An opportunity to initialize the game state.
+
+</item>
+
+
+	
+
+<item id="li1032">
+Overall flow control that includes a game loop, which alternates in some 
+	fashion between
+	
+
+<list id="ul1009" list-type="bulleted">
+
+		
+
+<item id="li1033">
+an 
+
+<emphasis id="em1015" effect="italics">
+update
+
+</emphasis>
+  phase, in which the game state is updated, and
+		
+
+</item>
+
+
+		
+
+<item id="li1034">
+a 
+
+<emphasis id="em1016" effect="italics">
+rendering
+
+</emphasis>
+  phase in which portions of 
+		the game state may be displayed for the benefit of the player.
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1040">
+These services are provided in different ways in different game engines. You 
+will learn how they are provided by the Slick2D game engine in future modules.
+
+</para>
+
+
+
+
+</section>
+<section id="h21003">
+<title>
+<emphasis id="Two_primary_objects" effect="bold">
+
+Two primary objects
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1041">
+At a minimum, a Slick2D game that runs as an application 
+
+<emphasis id="em1017" effect="italics">
+(not an applet)
+
+</emphasis>
+ 
+consists of at least two 
+
+<emphasis id="cooperating_objects" effect="bold">
+
+cooperating objects
+
+</emphasis>
+
+:
+
+</para>
+
+
+
+
+<list id="ol1001" list-type="enumerated">
+
+	
+
+<item id="li1035">
+An object instantiated from a subclass of the Slick2D class named 
+
+<emphasis id="strong1016" effect="bold">
+
+	GameContainer
+
+</emphasis>
+.
+
+</item>
+
+
+	
+
+<item id="li1036">
+An object instantiated from a class that implements the Slick2D interface 
+	named 
+
+<emphasis id="strong1017" effect="bold">
+Game
+
+</emphasis>
+.
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1042">
+<emphasis id="em1018" effect="italics">
+(For the remainder of this and future modules, unless I specifically 
+indicate 
+that I am discussing a Slick2D game applet, you can assume that I am talking about 
+a Slick2D game program that runs as an application.)
+
+</emphasis>
+</para>
+
+
+
+
+<section id="h31002">
+<title>
+<emphasis id="Behavior_of_an_object_of_the_AppGameContainer_class" effect="bold">
+
+Behavior of an object of the 
+AppGameContainer class
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1043">
+The 
+
+<emphasis id="strong1018" effect="bold">
+GameContainer 
+
+</emphasis>
+object 
+
+<emphasis id="em1019" effect="italics">
+(
+
+<link id="a1041" target-id="cooperating_objects">
+
+item 
+1 above
+
+</link>
+
+)
+
+</emphasis>
+, and the behavior of its methods, manages the game play after 
+the game program starts running. For example, this is the object that manages 
+the game loop.
+
+</para>
+
+
+
+
+<para id="p1044">
+For the program shown in 
+
+<link id="a1042" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+, this object is 
+an object of the class named 
+
+<emphasis id="strong1019" effect="bold">
+AppGameContainer
+
+</emphasis>
+, which extends 
+the class named 
+
+<emphasis id="strong1020" effect="bold">
+GameContainer
+
+</emphasis>
+. 
+
+</para>
+
+
+
+
+<para id="p1045">
+The 
+
+<emphasis id="strong1021" effect="bold">
+AppGameContainer
+
+</emphasis>
+ 
+class provides many public methods by which you can manipulate the behavior of 
+the container object. However, the authors of the Slick2D library did not intend 
+for you to physically modify the source code in the 
+
+<emphasis id="strong1022" effect="bold">
+GameContainer
+
+</emphasis>
+ 
+class or the 
+
+<emphasis id="strong1023" effect="bold">
+AppGameContainer
+
+</emphasis>
+ class.
+
+</para>
+
+
+
+
+</section>
+<section id="h31003">
+<title>
+<emphasis id="Behavior_of_an_object_that_implements_the_Game_interface" effect="bold">
+
+Behavior 
+of an object that 
+implements the Game interface
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1046">
+The 
+
+<emphasis id="strong1024" effect="bold">
+Game
+
+</emphasis>
+ object 
+
+<emphasis id="em1020" effect="italics">
+(
+
+<link id="a1043" target-id="cooperating_objects">
+
+item 2 
+above
+
+</link>
+
+)
+
+</emphasis>
+, and the behavior of its methods is what distinguishes one 
+Slick2D 
+game from another Slick2D game. The authors of the Slick2D library did intend 
+for you to physically modify the source code in the class that implements the
+
+
+<emphasis id="strong1025" effect="bold">
+Game
+
+</emphasis>
+ interface. This is how you distinguish your game from 
+games written by others.
+
+</para>
+
+
+
+
+<para id="p1047">
+<emphasis id="em1021" effect="italics">
+(Clarification: See a later discussion of a class named 
+
+<emphasis id="strong1026" effect="bold">
+BasicGame
+
+</emphasis>
+, 
+which implements the 
+
+<emphasis id="strong1027" effect="bold">
+Game
+
+</emphasis>
+ interface. The authors of the Slick2D 
+library did not intend for you to modify the source code in the 
+
+<emphasis id="strong1028" effect="bold">
+
+BasicGame
+
+</emphasis>
+ 
+class. Instead, they intended for you to subclass that class and to modify the 
+behavior of the 
+
+<emphasis id="strong1029" effect="bold">
+Game
+
+</emphasis>
+ object by overriding inherited abstract 
+methods.)
+
+</emphasis>
+</para>
+
+
+
+
+</section>
+</section>
+<section id="h21004">
+<title>
+<emphasis id="Beginning_of_the_class_named_Slick0105a" effect="bold">
+
+Beginning of the class 
+named Slick0110a
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1048">
+Consider the code fragment shown in 
+
+<link id="a1044" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+. 
+
+<emphasis id="em1022" effect="italics">
+
+(This code was extracted from 
+
+<link id="a1045" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ to make it 
+easier to discuss.)
+
+</emphasis>
+</para>
+
+
+	
+
+<para id="p1049">
+</para>
+
+
+
+
+	
+
+<table id="table1005" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1005">
+
+			
+
+<row id="tr1010">
+
+				
+
+<entry id="th1005">
+<emphasis id="Listing_3" effect="bold">
+
+Listing 3
+
+</emphasis>
+
+. Beginning of 
+				the class named Slick0110a.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1005">
+
+			
+
+<row id="tr1011">
+
+				
+
+<entry id="td1005">
+
+
+
+<code id="pre1003" display="block">
+public class Slick0110a implements Game{
+
+  public static void main(String[] args)
+                                    throws SlickException{
+    AppGameContainer app =
+                   new AppGameContainer(new Slick0110a());
+    app.start();//this statement is required
+  }//end main</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1050">
+ 
+
+<link id="a1046" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+ shows the beginning of the class 
+	named 
+
+<emphasis id="strong1030" effect="bold">
+Slick0110a
+
+</emphasis>
+ along with the entire 
+
+<emphasis id="strong1031" effect="bold">
+main
+
+</emphasis>
+ method.
+
+</para>
+
+
+
+
+<para id="p1051">
+ 
+
+<emphasis id="strong1032" effect="bold">
+An object of the interface type Game
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1052">
+To begin with, note that the 
+
+<emphasis id="strong1033" effect="bold">
+Slick0110a
+
+</emphasis>
+ class implements the interface named 
+
+<emphasis id="strong1034" effect="bold">
+
+Game
+
+</emphasis>
+. Therefore, an object of this class satisfies the requirement for 
+the second type of object identified as item 2 in the
+
+
+<link id="a1047" target-id="cooperating_objects">
+
+above list
+
+</link>
+
+. In other words, an object of this 
+class is an object of the interface type 
+
+<emphasis id="strong1035" effect="bold">
+Game
+
+</emphasis>
+.
+
+</para>
+
+
+
+
+<para id="p1053">
+<emphasis id="strong1036" effect="bold">
+An object of the AppGameContainer class
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1054">
+Now note the first statement in the 
+
+<emphasis id="strong1037" effect="bold">
+main
+
+</emphasis>
+ method in 
+
+<link id="a1048" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+ 
+that instantiates a new object of the class named 
+
+<emphasis id="strong1038" effect="bold">
+AppGameContainer
+
+</emphasis>
+ 
+and saves that object's reference in the local variable named 
+
+<emphasis id="strong1039" effect="bold">
+app
+
+</emphasis>
+. This object satisfies the requirement for the first type of 
+primary object identified as item 1 in the 
+
+<link id="a1049" target-id="cooperating_objects">
+
+above 
+list
+
+</link>
+
+. In other words, an object of this class is an object of the type
+
+
+<emphasis id="strong1040" effect="bold">
+GameContainer
+
+</emphasis>
+ because the class named 
+
+<emphasis id="strong1041" effect="bold">
+AppGameContainer
+
+</emphasis>
+ 
+is a subclass of 
+
+<emphasis id="strong1042" effect="bold">
+GameContainer
+
+</emphasis>
+.
+
+</para>
+
+
+
+
+<para id="p1055">
+<emphasis id="strong1043" effect="bold">
+Tying the two objects together
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1056">
+The class named 
+
+<emphasis id="strong1044" effect="bold">
+AppGameContainer
+
+</emphasis>
+ provides two overloaded 
+constructors, each of which requires an incoming parameter that is a reference to 
+an object instantiated from a class that implements the interface named 
+
+<emphasis id="strong1045" effect="bold">
+Game
+
+</emphasis>
+. The code in the 
+
+<emphasis id="strong1046" effect="bold">
+
+main
+
+</emphasis>
+ method in 
+
+<link id="a1050" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+ uses the simpler of 
+the two overloaded constructors to instantiate a new object of the class named
+
+
+<emphasis id="strong1047" effect="bold">
+AppGameContainer 
+
+</emphasis>
+and to save its reference in the local 
+variable named 
+
+<emphasis id="strong1048" effect="bold">
+app
+
+</emphasis>
+.
+
+</para>
+
+
+
+
+<para id="p1057">
+The code in 
+
+<link id="a1051" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+ also instantiates a new object of the class named 
+
+<emphasis id="strong1049" effect="bold">
+
+Slick0110a
+
+</emphasis>
+ 
+and passes that object's reference to the constructor for the class named
+
+
+<emphasis id="strong1050" effect="bold">
+AppGameContainer
+
+</emphasis>
+. This is legal because the class named 
+
+<emphasis id="strong1051" effect="bold">
+
+Slick0110a
+
+</emphasis>
+ 
+implements the interface named 
+
+<emphasis id="strong1052" effect="bold">
+Game
+
+</emphasis>
+. 
+
+</para>
+
+
+
+
+<para id="p1058">
+At this point, the two objects described in the 
+
+<link id="a1052" target-id="cooperating_objects">
+
+above 
+list
+
+</link>
+
+ exist and occupy memory. From this point forward, 
+the 
+
+<emphasis id="em1023" effect="italics">
+container
+
+</emphasis>
+ object knows about the 
+
+<emphasis id="em1024" effect="italics">
+game
+
+</emphasis>
+ object and has 
+access to its members.
+
+</para>
+
+
+
+
+<para id="p1059">
+<emphasis id="strong1053" effect="bold">
+Start the game program running
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1060">
+Finally, the last statement in the 
+
+<emphasis id="strong1054" effect="bold">
+main
+
+</emphasis>
+ method calls the
+
+
+<emphasis id="strong1055" effect="bold">
+start
+
+</emphasis>
+ method on the new container object to cause the program 
+to be initialized and to cause the game loop to start running.
+
+</para>
+
+
+
+
+</section>
+<section id="h21005">
+<title>
+<emphasis id="The_Game_interface" effect="bold">
+
+The Game interface
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1061">
+One of the rules in Java programming is that whenever a new class definition 
+inherits an abstract method declaration, either the new class definition must 
+provide a concrete definition for the abstract method or the 
+class itself must be declared abstract.
+
+</para>
+
+
+
+
+<para id="p1062">
+All of the methods declared in an interface are implicitly abstract. 
+Therefore, whenever a new class definition implements an interface that declares 
+methods, it inherits one or more abstract method declarations and 
+the above rule applies.
+
+</para>
+
+
+
+
+<para id="p1063">
+<emphasis id="strong1056" effect="bold">
+What is a concrete method definition
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1064">
+Not much is required to provide a concrete method definition. All that 
+is necessary to define concrete methods that return 
+
+<emphasis id="strong1057" effect="bold">
+void
+
+</emphasis>
+ is to replicate the 
+signature of the abstract method and to provide an empty body delineated by a 
+pair of empty curly brackets. If the return type for the abstract method is not 
+void, the body of the concrete version must contain a 
+
+<emphasis id="strong1058" effect="bold">
+return
+
+</emphasis>
+ 
+statement that matches the specified return type.
+
+</para>
+
+
+
+
+<para id="p1065">
+<emphasis id="strong1059" effect="bold">
+Five abstract methods
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1066">
+The interface named 
+
+<emphasis id="strong1060" effect="bold">
+Game
+
+</emphasis>
+ declares the five 
+abstract methods shown in 
+
+<emphasis id="strong1061" effect="bold">
+Figure 4
+
+</emphasis>
+: 
+
+</para>
+
+
+
+
+	
+
+<table id="table1006" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1006">
+
+			
+
+<row id="tr1012">
+
+				
+
+<entry id="th1006">
+<emphasis id="Figure_4" effect="bold">
+
+Figure 4
+
+</emphasis>
+
+. Abstract methods 
+				declared in the Game interface.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1006">
+
+			
+
+<row id="tr1013">
+
+				
+
+<entry id="td1006">
+
+
+
+<code id="pre1004" display="block">
+boolean closeRequested() - Notification that a game close has been requested
+ Returns: True if the game should close
+
+String getTitle() - Get the title of this game
+ Returns: The title of the game
+ 
+void init(GameContainer container) throws SlickException - Initialise the game.
+ This can be used to load static resources. It's called before the game loop starts
+ Parameters: container - The container holding the game
+ 
+void render(GameContainer container, Graphics g) throws SlickException - Render the
+ game's screen here.
+ Parameters: container - The container holing this game, 
+             g - The graphics context that can be used to render. However, 
+             normal rendering routines can also be used.
+
+void update(GameContainer container,int delta) throws SlickException - Update the
+ game logic here. No rendering should take place in this method though it won't 
+ do any harm.
+ Parameters: container - The container holding this game, 
+             delta - The amount of time that has passed since last update 
+             in milliseconds
+</code>
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1067">
+<emphasis id="strong1062" effect="bold">
+Concrete versions of the inherited abstract methods
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1068">
+As you can see in 
+
+<link id="a1053" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+, the new class named 
+	
+
+<emphasis id="strong1063" effect="bold">
+Slick0110a
+
+</emphasis>
+ is not declared abstract. Therefore, it must provide 
+	concrete versions of the inherited abstract methods shown in
+	
+
+<link id="a1054" target-id="Figure_4">
+
+Figure 4
+
+</link>
+
+.
+
+</para>
+
+
+
+
+<para id="p1069">
+The 
+
+<emphasis id="strong1064" effect="bold">
+init
+
+</emphasis>
+, 
+
+<emphasis id="strong1065" effect="bold">
+update
+
+</emphasis>
+, and 
+
+<emphasis id="strong1066" effect="bold">
+render
+
+</emphasis>
+ 
+methods in 
+
+<link id="a1055" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ return void and are defined with 
+empty bodies. The 
+
+<emphasis id="strong1067" effect="bold">
+getTitle
+
+</emphasis>
+ and 
+
+<emphasis id="strong1068" effect="bold">
+closeRequested
+
+</emphasis>
+ methods do not return void. 
+Therefore each of these concrete versions contains a 
+
+<emphasis id="strong1069" effect="bold">
+return
+
+</emphasis>
+ 
+statement of the required type.
+
+</para>
+
+
+
+
+<para id="p1070">
+<emphasis id="strong1070" effect="bold">
+Not much fun to play
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1071">
+As you learned earlier, the skeleton code for this Slick2D game program shown 
+in 
+
+<link id="a1056" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ can be compiled and executed. 
+However, it isn't very much fun to play because it doesn't do anything other 
+than to sit there and display the frames per second 
+
+<emphasis id="em1025" effect="italics">
+(FPS)
+
+</emphasis>
+ rate in the 
+upper-left corner of the game window. Make no mistake about it, however, the 
+game loop is running meaning that the game is active.
+
+</para>
+
+
+
+
+<para id="p1072">
+<emphasis id="strong1071" effect="bold">
+Not the recommended form
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1073">
+While this is probably the simplest Slick2D game program that can be written to 
+run as a Java application, it is not the recommended form for an empty Slick2D 
+game skeleton. You will learn in the next module that instead of implementing 
+the 
+
+<emphasis id="strong1072" effect="bold">
+Game
+
+</emphasis>
+ interface directly, it is better to extend a Slick2D helper 
+class named 
+
+<emphasis id="strong1073" effect="bold">
+BasicGame
+
+</emphasis>
+ that implements the 
+
+<emphasis id="strong1074" effect="bold">
+Game
+
+</emphasis>
+ 
+interface and provides some additional services that may be useful to the game 
+programmer. However, even when you 
+do that, it is still necessary to write code to put some meat on the skeleton's 
+bones to create a playable game.
+
+</para>
+
+
+
+
+
+
+</section>
+</section>
+<section id="h11007">
+<title>
+<emphasis id="Run_the_program" effect="bold">
+
+Run the program
+
+</emphasis>
+
+
+</title>
+
+
+
+
+
+
+<para id="p1074">
+I encourage you to copy the code from 
+
+<link id="a1057" target-id="Listing_2">
+
+Listing 1
+
+</link>
+
+ and 
+
+
+<link id="a1058" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+ Compile the code and execute 
+it, 
+making changes, and observing the results of your changes. Make certain that you 
+can explain why your changes behave as they do.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11008">
+<title>
+<emphasis id="Summary" effect="bold">
+
+Summary
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1075">
+The main purpose of this module is to teach you about some of the characteristics of game engines and frameworks in general, and to teach you how 
+Slick2D fits those characteristics.
+
+</para>
+
+
+
+
+<para id="p1076">
+More specifically, you learned what we often mean when we speak of a 
+
+<emphasis id="em1026" effect="italics">
+"game 
+engine."
+
+</emphasis>
+ You learned how that terminology relates to something that 
+we often refer to as a 
+
+<emphasis id="em1027" effect="italics">
+"software framework."
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1077">
+You learned how to write a minimal Java application in conjunction with a 
+set of Slick2D jar files to create your own Slick2D game engine. Using that program 
+as an example, you learned about the overall structure of the Slick2D game 
+engine.
+
+</para>
+
+
+
+
+<para id="p1078">
+You learned that game engines are typically 
+
+<emphasis id="em1028" effect="italics">
+service provider
+
+</emphasis>
+ 
+programs and you learned about a common set of services that is provided by 
+most game engines.
+
+</para>
+
+
+
+
+<para id="p1079">
+You learned about the two cooperating objects that form the heart of the 
+Slick2D game engine.
+
+</para>
+
+
+
+
+<para id="p1080">
+You learned about the methods declared in the interface named 
+
+<emphasis id="strong1075" effect="bold">
+Game
+
+</emphasis>
+.
+
+</para>
+
+
+
+
+<para id="p1081">
+You learned that in order to write a game program using the Slick2D game engine 
+that will run as a Java application, you must, as a minimum, 
+perform the steps shown in 
+
+<link id="a1059" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+.
+
+</para>
+
+
+
+
+</section>
+<section id="h11009">
+<title>
+<emphasis id="Whats_next" effect="bold">
+
+What's next?
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1082">
+In the next module, I will begin explaining the purpose of the methods that 
+are inherited from the 
+
+<emphasis id="strong1076" effect="bold">
+Game
+
+</emphasis>
+ interface and will begin showing 
+how you can override those methods to control the behavior of your Slick2D game 
+program.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11010">
+<title>
+<emphasis id="Miscellaneous" effect="bold">
+
+Miscellaneous
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1083">
+This section contains a variety of miscellaneous information.
+
+</para>
+
+
+
+
+
+	
+
+<note id="note1000" type="">
+
+
+		
+
+
+			
+
+
+				
+
+<emphasis id="strong1077" effect="bold">
+Housekeeping material
+
+</emphasis>
+
+				
+
+<list id="ul1010" list-type="bulleted">
+
+					
+
+<item id="li1037">
+Module name: Slick0110: Overview
+
+</item>
+
+
+					
+
+<item id="li1038">
+File: Slick0110.htm
+
+
+</item>
+
+
+					
+
+<item id="li1039">
+Published: 02/03/13
+
+</item>
+
+
+					
+
+<item id="li1040">
+Revised 06/09/15 for 64-bit
+
+</item>
+
+
+				
+
+</list>
+
+
+				
+
+</note>
+
+			
+
+
+		
+
+
+
+	
+
+
+
+
+
+
+	
+
+<note id="note1001" type="">
+
+
+		
+
+
+			
+
+
+				
+
+<emphasis id="strong1078" effect="bold">
+Disclaimers:
+
+</emphasis>
+<para id="p1084">
+<emphasis id="strong1079" effect="bold">
+Financial
+
+</emphasis>
+: Although the Connexions
+site makes it possible for you to download a PDF file for this
+module at no charge, and also makes it possible for you to
+purchase a pre-printed version of the PDF file, you should be
+aware that some of the HTML elements in this module may not translate well into
+PDF.
+
+</para>
+
+
+				
+
+<para id="p1085">
+I also want you to know that, I receive no financial compensation from the Connexions website even if you purchase 
+	the PDF version of the module.
+
+</para>
+
+
+				
+
+<para id="p1086">
+In the past, unknown individuals have copied my modules from cnx.org, converted them to Kindle books, and 
+				placed them for sale on Amazon.com showing me as the author. I 
+				neither receive compensation for those sales nor do I know who does 
+				receive compensation. If you purchase such a book, please be 
+				aware that it is a copy of a module that is freely 
+				available on cnx.org and that it was made and published without 
+				my prior knowledge.
+
+</para>
+
+
+				
+
+<para id="p1087">
+<emphasis id="strong1080" effect="bold">
+Affiliation
+
+</emphasis>
+: I am a professor of Computer Information 
+	Technology at Austin Community College in Austin, TX.
+	
+
+</para>
+
+
+				
+
+</note>
+
+			
+
+
+		
+
+
+
+	
+
+
+
+	
+
+<para id="p1088">
+-end- 
+
+</para>
+
+
+
+
+
+
+</section>
+</content>
+
+
+
+
+</document>

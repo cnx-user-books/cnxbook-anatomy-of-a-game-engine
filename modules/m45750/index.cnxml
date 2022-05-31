@@ -1,0 +1,2510 @@
+<document xmlns="http://cnx.rice.edu/cnxml"> 
+<title>Slick0170: Mouse and keyboard input</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45750</md:content-id>
+  <md:title>Slick0170: Mouse and keyboard input</md:title>
+  <md:abstract>Learn about mouse and keyboard input with the Slick2D game library.</md:abstract>
+  <md:uuid>3f887ece-4245-4031-8812-2babbc1bbc3e</md:uuid>
+</metadata>
+
+<content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="h11000">
+<title>
+Table of Contents
+
+</title>
+
+
+
+
+<list id="ul1000" list-type="bulleted">
+
+	
+
+<item id="li1000">
+<link id="a1000" target-id="Preface">
+
+Preface
+
+</link>
+
+
+	
+
+<list id="ul1001" list-type="bulleted">
+
+		
+
+<item id="li1001">
+<link id="a1001" target-id="Viewing_tip">
+
+Viewing tip
+
+</link>
+
+
+<list id="ul1002" list-type="bulleted">
+
+			
+
+<item id="li1002">
+<link id="a1002" target-id="Figures">
+
+Figures
+
+</link>
+
+
+</item>
+
+
+
+			
+
+<item id="li1003">
+<link id="a1003" target-id="Listings">
+
+Listings
+
+</link>
+
+
+</item>
+
+
+		
+
+</list>
+
+
+		
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1004">
+<link id="a1004" target-id="Preview">
+
+Preview
+
+</link>
+
+ 
+
+</item>
+
+
+	
+
+<item id="li1005">
+<link id="a1005" target-id="General_background_information">
+
+General background information
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1006">
+<link id="a1006" target-id="Discussion_and_sample_code">
+
+Discussion and sample code
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1007">
+<link id="a1007" target-id="Run_the_program">
+
+Run the program
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1008">
+<link id="a1008" target-id="Summary">
+
+Summary
+
+</link>
+
+ 
+
+</item>
+
+
+	
+
+<item id="li1009">
+<link id="a1009" target-id="Whats_next">
+
+What's next?
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1010">
+<link id="a1010" target-id="Miscellaneous">
+
+Miscellaneous
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1011">
+<link id="a1011" target-id="Complete_program_listing">
+
+Complete program listing
+
+</link>
+
+
+</item>
+
+
+
+
+</list>
+
+
+	
+
+	
+
+</section>
+<section id="h11001">
+<title>
+<emphasis id="Preface" effect="bold">
+
+Preface
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+	
+
+<para id="p1000">
+This module is one in a collection of modules designed to teach you about 
+	the anatomy of a game engine.
+
+</para>
+
+
+
+
+<para id="p1001">
+Although the modules in this collection will concentrate on the Java game 
+library named Slick2D, the 
+concepts involved and the knowledge that you will gain is applicable to 
+different game engines written in different programming languages as well.
+
+</para>
+
+
+
+
+<para id="p1002">
+The purpose of this module is to explain some aspects of mouse and 
+keyboard input.
+
+</para>
+
+
+	
+
+<section id="h21000">
+<title>
+<emphasis id="Viewing_tip" effect="bold">
+
+Viewing tip
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1003">
+I recommend that you open another copy of this module in a separate 
+browser window and use the following links to easily find and view the images 
+and listings while you are reading about them.
+
+</para>
+
+
+	
+
+<section id="h31000">
+<title>
+<emphasis id="Figures" effect="bold">
+
+Figures
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<list id="ul1003" list-type="bulleted">
+
+		
+
+<item id="li1012">
+<link id="a1012" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+. Output from the program named Slick0170.java. 
+
+</item>
+
+
+
+
+	
+
+</list>
+
+
+	
+
+</section>
+<section id="h31001">
+<title>
+<emphasis id="Listings" effect="bold">
+
+Listings
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<list id="ul1004" list-type="bulleted">
+
+		
+
+<item id="li1013">
+<link id="a1013" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+. Beginning of the update method. 
+
+</item>
+
+
+		
+
+<item id="li1014">
+<link id="a1014" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+. Test for up or down movement. 
+
+</item>
+
+
+		
+
+<item id="li1015">
+<link id="a1015" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+. Test for collisions with the edges. 
+
+</item>
+
+
+		
+
+<item id="li1016">
+<link id="a1016" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+. Get and save mouse coordinates. 
+
+</item>
+
+
+		
+
+<item id="li1017">
+<link id="a1017" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+. Source code for the program named Slick0170.
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</section>
+</section>
+</section>
+<section id="h11002">
+<title>
+<emphasis id="Preview" effect="bold">
+
+Preview
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1004">
+Most games and many simulations are interactive. By that I mean that they 
+	require user input to perform according to their design.
+
+</para>
+
+
+
+
+<para id="p1005">
+I will present and explain a program in this module that allows the user to 
+cause a ladybug sprite 
+
+<emphasis id="em1000" effect="italics">
+(see 
+
+
+<link id="a1018" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+)
+
+</emphasis>
+ to move inside the game window by 
+pressing the arrow keys on the keyboard or the left and right mouse 
+buttons. 
+
+<emphasis id="em1001" effect="italics">
+(The mouse pointer must be inside the game window 
+for the mouse buttons to move the sprite.)
+
+</emphasis>
+</para>
+
+
+
+
+
+
+
+<table id="table1000" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1000">
+<row id="tr1000">
+<entry id="th1000">
+
+
+
+<emphasis id="Figure_1" effect="bold">
+
+Figure 1
+
+</emphasis>
+
+. Output from the program named Slick0170.java.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1000">
+<row id="tr1001">
+<entry id="td1000">
+
+
+
+<media id="media1000" alt="Missing image." display="block">
+<image id="img1000" mime-type="image/jpeg" src="../../media/slick0170a1.jpg" width="421" height="348"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1006">
+<emphasis id="strong1000" effect="bold">
+Operation
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1007">
+Pressing the right arrow key or the right mouse button causes the sprite to 
+move to the right.
+
+</para>
+
+
+
+
+<para id="p1008">
+Pressing the left arrow key or the left mouse button causes the sprite to 
+move to the left.
+
+</para>
+
+
+
+
+<para id="p1009">
+Pressing the up arrow key causes the sprite to move up, and pressing the down 
+arrow key causes the sprite to move down. 
+
+</para>
+
+
+
+
+<para id="p1010">
+The sprite cannot be caused to move up 
+or down 
+
+<emphasis id="em1002" effect="italics">
+(in this program)
+
+</emphasis>
+ by pressing mouse buttons.
+
+</para>
+
+
+
+
+<para id="p1011">
+<emphasis id="strong1001" effect="bold">
+What you have learned
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1012">
+In the previous module, you learned about using the 
+
+<emphasis id="strong1002" effect="bold">
+draw
+
+</emphasis>
+, 
+
+<emphasis id="strong1003" effect="bold">
+
+drawCentered
+
+</emphasis>
+, and 
+
+<emphasis id="strong1004" effect="bold">
+drawFlash
+
+</emphasis>
+ methods of the
+
+
+<link id="a1019" url="http://slick.ninjacave.com/javadoc/org/newdawn/slick/Image.html">
+
+
+Image
+
+</link>
+
+ class.
+
+</para>
+
+
+
+
+<para id="p1013">
+<emphasis id="strong1005" effect="bold">
+What you will learn
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1014">
+In this module, you will learn how to use the following methods of the
+
+
+<link id="a1020" url="http://slick.ninjacave.com/javadoc/org/newdawn/slick/Input.html">
+
+
+Input
+
+</link>
+
+ class to get input from the user:
+
+</para>
+
+
+
+
+<list id="ul1005" list-type="bulleted">
+
+	
+
+<item id="li1018">
+isKeyDown
+
+</item>
+
+
+	
+
+<item id="li1019">
+isMouseButtonDown
+
+</item>
+
+
+	
+
+<item id="li1020">
+getMouseX
+
+</item>
+
+
+	
+
+<item id="li1021">
+getMouseY
+
+</item>
+
+
+
+
+</list>
+
+
+	
+
+</section>
+<section id="h11003">
+<title>
+<emphasis id="General_background_information" effect="bold">
+
+General 
+	background information
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1015">
+Modern computer programs fall generally in one or a combination of two 
+categories:
+
+</para>
+
+
+
+
+<list id="ul1006" list-type="bulleted">
+
+	
+
+<item id="li1022">
+Event driven programs
+
+</item>
+
+
+	
+
+<item id="li1023">
+Polled programs
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1016">
+<emphasis id="strong1006" effect="bold">
+Analogy for an event-driven program
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1017">
+I like to think of event-driven programs as being somewhat analogous to the 
+way that we normally drive our cars. When we come to a red stoplight, we remove 
+our foot from the gas pedal, press the brake pedal to stop, and allow the motor 
+to idle, thus consuming minimal fuel. 
+
+<emphasis id="em1003" effect="italics">
+(If we don't have an automatic 
+transmission, we will probably also disengage the clutch and move the gearshift 
+leaver to the neutral position.)
+
+</emphasis>
+ 
+
+</para>
+
+
+
+
+<para id="p1018">
+When we see that the light has turned green, we reengage the transmission if 
+necessary, gently press the gas pedal, cause the motor to speed up, and drive 
+through the intersection at a safe and reasonable speed.
+
+</para>
+
+
+
+
+<para id="p1019">
+<emphasis id="strong1007" effect="bold">
+Analogy for a polled program
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1020">
+I like to think of a polled program as being somewhat analogous to a car in 
+which the gas pedal is strapped to the floor causing the motor to run at maximum rpm all 
+the time. 
+
+</para>
+
+
+
+
+<para id="p1021">
+In such a car, the only way to stop at a stop light would be to 
+disengage the clutch and press the brake pedal. While the light is red, the 
+motor would be consuming fuel at a high rate. 
+
+</para>
+
+
+
+
+<para id="p1022">
+When the light turns green, we 
+would reengage the clutch, speed through the intersection, and hope that we 
+don't receive a traffic ticket.
+
+</para>
+
+
+
+
+<para id="p1023">
+<emphasis id="strong1008" effect="bold">
+Event-driven versus polled programs
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1024">
+Event-driven programs tend to idle when they have nothing to do, thus 
+conserving computer resources. Polled programs run at full speed all of the 
+time, thus consuming maximum computer resources.
+
+</para>
+
+
+
+
+<para id="p1025">
+Game and simulation programs, 
+
+<emphasis id="em1004" effect="italics">
+(this one included)
+
+</emphasis>
+, tend to be 
+written as polled programs. Most other modern programs tend to be written as 
+event-driven programs. However, you can probably write any program using either 
+scenario, or perhaps a combination of the two.
+
+</para>
+
+
+
+
+<para id="p1026">
+<emphasis id="strong1009" effect="bold">
+Slick2D supports both scenarios
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1027">
+With regard to input, Slick2D supports both the polled and the event-driven 
+scenarios. 
+
+</para>
+
+
+
+
+<para id="p1028">
+Probably most user input in a Slick2D game or simulation program 
+should be programmed using the polled scenario. However, if the user taps a key 
+while the program is in the 
+
+<emphasis id="strong1010" effect="bold">
+render
+
+</emphasis>
+ method, the program might 
+not recognize that the key has been tapped. If that tap is critical to the 
+operation of the program, it might be wise to also employ the event-driven 
+scenario to detect such critical events.
+
+</para>
+
+
+
+
+<para id="p1029">
+The program that I will discuss in this module is written using only the 
+polled approach to user input. I have published numerous online tutorials 
+that explain the use of the event-driven approach that you can find with a 
+Google search.
+
+</para>
+
+
+
+
+<para id="p1030">
+<emphasis id="strong1011" effect="bold">
+Keyboard, mouse, and controller
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1031">
+The Slick2D
+
+
+<link id="a1021" url="http://slick.ninjacave.com/javadoc/org/newdawn/slick/Input.html">
+
+
+Input
+
+</link>
+
+ class supports input from the keyboard, the mouse, or from a game 
+controller. I will discuss only keyboard and mouse input in this module.
+
+</para>
+
+
+	
+
+	
+
+</section>
+<section id="h11004">
+<title>
+<emphasis id="Discussion_and_sample_code" effect="bold">
+
+Discussion and sample code
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+
+
+<para id="p1032">
+ 
+ 
+Much of this program is identical or very similar to the program named 
+Slick0150a that I explained in the earlier module titled 
+
+
+<link id="a1022" url="http://cnx.org/contents/c92f070e-494f-4eb1-a0b9-e36abe4359fd/">
+
+A first look at 
+sprite motion, collision detection, and timing control
+
+</link>
+
+. I will explain only 
+the code that is new and different in this module.
+
+</para>
+
+
+
+
+<para id="p1033">
+ 
+ 
+
+
+<emphasis id="strong1012" effect="bold">
+Will discuss in fragments
+
+</emphasis>
+</para>
+
+
+	
+
+<para id="p1034">
+A complete listing of this program is provided in 
+
+<link id="a1023" target-id="Listing_5">
+
+
+	Listing 5
+
+</link>
+
+. Most of the code that is new and different is contained in 
+	the 
+
+<emphasis id="strong1013" effect="bold">
+update
+
+</emphasis>
+ method, which begins in 
+
+<link id="a1024" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1001" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1001">
+
+			
+
+<row id="tr1002">
+
+				
+
+<entry id="th1001">
+<emphasis id="Listing_1" effect="bold">
+
+Listing 1
+
+</emphasis>
+
+. Beginning of the update 
+				method.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1001">
+
+			
+
+<row id="tr1003">
+
+				
+
+<entry id="td1001">
+
+
+
+<code id="pre1000" display="block">
+  public void update(GameContainer gc, int delta)
+                                    throws SlickException{
+    
+    //Get a reference to the Input object.
+    Input input = gc.getInput();
+    
+    //Control horizontal bug position by pressing the
+    // arrow keys or pressing the left and right mouse
+    // buttons.
+    if(input.isKeyDown(Input.KEY_RIGHT) || 
+       input.isMouseButtonDown(Input.MOUSE_RIGHT_BUTTON)){
+      bugX += xStep;
+    }//end if
+    
+    if(input.isKeyDown(Input.KEY_LEFT) || 
+        input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+      bugX -= xStep;
+    }//end if
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1035">
+<emphasis id="strong1014" effect="bold">
+Get a reference to the Input object
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1036">
+<link id="a1025" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ begins by getting a saving a reference to 
+the 
+
+
+<link id="a1026" url="http://slick.ninjacave.com/javadoc/org/newdawn/slick/Input.html">
+
+
+Input
+
+</link>
+
+ object that is associated with the
+
+
+<link id="a1027" url="http://slick.ninjacave.com/javadoc/org/newdawn/slick/GameContainer.html">
+
+GameContainer
+
+</link>
+
+ object. All user input can then be obtained by calling 
+methods on the reference to the 
+
+
+<link id="a1028" url="http://slick.ninjacave.com/javadoc/org/newdawn/slick/Input.html">
+
+
+Input
+
+</link>
+
+ object.
+
+</para>
+
+
+
+
+<para id="p1037">
+<emphasis id="strong1015" effect="bold">
+Test for right or left movement
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1038">
+Then 
+
+<link id="a1029" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ uses a 
+
+<emphasis id="em1005" effect="italics">
+logical inclusive or
+
+</emphasis>
+ 
+operator to determine if either the 
+
+<emphasis id="em1006" effect="italics">
+right arrow key
+
+</emphasis>
+ or the 
+
+<emphasis id="em1007" effect="italics">
+right 
+mouse button
+
+</emphasis>
+ 
+
+<emphasis id="em1008" effect="italics">
+(or both)
+
+</emphasis>
+ is currently in the pressed 
+
+<emphasis id="em1009" effect="italics">
+(or down)
+
+</emphasis>
+ state. In 
+other words, is the user holding the 
+
+<emphasis id="em1010" effect="italics">
+right arrow key
+
+</emphasis>
+ or the 
+
+<emphasis id="em1011" effect="italics">
+right 
+mouse button
+
+</emphasis>
+ down?
+
+</para>
+
+
+
+
+<para id="p1039">
+If the test returns true, the value of 
+
+<emphasis id="strong1016" effect="bold">
+bugX
+
+</emphasis>
+ is increased. 
+This will cause the visual manifestation of the sprite to move to the right 
+later when the 
+
+<emphasis id="strong1017" effect="bold">
+render
+
+</emphasis>
+ 
+method is executed.
+
+</para>
+
+
+
+
+<para id="p1040">
+Then 
+
+<link id="a1030" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ performs a similar test on the 
+
+<emphasis id="em1012" effect="italics">
+
+left arrow key
+
+</emphasis>
+ and the 
+
+<emphasis id="em1013" effect="italics">
+left mouse button
+
+</emphasis>
+, decreasing the value of
+
+
+<emphasis id="strong1018" effect="bold">
+bugX
+
+</emphasis>
+ if either test returns true.
+
+</para>
+
+
+
+
+<para id="p1041">
+<emphasis id="strong1019" effect="bold">
+Test for up or down movement
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1042">
+<link id="a1031" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+ performs similar tests on the 
+
+<emphasis id="em1014" effect="italics">
+up arrow 
+key
+
+</emphasis>
+ and the 
+
+<emphasis id="em1015" effect="italics">
+down arrow key
+
+</emphasis>
+ for the purpose of increasing or 
+decreasing the value of 
+
+<emphasis id="strong1020" effect="bold">
+bugY
+
+</emphasis>
+. If the value of 
+
+<emphasis id="strong1021" effect="bold">
+bugY
+
+</emphasis>
+ is changed, this will cause the sprite to move up 
+or down later when the 
+
+<emphasis id="strong1022" effect="bold">
+render
+
+</emphasis>
+ method is executed.
+
+</para>
+
+
+
+
+	
+
+<table id="table1002" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1002">
+
+			
+
+<row id="tr1004">
+
+				
+
+<entry id="th1002">
+<emphasis id="Listing_2" effect="bold">
+
+Listing 2
+
+</emphasis>
+
+.  Test for up or down 
+				movement.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1002">
+
+			
+
+<row id="tr1005">
+
+				
+
+<entry id="td1002">
+
+
+
+<code id="pre1001" display="block">
+    //Control vertical bug position by pressing the arrow
+    // keys. Vertical bug position cannot be controlled by
+    // pressing mouse buttons.
+    if(input.isKeyDown(Input.KEY_UP)){
+      bugY -= yStep;
+    }//end if
+    
+    if(input.isKeyDown(Input.KEY_DOWN)){
+      bugY += yStep;
+    }//end if</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1043">
+<emphasis id="strong1023" effect="bold">
+No 
+
+<emphasis id="em1016" effect="italics">
+up button
+
+</emphasis>
+ or 
+
+<emphasis id="em1017" effect="italics">
+down button
+
+</emphasis>
+</emphasis>
+</para>
+
+
+
+
+<para id="p1044">
+There is no 
+
+<emphasis id="em1018" effect="italics">
+up button
+
+</emphasis>
+ and no 
+
+<emphasis id="em1019" effect="italics">
+down button
+
+</emphasis>
+ on the mouse, so 
+	in this program it is not possible to move the sprite up or down by pressing 
+	mouse buttons. There are ways that such a thing could be accomplished 
+
+<emphasis id="em1020" effect="italics">
+
+	(such as holding down a keyboard key and pressing a mouse button)
+
+</emphasis>
+, 
+	but they were not considered important for the purpose of this module. 
+
+</para>
+
+
+
+
+<para id="p1045">
+<emphasis id="strong1024" effect="bold">
+Test for collisions with the edges
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1046">
+The code in 
+
+<link id="a1032" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+ is similar to, but simpler 
+than the corresponding code in the earlier program named 
+
+<emphasis id="strong1025" effect="bold">
+Slick0150a
+
+</emphasis>
+.
+
+</para>
+
+
+
+
+<para id="p1047">
+In this case, if the sprite collides with an edge, it simply stops moving 
+instead of bouncing off the edge as was the case in the earlier program.
+
+</para>
+
+
+
+
+	
+
+<table id="table1003" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1003">
+
+			
+
+<row id="tr1006">
+
+				
+
+<entry id="th1003">
+<emphasis id="Listing_3" effect="bold">
+
+Listing 3
+
+</emphasis>
+
+.  Test for collisions with 
+				the edges.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1003">
+
+			
+
+<row id="tr1007">
+
+				
+
+<entry id="td1003">
+
+
+
+<code id="pre1002" display="block">
+    //Test for collisions with the sides of the game
+    // window and stop moving the bug when a collision
+    // occurs.
+    if(bugX + bugWidth &gt;= backgroundWidth){
+      //Set the position to the right edge less the width
+      // of the sprite.
+      bugX = backgroundWidth - bugWidth;
+    }//end if
+    
+    //Continue testing for collisions with the edges.
+    if(bugX &lt;= 0){
+      bugX = 0;
+    }//end if
+    
+    if(bugY + bugHeight &gt;= backgroundHeight){
+      bugY = backgroundHeight - bugHeight;
+    }//end if
+    
+    if(bugY &lt;= 0){
+      bugY = 0;
+    }//end if</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1048">
+<emphasis id="strong1026" effect="bold">
+Get and save mouse coordinates
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1049">
+<link id="a1033" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+ calls the 
+
+<emphasis id="strong1027" effect="bold">
+getMouseX
+
+</emphasis>
+ and
+
+
+<emphasis id="strong1028" effect="bold">
+getMouseY
+
+</emphasis>
+ methods to get and save the coordinates of the mouse 
+pointer when the mouse pointer is inside the game window. These values will be 
+displayed later when the 
+
+<emphasis id="strong1029" effect="bold">
+render
+
+</emphasis>
+ method is executed as shown in
+
+
+<link id="a1034" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1004" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1004">
+
+			
+
+<row id="tr1008">
+
+				
+
+<entry id="th1004">
+<emphasis id="Listing_4" effect="bold">
+
+Listing 4
+
+</emphasis>
+
+.  Get and save mouse 
+				coordinates.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1004">
+
+			
+
+<row id="tr1009">
+
+				
+
+<entry id="td1004">
+
+
+
+<code id="pre1003" display="block">
+    //Get and save the X and Y coordinates of the mouse
+    // pointer.
+    mouseX = input.getMouseX();
+    mouseY = input.getMouseY();
+    
+  }//end update</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1050">
+The 
+
+<emphasis id="strong1030" effect="bold">
+Input
+
+</emphasis>
+ class also provides two methods named 
+
+<emphasis id="strong1031" effect="bold">
+
+	getAbsoluteMouseX
+
+</emphasis>
+ and 
+
+<emphasis id="strong1032" effect="bold">
+getAbsoluteMouseY
+
+</emphasis>
+. I'm not 
+	certain how these two methods differ from the two methods that were called 
+	in 
+
+<link id="a1035" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+, but I haven't spent any time 
+	investigating the difference.
+
+</para>
+
+
+
+
+<para id="p1051">
+<emphasis id="strong1033" effect="bold">
+The end of the update method
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1052">
+<link id="a1036" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+ also signals the end of the 
+
+<emphasis id="strong1034" effect="bold">
+update
+
+</emphasis>
+ 
+method and the end of this discussion.
+
+</para>
+
+
+
+
+
+
+</section>
+<section id="h11005">
+<title>
+<emphasis id="Run_the_program" effect="bold">
+
+Run the program
+
+</emphasis>
+
+
+</title>
+
+
+
+
+
+
+<para id="p1053">
+I encourage you to copy the code from 
+
+<link id="a1037" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+. Compile the code and execute 
+it, 
+making changes, and observing the results of your changes. Make certain that you 
+can explain why your changes behave as they do.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11006">
+<title>
+<emphasis id="Summary" effect="bold">
+
+Summary
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1054">
+In this module, you learned how to use the following methods of the
+
+
+<link id="a1038" url="http://slick.ninjacave.com/javadoc/org/newdawn/slick/Input.html">
+
+
+Input
+
+</link>
+
+ class to get user input:
+
+</para>
+
+
+
+
+<list id="ul1007" list-type="bulleted">
+
+	
+
+<item id="li1024">
+isKeyDown
+
+</item>
+
+
+	
+
+<item id="li1025">
+isMouseButtonDown
+
+</item>
+
+
+	
+
+<item id="li1026">
+getMouseX
+
+</item>
+
+
+	
+
+<item id="li1027">
+getMouseY
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+</section>
+<section id="h11007">
+<title>
+<emphasis id="Whats_next" effect="bold">
+
+What's next?
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1055">
+In the next module, you will learn how to use objects of the 
+
+<emphasis id="strong1035" effect="bold">
+
+SpriteSheet
+
+</emphasis>
+ class and the 
+
+<emphasis id="strong1036" effect="bold">
+Animation
+
+</emphasis>
+ class to perform 
+simple sprite sheet animation.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11008">
+<title>
+<emphasis id="Miscellaneous" effect="bold">
+
+Miscellaneous
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1056">
+This section contains a variety of miscellaneous information.
+
+</para>
+
+
+
+
+
+	
+
+<note id="note1000" type="">
+
+
+		
+
+
+			
+
+
+				
+
+<emphasis id="strong1037" effect="bold">
+Housekeeping material
+
+</emphasis>
+
+				
+
+<list id="ul1008" list-type="bulleted">
+
+					
+
+<item id="li1028">
+Module name: Slick0170: Mouse and keyboard input
+
+</item>
+
+
+					
+
+<item id="li1029">
+File: Slick0170.htm
+
+
+</item>
+
+
+					
+
+<item id="li1030">
+Published: 02/05/13
+
+</item>
+
+
+					
+
+<item id="li1031">
+Revised: 09/03/15
+
+</item>
+
+
+				
+
+</list>
+
+
+				
+
+</note>
+
+			
+
+
+		
+
+
+
+	
+
+
+
+
+
+
+	
+
+<note id="note1001" type="">
+
+
+		
+
+
+			
+
+
+				
+
+<emphasis id="strong1038" effect="bold">
+Disclaimers:
+
+</emphasis>
+<para id="p1057">
+<emphasis id="strong1039" effect="bold">
+Financial
+
+</emphasis>
+: Although the Connexions
+site makes it possible for you to download a PDF file for this
+module at no charge, and also makes it possible for you to
+purchase a pre-printed version of the PDF file, you should be
+aware that some of the HTML elements in this module may not translate well into
+PDF.
+
+</para>
+
+
+				
+
+<para id="p1058">
+I also want you to know that, I receive no financial compensation from the Connexions website even if you purchase 
+	the PDF version of the module.
+
+</para>
+
+
+				
+
+<para id="p1059">
+In the past, unknown individuals have copied my modules from cnx.org, converted them to Kindle books, and 
+				placed them for sale on Amazon.com showing me as the author. I 
+				neither receive compensation for those sales nor do I know who does 
+				receive compensation. If you purchase such a book, please be 
+				aware that it is a copy of a module that is freely 
+				available on cnx.org and that it was made and published without 
+				my prior knowledge.
+
+</para>
+
+
+				
+
+<para id="p1060">
+<emphasis id="strong1040" effect="bold">
+Affiliation
+
+</emphasis>
+: I am a professor of Computer Information 
+	Technology at Austin Community College in Austin, TX.
+	
+
+</para>
+
+
+				
+
+</note>
+
+			
+
+
+		
+
+
+
+	
+
+
+
+
+
+</section>
+<section id="h11009">
+<title>
+<emphasis id="Complete_program_listing" effect="bold">
+
+Complete program listing
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1061">
+A complete listing of the program discussed in this module is provided in
+
+
+<link id="a1039" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+.
+
+</para>
+
+
+
+
+
+
+	
+
+<table id="table1005" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1005">
+
+			
+
+<row id="tr1010">
+
+				
+
+<entry id="th1005">
+<emphasis id="Listing_5" effect="bold">
+
+Listing 5
+
+</emphasis>
+
+.  Source code for the 
+				program named Slick0170.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1005">
+
+			
+
+<row id="tr1011">
+
+				
+
+<entry id="td1005">
+
+
+
+<code id="pre1004" display="block">
+/*Slick0170java
+Copyright 2013, R.G.Baldwin
+
+Cause a ladybug sprite to move inside the game window by
+pressing the arrow keys or the left and right mouse
+buttons. The mouse pointer must be inside the game window
+for the mouse buttons to move the sprite.
+
+Right arrow or right mouse button: move right
+Left arrow or left mouse button: move left
+Up arrow: move up
+Down arrow: move down
+
+The program also gets and displays the X and Y 
+coordinates of the mouse pointer.
+
+Much of this program is identical to the earlier program
+named Slick0150a.java.
+
+Tested using JDK 1.7 under WinXP
+*********************************************************/
+
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Input;
+
+public class Slick0170 extends BasicGame{
+  
+  Image bug = null;
+  Image background = null;
+  
+  float backgroundWidth;
+  float backgroundHeight;
+  
+  float bugX = 100;
+  float bugY = 100;
+  float bugWidth;
+  float bugHeight;
+  
+  float xStep = 4.0f;//horizontal step size
+  float yStep = 3.0f;//vertical step size
+  
+  float bugScale = 0.75f;//drawing scale factor
+  
+  //Frame rate we would like to see and maximum frame
+  // rate we will allow.
+  int targetFPS = 60;
+  
+  //This is new code relative to Slick0150a.java
+  int mouseX = 0;
+  int mouseY = 0;
+  //----------------------------------------------------//
+
+  public Slick0170(){//constructor
+    //Set the title
+    super("Slick0170, baldwin");
+  }//end constructor
+  //----------------------------------------------------//
+
+  public static void main(String[] args)
+                                    throws SlickException{
+    AppGameContainer app = new AppGameContainer(
+                          new Slick0170(),414,307,false);
+    app.start();
+  }//end main
+  //----------------------------------------------------//
+
+  @Override
+  public void init(GameContainer gc)
+                                   throws SlickException {
+    bug = new Image("ladybug.png");
+    background = new Image("background.jpg");
+    
+    backgroundWidth = background.getWidth();
+    backgroundHeight = background.getHeight();
+    
+    bugWidth = bug.getWidth()*bugScale;
+    bugHeight = bug.getHeight()*bugScale;
+    
+    System.out.println(
+                   "backgroundWidth: " + backgroundWidth);
+    System.out.println(
+                 "backgroundHeight: " + backgroundHeight);
+    System.out.println("bugWidth: " + bugWidth);
+    System.out.println("bugHeight: " + bugHeight);
+    
+    gc.setTargetFrameRate(targetFPS);//set frame rate
+  }//end init
+  //----------------------------------------------------//
+
+  @Override
+  public void update(GameContainer gc, int delta)
+                                    throws SlickException{
+    //Most of the code in this method is different from
+    // the code in Slick0150a.java.
+    
+    //Get a reference to the Input object.
+    Input input = gc.getInput();
+    
+    //Control horizontal bug position by pressing the
+    // arrow keys or pressing the left and right mouse
+    // buttons.
+    if(input.isKeyDown(Input.KEY_RIGHT) || 
+       input.isMouseButtonDown(Input.MOUSE_RIGHT_BUTTON)){
+      bugX += xStep;
+    }//end if
+    
+    if(input.isKeyDown(Input.KEY_LEFT) || 
+        input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+      bugX -= xStep;
+    }//end if
+    
+    //Control vertical bug position by pressing the arrow
+    // keys. Vertical bug position cannot be controlled by
+    // pressing mouse buttons.
+    if(input.isKeyDown(Input.KEY_UP)){
+      bugY -= yStep;
+    }//end if
+    
+    if(input.isKeyDown(Input.KEY_DOWN)){
+      bugY += yStep;
+    }//end if
+    
+    //Test for collisions with the sides of the game
+    // window and stop moving the bug when a collision
+    // occurs.
+    if(bugX + bugWidth &gt;= backgroundWidth){
+      //Set the position to the right edge less the width
+      // of the sprite.
+      bugX = backgroundWidth - bugWidth;
+    }//end if
+    
+    //Continue testing for collisions with the edges.
+    if(bugX &lt;= 0){
+      bugX = 0;
+    }//end if
+    
+    if(bugY + bugHeight &gt;= backgroundHeight){
+      bugY = backgroundHeight - bugHeight;
+    }//end if
+    
+    if(bugY &lt;= 0){
+      bugY = 0;
+    }//end if
+    
+    //Get and save the X and Y coordinates of the mouse
+    // pointer.
+    mouseX = input.getMouseX();
+    mouseY = input.getMouseY();
+    
+  }//end update
+  //----------------------------------------------------//
+
+  public void render(GameContainer gc, Graphics g)
+                                    throws SlickException{
+    //set the drawing mode to honor transparent pixels
+    g.setDrawMode(g.MODE_NORMAL);
+    
+    //Draw the background to erase the previous picture.
+    background.draw(0,0);
+    
+    //Draw the bug in its new location.
+    bug.draw(bugX,bugY,bugScale);
+    
+    //Display the location of the mouse pointer. This is
+    // new code relative to Slick0150a.java
+    g.drawString(
+               "X: " + mouseX + " Y: " + mouseY,100f,10f);
+  }//end render
+
+}//end class Slick0170
+//======================================================//
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1062">
+-end- 
+
+</para>
+
+
+
+
+
+
+</section>
+</content>
+
+
+
+
+</document>

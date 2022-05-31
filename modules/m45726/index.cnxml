@@ -1,0 +1,2740 @@
+<document xmlns="http://cnx.rice.edu/cnxml"> 
+<title>Slick0100: Getting started with the Slick2D game library</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45726</md:content-id>
+  <md:title>Slick0100: Getting started with the Slick2D game library</md:title>
+  <md:abstract>Learn how to install Slick2D in such a way that you can easily compile and execute Slick2D programs from the command line with no need for a high level IDE.</md:abstract>
+  <md:uuid>78742e49-2e16-4ed3-8bc1-7a2daf25fa89</md:uuid>
+</metadata>
+
+<content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="h11000">
+<title>
+Table of Contents
+
+</title>
+
+
+
+
+<list id="ul1000" list-type="bulleted">
+
+	
+
+<item id="li1000">
+<link id="a1000" target-id="Preface">
+
+Preface
+
+</link>
+
+
+	
+
+<list id="ul1001" list-type="bulleted">
+
+		
+
+<item id="li1001">
+<link id="a1001" target-id="Viewing_tip">
+
+Viewing tip
+
+</link>
+
+
+<list id="ul1002" list-type="bulleted">
+
+			
+
+<item id="li1002">
+<link id="a1002" target-id="Figures">
+
+Figures
+
+</link>
+
+
+</item>
+
+
+			
+
+<item id="li1003">
+<link id="a1003" target-id="Listings">
+
+Listings
+
+</link>
+
+
+</item>
+
+
+		
+
+</list>
+
+
+		
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1004">
+<link id="a1004" target-id="Preview">
+
+Preview
+
+</link>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1005">
+<link id="a1005" target-id="Download_the_required_software">
+
+Download the required software
+
+</link>
+
+
+<list id="ul1003" list-type="bulleted">
+
+		
+
+<item id="li1006">
+<link id="a1006" target-id="Text_editors">
+
+Text editors
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1007">
+<link id="a1007" target-id="The_Slick_distribution">
+
+The Slick2D distribution
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1008">
+<link id="a1008" target-id="The_Java_Development_Kit">
+
+The Java Development Kit
+
+</link>
+
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1009">
+<link id="a1009" target-id="Install_the_required_software">
+
+Install the required software
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1010">
+<link id="a1010" target-id="Create_compile_and_execute_your_first_Slick_program">
+
+Create, compile, and execute your first 
+	Slick2D program
+
+</link>
+
+
+<list id="ul1004" list-type="bulleted">
+
+		
+
+<item id="li1011">
+<link id="a1011" target-id="Create_a_source-code_file">
+
+Create a source-code file
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1012">
+<link id="a1012" target-id="Compile_and_run_the_program">
+
+Compile and run the program
+
+</link>
+
+
+<list id="ul1005" list-type="bulleted">
+
+			
+
+<item id="li1013">
+<link id="a1013" target-id="Create_a_batch_file">
+
+Create a batch file
+
+</link>
+
+
+</item>
+
+
+			
+
+<item id="li1014">
+<link id="a1014" target-id="Execute_the_batch_file">
+
+Execute the batch file
+
+</link>
+
+
+</item>
+
+
+		
+
+</list>
+
+
+		
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1015">
+<link id="a1015" target-id="Run_the_program">
+
+Run the program
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1016">
+<link id="a1016" target-id="Summary">
+
+Summary
+
+</link>
+
+ 
+
+</item>
+
+
+	
+
+<item id="li1017">
+<link id="a1017" target-id="Whats_next">
+
+What's next?
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1018">
+<link id="a1018" target-id="Miscellaneous">
+
+Miscellaneous
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1019">
+<link id="a1019" target-id="Download_source_code">
+
+Download source code
+
+</link>
+
+
+</item>
+
+
+
+
+</list>
+
+
+	
+
+	
+
+</section>
+<section id="h11001">
+<title>
+<emphasis id="Preface" effect="bold">
+
+Preface
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+	
+
+<para id="p1000">
+<emphasis id="strong1000" effect="bold">
+Turning the crank
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1001">
+As a professor of Computer Information Technology at Austin Community 
+	College, I teach courses in game programming using both C++ and C#/XNA. I 
+	have long had a concern that students enter my courses expecting to simply 	
+
+<emphasis id="em1000" effect="italics">
+"turn the crank"
+
+</emphasis>
+  on a game engine such as Dark GDK or XNA and have 
+	great games emerge from the other end of the process. Unfortunately, it 
+	isn't quite that easy. 
+
+</para>
+
+
+
+
+<para id="p1002">
+<emphasis id="strong1001" effect="bold">
+Anatomy of a game engine
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1003">
+Given time limitations and other restrictions, it is not practical to teach 
+those students much about the inner working of such game engines. Therefore, I 
+have decided to publish a series of modules on the anatomy of a game engine that 
+my students, 
+
+<emphasis id="em1001" effect="italics">
+(and other interested parties)
+
+</emphasis>
+ can read to learn about 
+those inner workings. 
+
+</para>
+
+
+
+
+<para id="p1004">
+<emphasis id="strong1002" effect="bold">
+First in a collection
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1005">
+Therefore, this module is the first in a collection of modules designed to teach you about 
+	the anatomy of a typical game engine 
+
+<emphasis id="em1002" effect="italics">
+(sometimes called a game framework)
+
+</emphasis>
+<emphasis id="strong1003" effect="bold">
+.
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1006">
+<emphasis id="strong1004" effect="bold">
+The Slick2D library
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1007">
+I have chosen to concentrate on a free game library named 
+
+
+<link id="a1020" url="http://slick.ninjacave.com/">
+
+Slick2D
+
+</link>
+
+ 
+
+<emphasis id="em1003" effect="italics">
+,(which is written in Java)
+
+</emphasis>
+ for several reasons including the following:
+
+</para>
+
+
+
+
+<list id="ul1006" list-type="bulleted">
+
+	
+
+<item id="li1020">
+Java is the language with which I am the most comfortable. Hence, I can 
+	probably do a better job of explaining the anatomy of a game engine that 
+	uses Slick2D than would be 
+	the case for a game engine written in C++, C#, Python, or some other 
+	programming language.
+
+</item>
+
+
+	
+
+<item id="li1021">
+Java has proven in recent years to be a commercially successful game 
+	programming language. For example, I cite the commercial game named 	
+
+<link id="a1021" url="http://minecraft.net/">
+
+Minecraft
+
+</link>
+
+, written in Java, for which 
+	apparently millions of copies have been sold. Also, Java is used for 
+	developing apps for Android.
+
+</item>
+
+
+	
+
+<item id="li1022">
+Slick2D is free and the source code for Slick2D is readily available.
+
+</item>
+
+
+	
+
+<item id="li1023">
+The overall structure of a basic Slick2D game engine is very similar to Dark GDK and XNA, and 
+	is probably similar to other game engines as well.
+
+</item>
+
+
+	
+
+<item id="li1024">
+Java is platform independent. 
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1008">
+<emphasis id="strong1005" effect="bold">
+Applicable to other environments as well
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1009">
+Although the modules in this collection will concentrate on the Java game 
+library named Slick2D, the 
+concepts involved and the knowledge that you will gain is applicable to other game engines written in different programming languages.
+
+</para>
+
+
+
+
+<para id="p1010">
+<emphasis id="strong1006" effect="bold">
+Purpose
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1011">
+The purpose of this module is to get you started, including showing you how 
+to download and install Slick2D, and how to compile and execute your first 
+Slick2D 
+program. Future modules will start digging into and explaining the inner 
+workings of a basic Slick2D game engine.
+
+</para>
+
+
+
+
+<para id="p1012">
+<emphasis id="strong1007" effect="bold">
+What you should know
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1013">
+This series of modules is not intended for beginning programmers. As a 
+minimum, you should already know about fundamental programming concepts such as
+
+
+<emphasis id="strong1008" effect="bold">
+if
+
+</emphasis>
+ statements, 
+
+<emphasis id="strong1009" effect="bold">
+for
+
+</emphasis>
+ loops, 
+
+<emphasis id="strong1010" effect="bold">
+while
+
+</emphasis>
+ 
+loops, method or function calls, parameter passing, etc. Ideally, you will have 
+some object-oriented programming knowledge in a modern programming language such 
+as Java, C#, C++, or possibly Python or JavaScript.
+
+</para>
+
+
+
+
+<para id="p1014">
+You should also be relatively comfortable with the command-line interface, 
+directory or folder trees, batch or script files, etc.
+
+</para>
+
+
+
+
+<para id="p1015">
+Finally, you should also be comfortable downloading and installing software 
+on the machine and operating system of your choice.
+
+</para>
+
+
+
+
+<para id="p1016">
+<emphasis id="strong1011" effect="bold">
+What you will learn
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1017">
+In this module, you will learn how to download and install Slick2D on a Windows XP, Vista, or 
+Windows 7 machine and how to compile and execute a very simple Slick2D program.
+
+
+<emphasis id="em1004" effect="italics">
+(If you are using a different operating system, you will need to translate 
+this information to your system of choice. However, since Java is platform 
+independent, the code details that I will discuss will apply to all or most 
+platforms.)
+
+</emphasis>
+</para>
+
+
+	
+
+<section id="h21000">
+<title>
+<emphasis id="Viewing_tip" effect="bold">
+
+Viewing tip
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1018">
+I recommend that you open another copy of this module in a separate 
+browser window and use the following links to easily find and view the figures 
+and listings while you are reading about them.
+
+</para>
+
+
+	
+
+<section id="h31000">
+<title>
+<emphasis id="Figures" effect="bold">
+
+Figures
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<list id="ul1007" list-type="bulleted">
+
+		
+
+<item id="li1025">
+<link id="a1022" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+. Output from Slick2D during program startup. 
+
+</item>
+
+
+		
+
+<item id="li1026">
+<link id="a1023" target-id="Figure_2">
+
+Figure 2
+
+</link>
+
+. A default Slick2D game window.
+
+</item>
+
+
+
+	
+
+</list>
+
+
+	
+
+</section>
+<section id="h31001">
+<title>
+<emphasis id="Listings" effect="bold">
+
+Listings
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<list id="ul1008" list-type="bulleted">
+
+		
+
+<item id="li1027">
+<link id="a1024" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+. Slick2D program named Slick0100a.java. 
+
+</item>
+
+
+		
+
+<item id="li1028">
+<link id="a1025" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+. The file named CompileAndRun.bat. 
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</section>
+</section>
+</section>
+<section id="h11002">
+<title>
+<emphasis id="Preview" effect="bold">
+
+Preview
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1019">
+Most of the Slick2D tutorials that you will find on the Internet will begin 
+	by telling you to download and install a high-level IDE such as Eclipse or 
+	NetBeans. I won't do that.
+
+</para>
+
+
+
+
+<para id="p1020">
+While high-level IDEs are great for improving productivity for experienced 
+programmers, I consider them to be overkill for students just learning how to 
+program. Not only are they overkill, they also hide many details that beginning 
+programmers need to understand.
+
+</para>
+
+
+
+
+<para id="p1021">
+Therefore, I will show you how to install Slick2D in such a way that you can 
+easily compile and execute Slick2D programs from the command line with no need for 
+a high level IDE. All you will need is a text editor 
+
+<emphasis id="em1005" effect="italics">
+(preferably color coded 
+for Java syntax)
+
+</emphasis>
+, the free Slick2D distribution, and the free Java 
+Development Kit from Oracle.
+
+</para>
+
+
+
+
+</section>
+<section id="h11003">
+<title>
+<emphasis id="Download_the_required_software" effect="bold">
+
+Download the 
+required software
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<section id="h21001">
+<title>
+<emphasis id="Text_editors" effect="bold">
+
+Text editors
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1022">
+There are numerous free text editors available on the Internet, some with and 
+some without Java syntax color coding. 
+
+<emphasis id="em1006" effect="italics">
+(In a 
+pinch, even Windows Notepad will suffice.) 
+
+</emphasis>
+Here are links to a few of them.
+
+</para>
+
+
+
+
+<list id="ul1009" list-type="bulleted">
+
+	
+
+<item id="li1029">
+<link id="a1026" url="http://www.jcreator.com/">
+
+JCreator
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1030">
+<link id="a1027" url="http://www.jgrasp.org/">
+
+jGRASP
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1031">
+<link id="a1028" url="http://www.drjava.org/">
+
+DrJava
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1032">
+<link id="a1029" url="http://www.arachnoid.com/arachnophilia/index.php">
+
+Arachnophilia
+
+</link>
+
+
+</item>
+
+
+
+
+</list>
+
+
+	
+
+</section>
+<section id="h21002">
+<title>
+<emphasis id="The_Slick_distribution" effect="bold">
+
+The Slick2D distribution
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1023">
+I will be using this material in some of the Java OOP programming courses 
+that I teach. I expect that changes and improvements will be made to the Slick2D 
+library over time. However, it can be very confusing when different students in 
+the same programming course are using different versions of software, 
+particularly if changes to the software are made that are not backward 
+compatible.
+
+</para>
+
+
+
+
+<para id="p1024">
+Therefore, to ensure that my students all download and use the same version 
+of the software in my courses, I will make a copy of a particular version of the Slick2D distribution available by 
+clicking 
+
+<link id="a1030" url="slick-64.zip">
+
+here
+
+</link>
+
+. 
+
+<emphasis id="em1007" effect="italics">
+(Note: as of 06/06/15, this is 
+a 64-bit version of 
+the distribution. The older 32-bit distribution is available 
+
+</emphasis>
+ 
+
+<link id="a1031" url="slick-1.zip">
+
+
+<emphasis id="em1008" effect="italics">
+here
+
+</emphasis>
+</link>
+
+
+<emphasis id="em1009" effect="italics">
+.)
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1025">
+If you are not one of my students, you may prefer to go to the 
+
+
+<link id="a1032" url="http://slick.ninjacave.com/">
+
+Slick2D
+
+</link>
+
+ main 
+page and select the link to download the latest version of the distribution. Save that file because I will have more to say 
+about it later.
+
+</para>
+
+
+
+
+</section>
+<section id="h21003">
+<title>
+<emphasis id="The_Java_Development_Kit" effect="bold">
+
+The Java Development Kit
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1026">
+Go to
+
+
+<link id="a1033" url="http://www.oracle.com/technetwork/java/javase/downloads/index.html">
+
+
+Oracle
+
+</link>
+
+ and download the latest release of Java SE 
+
+<emphasis id="em1010" effect="italics">
+(standard edition)
+
+</emphasis>
+ 
+that is compatible with your system. Then open the
+
+
+<link id="a1034" url="http://docs.oracle.com/javase/7/docs/webnotes/install/index.html">
+
+
+installation instructions
+
+</link>
+
+  and select the link for your system. For example, 
+there is 
+
+<emphasis id="em1011" effect="italics">
+(or was)
+
+</emphasis>
+ a link on that page that reads:
+
+</para>
+
+
+
+
+<quote id="blockquote1000" display="block">
+
+
+
+<link id="a1035" url="http://docs.oracle.com/javase/7/docs/webnotes/install/windows/jdk-installation-windows.html">
+
+
+
+
+<emphasis id="em1012" effect="italics">
+JDK Installation for Microsoft Windows
+
+</emphasis>
+</link>
+
+
+<emphasis id="em1013" effect="italics">
+ - Describes how to install the JDK on 
+32-bit and 64-bit Microsoft Windows operating systems.
+
+</emphasis>
+</quote>
+
+
+
+
+<para id="p1027">
+Follow the link to the installation instructions for your system and follow 
+those instructions to install the Java Development Kit. When doing the 
+installation, pay attention to the link that reads
+
+
+<link id="a1036" url="http://docs.oracle.com/javase/7/docs/webnotes/install/windows/jdk-installation-windows.html#path">
+
+
+Updating the PATH Environment Variable (Optional)
+
+</link>
+
+. This is where many of my 
+students encounter installation difficulties.
+
+</para>
+
+
+
+
+<quote id="blockquote1001" display="block">
+<emphasis id="em1014" effect="italics">
+(Note that over time, some of these links may change. However, the 
+general concepts involved should continue to be relevant.)
+
+</emphasis>
+</quote>
+
+
+
+
+<para id="p1028">
+There are also issues dealing with something called the 
+
+<emphasis id="strong1012" effect="bold">
+<emphasis id="em1015" effect="italics">
+classpath
+
+</emphasis>
+</emphasis>
+, 
+but I will explain how to deal with those issues later.
+
+</para>
+
+
+
+
+</section>
+</section>
+<section id="h11004">
+<title>
+<emphasis id="Install_the_required_software" effect="bold">
+
+Install the required 
+software
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1029">
+I am assuming that you can install the text editor and the JDK with no help 
+from me. Therefore, I will concentrate on installing and configuring the Slick2D 
+software. 
+
+<emphasis id="em1016" effect="italics">
+(Note that these instructions apply to the 64-bit versions. 
+Instructions for installing the 32-bit version were similar.)
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1030">
+<emphasis id="strong1013" effect="bold">
+The Code folder tree
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1031">
+Begin by creating a folder somewhere on your disk named 
+
+<emphasis id="strong1014" effect="bold">
+Code
+
+</emphasis>
+
+
+
+<emphasis id="em1017" effect="italics">
+(or some other similar name of your choosing)
+
+</emphasis>
+.
+
+</para>
+
+
+
+
+<para id="p1032">
+<emphasis id="Create_three_sub-folders" effect="bold">
+
+Create three sub-folders
+
+</emphasis>
+
+ under the 
+
+<emphasis id="strong1015" effect="bold">
+Code
+
+</emphasis>
+ folder having the 
+following names:
+
+</para>
+
+
+
+
+<list id="ul1010" list-type="bulleted">
+
+	
+
+<item id="li1033">
+jars
+
+</item>
+
+
+	
+
+<item id="li1034">
+lwjglbin
+
+</item>
+
+
+	
+
+<item id="li1035">
+Slick0100a 
+
+<emphasis id="em1018" effect="italics">
+(this will change from one program to the next)
+
+</emphasis>
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1033">
+<emphasis id="em1019" effect="italics">
+(See 
+
+<link id="a1037" target-id="Download_source_code">
+
+Download source code
+
+</link>
+
+ to download folders named
+
+
+<emphasis id="strong1016" effect="bold">
+jars
+
+</emphasis>
+, 
+
+<emphasis id="strong1017" effect="bold">
+lwjglbin
+
+</emphasis>
+, and 
+
+<emphasis id="strong1018" effect="bold">
+Slick0100a
+
+</emphasis>
+ already populated with the minimum required 
+64-bit Windows-compatible software.)
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1034">
+<emphasis id="strong1019" effect="bold">
+Extract the contents of the zip file
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1035">
+Using whatever program you can find to open a zip file 
+
+<emphasis id="em1020" effect="italics">
+(I use a program 
+named WinZip)
+
+</emphasis>
+, extract 
+and save the following files from the lib folder in the 64-bit 
+Slick2D distribution that you 
+
+<emphasis id="downloaded_earlier" effect="bold">
+
+downloaded earlier
+
+</emphasis>
+
+.
+
+</para>
+
+
+
+
+<list id="ul1011" list-type="bulleted">
+
+	
+
+<item id="li1036">
+lwjgl.jar 
+
+</item>
+
+
+	
+
+<item id="li1037">
+slick.jar 
+
+</item>
+
+
+	
+
+<item id="li1038">
+natives-windows.jar
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1036">
+There are many other files in the Slick2D distribution file, but we don't need 
+them just yet. If we need them in a future module, I will tell you.
+
+</para>
+
+
+
+
+<para id="p1037">
+These three files are needed to satisfy the 
+
+<emphasis id="strong1020" effect="bold">
+<emphasis id="em1021" effect="italics">
+classpath
+
+</emphasis>
+</emphasis>
+ and 
+
+<emphasis id="strong1021" effect="bold">
+
+
+
+<emphasis id="em1022" effect="italics">
+java.library.path
+
+</emphasis>
+</emphasis>
+ 
+requirements that I will describe later.
+
+</para>
+
+
+
+
+<para id="p1038">
+<emphasis id="strong1022" effect="bold">
+The first two jar files
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1039">
+Copy the first two jar files from the 
+
+<link id="a1038" target-id="downloaded_earlier">
+
+above 
+list
+
+</link>
+
+ into your new folder named 
+
+<emphasis id="strong1023" effect="bold">
+jars
+
+</emphasis>
+.
+
+</para>
+
+
+
+
+<para id="p1040">
+As you will see later, this results in the need to execute the following 
+command in order to set the classpath whenever you compile or execute a 
+Slick2D 
+program:
+
+</para>
+
+
+
+
+<para id="p1041">
+<emphasis id="strong1024" effect="bold">
+-cp .;../jars/slick.jar;../jars/lwjgl.jar 
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1042">
+<emphasis id="strong1025" effect="bold">
+The third jar file
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1043">
+The third file in the 
+
+<link id="a1039" target-id="downloaded_earlier">
+
+above list
+
+</link>
+
+ 
+applies to Windows only. If you are using a different system, you should find a 
+similar file in the Slick2D distribution that applies to your system. 
+
+<emphasis id="em1023" effect="italics">
+(For 
+example, the distribution contains files named natives-linux.jar and 
+natives-mac.jar.)
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1044">
+<emphasis id="strong1026" effect="bold">
+Extract contents of the jar file
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1045">
+Using whatever program you can find to open a jar file 
+
+<emphasis id="em1024" effect="italics">
+(I use a program 
+named WinZip)
+
+</emphasis>
+, extract the following files from 
+the file named 
+
+<emphasis id="strong1027" effect="bold">
+natives-windows.jar
+
+</emphasis>
+:
+
+</para>
+
+
+
+
+<list id="ul1012" list-type="bulleted">
+
+	
+
+<item id="li1039">
+jinput-dx8_64.dll 
+
+</item>
+
+
+	
+
+<item id="li1040">
+jinput-raw_64.dll 
+
+</item>
+
+
+	
+
+<item id="li1041">
+lwjgl64.dll
+
+</item>
+
+
+	
+
+<item id="li1042">
+OpenAL64.dll
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1046">
+Copy these four files into your new folder named 
+
+<emphasis id="strong1028" effect="bold">
+lwjglbin
+
+</emphasis>
+. 
+
+</para>
+
+
+
+
+<para id="p1047">
+As you will see later, this results in the need to execute the following 
+command in order to set the 
+
+<emphasis id="strong1029" effect="bold">
+<emphasis id="em1025" effect="italics">
+java.library.path
+
+</emphasis>
+</emphasis>
+ system property:
+
+</para>
+
+
+
+
+<para id="p1048">
+<emphasis id="strong1030" effect="bold">
+-Djava.library.path=../lwjgnbin
+
+</emphasis>
+ 
+
+</para>
+
+
+
+
+<para id="p1049">
+<emphasis id="em1026" effect="italics">
+(These files can also be stored in the folder from which
+the program is being run and this will eliminate the
+requirement to set the java.library.path if you prefer that approach.) 
+
+</emphasis>
+</para>
+
+
+
+
+</section>
+<section id="h11005">
+<title>
+
+
+
+<emphasis id="Create_compile_and_execute_your_first_Slick_program" effect="bold">
+
+Create, compile, 
+and execute your first Slick2D program
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<section id="h21004">
+<title>
+<emphasis id="Create_a_source-code_file" effect="bold">
+
+Create a source-code file
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1050">
+Use your text editor to create a text file named 
+
+<emphasis id="strong1031" effect="bold">
+Slick0100a.java
+
+</emphasis>
+ 
+and store it in the folder named 
+
+<emphasis id="strong1032" effect="bold">
+Slick0100a
+
+</emphasis>
+. 
+
+</para>
+
+
+
+
+<para id="p1051">
+<emphasis id="em1027" effect="italics">
+(Be careful to ensure that the file has the correct extension, 
+particularly if you create it with Windows Notepad. An extension of .txt won't 
+work.)
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1052">
+Carefully copy the code from 
+
+<link id="a1040" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ into the text file. 
+This is the file that you will attempt to compile and run to confirm correct 
+operation of your system.
+
+</para>
+
+
+
+
+<para id="p1053">
+<emphasis id="em1028" effect="italics">
+(See 
+
+<link id="a1041" target-id="Download_source_code">
+
+Download source code
+
+</link>
+
+ to download 
+a folder named 
+
+<emphasis id="strong1033" effect="bold">
+Slick0100a
+
+</emphasis>
+ already populated with the code from 
+
+<link id="a1042" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+.)
+
+</emphasis>
+</para>
+
+
+
+
+	
+
+<table id="table1000" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1000">
+
+			
+
+<row id="tr1000">
+
+				
+
+<entry id="th1000">
+<emphasis id="Listing_1" effect="bold">
+
+Listing 1
+
+</emphasis>
+
+. Slick2D program named 
+				Slick0100a.java.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1000">
+
+			
+
+<row id="tr1001">
+
+				
+
+<entry id="td1000">
+
+
+
+<code id="pre1000" display="block">
+/*Slick0100a.java
+Copyright 2012, R.G.Baldwin
+
+A simple program that shows the method definitions 
+required by the Slick framework.
+
+Tested using JDK 1.7 under WinXP
+*********************************************************/
+ 
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
+ 
+public class Slick0100a extends BasicGame{
+
+  public Slick0100a(){
+    //Call to superclass constructor is required.
+    super("This title will be overridden later.");
+  }//end constructor
+  //----------------------------------------------------//
+
+  public static void main(String[] args)
+                                    throws SlickException{
+    //Constructor for AppGameContainer requires parameter
+    // of interface type Game. Hence, object of this class
+    // must provide concrete definitions of the five
+    // methods declared in the Game class. Two of those
+    // methods are overridden in the BasicGame class. The
+    // other three are not.
+    AppGameContainer app = 
+                       new AppGameContainer(new Slick0100a());
+    app.start();//this statement is required
+  }//end main
+  //----------------------------------------------------//
+
+  @Override
+  public void init(GameContainer gc)
+                                   throws SlickException {
+    //Concrete override required.
+    //Do any required initialization here.
+  }//end init
+  //----------------------------------------------------//
+
+  @Override
+  public void update(GameContainer gc, int delta)
+                                    throws SlickException{
+    //Concrete override required.
+    //Put the game logic here.
+  }//end update
+  //----------------------------------------------------//
+
+  public void render(GameContainer gc, Graphics g)
+                                    throws SlickException{
+    //Concrete override required.
+    //Draw the current state of the game here.
+  }//end render
+  //----------------------------------------------------//
+  public String getTitle(){
+    //Concrete override is optional. Overridden in 
+    // BasicGame class. When overridden here, overrides
+    // the title provided in the constructor above.
+    return "Optional title";
+  }//end getTitle
+  //----------------------------------------------------//
+  
+  public boolean closeRequested(){
+    //Concrete override is optional. Overridden in 
+    // BasicGame class.
+    return false;
+  }//end closeRequested
+}//end class Slick0100a</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+
+
+	
+
+</section>
+<section id="h21005">
+<title>
+<emphasis id="Compile_and_run_the_program" effect="bold">
+
+Compile and run the program
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<section id="h31002">
+<title>
+<emphasis id="Create_a_batch_file" effect="bold">
+
+Create a batch file
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1054">
+Use your text editor to create a text file named 
+
+<emphasis id="strong1034" effect="bold">
+CompileAndRun.bat
+
+</emphasis>
+ 
+and store it in the folder named 
+
+<emphasis id="strong1035" effect="bold">
+Slick0100a
+
+</emphasis>
+. 
+
+</para>
+
+
+
+
+<para id="p1055">
+<emphasis id="em1029" effect="italics">
+(Once again, be careful to ensure that the file has the correct extension, 
+particularly if you create it with Windows Notepad. An extension of .txt won't 
+work.)
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1056">
+Carefully copy the contents 
+
+<link id="a1043" target-id="Listing_1">
+
+Listing 2
+
+</link>
+
+ into the text file. 
+This is the file that you will use in your attempt to compile and run your 
+source-code file named 
+
+<emphasis id="strong1036" effect="bold">
+Slick0100a.java
+
+</emphasis>
+. 
+
+<emphasis id="em1030" effect="italics">
+(Line breaks or 
+wrapped lines are not allowed. Make certain that your batch file has only seven 
+lines of text exclusive of blank lines.)
+
+</emphasis>
+</para>
+
+
+
+
+	
+
+<table id="table1001" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1001">
+
+			
+
+<row id="tr1002">
+
+				
+
+<entry id="th1001">
+<emphasis id="Listing_2" effect="bold">
+
+Listing 2
+
+</emphasis>
+
+. The file named 
+				CompileAndRun.bat.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1001">
+
+			
+
+<row id="tr1003">
+
+				
+
+<entry id="td1001">
+
+
+
+<code id="pre1001" display="block">
+echo off
+del *.class
+
+rem refer to jar files in the folder named jars
+javac -cp .;../jars/slick.jar;../jars/lwjgl.jar Slick0100a.java
+
+rem set the java.library.path and the classpath and run the program
+java -Djava.library.path=../lwjglbin -cp .;../jars/slick.jar;../jars/lwjgl.jar Slick0100a
+
+pause</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+
+
+
+
+
+
+	
+
+</section>
+<section id="h31003">
+<title>
+<emphasis id="Execute_the_batch_file" effect="bold">
+
+Execute the batch file
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1057">
+Double-click your new batch file named 
+
+<emphasis id="strong1037" effect="bold">
+CompileAndRun.bat
+
+</emphasis>
+ 
+
+
+<emphasis id="em1031" effect="italics">
+(or execute it in whatever manner you prefer.) 
+
+</emphasis>
+This should cause two 
+new windows to appear on your screen. 
+
+</para>
+
+
+
+
+<para id="p1058">
+<emphasis id="strong1038" effect="bold">
+Slick2D output during startup
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1059">
+The first window to appear should look similar to 
+
+<link id="a1044" target-id="Figure_1">
+
+Figure 
+1
+
+</link>
+
+.
+
+</para>
+
+
+
+
+
+
+
+<table id="table1002" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1002">
+<row id="tr1004">
+<entry id="th1002">
+
+
+
+<emphasis id="Figure_1" effect="bold">
+
+Figure 1
+
+</emphasis>
+
+. Output from Slick2D during program 
+startup.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1002">
+<row id="tr1005">
+<entry id="td1002">
+
+
+
+<media id="media1000" alt="Missing image." display="block">
+<image id="img1000" mime-type="image/jpeg" src="../../media/slick0100a1-7177.jpg" width="674" height="347"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+
+<para id="p1060">
+<link id="a1045" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+ shows information produced by Slick2D when a compiled 
+Slick2D program starts running.
+
+</para>
+
+
+
+
+<para id="p1061">
+<emphasis id="strong1039" effect="bold">
+A default Slick2D game window
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1062">
+The second window to appear should look something like 
+
+<link id="a1046" target-id="Figure_2">
+
+
+Figure 2
+
+</link>
+
+.
+
+</para>
+
+
+
+
+
+
+<table id="table1003" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1003">
+<row id="tr1006">
+<entry id="th1003">
+
+
+
+<emphasis id="Figure_2" effect="bold">
+
+Figure 2
+
+</emphasis>
+
+. A default Slick2D game window.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1003">
+<row id="tr1007">
+<entry id="td1003">
+
+
+
+<media id="media1001" alt="Missing image." display="block">
+<image id="img1001" mime-type="image/jpeg" src="../../media/slick0100a2-39c8.jpg" width="647" height="521"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+
+<para id="p1063">
+<link id="a1047" target-id="Figure_2">
+
+Figure 2
+
+</link>
+
+ is a default Slick2D game window. As you will 
+learn in the next module, this particular Slick2D program has no interesting 
+behavior. In effect, it is an "empty" game program. Therefore, the only thing 
+showing in the game window is a counter in the top left corner that shows the 
+execution rate in frames per second.
+
+</para>
+
+
+
+
+
+
+</section>
+</section>
+</section>
+<section id="h11006">
+<title>
+<emphasis id="Run_the_program" effect="bold">
+
+Run the program
+
+</emphasis>
+
+
+</title>
+
+
+
+
+
+
+<para id="p1064">
+I encourage you to copy the code from 
+
+<link id="a1048" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ and 
+
+
+<link id="a1049" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+. Install the necessary software on your 
+computer as described above. Compile the code and execute 
+it. If you don't see results similar to those shown above, go back and review 
+the instructions very carefully.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11007">
+<title>
+<emphasis id="Summary" effect="bold">
+
+Summary
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1065">
+I showed you how to install Slick2D in such a way that you can easily compile 
+and execute Slick2D programs from the command line with no need for a high level 
+IDE.
+
+</para>
+
+
+
+
+</section>
+<section id="h11008">
+<title>
+<emphasis id="Whats_next" effect="bold">
+
+What's next?
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1066">
+In the next module, I will use the code from 
+
+<link id="a1050" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ 
+to begin explaining the anatomy of a basic Slick2D game engine.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11009">
+<title>
+<emphasis id="Miscellaneous" effect="bold">
+
+Miscellaneous
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1067">
+This section contains a variety of miscellaneous information.
+
+</para>
+
+
+
+
+
+	
+
+<note id="note1000" type="">
+
+
+		
+
+
+			
+
+
+				
+
+<emphasis id="strong1040" effect="bold">
+Housekeeping material
+
+</emphasis>
+
+				
+
+<list id="ul1013" list-type="bulleted">
+
+					
+
+<item id="li1043">
+Module name: Slick0100: Getting started with the Slick2D game 
+					library.
+
+</item>
+
+
+					
+
+<item id="li1044">
+File: Slick0100.htm
+
+
+</item>
+
+
+					
+
+<item id="li1045">
+Published: 02/03/13
+
+</item>
+
+
+					
+
+<item id="li1046">
+Revised: 06/06/15 for 64-bit
+
+</item>
+
+
+				
+
+</list>
+
+
+				
+
+</note>
+
+			
+
+
+		
+
+
+
+	
+
+
+
+
+
+
+
+	
+
+<note id="note1001" type="">
+
+
+		
+
+
+			
+
+
+				
+
+<emphasis id="strong1041" effect="bold">
+Disclaimers:
+
+</emphasis>
+<para id="p1068">
+<emphasis id="strong1042" effect="bold">
+Financial
+
+</emphasis>
+: Although the Connexions
+site makes it possible for you to download a PDF file for this
+module at no charge, and also makes it possible for you to
+purchase a pre-printed version of the PDF file, you should be
+aware that some of the HTML elements in this module may not translate well into
+PDF.
+
+</para>
+
+
+				
+
+<para id="p1069">
+I also want you to know that, I receive no financial compensation from the Connexions website even if you purchase 
+	the PDF version of the module.
+
+</para>
+
+
+				
+
+<para id="p1070">
+In the past, unknown individuals have copied my modules from cnx.org, converted them to Kindle books, and 
+				placed them for sale on Amazon.com showing me as the author. I 
+				neither receive compensation for those sales nor do I know who does 
+				receive compensation. If you purchase such a book, please be 
+				aware that it is a copy of a module that is freely 
+				available on cnx.org and that it was made and published without 
+				my prior knowledge.
+
+</para>
+
+
+				
+
+<para id="p1071">
+<emphasis id="strong1043" effect="bold">
+Affiliation
+
+</emphasis>
+: I am a professor of Computer Information 
+	Technology at Austin Community College in Austin, TX.
+	
+
+</para>
+
+
+				
+
+</note>
+
+			
+
+
+		
+
+
+
+	
+
+
+
+
+	
+
+</section>
+<section id="h11010">
+<title>
+<emphasis id="Download_source_code" effect="bold">
+
+Download source code
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1072">
+Click 
+
+<link id="a1051" url="AllCode.zip">
+
+here
+
+</link>
+
+ to download a zip file containing the 
+source code for all of the sample programs in this collection. The zip file also 
+contains populated 64-bit versions of the folders named
+
+
+<link id="a1052" target-id="Create_three_sub-folders">
+
+jars and lwjglbin
+
+</link>
+
+ to save you the 
+trouble of downloading the distribution and populating those folders.
+
+</para>
+
+
+
+
+<para id="p1073">
+Extract the contents of the zip file into an empty folder. Each program 
+should end up in a separate folder. Double-click the file named 
+
+<emphasis id="strong1044" effect="bold">
+<emphasis id="em1032" effect="italics">
+
+CompileAndRun.bat
+
+</emphasis>
+</emphasis>
+ in each folder to compile and run the program 
+contained in that folder.
+
+</para>
+
+
+
+
+<para id="p1074">
+-end- 
+
+</para>
+
+
+
+
+
+
+</section>
+</content>
+
+
+
+
+</document>

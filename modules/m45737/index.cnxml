@@ -1,0 +1,3433 @@
+<document xmlns="http://cnx.rice.edu/cnxml"> 
+<title>Slick0140: A first look at Slick2D bitmap graphics</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45737</md:content-id>
+  <md:title>Slick0140: A first look at Slick2D bitmap graphics</md:title>
+  <md:abstract>Learn how to draw a sprite image with transparent parts on a background image using two different approaches.</md:abstract>
+  <md:uuid>ec409a1f-e946-486a-a681-980d0effa996</md:uuid>
+</metadata>
+
+<content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="h11000">
+<title>
+Table of Contents
+
+</title>
+
+
+
+
+<list id="ul1000" list-type="bulleted">
+
+	
+
+<item id="li1000">
+<link id="a1000" target-id="Preface">
+
+Preface
+
+</link>
+
+
+	
+
+<list id="ul1001" list-type="bulleted">
+
+		
+
+<item id="li1001">
+<link id="a1001" target-id="Viewing_tip">
+
+Viewing tip
+
+</link>
+
+
+<list id="ul1002" list-type="bulleted">
+
+			
+
+<item id="li1002">
+<link id="a1002" target-id="Figures">
+
+Figures
+
+</link>
+
+
+</item>
+
+
+			
+
+<item id="li1003">
+<link id="a1003" target-id="Listings">
+
+Listings
+
+</link>
+
+
+</item>
+
+
+		
+
+</list>
+
+
+		
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1004">
+<link id="a1004" target-id="Preview">
+
+Preview
+
+</link>
+
+ 
+
+</item>
+
+
+	
+
+<item id="li1005">
+<link id="a1005" target-id="General_background_information">
+
+General background information
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1006">
+<link id="a1006" target-id="Discussion_and_sample_code">
+
+Discussion and sample code
+
+</link>
+
+
+<list id="ul1003" list-type="bulleted">
+
+		
+
+<item id="li1007">
+<link id="a1007" target-id="Beginning_of_the_class_named_Slick0140a">
+
+Beginning of the class named Slick0140a
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1008">
+<link id="a1008" target-id="The_main_method">
+
+The main method
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1009">
+<link id="a1009" target-id="The_overridden_init_method">
+
+The overridden init method
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1010">
+<link id="a1010" target-id="An_empty_update_method">
+
+An empty update method
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1011">
+<link id="a1011" target-id="The_overridden_render_method">
+
+The overridden render method
+
+</link>
+
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1012">
+<link id="a1012" target-id="Run_the_program">
+
+Run the program
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1013">
+<link id="a1013" target-id="Summary">
+
+Summary
+
+</link>
+
+ 
+
+</item>
+
+
+	
+
+<item id="li1014">
+<link id="a1014" target-id="Whats_next">
+
+What's next?
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1015">
+<link id="a1015" target-id="Miscellaneous">
+
+Miscellaneous
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1016">
+<link id="a1016" target-id="Complete_program_listing">
+
+Complete program listing
+
+</link>
+
+
+</item>
+
+
+
+
+</list>
+
+
+	
+
+	
+
+</section>
+<section id="h11001">
+<title>
+<emphasis id="Preface" effect="bold">
+
+Preface
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+	
+
+<para id="p1000">
+This module is one in a collection of modules designed to teach you about 
+	the anatomy of a game engine. 
+
+</para>
+
+
+
+
+<para id="p1001">
+Although the modules in this collection will concentrate on the Java game 
+library named Slick2D, the 
+concepts involved and the knowledge that you will gain is applicable to 
+different game engines written in different programming languages as well.
+
+</para>
+
+
+
+
+<para id="p1002">
+The purpose of this module is to take a first look at bitmap graphics in 
+Slick2D.
+
+</para>
+
+
+	
+
+<section id="h21000">
+<title>
+<emphasis id="Viewing_tip" effect="bold">
+
+Viewing tip
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1003">
+I recommend that you open another copy of this module in a separate 
+browser window and use the following links to easily find and view the Figures 
+	and Listings while you are reading about them.
+
+</para>
+
+
+	
+
+<section id="h31000">
+<title>
+<emphasis id="Figures" effect="bold">
+
+Figures
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<list id="ul1004" list-type="bulleted">
+
+		
+
+<item id="li1017">
+<link id="a1017" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+. Background image in Windows Paint. 
+
+</item>
+
+
+		
+
+<item id="li1018">
+<link id="a1018" target-id="Figure_2">
+
+Figure 2
+
+</link>
+
+. Ladybug image in Windows Paint. 
+
+</item>
+
+
+		
+
+<item id="li1019">
+<link id="a1019" target-id="Figure_3">
+
+Figure 3
+
+</link>
+
+. Ladybug image in Windows Picture and Fax Viewer. 
+
+</item>
+
+
+		
+
+<item id="li1020">
+<link id="a1020" target-id="Figure_4">
+
+Figure 4
+
+</link>
+
+. Ladybug image in Gimp.  
+
+</item>
+
+
+		
+
+<item id="li1021">
+<link id="a1021" target-id="Figure_5">
+
+Figure 5
+
+</link>
+
+. Output from program Slick0140a. 
+
+</item>
+
+
+
+	
+
+</list>
+
+
+	
+
+</section>
+<section id="h31001">
+<title>
+<emphasis id="Listings" effect="bold">
+
+Listings
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<list id="ul1005" list-type="bulleted">
+
+		
+
+<item id="li1022">
+<link id="a1022" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+. Beginning of the class named Slick0140a. 
+
+</item>
+
+
+		
+
+<item id="li1023">
+<link id="a1023" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+. The main method. 
+
+</item>
+
+
+		
+
+<item id="li1024">
+<link id="a1024" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+. The overridden init method. 
+
+</item>
+
+
+		
+
+<item id="li1025">
+<link id="a1025" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+. The overridden render method.
+
+</item>
+
+
+		
+
+<item id="li1026">
+<link id="a1026" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+. Source code for the program named Slick0140a.
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</section>
+</section>
+</section>
+<section id="h11002">
+<title>
+<emphasis id="Preview" effect="bold">
+
+Preview
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1004">
+<emphasis id="strong1000" effect="bold">
+What you have learned
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1005">
+In the previous module, you learned about a property of the 
+
+<emphasis id="strong1001" effect="bold">
+
+GameContainer
+
+</emphasis>
+ class 
+named 
+
+<emphasis id="strong1002" effect="bold">
+running
+
+</emphasis>
+, and how it is used by the 
+
+<emphasis id="strong1003" effect="bold">
+start
+
+</emphasis>
+ 
+method to keep the game loop running.
+
+</para>
+
+
+
+
+<para id="p1006">
+You learned about the salient features of the 
+
+<emphasis id="strong1004" effect="bold">
+gameLoop
+
+</emphasis>
+ 
+method of the 
+
+<emphasis id="strong1005" effect="bold">
+AppGameContainer
+
+</emphasis>
+ class.
+
+</para>
+
+
+
+
+<para id="p1007">
+You learned about the 
+
+<emphasis id="strong1006" effect="bold">
+updateAndRender
+
+</emphasis>
+ method of the 
+
+<emphasis id="strong1007" effect="bold">
+
+GameContainer
+
+</emphasis>
+ class and how it decides when and if to call the 
+
+<emphasis id="strong1008" effect="bold">
+
+update
+
+</emphasis>
+ and 
+
+<emphasis id="strong1009" effect="bold">
+render
+
+</emphasis>
+ methods of the object of the 
+
+<emphasis id="strong1010" effect="bold">
+
+Game
+
+</emphasis>
+ class that is wrapped by the container.
+
+</para>
+
+
+
+
+<para id="p1008">
+You touched on the difference between normal 
+
+<emphasis id="strong1011" effect="bold">
+delta
+
+</emphasis>
+ and smoothed 
+
+
+<emphasis id="strong1012" effect="bold">
+delta
+
+</emphasis>
+.
+
+</para>
+
+
+
+
+<para id="p1009">
+You learned about 
+
+<emphasis id="strong1013" effect="bold">
+minimumLogicInterval
+
+</emphasis>
+ and 
+
+<emphasis id="strong1014" effect="bold">
+
+maximumLogicInterval 
+
+</emphasis>
+and how the contents of those two variables are 
+used to determine if, when, and how many times to call the 
+
+<emphasis id="strong1015" effect="bold">
+update
+
+</emphasis>
+ 
+method during each iteration of the game loop. You also learned how the contents 
+of these two variables are used to determine the value that is passed as 
+
+<emphasis id="strong1016" effect="bold">
+delta
+
+</emphasis>
+ 
+each time the 
+
+<emphasis id="strong1017" effect="bold">
+update
+
+</emphasis>
+ method is called.
+
+</para>
+
+
+
+
+<para id="p1010">
+You learned that the 
+
+<emphasis id="strong1018" effect="bold">
+render
+
+</emphasis>
+ method is normally called once 
+and only once during each iteration of the game loop.
+
+</para>
+
+
+
+
+<para id="p1011">
+You saw a simple example of how you can use the value of 
+
+<emphasis id="strong1019" effect="bold">
+delta
+
+</emphasis>
+ that is 
+received by the 
+
+<emphasis id="strong1020" effect="bold">
+update
+
+</emphasis>
+ method to control the behavior of a game 
+program.
+
+</para>
+
+
+
+
+<para id="p1012">
+You learned that you can set the size of the game window when you instantiate 
+an object of the 
+
+<emphasis id="strong1021" effect="bold">
+AppGameContainer
+
+</emphasis>
+ class by passing dimension 
+parameters to the constructor.
+
+</para>
+
+
+
+
+<para id="p1013">
+You learned that you can set the target frame rate by calling the 
+
+<emphasis id="strong1022" effect="bold">
+
+setTargetFrameRate
+
+</emphasis>
+ method on the 
+
+<emphasis id="strong1023" effect="bold">
+GameContainer
+
+</emphasis>
+ object.
+
+</para>
+
+
+
+
+<para id="p1014">
+You learned how to display text in the game window.
+
+</para>
+
+
+
+
+<para id="p1015">
+<emphasis id="strong1024" effect="bold">
+What you will learn
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1016">
+In this module, you will learn that while there are many classes, interfaces, 
+and methods in the Slick2D library with names that match classes, interfaces, and 
+methods in the standard edition Java library, they are not the same.
+
+</para>
+
+
+
+
+<para id="p1017">
+You will learn how to set the drawing mode so that bitmap images drawn in the 
+game window will either honor or not honor transparent pixels.
+
+</para>
+
+
+
+
+<para id="p1018">
+You will learn how to draw bitmap images in the game window using both the
+
+
+<emphasis id="strong1025" effect="bold">
+draw
+
+</emphasis>
+ 
+methods of the 
+
+<emphasis id="strong1026" effect="bold">
+Image
+
+</emphasis>
+ class and the 
+
+<emphasis id="strong1027" effect="bold">
+drawImage
+
+</emphasis>
+ 
+methods of the 
+
+<emphasis id="strong1028" effect="bold">
+Graphics
+
+</emphasis>
+  class.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11003">
+<title>
+<emphasis id="General_background_information" effect="bold">
+
+General 
+	background information
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1019">
+<emphasis id="strong1029" effect="bold">
+Bitmaps and shapes
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1020">
+Many game programs communicate primarily with the player using interactive 
+graphics. Sometimes those graphics involve drawing bitmap images. Both the 
+Slick2D 
+
+<emphasis id="strong1030" effect="bold">
+Image
+
+</emphasis>
+ class and the Slick2D 
+
+<emphasis id="strong1031" effect="bold">
+Graphics
+
+</emphasis>
+ class 
+provide methods for drawing bitmap images.
+
+</para>
+
+
+
+
+<para id="p1021">
+Sometimes game programs involve drawing shapes such as circles, rectangles, 
+polygons, arcs, etc. The Slick2D 
+
+<emphasis id="strong1032" effect="bold">
+Graphics
+
+</emphasis>
+ class and other 
+classes such as the Slick2D 
+
+<emphasis id="strong1033" effect="bold">
+Shape
+
+</emphasis>
+  class provide methods for creating 
+and drawing such shapes and filling closed shapes with color.
+
+</para>
+
+
+
+
+<para id="p1022">
+And of course, some game programs involve a combination of the two. 
+
+</para>
+
+
+
+
+<para id="p1023">
+This module concentrates on drawing bitmap images both honoring and not 
+honoring transparent pixels.
+
+</para>
+
+
+
+
+<para id="p1024">
+<emphasis id="strong1034" effect="bold">
+Common class names
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1025">
+The Slick2D library contains numerous classes, interfaces, and methods 
+with names that match the names in the Java standard edition library, such as 
+
+
+<emphasis id="strong1035" effect="bold">
+Color
+
+</emphasis>
+, 
+
+<emphasis id="strong1036" effect="bold">
+Graphics
+
+</emphasis>
+, 
+
+<emphasis id="strong1037" effect="bold">
+Image
+
+</emphasis>
+, 
+
+
+<emphasis id="strong1038" effect="bold">
+Line
+
+</emphasis>
+, 
+
+<emphasis id="strong1039" effect="bold">
+Rectangle
+
+</emphasis>
+, 
+
+<emphasis id="strong1040" effect="bold">
+Shape
+
+</emphasis>
+, 
+
+
+<emphasis id="strong1041" effect="bold">
+Transform
+
+</emphasis>
+, 
+
+<emphasis id="strong1042" effect="bold">
+TextField
+
+</emphasis>
+, etc.
+
+</para>
+
+
+
+
+<para id="p1026">
+You need to be aware, however, that even though the names are the same, and 
+the behaviors may be similar, these are not standard Java classes. Their 
+behaviors will often be different from standard Java classes. Therefore, ready access 
+to the documentation at 
+
+<link id="a1027" url="http://slick.ninjacave.com/javadoc/">
+
+
+http://slick.ninjacave.com/javadoc/
+
+</link>
+
+ while you are programming in 
+Slick2D is 
+very important even if you are a seasoned Java programmer.
+
+</para>
+
+
+
+
+<para id="p1027">
+<emphasis id="strong1043" effect="bold">
+Illustrate major differences
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1028">
+The program that I will present in this module will illustrate some of the 
+major differences between the two libraries insofar as graphics programming is 
+concerned. For example, both libraries have a class named 
+
+<emphasis id="strong1044" effect="bold">
+Image
+
+</emphasis>
+, 
+which has generally the same purpose in both libraries. However, the 
+
+<emphasis id="strong1045" effect="bold">
+
+Image
+
+</emphasis>
+ class in the Slick2D library provides about ten different 
+overloaded 
+
+<emphasis id="strong1046" effect="bold">
+draw
+
+</emphasis>
+ methods that you can call to draw images in the 
+game window.
+
+</para>
+
+
+
+
+<para id="p1029">
+The 
+
+<emphasis id="strong1047" effect="bold">
+Image
+
+</emphasis>
+ class in the Java standard library doesn't have 
+any draw methods. Instead, it is necessary to get a graphics context on the 
+image and then call the 
+
+<emphasis id="strong1048" effect="bold">
+drawImage
+
+</emphasis>
+ method on that context to 
+draw the image.
+
+</para>
+
+
+
+
+<para id="p1030">
+<emphasis id="strong1049" effect="bold">
+Draw bitmap images two different ways
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1031">
+The Slick2D 
+
+<emphasis id="strong1050" effect="bold">
+render
+
+</emphasis>
+ method receives an incoming 
+parameter of type
+
+<emphasis id="strong1051" effect="bold">
+ Graphics
+
+</emphasis>
+, which also provides a
+
+<emphasis id="strong1052" effect="bold">
+ 
+drawImage
+
+</emphasis>
+ method that can be used to draw an image in the game 
+window.
+
+<emphasis id="strong1053" effect="bold">
+ 
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1032">
+I will show you how to draw bitmap images using the 
+
+<emphasis id="strong1054" effect="bold">
+draw
+
+</emphasis>
+ 
+methods of the 
+
+<emphasis id="strong1055" effect="bold">
+Image
+
+</emphasis>
+ class and also show you how to draw bitmap 
+images using the 
+
+<emphasis id="strong1056" effect="bold">
+drawImage
+
+</emphasis>
+ methods of the 
+
+<emphasis id="strong1057" effect="bold">
+Graphics
+
+</emphasis>
+ 
+class.
+
+</para>
+
+
+	
+
+	
+
+</section>
+<section id="h11004">
+<title>
+<emphasis id="Discussion_and_sample_code" effect="bold">
+
+Discussion and sample code
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+	
+
+<para id="p1033">
+<link id="a1028" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+ provides a complete listing of a 
+	Slick2D program named 
+
+<emphasis id="strong1058" effect="bold">
+
+	Slick0140a
+
+</emphasis>
+. Before getting into the details of the code, however, I 
+	will show you the input and output images.
+
+</para>
+
+
+
+
+<para id="p1034">
+<emphasis id="strong1059" effect="bold">
+Input images
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1035">
+This program uses two input images. An image file named 
+
+<emphasis id="strong1060" effect="bold">
+background.jpg
+
+</emphasis>
+ is 
+used to create a background in the game window. 
+
+<link id="a1029" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+ 
+shows what that image looks like when viewed in the 
+
+<emphasis id="em1000" effect="italics">
+Windows Paint
+
+</emphasis>
+ program.
+
+</para>
+
+
+
+
+
+
+
+<table id="table1000" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1000">
+<row id="tr1000">
+<entry id="th1000">
+
+
+
+<emphasis id="Figure_1" effect="bold">
+
+Figure 1
+
+</emphasis>
+
+. Background image in Windows Paint.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1000">
+<row id="tr1001">
+<entry id="td1000">
+
+
+
+<media id="media1000" alt="Missing image." display="block">
+<image id="img1000" mime-type="image/jpeg" src="../../media/slick0140a1.jpg" width="497" height="467"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1036">
+<emphasis id="strong1061" effect="bold">
+The ladybug image
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1037">
+The second input image is a file named 
+
+<emphasis id="strong1062" effect="bold">
+ladybug.png
+
+</emphasis>
+, which is a picture of a 
+red and black ladybug on a transparent black background. 
+
+<link id="a1030" target-id="Figure_2">
+
+
+Figure 2
+
+</link>
+
+ shows this image when viewed in the 
+
+<emphasis id="em1001" effect="italics">
+Windows Paint
+
+</emphasis>
+ program.
+
+</para>
+
+
+
+
+
+
+<table id="table1001" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1001">
+<row id="tr1002">
+<entry id="th1001">
+
+
+
+<emphasis id="Figure_2" effect="bold">
+
+Figure 2
+
+</emphasis>
+
+. Ladybug image in Windows Paint.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1001">
+<row id="tr1003">
+<entry id="td1001">
+
+
+
+<media id="media1001" alt="Missing image." display="block">
+<image id="img1001" mime-type="image/jpeg" src="../../media/slick0140a2.jpg" width="276" height="411"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1038">
+<link id="a1031" target-id="Figure_3">
+
+Figure 3
+
+</link>
+
+ shows the same ladybug image when viewed in 
+the 
+
+<emphasis id="em1002" effect="italics">
+Windows Picture and Fax Viewer
+
+</emphasis>
+ program. Note that the black background from
+
+
+<link id="a1032" target-id="Figure_2">
+
+Figure 2
+
+</link>
+
+ is transparent in 
+
+<link id="a1033" target-id="Figure_3">
+
+Figure 3
+
+</link>
+
+.
+
+</para>
+
+
+
+
+
+
+<table id="table1002" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1002">
+<row id="tr1004">
+<entry id="th1002">
+
+
+
+<emphasis id="Figure_3" effect="bold">
+
+Figure 3
+
+</emphasis>
+
+. Ladybug image in Windows Picture and Fax 
+Viewer.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1002">
+<row id="tr1005">
+<entry id="td1002">
+
+
+
+<media id="media1002" alt="Missing image." display="block">
+<image id="img1002" mime-type="image/jpeg" src="../../media/slick0140a4.jpg" width="172" height="224"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1039">
+<link id="a1034" target-id="Figure_4">
+
+Figure 4
+
+</link>
+
+ shows the same ladybug image when viewed in the 
+
+
+<emphasis id="em1003" effect="italics">
+Gimp
+
+</emphasis>
+ image editor program. This program provides even a different treatment for the transparent pixels.
+
+</para>
+
+
+
+
+
+
+<table id="table1003" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1003">
+<row id="tr1006">
+<entry id="th1003">
+
+
+
+<emphasis id="Figure_4" effect="bold">
+
+Figure 4
+
+</emphasis>
+
+. Ladybug image in Gimp.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1003">
+<row id="tr1007">
+<entry id="td1003">
+
+
+
+<media id="media1003" alt="Missing image" display="block">
+<image id="img1003" mime-type="image/jpeg" src="../../media/slick0140a3.jpg" width="155" height="226"/>
+</media>
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1040">
+<emphasis id="strong1063" effect="bold">
+The output image
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1041">
+<link id="a1035" target-id="Figure_5">
+
+Figure 5
+
+</link>
+
+ shows a screen shot of the game window while 
+the program is running
+
+</para>
+
+
+
+
+
+
+
+<table id="table1004" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1004">
+<row id="tr1008">
+<entry id="th1004">
+
+
+
+<emphasis id="Figure_5" effect="bold">
+
+Figure 5
+
+</emphasis>
+
+. Output from program Slick0140a.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1004">
+<row id="tr1009">
+<entry id="td1004">
+
+
+
+<media id="media1004" alt="Missing image." display="block">
+<image id="img1004" mime-type="image/jpeg" src="../../media/slick0140a5.jpg" width="421" height="348"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1042">
+<emphasis id="strong1064" effect="bold">
+Different drawing parameters
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1043">
+The same ladybug image is drawn three times in 
+
+<link id="a1036" target-id="Figure_5">
+
+Figure 5
+
+</link>
+
+ 
+with different drawing parameters.
+
+</para>
+
+
+
+
+<para id="p1044">
+The leftmost image of the ladybug in 
+
+<link id="a1037" target-id="Figure_5">
+
+Figure 5
+
+</link>
+
+ is 
+drawn with a scale factor of 0.75 and a drawing mode that honors transparency:
+MODE_NORMAL.
+
+</para>
+
+
+
+
+<para id="p1045">
+The center image of the ladybug in 
+
+<link id="a1038" target-id="Figure_5">
+
+Figure 5
+
+</link>
+
+ is drawn 
+using a different approach with a scale factor of 1.0 and a drawing mode that 
+honors transparency: MODE_NORMAL.
+
+</para>
+
+
+
+
+<para id="p1046">
+The rightmost image of the ladybug in 
+
+<link id="a1039" target-id="Figure_4">
+
+Figure 4
+
+</link>
+
+ is 
+drawn using the same approach as the leftmost image, a scale factor of 1.25, and 
+a drawing mode that does not honor transparency: MODE_ALPHA_BLEND.
+
+</para>
+
+
+
+
+<para id="p1047">
+<emphasis id="strong1065" effect="bold">
+Are the mode names reversed?
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1048">
+As mentioned above, the two images of the ladybug with transparency were 
+drawn using a Slick2D constant named 
+
+<emphasis id="strong1066" effect="bold">
+MODE_NORMAL
+
+</emphasis>
+. 
+
+</para>
+
+
+
+
+<para id="p1049">
+The image of the ladybug on the right without transparency was drawn using a 
+Slick2D constant named 
+
+<emphasis id="strong1067" effect="bold">
+MODE_ALPHA_BLEND
+
+</emphasis>
+. 
+
+</para>
+
+
+
+
+<para id="p1050">
+These names seem to have been reversed. I 
+would expect the constant with a name that includes the words 
+
+<emphasis id="em1004" effect="italics">
+alpha
+
+</emphasis>
+ and
+
+
+<emphasis id="em1005" effect="italics">
+blend
+
+</emphasis>
+ to honor transparency but that doesn't seem to be the case.
+
+</para>
+
+
+
+
+
+<section id="h21001">
+<title>
+<emphasis id="Beginning_of_the_class_named_Slick0140a" effect="bold">
+
+Beginning of the class 
+named Slick0140a
+
+</emphasis>
+
+
+</title>
+
+
+
+
+
+
+
+
+
+<para id="p1051">
+<link id="a1040" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ shows the beginning of the class named
+
+
+<emphasis id="strong1068" effect="bold">
+Slick0140a
+
+</emphasis>
+ including some instance variable declarations and the 
+constructor.
+
+</para>
+
+
+
+
+
+	
+
+<table id="table1005" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1005">
+
+			
+
+<row id="tr1010">
+
+				
+
+<entry id="th1005">
+<emphasis id="Listing_1" effect="bold">
+
+Listing 1
+
+</emphasis>
+
+. Beginning of the class named Slick0140a.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+<tbody id="tbody1005">
+
+		
+
+<row id="tr1011">
+
+			
+
+<entry id="td1005">
+
+			
+
+<code id="pre1000" display="block">public class Slick0140a extends BasicGame{
+
+  Image ladybug = null;
+  Image background = null;
+
+  float leftX = 100;//leftmost position of ladybug
+  float leftY = 100;
+  
+  float middleX = 200;//middle position of ladybug
+  float middleY = 50;
+  
+  float rightX = 300;//rightmost position of ladybug
+  float rightY = 100;
+  
+  
+  float leftScale = 0.75f;//drawing scale factors
+  float rightScale = 1.25f;
+  //----------------------------------------------------//
+
+  public Slick0140a(){//constructor
+    //Set the title
+    super("Slick0140a, baldwin");
+  }//end constructor
+</code>
+
+
+			
+
+</entry>
+
+		
+
+</row>
+</tbody>
+
+
+
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1052">
+The instance variables shown in 
+
+<link id="a1041" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ and 
+	the values that they contain will be used later to display the three ladybug 
+	images shown in 
+
+<link id="a1042" target-id="Figure_5">
+
+Figure 5
+
+</link>
+
+.
+
+</para>
+
+
+
+
+<para id="p1053">
+There is nothing new in the constructor in 
+
+<link id="a1043" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+.
+
+</para>
+
+
+	
+
+</section>
+<section id="h21002">
+<title>
+<emphasis id="The_main_method" effect="bold">
+
+The main method
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1054">
+There is also nothing new in the 
+
+<emphasis id="strong1069" effect="bold">
+main
+
+</emphasis>
+ method in 
+
+
+<link id="a1044" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+.
+
+</para>
+
+
+
+
+
+	
+
+<table id="table1006" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1006">
+
+			
+
+<row id="tr1012">
+
+				
+
+<entry id="th1006">
+<emphasis id="Listing_2" effect="bold">
+
+Listing 2
+
+</emphasis>
+
+. The main method. 
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+<tbody id="tbody1006">
+
+		
+
+<row id="tr1013">
+
+			
+
+<entry id="td1006">
+
+			
+
+<code id="pre1001" display="block"> public static void main(String[] args)
+                                    throws SlickException{
+    AppGameContainer app = new AppGameContainer(
+                          new Slick0140a(),414,307,false);
+    app.start();
+  }//end main
+</code>
+
+
+			
+
+</entry>
+
+		
+
+</row>
+</tbody>
+
+
+
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+</section>
+<section id="h21003">
+<title>
+<emphasis id="The_overridden_init_method" effect="bold">
+
+The overridden init method
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1055">
+The overridden 
+
+<emphasis id="strong1070" effect="bold">
+init
+
+</emphasis>
+ method is shown in 
+
+<link id="a1045" target-id="Listing_3">
+
+
+Listing 3
+
+</link>
+
+. There is quite a bit of new material in 
+
+<link id="a1046" target-id="Listing_3">
+
+
+Listing 3
+
+</link>
+
+.
+
+</para>
+
+
+
+
+
+	
+
+<table id="table1007" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1007">
+
+			
+
+<row id="tr1014">
+
+				
+
+<entry id="th1007">
+<emphasis id="Listing_3" effect="bold">
+
+Listing 3
+
+</emphasis>
+
+. The overridden init method. 
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+<tbody id="tbody1007">
+
+		
+
+<row id="tr1015">
+
+			
+
+<entry id="td1007">
+
+			
+
+<code id="pre1002" display="block"> public void init(GameContainer gc)
+                                   throws SlickException {
+    ladybug = new Image("ladybug.png");
+    background = new Image("background.jpg");
+    
+    gc.setShowFPS(false);//disable FPS display
+
+    gc.setTargetFrameRate(60);//set frame rate
+  }//end init
+</code>
+
+
+			
+
+</entry>
+
+		
+
+</row>
+</tbody>
+
+
+
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1056">
+<emphasis id="strong1071" effect="bold">
+Two new Image objects
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1057">
+<link id="a1047" target-id="Listing_3">
+
+
+Listing 3
+
+</link>
+
+ begins by instantiating two new Slick2D 
+
+<emphasis id="strong1072" effect="bold">
+Image
+
+</emphasis>
+ 
+objects from the image files discussed earlier and saving those object's references in two 
+of the instance variables that were declared in 
+
+<link id="a1048" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+.
+
+</para>
+
+
+
+
+<para id="p1058">
+<emphasis id="em1006" effect="italics">
+(Note that in this case, the image files were located in the same folder 
+as the source code for the program. Therefore, a path specification to the image 
+files was not needed.)
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1059">
+I will remind you again that the Slick2D 
+
+<emphasis id="strong1073" effect="bold">
+Image
+
+</emphasis>
+ class is 
+different from the 
+
+<emphasis id="strong1074" effect="bold">
+Image
+
+</emphasis>
+ class in the standard edition Java 
+library.
+
+</para>
+
+
+
+
+<para id="p1060">
+<emphasis id="strong1075" effect="bold">
+Don't display FPS
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1061">
+You may have noticed that the FPS display is missing from the upper-left 
+corner of 
+
+<link id="a1049" target-id="Figure_5">
+
+Figure 5
+
+</link>
+
+. That is because it was disabled by 
+the call to the 
+
+<emphasis id="strong1076" effect="bold">
+setShowFPS
+
+</emphasis>
+ method in 
+
+<link id="a1050" target-id="Listing_3">
+
+
+Listing 3
+
+</link>
+
+, passing false as a parameter to the method.
+
+</para>
+
+
+
+
+<para id="p1062">
+<emphasis id="strong1077" effect="bold">
+Set the target frame rate
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1063">
+The last statement in 
+
+<link id="a1051" target-id="Listing_3">
+
+
+Listing 3
+
+</link>
+
+ sets the target frame rate to 60 frames per second.
+
+</para>
+
+
+
+
+</section>
+<section id="h21004">
+<title>
+<emphasis id="An_empty_update_method" effect="bold">
+
+An empty update method
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1064">
+The 
+
+<emphasis id="strong1078" effect="bold">
+update
+
+</emphasis>
+ method in 
+
+<link id="a1052" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+ is empty 
+so there is no point in showing it here.
+
+</para>
+
+
+
+
+</section>
+<section id="h21005">
+<title>
+<emphasis id="The_overridden_render_method" effect="bold">
+
+The overridden render method
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1065">
+The overridden 
+
+<emphasis id="strong1079" effect="bold">
+render
+
+</emphasis>
+ method is shown in 
+
+
+<link id="a1053" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+.
+
+</para>
+
+
+
+
+
+	
+
+<table id="table1008" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1008">
+
+			
+
+<row id="tr1016">
+
+				
+
+<entry id="th1008">
+<emphasis id="Listing_4" effect="bold">
+
+Listing 4
+
+</emphasis>
+
+. The overridden render method.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+<tbody id="tbody1008">
+
+		
+
+<row id="tr1017">
+
+			
+
+<entry id="td1008">
+
+			
+
+<code id="pre1003" display="block"> public void render(GameContainer gc, Graphics g)
+                                    throws SlickException{
+    //Note that the names of the drawMode constants seem
+    // to be backwards.
+    
+    //Draw the background and two versions of the 
+    // ladybug by calling a draw method of the Image
+    // class.
+    g.setDrawMode(g.MODE_NORMAL);//honors transparency
+    background.draw(0,0);
+    ladybug.draw(leftX,leftY,leftScale);
+
+    g.setDrawMode(g.MODE_ALPHA_BLEND);//no transparency
+    ladybug.draw(rightX,rightY,rightScale);
+    
+    //Draw a third version of the ladybug by calling
+    // a drawImage method of the Graphics class.
+    g.setDrawMode(g.MODE_NORMAL);
+    g.drawImage(ladybug,middleX,middleY);
+  }//end render
+</code>
+
+
+			
+
+</entry>
+
+		
+
+</row>
+</tbody>
+
+
+
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1066">
+ 
+	
+
+<emphasis id="strong1080" effect="bold">
+Draw the background and the leftmost ladybug
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1067">
+ 
+
+
+<link id="a1054" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+ begins by calling the 
+
+<emphasis id="strong1081" effect="bold">
+setDrawMode
+
+</emphasis>
+ 
+method on the incoming 
+
+<emphasis id="strong1082" effect="bold">
+Graphics
+
+</emphasis>
+ parameter to set the drawing 
+mode to MODE_NORMAL as described earlier. Then it calls one of the overloaded 
+
+<emphasis id="strong1083" effect="bold">
+draw
+
+</emphasis>
+ 
+methods of the background 
+
+<emphasis id="strong1084" effect="bold">
+Image
+
+</emphasis>
+ object and the ladybug 
+
+<emphasis id="strong1085" effect="bold">
+Image
+
+</emphasis>
+ object to draw the 
+background and the leftmost ladybug in 
+
+<link id="a1055" target-id="Figure_5">
+
+Figure 5
+
+</link>
+
+. 
+
+</para>
+
+
+
+
+<para id="p1068">
+ 
+Note 
+that the drawing coordinates and the scale factor are passed to the 
+
+<emphasis id="strong1086" effect="bold">
+draw
+
+</emphasis>
+ 
+method.
+
+</para>
+
+
+
+
+<para id="p1069">
+ 
+Also note that this drawing of the ladybug image honors transparent pixels.
+
+</para>
+
+
+
+
+<para id="p1070">
+ 
+
+
+<emphasis id="strong1087" effect="bold">
+Draw the rightmost ladybug
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1071">
+After that, 
+
+<link id="a1056" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+ calls the 
+
+<emphasis id="strong1088" effect="bold">
+setDrawMode
+
+</emphasis>
+ 
+method on the incoming 
+
+<emphasis id="strong1089" effect="bold">
+Graphics
+
+</emphasis>
+ parameter to set the drawing 
+mode to MODE_ALPHA_BLEND and calls the same 
+
+<emphasis id="strong1090" effect="bold">
+draw
+
+</emphasis>
+ method of the 
+ladybug 
+
+<emphasis id="strong1091" effect="bold">
+Image
+
+</emphasis>
+ object to draw the rightmost ladybug in 
+
+<link id="a1057" target-id="Figure_5">
+
+Figure 5
+
+</link>
+
+.
+
+</para>
+
+
+
+
+<para id="p1072">
+Note that this drawing of the ladybug image does not honor transparent 
+pixels.
+
+</para>
+
+
+
+
+<para id="p1073">
+<emphasis id="strong1092" effect="bold">
+Call the drawImage method of the Graphics class
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1074">
+Finally, 
+
+<link id="a1058" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+ calls the 
+
+<emphasis id="strong1093" effect="bold">
+setDrawMode
+
+</emphasis>
+ 
+method on the incoming 
+
+<emphasis id="strong1094" effect="bold">
+Graphics
+
+</emphasis>
+ parameter to set the drawing 
+mode back to MODE_NORMAL and then calls the 
+
+<emphasis id="strong1095" effect="bold">
+drawImage
+
+</emphasis>
+ method on 
+the incoming 
+
+<emphasis id="strong1096" effect="bold">
+Graphics
+
+</emphasis>
+ parameter to draw the middle ladybug in 
+
+<link id="a1059" target-id="Figure_5">
+
+Figure 5
+
+</link>
+
+. 
+
+
+<emphasis id="em1007" effect="italics">
+(This approach is similar to the approach that would be used to draw an image 
+using the standard edition Java library.)
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1075">
+Note that the reference to the ladybug 
+
+<emphasis id="strong1097" effect="bold">
+Image
+
+</emphasis>
+ object and the 
+drawing coordinates are passed as parameters to the 
+
+<emphasis id="strong1098" effect="bold">
+drawImage
+
+</emphasis>
+ 
+method. Some of the overloaded 
+
+<emphasis id="strong1099" effect="bold">
+drawImage
+
+</emphasis>
+ methods provide 
+scaling. However, there is no scale parameter for this version of the 
+
+<emphasis id="strong1100" effect="bold">
+drawImage
+
+</emphasis>
+ method so 
+the ladybug was drawn at actual size.
+
+</para>
+
+
+
+
+<para id="p1076">
+<emphasis id="strong1101" effect="bold">
+Many overloaded drawing methods
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1077">
+There are many overloaded versions of the 
+
+<emphasis id="strong1102" effect="bold">
+draw
+
+</emphasis>
+ and 
+the 
+
+<emphasis id="strong1103" effect="bold">
+drawImage
+
+</emphasis>
+ methods.
+
+</para>
+
+
+
+
+<para id="p1078">
+That completes the discussion of the program named 
+
+<emphasis id="strong1104" effect="bold">
+Slick0140a
+
+</emphasis>
+.
+
+</para>
+
+
+
+
+
+
+</section>
+</section>
+<section id="h11005">
+<title>
+<emphasis id="Run_the_program" effect="bold">
+
+Run the program
+
+</emphasis>
+
+
+</title>
+
+
+
+
+
+
+<para id="p1079">
+I encourage you to copy the code from 
+
+<link id="a1060" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+ Compile the code and execute 
+it, 
+making changes, and observing the results of your changes. Make certain that you 
+can explain why your changes behave as they do.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11006">
+<title>
+<emphasis id="Summary" effect="bold">
+
+Summary
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1080">
+You learned that while there are many classes, interfaces, and methods in the 
+Slick2D library with names that match classes, interfaces, and methods in the 
+standard edition Java library, they are not the same.
+
+</para>
+
+
+
+
+<para id="p1081">
+You learned that you can access the Slick2D documentation at
+
+
+<link id="a1061" url="http://slick.ninjacave.com/javadoc/">
+
+
+http://slick.ninjacave.com/javadoc/
+
+</link>
+
+. 
+
+<emphasis id="em1008" effect="italics">
+(A copy of the documentation is 
+also included in the distribution zip file.)
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1082">
+You learned how to set the drawing mode so that bitmap images drawn in the game 
+window will either honor or not honor transparent pixels.
+
+</para>
+
+
+
+
+<para id="p1083">
+You learned how to draw bitmap images in the game window using both the 
+
+<emphasis id="strong1105" effect="bold">
+draw
+
+</emphasis>
+ methods of the
+
+
+<emphasis id="strong1106" effect="bold">
+Image
+
+</emphasis>
+ class and the 
+
+<emphasis id="strong1107" effect="bold">
+drawImage
+
+</emphasis>
+ methods of the
+
+
+<emphasis id="strong1108" effect="bold">
+Graphics
+
+</emphasis>
+ class.
+
+</para>
+
+
+
+
+</section>
+<section id="h11007">
+<title>
+<emphasis id="Whats_next" effect="bold">
+
+What's next?
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1084">
+In the next module, you will learn how to make sprites move at a constant 
+speed in front of an image in the face of a widely varying frame rate. You will 
+also learn about a rudimentary form of collision detection.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11008">
+<title>
+<emphasis id="Miscellaneous" effect="bold">
+
+Miscellaneous
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1085">
+This section contains a variety of miscellaneous information.
+
+</para>
+
+
+
+
+
+	
+
+<note id="note1000" type="">
+
+
+		
+
+
+			
+
+
+				
+
+<emphasis id="strong1109" effect="bold">
+Housekeeping material
+
+</emphasis>
+
+
+				
+
+<list id="ul1006" list-type="bulleted">
+
+					
+
+<item id="li1027">
+Module name: Slick0140: A first look at Slick2D bitmap graphics
+
+</item>
+
+
+
+					
+
+<item id="li1028">
+File: Slick0140.htm
+
+
+</item>
+
+
+					
+
+<item id="li1029">
+Published: 02/04/13
+
+</item>
+
+
+					
+
+<item id="li1030">
+Revised: 06/09/15 for 64-bit
+
+</item>
+
+
+				
+
+</list>
+
+
+				
+
+</note>
+
+			
+
+
+		
+
+
+
+	
+
+
+
+
+
+
+	
+
+<note id="note1001" type="">
+
+
+		
+
+
+			
+
+
+				
+
+<emphasis id="strong1110" effect="bold">
+Disclaimers:
+
+</emphasis>
+<para id="p1086">
+<emphasis id="strong1111" effect="bold">
+Financial
+
+</emphasis>
+: Although the Connexions
+site makes it possible for you to download a PDF file for this
+module at no charge, and also makes it possible for you to
+purchase a pre-printed version of the PDF file, you should be
+aware that some of the HTML elements in this module may not translate well into
+PDF.
+
+</para>
+
+
+				
+
+<para id="p1087">
+I also want you to know that, I receive no financial compensation from the Connexions website even if you purchase 
+	the PDF version of the module.
+
+</para>
+
+
+				
+
+<para id="p1088">
+In the past, unknown individuals have copied my modules from cnx.org, converted them to Kindle books, and 
+				placed them for sale on Amazon.com showing me as the author. I 
+				neither receive compensation for those sales nor do I know who does 
+				receive compensation. If you purchase such a book, please be 
+				aware that it is a copy of a module that is freely 
+				available on cnx.org and that it was made and published without 
+				my prior knowledge.
+
+</para>
+
+
+				
+
+<para id="p1089">
+<emphasis id="strong1112" effect="bold">
+Affiliation
+
+</emphasis>
+:: I am a professor of Computer Information 
+	Technology at Austin Community College in Austin, TX.
+	
+
+</para>
+
+
+				
+
+</note>
+
+			
+
+
+		
+
+
+
+	
+
+
+
+
+
+</section>
+<section id="h11009">
+<title>
+<emphasis id="Complete_program_listing" effect="bold">
+
+Complete program listing
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1090">
+<link id="a1062" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+ contains a complete listing of the program named 
+
+<emphasis id="strong1113" effect="bold">
+
+Slick0140a
+
+</emphasis>
+.
+
+</para>
+
+
+
+
+
+	
+
+<table id="table1009" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1009">
+
+			
+
+<row id="tr1018">
+
+				
+
+<entry id="th1009">
+<emphasis id="Listing_5" effect="bold">
+
+Listing 5
+
+</emphasis>
+
+. Source code for the program named Slick0140a.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+<tbody id="tbody1009">
+
+		
+
+<row id="tr1019">
+
+				
+
+<entry id="td1009">
+
+
+
+<code id="pre1004" display="block">
+/*Slick0140a.java
+Copyright 2012, R.G.Baldwin
+
+Illustrates drawing a sprite image with transparent 
+parts on a background image using two different 
+approaches.
+
+Tested using JDK 1.7 under WinXP
+*********************************************************/
+
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+
+public class Slick0140a extends BasicGame{
+
+  Image ladybug = null;
+  Image background = null;
+  float leftX = 100;//leftmost position of ladybug
+  float leftY = 100;
+  
+  float middleX = 200;//middle position of ladybug
+  float middleY = 50;
+  
+  float rightX = 300;//rightmost position of ladybug
+  float rightY = 100;
+  
+  
+  float leftScale = 0.75f;//drawing scale factors
+  float rightScale = 1.25f;
+  //----------------------------------------------------//
+
+  public Slick0140a(){//constructor
+    //Set the title
+    super("Slick0140a, baldwin");
+  }//end constructor
+  //----------------------------------------------------//
+
+  public static void main(String[] args)
+                                    throws SlickException{
+    AppGameContainer app = new AppGameContainer(
+                          new Slick0140a(),414,307,false);
+    app.start();
+  }//end main
+  //----------------------------------------------------//
+
+  @Override
+  public void init(GameContainer gc)
+                                   throws SlickException {
+    ladybug = new Image("ladybug.png");
+    background = new Image("background.jpg");
+    gc.setShowFPS(false);//disable FPS display
+    gc.setTargetFrameRate(60);//set frame rate
+  }//end init
+  //----------------------------------------------------//
+
+  @Override
+  public void update(GameContainer gc, int delta)
+                                    throws SlickException{
+    //No updates required in this program.
+  }//end update
+  //----------------------------------------------------//
+
+  public void render(GameContainer gc, Graphics g)
+                                    throws SlickException{
+    //Note that the names of the drawMode constants seem
+    // to be backwards.
+    
+    //Draw the background and two versions of the 
+    // ladybug by calling a draw method of the Image
+    // class.
+    g.setDrawMode(g.MODE_NORMAL);//honors transparency
+    background.draw(0,0);
+    ladybug.draw(leftX,leftY,leftScale);
+
+    g.setDrawMode(g.MODE_ALPHA_BLEND);//no transparency
+    ladybug.draw(rightX,rightY,rightScale);
+    
+    //Draw a third version of the ladybug by calling
+    // a drawImage method of the Graphics class.
+    g.setDrawMode(g.MODE_NORMAL);
+    g.drawImage(ladybug,middleX,middleY);
+  }//end render
+
+}//end class Slick0140a</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+</tbody>
+
+
+
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1091">
+-end- 
+
+</para>
+
+
+
+
+
+
+</section>
+</content>
+
+
+
+
+</document>

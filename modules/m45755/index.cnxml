@@ -1,0 +1,4706 @@
+<document xmlns="http://cnx.rice.edu/cnxml"> 
+<title>Slick0210: Collision detection and sound</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45755</md:content-id>
+  <md:title>Slick0210: Collision detection and sound</md:title>
+  <md:abstract>Learn how to use the Sprite01 class developed in an earlier module to write a predator/prey simulation program involving thousands of sprites, collision detection, and sound effects.</md:abstract>
+  <md:uuid>7fd862dc-efad-463f-beff-1a1276a4b698</md:uuid>
+</metadata>
+
+<content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="h11000">
+<title>
+Table of Contents
+
+</title>
+
+
+
+
+<list id="ul1000" list-type="bulleted">
+
+	
+
+<item id="li1000">
+<link id="a1000" target-id="Preface">
+
+Preface
+
+</link>
+
+
+	
+
+<list id="ul1001" list-type="bulleted">
+
+		
+
+<item id="li1001">
+<link id="a1001" target-id="Viewing_tip">
+
+Viewing tip
+
+</link>
+
+
+<list id="ul1002" list-type="bulleted">
+
+			
+
+<item id="li1002">
+<link id="a1002" target-id="Figures">
+
+Figures
+
+</link>
+
+
+</item>
+
+
+
+			
+
+<item id="li1003">
+<link id="a1003" target-id="Listings">
+
+Listings
+
+</link>
+
+
+</item>
+
+
+		
+
+</list>
+
+
+		
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1004">
+<link id="a1004" target-id="Preview">
+
+Preview
+
+</link>
+
+ 
+
+</item>
+
+
+	
+
+<item id="li1005">
+<link id="a1005" target-id="General_background_information">
+
+General background information
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1006">
+<link id="a1006" target-id="Discussion_and_sample_code">
+
+Discussion and sample code
+
+</link>
+
+
+<list id="ul1003" list-type="bulleted">
+
+		
+
+<item id="li1007">
+<link id="a1007" target-id="The_class_named_Sprite01">
+
+The class named Sprite01
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1008">
+<link id="a1008" target-id="The_class_named_Slick0210">
+
+The class named Slick0210
+
+</link>
+
+
+<list id="ul1004" list-type="bulleted">
+
+			
+
+<item id="li1009">
+<link id="a1009" target-id="The_init_method">
+
+The init method
+
+</link>
+
+
+</item>
+
+
+			
+
+<item id="li1010">
+<link id="a1010" target-id="The_update_method">
+
+The update method
+
+</link>
+
+
+</item>
+
+
+			
+
+<item id="li1011">
+<link id="a1011" target-id="The_isCollision_method_of_the_Sprite01_class">
+
+The isCollision method of the Sprite01 class
+
+</link>
+
+
+</item>
+
+
+			
+
+<item id="li1012">
+<link id="a1012" target-id="The_render_method">
+
+The render method
+
+</link>
+
+
+</item>
+
+
+		
+
+</list>
+
+
+		
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1013">
+<link id="a1013" target-id="Run_the_program">
+
+Run the program
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1014">
+<link id="a1014" target-id="Summary">
+
+Summary
+
+</link>
+
+ 
+
+</item>
+
+
+	
+
+<item id="li1015">
+<link id="a1015" target-id="Whats_next">
+
+What's next?
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1016">
+<link id="a1016" target-id="Miscellaneous">
+
+Miscellaneous
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1017">
+<link id="a1017" target-id="Complete_program_listing">
+
+Complete program listings
+
+</link>
+
+
+</item>
+
+
+
+
+</list>
+
+
+	
+
+	
+
+</section>
+<section id="h11001">
+<title>
+<emphasis id="Preface" effect="bold">
+
+Preface
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+	
+
+<para id="p1000">
+This module is one in a collection of modules designed to teach you about 
+	the anatomy of a game engine.
+
+</para>
+
+
+
+
+<para id="p1001">
+Although the modules in this collection will concentrate on the Java game 
+library named Slick2D, the 
+concepts involved and the knowledge that you will gain is applicable to 
+different game engines written in different programming languages as well.
+
+</para>
+
+
+
+
+<para id="p1002">
+The purpose of this module is to teach you how to use the 
+
+<emphasis id="strong1000" effect="bold">
+Sprite01
+
+</emphasis>
+ 
+class developed in an earlier module titled 
+
+
+<link id="a1018" url="http://cnx.org/contents/84c02677-f58d-45b7-811d-b91571187235">
+
+Slick0200: Developing a sprite 
+class
+
+</link>
+
+ to write a predator/prey simulation program involving thousands of 
+sprites along with collision detection and sound effects.
+
+</para>
+
+
+	
+
+<section id="h21000">
+<title>
+<emphasis id="Viewing_tip" effect="bold">
+
+Viewing tip
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1003">
+I recommend that you open another copy of this module in a separate 
+browser window and use the following links to easily find and view the images 
+and listings while you are reading about them.
+
+</para>
+
+
+	
+
+<section id="h31000">
+<title>
+<emphasis id="Figures" effect="bold">
+
+Figures
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<list id="ul1005" list-type="bulleted">
+
+		
+
+<item id="li1018">
+<link id="a1019" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+. Graphic output near the beginning of the simulation. 
+
+</item>
+
+
+		
+
+<item id="li1019">
+<link id="a1020" target-id="Figure_2">
+
+Figure 2
+
+</link>
+
+. Graphic output near the middle of the simulation. 
+
+</item>
+
+
+		
+
+<item id="li1020">
+<link id="a1021" target-id="Figure_3">
+
+Figure 3
+
+</link>
+
+. Graphic output near the end of the simulation. 
+
+</item>
+
+
+		
+
+<item id="li1021">
+<link id="a1022" target-id="Figure_4">
+
+Figure 4
+
+</link>
+
+. Output for the harmless blue sprite scenario. 
+
+</item>
+
+
+
+
+	
+
+</list>
+
+
+	
+
+</section>
+<section id="h31001">
+<title>
+<emphasis id="Listings" effect="bold">
+
+Listings
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<list id="ul1006" list-type="bulleted">
+
+		
+
+<item id="li1022">
+<link id="a1023" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+. Beginning of the class named Slick0210. 
+
+</item>
+
+
+		
+
+<item id="li1023">
+<link id="a1024" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+. Beginning of the init method. 
+
+</item>
+
+
+		
+
+<item id="li1024">
+<link id="a1025" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+. Add a red sprite to the ArrayList object. 
+
+</item>
+
+
+		
+
+<item id="li1025">
+<link id="a1026" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+. Populate the ArrayList object.
+
+</item>
+
+
+		
+
+<item id="li1026">
+<link id="a1027" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+. Beginning of the update method.
+
+</item>
+
+
+		
+
+<item id="li1027">
+<link id="a1028" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+. Test for a collision.
+
+</item>
+
+
+		
+
+<item id="li1028">
+<link id="a1029" target-id="Listing_7">
+
+Listing 7
+
+</link>
+
+. The isCollision method of the Sprite01 class.
+
+</item>
+
+
+		
+
+<item id="li1029">
+<link id="a1030" target-id="Listing_8">
+
+Listing 8
+
+</link>
+
+. Process a collision
+
+</item>
+
+
+		
+
+<item id="li1030">
+<link id="a1031" target-id="Listing_9">
+
+Listing 9
+
+</link>
+
+. Remove dead objects from the ArrayList object.
+
+</item>
+
+
+		
+
+<item id="li1031">
+<link id="a1032" target-id="Listing_10">
+
+Listing 10
+
+</link>
+
+. The render method.
+
+</item>
+
+
+		
+
+<item id="li1032">
+<link id="a1033" target-id="Listing_11">
+
+Listing 11
+
+</link>
+
+. Source code for the program named Slick0210.
+
+</item>
+
+
+		
+
+<item id="li1033">
+<link id="a1034" target-id="Listing_12">
+
+Listing 12
+
+</link>
+
+. Source code for the class named Sprite01.
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</section>
+</section>
+</section>
+<section id="h11002">
+<title>
+<emphasis id="Preview" effect="bold">
+
+Preview
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1004">
+In an 
+
+<emphasis id="earlier_module" effect="bold">
+
+earlier module
+
+</emphasis>
+
+ titled 
+	
+
+<link id="a1035" url="http://cnx.org/contents/84c02677-f58d-45b7-811d-b91571187235">
+
+Slick0200: Developing a sprite 
+class
+
+</link>
+
+, 
+	we encountered a baseball coach that had been attacked by a swarm of vicious 
+	ladybug sprites. I promised you that we would later find a way to save the 
+	coach. That time has come. 
+
+</para>
+
+
+
+
+<para id="p1005">
+In this module, I will explain a program that uses the 
+
+<emphasis id="strong1001" effect="bold">
+Sprite01
+
+</emphasis>
+ 
+class from the earlier module to produce a simulation program with the output 
+shown in 
+
+<link id="a1036" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+, 
+
+<link id="a1037" target-id="Figure_2">
+
+Figure 2
+
+</link>
+
+, and
+
+
+<link id="a1038" target-id="Figure_3">
+
+Figure 3
+
+</link>
+
+.
+
+</para>
+
+
+
+
+<para id="p1006">
+<emphasis id="strong1002" effect="bold">
+A swarm of insects
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1007">
+Once again, the coach has been attacked by a swarm of 1000 insects. However, 
+in this case, the ladybug sprites have been replaced by vicious green beetle 
+sprites.
+
+</para>
+
+
+
+
+<para id="p1008">
+<emphasis id="strong1003" effect="bold">
+A red predator beetle
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1009">
+Fortunately for the coach, a red predator beetle sprite with a taste for 
+green beetles has come along and is gobbling up green beetles as fast as he can 
+collide with them. 
+
+<emphasis id="em1000" effect="italics">
+(According to the text at the top of 
+
+</emphasis>
+
+
+
+<link id="a1039" target-id="Figure_1">
+
+
+<emphasis id="em1001" effect="italics">
+Figure 1
+
+</emphasis>
+</link>
+
+
+<emphasis id="em1002" effect="italics">
+, 152 of the 1000 beetles had been 
+consumed by the time the screen shot in 
+
+</emphasis>
+
+
+
+<link id="a1040" target-id="Figure_1">
+
+
+<emphasis id="em1003" effect="italics">
+Figure 1
+
+</emphasis>
+</link>
+
+
+<emphasis id="em1004" effect="italics">
+ was taken.)
+
+</emphasis>
+</para>
+
+
+
+
+
+
+
+<table id="table1000" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1000">
+<row id="tr1000">
+<entry id="th1000">
+
+
+
+<emphasis id="Figure_1" effect="bold">
+
+Figure 1
+
+</emphasis>
+
+. Graphic output near the beginning of the 
+simulation.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1000">
+<row id="tr1001">
+<entry id="td1000">
+
+
+
+<media id="media1000" alt="Missing image." display="block">
+<image id="img1000" mime-type="image/jpeg" src="../../media/slick0210a1.jpg" width="421" height="348"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1010">
+<emphasis id="strong1004" effect="bold">
+A fat and happy predator beetle
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1011">
+<link id="a1041" target-id="Figure_2">
+
+Figure 2
+
+</link>
+
+ shows the situation some time later when all 
+but 173 of the green beetles had been eaten. Note that the process of eating 
+those nutritious beetles has caused the red beetle to gain some weight in
+
+
+<link id="a1042" target-id="Figure_2">
+
+Figure 2
+
+</link>
+
+.
+
+</para>
+
+
+
+
+
+
+<table id="table1001" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1001">
+<row id="tr1002">
+<entry id="th1001">
+
+
+
+<emphasis id="Figure_2" effect="bold">
+
+Figure 2
+
+</emphasis>
+
+. Graphic output near the middle of the simulation.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1001">
+<row id="tr1003">
+<entry id="td1001">
+
+
+
+<media id="media1001" alt="Missing image." display="block">
+<image id="img1001" mime-type="image/jpeg" src="../../media/slick0210a2.jpg" width="421" height="348"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1012">
+<emphasis id="strong1005" effect="bold">
+Cleaning up the scraps
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1013">
+<link id="a1043" target-id="Figure_3">
+
+Figure 3
+
+</link>
+
+ shows the situation with only 36 green beetles remaining. Collisions 
+between the beetles is rare at this point, so quite a bit more time will 
+probably be required before the red beetle can collide with and eat the 
+remaining green beetles.
+
+</para>
+
+
+
+
+
+
+<table id="table1002" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1002">
+<row id="tr1004">
+<entry id="th1002">
+
+
+
+<emphasis id="Figure_3" effect="bold">
+
+Figure 3
+
+</emphasis>
+
+. Graphic output near the end of the simulation.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1002">
+<row id="tr1005">
+<entry id="td1002">
+
+
+
+<media id="media1002" alt="Missing image." display="block">
+<image id="img1002" mime-type="image/jpeg" src="../../media/slick0210a3.jpg" width="421" height="348"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1014">
+<emphasis id="strong1006" effect="bold">
+What you have learned
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1015">
+In the previous module, you learned how to develop a sprite class from which 
+you can instantiate and animate swarms of sprite objects.
+
+</para>
+
+
+
+
+<para id="p1016">
+<emphasis id="strong1007" effect="bold">
+What you will learn
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1017">
+In this module, you will learn how to use the 
+
+<emphasis id="strong1008" effect="bold">
+Sprite01
+
+</emphasis>
+ class 
+developed in the 
+
+<link id="a1044" target-id="earlier_module">
+
+earlier module
+
+</link>
+
+ to write a predator/prey simulation program 
+involving thousands of sprites, collision detection, and sound effects.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11003">
+<title>
+<emphasis id="General_background_information" effect="bold">
+
+General 
+	background information
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1018">
+Actually, it may have been more appropriate to describe this program in terms 
+of jellyfish, 
+
+<emphasis id="em1005" effect="italics">
+(which eat on the basis of opportunity)
+
+</emphasis>
+ instead of beetles, 
+
+
+<emphasis id="em1006" effect="italics">
+(which 
+are more deliberate in their actions)
+
+</emphasis>
+. 
+
+</para>
+
+
+
+
+<para id="p1019">
+In this program, the red sprite consumes a 
+green sprite only when the two happen to collide by chance. The sprites are not 
+attracted to one another. 
+
+<emphasis id="em1007" effect="italics">
+(That would be a good exercise for a student project 
+- attraction plus collision.)
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1020">
+<emphasis id="strong1009" effect="bold">
+Two scenarios
+
+</emphasis>
+</para>
+
+
+
+	
+
+<para id="p1021">
+A baseball coach is attacked by a swarm of fierce green
+flying sprites. Fortunately, a red predator sprite comes 
+along and attacks the green sprites just in time to save
+the coach. 
+
+</para>
+
+
+
+
+<para id="p1022">
+There are two scenarios that can be simulated by setting the variable named 
+
+<emphasis id="strong1010" effect="bold">
+dieOnCollision
+
+</emphasis>
+  
+
+<emphasis id="em1008" effect="italics">
+(see 
+
+
+<link id="a1045" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+)
+
+</emphasis>
+ to either 
+
+<emphasis id="em1009" effect="italics">
+true
+
+</emphasis>
+ or 
+
+
+<emphasis id="em1010" effect="italics">
+false
+
+</emphasis>
+. 
+
+</para>
+
+
+
+
+<para id="p1023">
+<emphasis id="strong1011" effect="bold">
+Harmless blue sprites
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1024">
+In one scenario 
+
+<emphasis id="em1011" effect="italics">
+(
+
+<emphasis id="strong1012" effect="bold">
+dieOnCollision
+
+</emphasis>
+ = false)
+
+</emphasis>
+,
+the vicious green sprites become harmless blue sprites when they 
+collide with the red sprite. A screen shot of this scenario is shown in
+
+
+<link id="a1046" target-id="Figure_4">
+
+Figure 4
+
+</link>
+
+.
+
+</para>
+
+
+
+
+
+
+<table id="table1003" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1003">
+<row id="tr1006">
+<entry id="th1003">
+
+
+
+<emphasis id="Figure_4" effect="bold">
+
+Figure 4
+
+</emphasis>
+
+. Output for the harmless blue sprite scenario.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1003">
+<row id="tr1007">
+<entry id="td1003">
+
+
+
+<media id="media1003" alt="Missing image." display="block">
+<image id="img1003" mime-type="image/jpeg" src="../../media/slick0210a4.jpg" width="421" height="348"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1025">
+<emphasis id="strong1013" effect="bold">
+Green sprites get consumed
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1026">
+In the other scenario 
+
+<emphasis id="em1012" effect="italics">
+(
+
+<emphasis id="strong1014" effect="bold">
+dieOnCollision
+
+</emphasis>
+ = true)
+
+</emphasis>
+, the green sprites are 
+consumed by the red sprite upon contact and are removed from 
+the population. This is the scenario shown in 
+
+<link id="a1047" target-id="Figure_3">
+
+Figure 3
+
+</link>
+
+. 
+
+</para>
+
+
+
+
+<para id="p1027">
+<emphasis id="strong1015" effect="bold">
+Get fat and happy
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1028">
+In both scenarios, contact between a green sprite and the 
+red sprite causes the red sprite to increase in size.
+
+
+
+</para>
+
+
+
+
+<para id="p1029">
+If you allow the program to run long enough, the 
+probability is high that all of the green sprites will
+have collided with the red sprite and will either have 
+turned blue or will have been consumed.
+
+</para>
+
+
+	
+
+	
+
+</section>
+<section id="h11004">
+<title>
+<emphasis id="Discussion_and_sample_code" effect="bold">
+
+Discussion and sample code
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+	
+
+<section id="h21001">
+<title>
+<emphasis id="The_class_named_Sprite01" effect="bold">
+
+The class named Sprite01
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1030">
+The class named 
+
+<emphasis id="strong1016" effect="bold">
+Sprite01
+
+</emphasis>
+ is shown in 
+
+<link id="a1048" target-id="Listing_12">
+
+Listing 12
+
+</link>
+
+. I 
+will explain only those portions of that class that I use in this program that 
+weren't explained in the earlier module.
+
+</para>
+
+
+
+
+</section>
+<section id="h21002">
+<title>
+<emphasis id="The_class_named_Slick0210" effect="bold">
+
+The class named Slick0210
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1031">
+<emphasis id="strong1017" effect="bold">
+Will explain in fragments
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1032">
+</para>
+
+
+	
+
+<para id="p1033">
+A complete listing of the class named 
+
+<emphasis id="strong1018" effect="bold">
+Slick0210
+
+</emphasis>
+ is provided in
+	
+
+<link id="a1049" target-id="Listing_11">
+
+Listing 11
+
+</link>
+
+. I will break the code down and explain 
+	it in fragments.
+
+</para>
+
+
+
+
+<para id="p1034">
+<emphasis id="strong1019" effect="bold">
+Beginning of the class named Slick0210.
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1035">
+The beginning of the class named 
+
+<emphasis id="strong1020" effect="bold">
+Slick0210
+
+</emphasis>
+, down through the
+
+
+<emphasis id="strong1021" effect="bold">
+main
+
+</emphasis>
+ method is shown in 
+
+<link id="a1050" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1004" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1004">
+
+			
+
+<row id="tr1008">
+
+				
+
+<entry id="th1004">
+<emphasis id="Listing_1" effect="bold">
+
+Listing 1
+
+</emphasis>
+
+. Beginning of the class 
+				named Slick0210.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1004">
+
+			
+
+<row id="tr1009">
+
+				
+
+<entry id="td1004">
+
+
+
+<code id="pre1000" display="block">
+public class Slick0210 extends BasicGame{
+  
+  //Set the value of this variable to true to cause the
+  // sprites to die on collision and to be removed from
+  // the population.
+  boolean dieOnCollision = true;
+  
+  //Store references to Sprite01 objects here.
+  ArrayList &lt;Sprite01&gt; sprites = 
+                                new ArrayList&lt;Sprite01&gt;();
+  
+  //Change this value and recompile to change the number
+  // of sprites.
+  int numberSprites = 1000;
+
+  //Populate these variables with references to Image
+  // objects later.
+  Image redBallImage;
+  Image greenBallImage;
+  Image blueBallImage;
+  
+  //Populate this variable with a reference to a Sound
+  // object later.
+  Sound blaster;
+  
+  //Populate these variables with information about the
+  // background image later.
+  Image background = null;
+  float backgroundWidth;
+  float backgroundHeight;
+  
+  //This object is used to produce values for a variety
+  // of purposes.
+  Random random = new Random();
+  
+  //Frame rate we would like to see and maximum frame
+  // rate we will allow.
+  int targetFPS = 60;
+  //----------------------------------------------------//
+
+  public Slick0210(){//constructor
+    //Set the title
+    super("Slick0210, baldwin");
+  }//end constructor
+  //----------------------------------------------------//
+
+  public static void main(String[] args)
+                                    throws SlickException{
+    AppGameContainer app = new AppGameContainer(
+                          new Slick0210(),414,307,false);
+    app.start();
+  }//end main
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1036">
+<emphasis id="strong1022" effect="bold">
+ArrayList
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1037">
+There are two things that are new in 
+
+<link id="a1051" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+. 
+First there is the instantiation of an 
+
+<emphasis id="strong1023" effect="bold">
+ArrayList
+
+</emphasis>
+ object in 
+place of the array object used in the program in the earlier module. 
+
+</para>
+
+
+
+
+<para id="p1038">
+The use of 
+an 
+
+<emphasis id="strong1024" effect="bold">
+ArrayList
+
+</emphasis>
+ instead of an array provides more flexibility in 
+managing a collection of 
+
+<emphasis id="strong1025" effect="bold">
+Sprite01
+
+</emphasis>
+ objects. If you are 
+unfamiliar with the use of 
+
+<emphasis id="strong1026" effect="bold">
+ArrayList
+
+</emphasis>
+ objects, just Google the 
+keywords 
+
+<emphasis id="em1013" effect="italics">
+baldwin java ArrayList generics
+
+</emphasis>
+ and I'm confident you will find 
+explanatory material that I have published on that topic.
+
+</para>
+
+
+
+
+<para id="p1039">
+<emphasis id="strong1027" effect="bold">
+Sound
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1040">
+The second new item in 
+
+<link id="a1052" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ is the declaration of a reference variable of the Slick2D 
+
+<emphasis id="strong1028" effect="bold">
+
+Sound
+
+</emphasis>
+ class. That variable will be used to hold a reference to a 
+
+<emphasis id="strong1029" effect="bold">
+Sound
+
+</emphasis>
+ 
+object, that will be 
+
+<emphasis id="em1014" effect="italics">
+played
+
+</emphasis>
+ each time the red sprite collides with a 
+green sprite.
+
+</para>
+
+
+
+
+<para id="p1041">
+Otherwise, the code in 
+
+<link id="a1053" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ is straightforward 
+and shouldn't require further explanation.
+
+</para>
+
+
+
+
+<section id="h31002">
+<title>
+<emphasis id="The_init_method" effect="bold">
+
+The init method
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1042">
+The 
+
+<emphasis id="strong1030" effect="bold">
+init
+
+</emphasis>
+ method begins in 
+
+<link id="a1054" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1005" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1005">
+
+			
+
+<row id="tr1010">
+
+				
+
+<entry id="th1005">
+<emphasis id="Listing_2" effect="bold">
+
+Listing 2
+
+</emphasis>
+
+. Beginning of the init 
+				method.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1005">
+
+			
+
+<row id="tr1011">
+
+				
+
+<entry id="td1005">
+
+
+
+<code id="pre1001" display="block">
+  public void init(GameContainer gc)
+                                   throws SlickException {
+
+    //Create Image objects that will be used to visually
+    // represent the sprites.
+    redBallImage = new Image("redball.png");
+    greenBallImage = new Image("greenball.png");
+    blueBallImage = new Image("blueball.png");
+    
+    //Create a Sound object.
+    blaster = new Sound("blaster.wav");
+
+    //Create a background image and save information
+    // about it.
+    background = new Image("background.jpg");
+    backgroundWidth = background.getWidth();
+    backgroundHeight = background.getHeight();
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1043">
+<emphasis id="strong1031" effect="bold">
+An object of the Sound class
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1044">
+The only thing new in 
+
+<link id="a1055" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+ is the instantiation 
+of the object of type 
+
+<emphasis id="strong1032" effect="bold">
+Sound
+
+</emphasis>
+. As you can see, the syntax for instantiation of a
+
+
+<emphasis id="strong1033" effect="bold">
+Sound
+
+</emphasis>
+ object is essentially the same as for instantiating an
+
+
+<emphasis id="strong1034" effect="bold">
+Image
+
+</emphasis>
+ object.
+
+</para>
+
+
+
+
+<para id="p1045">
+<emphasis id="strong1035" effect="bold">
+Add a red sprite
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1046">
+    
+
+<link id="a1056" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+ calls the 
+
+<emphasis id="strong1036" effect="bold">
+add
+
+</emphasis>
+ method 
+of the 
+
+<emphasis id="strong1037" effect="bold">
+ArrayList
+
+</emphasis>
+ class to add a red sprite to the
+    beginning of the 
+
+<emphasis id="strong1038" effect="bold">
+ArrayList
+
+</emphasis>
+ object. 
+
+<emphasis id="em1015" effect="italics">
+(Actually it add a 
+reference to that object and not the object itself.)
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1047">
+    You are already familiar 
+with the constructor parameters 
+
+<emphasis id="em1016" effect="italics">
+(shown in 
+
+</emphasis>
+    
+
+<link id="a1057" target-id="Listing_3">
+
+
+<emphasis id="em1017" effect="italics">
+Listing 3
+
+</emphasis>
+</link>
+
+) for a 
+
+<emphasis id="strong1039" effect="bold">
+Sprite01
+
+</emphasis>
+ object.
+
+</para>
+
+
+
+
+	
+
+<table id="table1006" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1006">
+
+			
+
+<row id="tr1012">
+
+				
+
+<entry id="th1006">
+<emphasis id="Listing_3" effect="bold">
+
+Listing 3
+
+</emphasis>
+
+. Add a red sprite to the 
+				ArrayList object.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1006">
+
+			
+
+<row id="tr1013">
+
+				
+
+<entry id="td1006">
+
+
+
+<code id="pre1002" display="block">
+    sprites.add(new Sprite01(
+       redBallImage,//image
+       backgroundWidth/2.0f,//initial position
+       backgroundHeight/2.0f,//initial position
+       (random.nextFloat() &gt; 0.5) ? 1f : -1f,//direction
+       (random.nextFloat() &gt; 0.5) ? 1f : -1f,//direction
+       0.1f+random.nextFloat()*2.0f,//step size
+       0.1f+random.nextFloat()*2.0f,//step size
+       0.5f+random.nextFloat()*1.5f,//scale
+       new Color(1.0f,1.0f,1.0f)));//color filter
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1048">
+<emphasis id="strong1040" effect="bold">
+Populate the ArrayList object
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1049">
+<link id="a1058" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+ uses a 
+
+<emphasis id="strong1041" effect="bold">
+for
+
+</emphasis>
+ loop and the 
+value of the variable named 
+
+<emphasis id="strong1042" effect="bold">
+numberSprites
+
+</emphasis>
+ 
+
+<emphasis id="em1018" effect="italics">
+(see
+
+
+<link id="a1059" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+)
+
+</emphasis>
+ to add 1000 green 
+
+<emphasis id="strong1043" effect="bold">
+Sprite01
+
+</emphasis>
+ 
+object references to the 
+
+<emphasis id="strong1044" effect="bold">
+ArrayList
+
+</emphasis>
+ object. 
+
+</para>
+
+
+
+
+	
+
+<table id="table1007" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1007">
+
+			
+
+<row id="tr1014">
+
+				
+
+<entry id="th1007">
+<emphasis id="Listing_4" effect="bold">
+
+Listing 4
+
+</emphasis>
+
+. Populate the ArrayList 
+				object.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1007">
+
+			
+
+<row id="tr1015">
+
+				
+
+<entry id="td1007">
+
+
+
+<code id="pre1003" display="block">
+    for(int cnt = 0;cnt &lt; numberSprites;cnt++){
+      sprites.add(new Sprite01(
+         greenBallImage,//image
+         backgroundWidth*random.nextFloat(),//position
+         backgroundHeight*random.nextFloat(),//position
+         (random.nextFloat() &gt; 0.5) ? 1f : -1f,//direction
+         (random.nextFloat() &gt; 0.5) ? 1f : -1f,//direction
+         0.1f+random.nextFloat()*2.0f,//step size
+         0.1f+random.nextFloat()*2.0f,//step size
+         random.nextFloat()*1.0f,//scale
+         new Color(1.0f,1.0f,1.0f)));//color filter 
+    }//end for loop
+
+    gc.setTargetFrameRate(targetFPS);//set frame rate
+
+  }//end init
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1050">
+<link id="a1060" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+ also sets the target frame rate and 
+	signals the end of the 
+
+<emphasis id="strong1045" effect="bold">
+init
+
+</emphasis>
+ method.
+
+</para>
+
+
+
+
+</section>
+<section id="h31003">
+<title>
+<emphasis id="The_update_method" effect="bold">
+
+The update method
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1051">
+The overall behavior of the 
+
+<emphasis id="strong1046" effect="bold">
+update
+
+</emphasis>
+ method is to use a 
+
+<emphasis id="strong1047" effect="bold">
+
+for
+
+</emphasis>
+ loop to process the red sprite against each of the green sprites 
+and to take appropriate actions when a collision between the red sprite and a 
+green sprite occurs.
+
+</para>
+
+
+
+
+<para id="p1052">
+The 
+
+<emphasis id="strong1048" effect="bold">
+update
+
+</emphasis>
+ method begins in 
+
+<link id="a1061" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+. 
+
+</para>
+
+
+
+
+	
+
+<table id="table1008" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1008">
+
+			
+
+<row id="tr1016">
+
+				
+
+<entry id="th1008">
+<emphasis id="Listing_5" effect="bold">
+
+Listing 5
+
+</emphasis>
+
+. Beginning of the update 
+				method.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1008">
+
+			
+
+<row id="tr1017">
+
+				
+
+<entry id="td1008">
+
+
+
+<code id="pre1004" display="block">
+  public void update(GameContainer gc, int delta)
+                                    throws SlickException{
+
+    //Access to the first sprite in the ArrayList object.
+    Sprite01 redBallSprite = sprites.get(0);
+
+    //Do the following for every sprite in the ArrayList
+    // object
+    for(int cnt = 0;cnt &lt; sprites.size();cnt++){
+      //Get a reference to the Sprite01 object.
+      Sprite01 thisSprite = sprites.get(cnt);
+      
+      //Ask the sprite to move according to its properties
+      thisSprite.move();
+
+      //Ask the sprite to bounce off the edge if it is at
+      // an edge.
+      thisSprite.edgeBounce(
+                        backgroundWidth,backgroundHeight);</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1053">
+<emphasis id="strong1049" effect="bold">
+Mostly same as before
+
+</emphasis>
+</para>
+
+
+	
+	
+
+<para id="p1054">
+The code in 
+
+<link id="a1062" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+ is mostly the same as code 
+	that you have seen before, so further explanation should not be necessary.
+
+</para>
+
+
+
+
+<para id="p1055">
+<emphasis id="strong1050" effect="bold">
+Test for a collision
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1056">
+The code in 
+
+<link id="a1063" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+ is new to this module. This 
+code calls the 
+
+<emphasis id="strong1051" effect="bold">
+isCollision
+
+</emphasis>
+ method of the 
+
+<emphasis id="strong1052" effect="bold">
+Sprite01
+
+</emphasis>
+ class to test 
+for a collision between the current green sprite and the red sprite.
+
+</para>
+
+
+
+
+	
+
+<table id="table1009" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1009">
+
+			
+
+<row id="tr1018">
+
+				
+
+<entry id="th1009">
+<emphasis id="Listing_6" effect="bold">
+
+Listing 6
+
+</emphasis>
+
+. Test for a collision.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1009">
+
+			
+
+<row id="tr1019">
+
+				
+
+<entry id="td1009">
+
+
+
+<code id="pre1005" display="block">
+      boolean collision = 
+                   thisSprite.isCollision(redBallSprite);
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1057">
+<emphasis id="strong1053" effect="bold">
+What is a collision?
+
+</emphasis>
+</para>
+
+
+	
+
+<para id="p1058">
+There are many ways to define and implement collision detection in game 
+	and simulation programming. In this program, a collision is deemed to have 
+	occurred if any portion of the rectangular 
+
+<emphasis id="strong1054" effect="bold">
+redBallImage
+
+</emphasis>
+ 
+	overlaps any portion of the rectangular 
+
+<emphasis id="strong1055" effect="bold">
+greenBallImage
+
+</emphasis>
+. 
+
+<emphasis id="em1019" effect="italics">
+
+	(Even though these images appear to be round, they are drawn on a 
+	transparent rectangular background.)
+
+</emphasis>
+</para>
+
+
+
+
+</section>
+<section id="h31004">
+<title>
+<emphasis id="The_isCollision_method_of_the_Sprite01_class" effect="bold">
+
+The isCollision 
+method of the Sprite01 class
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1059">
+The 
+
+<emphasis id="strong1056" effect="bold">
+isCollision
+
+</emphasis>
+ method of the Sprite01 class is shown in
+
+
+<link id="a1064" target-id="Listing_7">
+
+Listing 7
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1010" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1010">
+
+			
+
+<row id="tr1020">
+
+				
+
+<entry id="th1010">
+<emphasis id="Listing_7" effect="bold">
+
+Listing 7
+
+</emphasis>
+
+. The isCollision method of 
+				the Sprite01 class.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1010">
+
+			
+
+<row id="tr1021">
+
+				
+
+<entry id="td1010">
+
+
+
+<code id="pre1006" display="block">
+  public boolean isCollision(Sprite01 other){
+    //Create variable with meaningful names make the
+    // algorithm easier to understand. Can be eliminated
+    // to make the algorithm more efficient.
+    float thisTop = Y;
+    float thisBottom = thisTop + height*scale;
+    float thisLeft = X;
+    float thisRight = thisLeft + width*scale;
+    
+    float otherTop = other.getY();
+    float otherBottom = otherTop + other.getHeight()*other.getScale();
+    float otherLeft = other.getX();
+    float otherRight = otherLeft + other.getWidth()*other.getScale();
+
+    if (thisBottom &lt; otherTop) return(false);
+    if (thisTop &gt; otherBottom) return(false);
+  
+    if (thisRight &lt; otherLeft) return(false);
+    if (thisLeft &gt; otherRight) return(false);
+  
+    return(true);
+
+  }//end isCollision</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1060">
+<emphasis id="strong1057" effect="bold">
+Methodology
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1061">
+This method detects a collision between the rectangular sprite object on 
+which the method is called and another rectangular sprite object. 
+
+</para>
+
+
+
+
+<para id="p1062">
+The 
+methodology is to test four cases where a
+  collision could not possibly have occurred and to assume that
+  a collision has occurred if none of those cases
+  are true.
+
+</para>
+
+
+
+
+<para id="p1063">
+Given that as background, you should be able to use a pencil and paper along 
+with the code in 
+
+<link id="a1065" target-id="Listing_7">
+
+Listing 7
+
+</link>
+
+ to draw some rectangles and 
+understand how the code in 
+
+<link id="a1066" target-id="Listing_7">
+
+Listing 7
+
+</link>
+
+ works.
+
+</para>
+
+
+
+
+<para id="p1064">
+Although I can't guarantee that the method won't call a collision when no 
+collision actually occurred, I am pretty sure that it won't miss any collisions 
+that do occur.
+
+</para>
+
+
+
+
+<para id="p1065">
+<emphasis id="strong1058" effect="bold">
+Process a collision
+
+</emphasis>
+</para>
+
+
+	
+
+<para id="p1066">
+      The code in 
+
+<link id="a1067" target-id="Listing_8">
+
+Listing 8
+
+</link>
+
+ is executed when the 
+	call to the 
+
+<emphasis id="strong1059" effect="bold">
+isCollision
+
+</emphasis>
+ method returns true. Therefore, 
+	this code processes a collision only when one has occurred. 
+
+</para>
+
+
+
+
+<para id="p1067">
+      The code excludes collisions between the red sprite and itself, 
+
+<emphasis id="em1020" effect="italics">
+
+(which is an artifact of the algorithm)
+
+</emphasis>
+. It also excludes collisions between 
+the red sprite and blue sprites 
+
+<emphasis id="em1021" effect="italics">
+(if they exist)
+
+</emphasis>
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1011" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1011">
+
+			
+
+<row id="tr1022">
+
+				
+
+<entry id="th1011">
+<emphasis id="Listing_8" effect="bold">
+
+Listing 8
+
+</emphasis>
+
+. Process a collision
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1011">
+
+			
+
+<row id="tr1023">
+
+				
+
+<entry id="td1011">
+
+
+
+<code id="pre1007" display="block">
+      if((collision == true)&amp;&amp;
+         (! thisSprite.getImage().equals(redBallImage)) &amp;&amp;
+         (! thisSprite.getImage().equals(blueBallImage))){
+
+        //A collision has occurred, change the color of
+        // this sprite to blue and maybe cause it to
+        // die and be removed from the population.
+        thisSprite.setImage(blueBallImage);
+        if(dieOnCollision){
+          thisSprite.setLife(0);
+        }//end if
+        
+        //Cause the redBallSprite to change direction on
+        // a random basis.
+        redBallSprite.setXDirection(
+                   (random.nextFloat() &gt; 0.5) ? 1f : -1f);
+        redBallSprite.setYDirection(
+                   (random.nextFloat() &gt; 0.5) ? 1f : -1f);
+        
+        //Cause the redBallSprite to change stepsize on a
+        // random basis.
+        redBallSprite.xStep = 
+                             0.1f+random.nextFloat()*2.0f;
+        redBallSprite.yStep = 
+                             0.1f+random.nextFloat()*2.0f;
+        
+        //Cause the redBallSprite to grow larger
+        redBallSprite.setScale(redBallSprite.getScale() +
+                     (redBallSprite.getScale()) * 0.001f);
+
+        //Play a sound to indicate that a collision has
+        // occurred.
+        blaster.play();
+      }//end if
+
+    }//end for loop
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1068">
+<emphasis id="strong1060" effect="bold">
+Not complicated code
+
+</emphasis>
+</para>
+
+
+	
+
+<para id="p1069">
+Although the code in 
+
+<link id="a1068" target-id="Listing_8">
+
+Listing 8
+
+</link>
+
+ is long and 
+	tedious, it isn't particularly complicated. It consists mainly of calls to 
+	the accessor methods of the two sprite objects involved in the collision to 
+	modify their property values in some way.
+
+</para>
+
+
+
+
+<para id="p1070">
+<emphasis id="strong1061" effect="bold">
+Turn a green sprite into a blue sprite
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1071">
+For example, near the top of 
+
+<link id="a1069" target-id="Listing_8">
+
+Listing 8
+
+</link>
+
+, there is a 
+call to the 
+
+<emphasis id="strong1062" effect="bold">
+setImage
+
+</emphasis>
+ method of the green sprite to change it to 
+a blue sprite. 
+
+</para>
+
+
+
+
+<para id="p1072">
+<emphasis id="strong1063" effect="bold">
+Kill the green sprite
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1073">
+This is followed by a call to the 
+
+<emphasis id="strong1064" effect="bold">
+setLife
+
+</emphasis>
+ method to set the 
+life of the 
+
+<emphasis id="em1022" effect="italics">
+(now blue)
+
+</emphasis>
+ sprite object to 0, but only if the 
+
+<emphasis id="strong1065" effect="bold">
+
+dieOnCollision
+
+</emphasis>
+ variable belonging to the object is true. Later on, all 
+sprite objects with a 
+
+<emphasis id="strong1066" effect="bold">
+life
+
+</emphasis>
+ property value of 0 will be removed 
+from the population.
+
+</para>
+
+
+
+
+<para id="p1074">
+<emphasis id="strong1067" effect="bold">
+And so forth
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1075">
+I could continue down the page describing the calls to various other accessor 
+methods, but that shouldn't be necessary. The embedded comments should suffice 
+for the explanation.
+
+</para>
+
+
+
+
+<para id="p1076">
+<emphasis id="strong1068" effect="bold">
+Play a sound
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1077">
+Finally near the end of the code in 
+
+<link id="a1070" target-id="Listing_8">
+
+Listing 8
+
+</link>
+
+, there is a call to the 
+
+<emphasis id="strong1069" effect="bold">
+play
+
+</emphasis>
+ 
+method belonging to 
+
+<emphasis id="strong1070" effect="bold">
+Sound
+
+</emphasis>
+ object referred to as 
+
+<emphasis id="strong1071" effect="bold">
+blaster
+
+</emphasis>
+. 
+
+
+</para>
+
+
+
+
+<para id="p1078">
+Each time there is a collision between the red sprite and a green sprite, 
+the sound loaded earlier from the file named 
+
+<emphasis id="strong1072" effect="bold">
+"blaster.wav"
+
+</emphasis>
+ is 
+played.
+
+</para>
+
+
+
+
+<para id="p1079">
+<emphasis id="strong1073" effect="bold">
+The end of the for loop
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1080">
+<link id="a1071" target-id="Listing_8">
+
+Listing 8
+
+</link>
+
+ signals the end of the 
+
+<emphasis id="strong1074" effect="bold">
+for
+
+</emphasis>
+ 
+loop, but does not signal the end of the 
+
+<emphasis id="strong1075" effect="bold">
+update
+
+</emphasis>
+ method. There 
+is one more task to complete before the 
+
+<emphasis id="strong1076" effect="bold">
+update
+
+</emphasis>
+ method 
+terminates.
+
+</para>
+
+
+
+
+<para id="p1081">
+<emphasis id="strong1077" effect="bold">
+Remove dead objects from the ArrayList object
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1082">
+The code in 
+
+<link id="a1072" target-id="Listing_9">
+
+Listing 9
+
+</link>
+
+ uses an 
+
+<emphasis id="strong1078" effect="bold">
+Iterator
+
+</emphasis>
+ to remove all objects 
+having a 
+
+<emphasis id="strong1079" effect="bold">
+life
+
+</emphasis>
+ property value that is less than or equal to zero 
+from the 
+
+<emphasis id="strong1080" effect="bold">
+ArrayList
+
+</emphasis>
+ object.
+
+</para>
+
+
+
+
+	
+
+<table id="table1012" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1012">
+
+			
+
+<row id="tr1024">
+
+				
+
+<entry id="th1012">
+<emphasis id="Listing_9" effect="bold">
+
+Listing 9
+
+</emphasis>
+
+. Remove dead objects from the ArrayList object.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1012">
+
+			
+
+<row id="tr1025">
+
+				
+
+<entry id="td1012">
+
+
+
+<code id="pre1008" display="block">
+
+    
+    //Remove dead objects from the ArrayList object
+    Iterator &lt;Sprite01&gt; iter = sprites.iterator();
+
+    while(iter.hasNext()){
+      Sprite01 theSprite = iter.next();
+      if(theSprite.getLife() &lt;= 0){
+        iter.remove();
+      }//end if
+    }//end while loop
+
+  }//end update
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1083">
+<emphasis id="strong1081" effect="bold">
+Explanation of an Iterator
+
+</emphasis>
+</para>
+
+
+	
+
+<para id="p1084">
+The explanation of an Iterator is beyond the scope of this module. 
+	However, if you Google the keywords 
+
+<emphasis id="em1023" effect="italics">
+baldwin java iterator
+
+</emphasis>
+, you will find 
+	several tutorials that I have published on this and related topics.
+
+</para>
+
+
+
+
+<para id="p1085">
+<link id="a1073" target-id="Listing_9">
+
+Listing 9
+
+</link>
+
+ signals the end of the 
+
+<emphasis id="strong1082" effect="bold">
+update
+
+</emphasis>
+ 
+method.
+
+</para>
+
+
+
+
+</section>
+<section id="h31005">
+<title>
+<emphasis id="The_render_method" effect="bold">
+
+The render method
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1086">
+The render method is shown in 
+
+<link id="a1074" target-id="Listing_10">
+
+Listing 10
+
+</link>
+
+. There is 
+nothing new in this code.
+
+</para>
+
+
+
+
+	
+
+<table id="table1013" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1013">
+
+			
+
+<row id="tr1026">
+
+				
+
+<entry id="th1013">
+<emphasis id="Listing_10" effect="bold">
+
+Listing 10
+
+</emphasis>
+
+. The render method.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1013">
+
+			
+
+<row id="tr1027">
+
+				
+
+<entry id="td1013">
+
+
+
+<code id="pre1009" display="block">
+  public void render(GameContainer gc, Graphics g)
+                                    throws SlickException{
+
+    //set the drawing mode to honor transparent pixels
+    g.setDrawMode(g.MODE_NORMAL);
+
+    //Draw the background to erase the previous picture.
+    background.draw(0,0);
+
+    //Draw every sprite in the ArrayList object.
+    for(int cnt = 0;cnt &lt; sprites.size();cnt++){
+      sprites.get(cnt).draw();
+    }//end for loop
+    
+    //Display the remaining number of sprites.
+    g.drawString(
+       "Sprites remaining: " + (sprites.size()),100f,10f);
+    //Signal when all sprites have been eaten.
+    if(sprites.size() == 1){
+      g.drawString("Burp!",100f,25f);
+    }//end if
+  }//end render
+
+}//end class Slick0210
+//======================================================//
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1087">
+<emphasis id="strong1083" effect="bold">
+The end of the class
+
+</emphasis>
+</para>
+
+
+
+	
+	
+
+<para id="p1088">
+<link id="a1075" target-id="Listing_10">
+
+Listing 10
+
+</link>
+
+ also signals the end of the 
+
+<emphasis id="strong1084" effect="bold">
+
+	Slick0210
+
+</emphasis>
+ class and the end of the program.
+
+</para>
+
+
+
+
+
+
+</section>
+</section>
+</section>
+<section id="h11005">
+<title>
+<emphasis id="Run_the_program" effect="bold">
+
+Run the program
+
+</emphasis>
+
+
+</title>
+
+
+
+
+
+
+<para id="p1089">
+I encourage you to copy the code from 
+
+<link id="a1076" target-id="Listing_11">
+
+Listing 11
+
+</link>
+
+ 
+and 
+
+<link id="a1077" target-id="Listing_12">
+
+Listing 12
+
+</link>
+
+. Compile the code and execute 
+it, 
+making changes, and observing the results of your changes. Make certain that you 
+can explain why your changes behave as they do.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11006">
+<title>
+<emphasis id="Summary" effect="bold">
+
+Summary
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1090">
+In this module, you learned how to use the 
+
+<emphasis id="strong1085" effect="bold">
+Sprite01
+
+</emphasis>
+ class 
+from an earlier module to write a predator/prey simulation program involving 
+thousands of sprites, collision detection, and sound effects.
+
+</para>
+
+
+
+
+</section>
+<section id="h11007">
+<title>
+<emphasis id="Whats_next" effect="bold">
+
+What's next?
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1091">
+In the next module, you will learn how to write a program that simulates the 
+spread of a fatal communicable disease within a population.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11008">
+<title>
+<emphasis id="Miscellaneous" effect="bold">
+
+Miscellaneous
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1092">
+This section contains a variety of miscellaneous information.
+
+</para>
+
+
+
+
+
+	
+
+<note id="note1000" type="">
+
+
+		
+
+
+			
+
+
+				
+
+<emphasis id="strong1086" effect="bold">
+Housekeeping material
+
+</emphasis>
+
+				
+
+<list id="ul1007" list-type="bulleted">
+
+					
+
+<item id="li1034">
+Module name: Slick0210: Collision detection and sound
+
+</item>
+
+
+					
+
+<item id="li1035">
+File: Slick0210.htm
+
+
+</item>
+
+
+					
+
+<item id="li1036">
+Published: 02/06/13
+
+</item>
+
+
+					
+
+<item id="li1037">
+Revised: 10/03/15
+
+</item>
+
+
+				
+
+</list>
+
+
+				
+
+</note>
+
+			
+
+
+		
+
+
+
+	
+
+
+
+
+
+
+	
+
+<note id="note1001" type="">
+
+
+		
+
+
+			
+
+
+				
+
+<emphasis id="strong1087" effect="bold">
+Disclaimers:
+
+</emphasis>
+<para id="p1093">
+<emphasis id="strong1088" effect="bold">
+Financial
+
+</emphasis>
+: Although the Connexions
+site makes it possible for you to download a PDF file for this
+module at no charge, and also makes it possible for you to
+purchase a pre-printed version of the PDF file, you should be
+aware that some of the HTML elements in this module may not translate well into
+PDF.
+
+</para>
+
+
+				
+
+<para id="p1094">
+I also want you to know that, I receive no financial compensation from the Connexions website even if you purchase 
+	the PDF version of the module.
+
+</para>
+
+
+				
+
+<para id="p1095">
+In the past, unknown individuals have copied my modules from cnx.org, converted them to Kindle books, and 
+				placed them for sale on Amazon.com showing me as the author. I 
+				neither receive compensation for those sales nor do I know who does 
+				receive compensation. If you purchase such a book, please be 
+				aware that it is a copy of a module that is freely 
+				available on cnx.org and that it was made and published without 
+				my prior knowledge.
+
+</para>
+
+
+				
+
+<para id="p1096">
+<emphasis id="strong1089" effect="bold">
+Affiliation
+
+</emphasis>
+: I am a professor of Computer Information 
+	Technology at Austin Community College in Austin, TX.
+	
+
+</para>
+
+
+				
+
+</note>
+
+			
+
+
+		
+
+
+
+	
+
+
+
+
+
+</section>
+<section id="h11009">
+<title>
+<emphasis id="Complete_program_listing" effect="bold">
+
+Complete program listings
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1097">
+Complete listings of the code discussed in this module are provided in
+
+
+<link id="a1078" target-id="Listing_11">
+
+Listing 11
+
+</link>
+
+ and 
+
+<link id="a1079" target-id="Listing_12">
+
+Listing 12
+
+</link>
+
+.
+
+</para>
+
+
+
+
+
+
+	
+
+<table id="table1014" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1014">
+
+			
+
+<row id="tr1028">
+
+				
+
+<entry id="th1014">
+<emphasis id="Listing_11" effect="bold">
+
+Listing 11
+
+</emphasis>
+
+. Source code for the 
+				program named Slick0210.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1014">
+
+			
+
+<row id="tr1029">
+
+				
+
+<entry id="td1014">
+
+
+
+<code id="pre1010" display="block">
+
+/*Slick0210.java
+Copyright 2013, R.G.Baldwin
+
+A baseball coach is attacked by a swarm of fierce green
+flying insects. Fortunately, a red predator insect comes 
+along and attacks the green insects just in time to save
+the coach.
+
+There are two scenarios that can be exercised by setting
+dieOnCollision to true or false. In one scenario,
+the green insects become harmless blue insects when they 
+collide with the red insect. In the other case, they are 
+consumed by the red insect upon contact and removed from 
+the population.
+
+In both scenarios, contact between a green insect and the 
+red insect causes the red insect to increase in size.
+
+If you allow the program to run long enough, the 
+probability is high that all of the green insects will
+have collided with the red insect and will either have 
+turned blue or have been consumed.
+
+Tested using JDK 1.7 under WinXP
+*********************************************************/
+
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.Sound;
+
+import java.util.Random;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class Slick0210 extends BasicGame{
+  
+  //Set the value of this variable to true to cause the
+  // sprites to die on collision and to be removed from
+  // the population.
+  boolean dieOnCollision = true;
+  
+  //Store references to Sprite01 objects here.
+  ArrayList &lt;Sprite01&gt; sprites = 
+                                new ArrayList&lt;Sprite01&gt;();
+  
+  //Change this value and recompile to change the number
+  // of sprites.
+  int numberSprites = 1000;
+
+  //Populate these variables with references to Image
+  // objects later.
+  Image redBallImage;
+  Image greenBallImage;
+  Image blueBallImage;
+  
+  //Populate this variable with a reference to a Sound
+  // object later.
+  Sound blaster;
+  
+  //Populate these variables with information about the
+  // background image later.
+  Image background = null;
+  float backgroundWidth;
+  float backgroundHeight;
+  
+  //This object is used to produce values for a variety
+  // of purposes.
+  Random random = new Random();
+  
+  //Frame rate we would like to see and maximum frame
+  // rate we will allow.
+  int targetFPS = 60;
+  //----------------------------------------------------//
+
+  public Slick0210(){//constructor
+    //Set the title
+    super("Slick0210, baldwin");
+  }//end constructor
+  //----------------------------------------------------//
+
+  public static void main(String[] args)
+                                    throws SlickException{
+    AppGameContainer app = new AppGameContainer(
+                          new Slick0210(),414,307,false);
+    app.start();
+  }//end main
+  //----------------------------------------------------//
+
+  @Override
+  public void init(GameContainer gc)
+                                   throws SlickException {
+
+    //Create Image objects that will be used to visually
+    // represent the sprites.
+    redBallImage = new Image("redball.png");
+    greenBallImage = new Image("greenball.png");
+    blueBallImage = new Image("blueball.png");
+    
+    //Create a Sound object.
+    blaster = new Sound("blaster.wav");
+
+    //Create a background image and save information
+    // about it.
+    background = new Image("background.jpg");
+    backgroundWidth = background.getWidth();
+    backgroundHeight = background.getHeight();
+    
+    //Add a sprite dressed with redBallImage to the
+    // beginning of the ArrayList object. Put it in the
+    // center of the game window. Make the direction of
+    // motion random. Make the speed of motion
+    // (step size)random. Make the size random. Specify
+    // a white (do nothing)color filter.
+    sprites.add(new Sprite01(
+       redBallImage,//image
+       backgroundWidth/2.0f,//initial position
+       backgroundHeight/2.0f,//initial position
+       (random.nextFloat() &gt; 0.5) ? 1f : -1f,//direction
+       (random.nextFloat() &gt; 0.5) ? 1f : -1f,//direction
+       0.1f+random.nextFloat()*2.0f,//step size
+       0.1f+random.nextFloat()*2.0f,//step size
+       0.5f+random.nextFloat()*1.5f,//scale
+       new Color(1.0f,1.0f,1.0f)));//color filter
+
+
+    //Populate the ArrayList object with sprites. Dress
+    // them with a greenBallImage. Make the initial
+    // position random. Make the initial direction of
+    // motion random. Make the speed (step size) random.
+    // Make the size (scale) random. Make the color filter
+    // white (do nothing).
+    for(int cnt = 0;cnt &lt; numberSprites;cnt++){
+      sprites.add(new Sprite01(
+         greenBallImage,//image
+         backgroundWidth*random.nextFloat(),//position
+         backgroundHeight*random.nextFloat(),//position
+         (random.nextFloat() &gt; 0.5) ? 1f : -1f,//direction
+         (random.nextFloat() &gt; 0.5) ? 1f : -1f,//direction
+         0.1f+random.nextFloat()*2.0f,//step size
+         0.1f+random.nextFloat()*2.0f,//step size
+         random.nextFloat()*1.0f,//scale
+         new Color(1.0f,1.0f,1.0f)));//color filter 
+    }//end for loop
+
+    gc.setTargetFrameRate(targetFPS);//set frame rate
+
+  }//end init
+  //----------------------------------------------------//
+
+  @Override
+  public void update(GameContainer gc, int delta)
+                                    throws SlickException{
+
+    //Access to the first sprite in the ArrayList object.
+    Sprite01 redBallSprite = sprites.get(0);
+
+    //Do the following for every sprite in the ArrayList
+    // object
+    for(int cnt = 0;cnt &lt; sprites.size();cnt++){
+      //Get a reference to the Sprite01 object.
+      Sprite01 thisSprite = sprites.get(cnt);
+      
+      //Ask the sprite to move according to its properties
+      thisSprite.move();
+
+      //Ask the sprite to bounce off the edge if it is at
+      // an edge.
+      thisSprite.edgeBounce(
+                        backgroundWidth,backgroundHeight);
+      
+      //Test for a collision between this sprite and the
+      // sprite that is dressed in the redBallImage.
+      boolean collision = 
+                   thisSprite.isCollision(redBallSprite);
+
+      //Process a collision if it has occurred. Exclude
+      // collisions between the redBallSprite and itself.
+      // Also exclude collisions between sprites dressed
+      // in a blueBallImage and the redBallSprite.
+      if((collision == true)&amp;&amp;
+         (! thisSprite.getImage().equals(redBallImage)) &amp;&amp;
+         (! thisSprite.getImage().equals(blueBallImage))){
+
+        //A collision has occurred, change the color of
+        // this sprite to blue and maybe cause it to
+        // die and be removed from the population.
+        thisSprite.setImage(blueBallImage);
+        if(dieOnCollision){
+          thisSprite.setLife(0);
+        }//end if
+        
+        //Cause the redBallSprite to change direction on
+        // a random basis.
+        redBallSprite.setXDirection(
+                   (random.nextFloat() &gt; 0.5) ? 1f : -1f);
+        redBallSprite.setYDirection(
+                   (random.nextFloat() &gt; 0.5) ? 1f : -1f);
+        
+        //Cause the redBallSprite to change stepsize on a
+        // random basis.
+        redBallSprite.xStep = 
+                             0.1f+random.nextFloat()*2.0f;
+        redBallSprite.yStep = 
+                             0.1f+random.nextFloat()*2.0f;
+        
+        //Cause the redBallSprite to grow larger
+        redBallSprite.setScale(redBallSprite.getScale() +
+                     (redBallSprite.getScale()) * 0.001f);
+
+        //Play a sound to indicate that a collision has
+        // occurred.
+        blaster.play();
+      }//end if
+
+    }//end for loop
+    
+    //Remove dead objects from the ArrayList object
+    Iterator &lt;Sprite01&gt; iter = sprites.iterator();
+
+    while(iter.hasNext()){
+      Sprite01 theSprite = iter.next();
+      if(theSprite.getLife() &lt;= 0){
+        iter.remove();
+      }//end if
+    }//end while loop
+
+  }//end update
+  //----------------------------------------------------//
+
+  public void render(GameContainer gc, Graphics g)
+                                    throws SlickException{
+
+    //set the drawing mode to honor transparent pixels
+    g.setDrawMode(g.MODE_NORMAL);
+
+    //Draw the background to erase the previous picture.
+    background.draw(0,0);
+
+    //Draw every sprite in the ArrayList object.
+    for(int cnt = 0;cnt &lt; sprites.size();cnt++){
+      sprites.get(cnt).draw();
+    }//end for loop
+    
+    //Display the remaining number of sprites.
+    g.drawString(
+       "Sprites remaining: " + (sprites.size()),100f,10f);
+    //Signal when all sprites have been eaten.
+    if(sprites.size() == 1){
+      g.drawString("Burp!",100f,25f);
+    }//end if
+  }//end render
+
+}//end class Slick0210
+//======================================================//
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1098">
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1015" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1015">
+
+			
+
+<row id="tr1030">
+
+				
+
+<entry id="th1015">
+<emphasis id="Listing_12" effect="bold">
+
+Listing 12
+
+</emphasis>
+
+. Source code for the 
+				class named Sprite01.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1015">
+
+			
+
+<row id="tr1031">
+
+				
+
+<entry id="td1015">
+
+
+
+<code id="pre1011" display="block">/*Sprite01.java
+Copyright 2013, R.G.Baldwin
+
+An object of this class can be manipulated as a sprite
+in a Slick2D program.
+
+Tested using JDK 1.7 under WinXP
+*********************************************************/
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Color;
+
+public class Sprite01{
+  Image image = null;//The sprite wears this image
+  float X = 0f;//X-Position of the sprite
+  float Y = 0f;//Y-Position of the sprite
+  float width = 0f;//Width of the sprite
+  float height = 0f;//Height of the sprite
+  float xStep = 1f;//Incremental step size in pixels - X
+  float yStep = 1f;//Incremental step size in pixels - Y
+  float scale = 1f;//Scale factor for draw method
+  Color colorFilter = null;//Color filter for draw method
+  
+  float xDirection = 1.0f;//Move to right for positive
+  float yDirection = 1.0f;//Move down for positive
+  
+  int life = 1;//Used to control life or death of sprite
+  
+  boolean exposed = false;//Used in the contagion program
+  
+  //Constructor
+  public Sprite01(Image image,//Sprite wears this image
+                  float X,//Initial position
+                  float Y,//Initial position
+                  float xDirection,//Initial direction
+                  float yDirection,//Initial direction
+                  float xStep,//Initial step size
+                  float yStep,//Initial step size
+                  float scale,//Scale factor for drawing
+                  Color colorFilter)
+                    throws SlickException {
+
+      //Save incoming parameter values
+      this.image = image;
+      this.X = X;
+      this.Y = Y;
+      this.xDirection = xDirection;
+      this.yDirection = yDirection;
+      this.xStep = xStep;
+      this.yStep = yStep;
+      this.scale = scale;
+      this.colorFilter = colorFilter;
+      
+      //Compute and save width and height of image
+      width = image.getWidth();
+      height = image.getHeight();
+
+  }//end constructor
+  //----------------------------------------------------//
+  //The following accessor methods make many of the
+  // important attributes accessible to the using
+  // program.
+  //----------------------------------------------------//
+  
+  public Image getImage(){
+    return image;
+  }//end getSprite
+  //----------------------------------------------------//
+  
+  public void setImage(Image image) throws SlickException{
+    this.image = image;
+    width = image.getWidth();
+    height = image.getHeight();
+  }//end setImage
+  //----------------------------------------------------//
+  
+  public float getWidth(){
+    return width;
+  }//end getWidth
+  //----------------------------------------------------//
+
+  public float getHeight(){
+    return height;
+  }//end getWidth
+  //----------------------------------------------------//
+  
+  public float getX(){
+    return X;
+  }//end getX
+  //----------------------------------------------------//
+  
+  public void setX(float X){
+    this.X = X;
+  }//end setX
+  //----------------------------------------------------//
+  public float getY(){
+    return Y;
+  }//end getY
+  //----------------------------------------------------//
+
+  public void setY(float Y){
+    this.Y = Y;
+  }//end setY
+  //----------------------------------------------------//
+  
+  public float getXDirection(){
+    return xDirection;
+  }// end getXDirection
+  //----------------------------------------------------//
+  
+  public void setXDirection(float xDirection){
+    this.xDirection = xDirection;
+  }//end setXDirection
+  //----------------------------------------------------//
+  
+  public float getYDirection(){
+    return yDirection;
+  }//end getYDirection
+  //----------------------------------------------------//
+  
+  public void setYDirection(float yDirection){
+    this.yDirection = yDirection;
+  }//setYDirection
+  //----------------------------------------------------//
+  
+  public float getXStep(){
+    return xStep;
+  }//end getXStep
+  //----------------------------------------------------//
+  
+  public void setXStep(float xStep){
+    this.xStep = xStep;
+  }//end setXStep
+  //----------------------------------------------------//
+  
+  public float getYStep(){
+    return yStep;
+  }//end getYStep
+  //----------------------------------------------------//
+
+  public void setYStep(float yStep){
+    this.yStep = yStep;
+  }//end setYStep
+  //----------------------------------------------------//
+  
+  public float getScale(){
+    return scale;
+  }//end getScale
+  //----------------------------------------------------//
+
+  public void setScale(float scale){
+    this.scale = scale;
+  }//end setScale
+  //----------------------------------------------------//
+  
+  public Color getColorFilter(){
+    return colorFilter;
+  }//end getColorFilter
+  //----------------------------------------------------//
+  
+  public void setColorFilter(
+                        float red,float green,float blue){
+    colorFilter = new Color(red,green,blue);
+  }//end setColorFilter
+  //----------------------------------------------------//
+ 
+  public int getLife(){
+    return life;
+  }//end getLife
+  //----------------------------------------------------//
+  
+  public void setLife(int life){
+    this.life = life;
+  }//end setLife
+  //----------------------------------------------------//
+  
+  public boolean getExposed(){
+    return exposed;
+  }//end getExposed
+  //----------------------------------------------------//
+  
+  public void setExposed(boolean exposed){
+    this.exposed = exposed;
+  }//end setExposed
+  //----------------------------------------------------//
+  
+  //This method causes the sprite to be drawn each time
+  // it is called.
+  public void draw(){
+    image.draw(X,Y,scale,colorFilter);
+  }//end draw
+  //----------------------------------------------------//
+  
+  //This method detects collisions between this 
+  // rectangular sprite object and another rectangular
+  // sprite object by testing four cases where a
+  // collision could not possibly occur and assuming that
+  // a collision has occurred if none of those cases
+  // are true.
+  public boolean isCollision(Sprite01 other){
+    //Create variable with meaningful names make the
+    // algorithm easier to understand. Can be eliminated
+    // to make the algorithm more efficient.
+    float thisTop = Y;
+    float thisBottom = thisTop + height*scale;
+    float thisLeft = X;
+    float thisRight = thisLeft + width*scale;
+    
+    float otherTop = other.getY();
+    float otherBottom = otherTop + other.getHeight()*other.getScale();
+    float otherLeft = other.getX();
+    float otherRight = otherLeft + other.getWidth()*other.getScale();
+
+    if (thisBottom &lt; otherTop) return(false);
+    if (thisTop &gt; otherBottom) return(false);
+  
+    if (thisRight &lt; otherLeft) return(false);
+    if (thisLeft &gt; otherRight) return(false);
+  
+    return(true);
+
+  }//end isCollision
+  //----------------------------------------------------//
+  
+  public void move(){
+    X += xDirection*xStep;
+    Y += yDirection*yStep;
+  }//end move
+  //----------------------------------------------------//
+  
+  public void edgeBounce(float winWidth,float winHeight){
+    //Test for a collision with one of the edges and
+    // cause to sprite to bounce off the edge if a
+    // collision has occurred.
+    if(X + width*scale &gt;= winWidth){
+      //A collision has occurred.
+      xDirection = -1.0f;//reverse direction
+      //Set the position to the right edge less the
+      // width of the sprite.
+      X = winWidth - width*scale;
+    }//end if
+    
+    //Continue testing for collisions with the edges
+    // and take appropriate action.
+    if(X &lt;= 0){
+      xDirection = 1.0f;
+      X = 0;
+    }//end if
+    
+    if(Y + height*scale &gt;= winHeight){
+      yDirection = -1.0f;
+      Y = winHeight - height*scale;
+    }//end if
+    
+    if(Y &lt;= 0){
+      yDirection = 1.0f;
+      Y = 0;
+    }//end if
+  }//end edgeBounce
+  //----------------------------------------------------//
+
+}//end class Sprite01
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1099">
+-end- 
+
+</para>
+
+
+
+
+
+
+</section>
+</content>
+
+
+
+
+</document>

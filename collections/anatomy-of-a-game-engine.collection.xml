@@ -1,0 +1,25 @@
+<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en">
+  <metadata xmlns:md="http://cnx.rice.edu/mdml" mdml-version="0.5">
+    <md:content-id>col11489</md:content-id>
+    <md:title>Anatomy of a Game Engine</md:title>
+    <md:language>en</md:language>
+    <md:license url="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</md:license>
+    <md:uuid>a0e2d2ac-7534-4994-ba68-7063820f42d6</md:uuid>
+<md:slug>anatomy-of-a-game-engine</md:slug>
+</metadata>
+  <col:content>
+    <col:module document="m45726"/>
+    <col:module document="m45728"/>
+    <col:module document="m45732"/>
+    <col:module document="m45733"/>
+    <col:module document="m45737"/>
+    <col:module document="m45738"/>
+    <col:module document="m45748"/>
+    <col:module document="m45750"/>
+    <col:module document="m45751"/>
+    <col:module document="m45753"/>
+    <col:module document="m45754"/>
+    <col:module document="m45755"/>
+    <col:module document="m45757"/>
+  </col:content>
+</col:collection>

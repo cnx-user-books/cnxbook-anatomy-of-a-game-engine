@@ -1,0 +1,3830 @@
+<document xmlns="http://cnx.rice.edu/cnxml"> 
+<title>Slick0200: Developing a sprite class</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45754</md:content-id>
+  <md:title>Slick0200: Developing a sprite class</md:title>
+  <md:abstract>Learn how to develop a Sprite class from which you can instantiate and animate swarms of sprite objects.</md:abstract>
+  <md:uuid>84c02677-f58d-45b7-811d-b91571187235</md:uuid>
+</metadata>
+
+<content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="h11000">
+<title>
+Table of Contents
+
+</title>
+
+
+
+
+<list id="ul1000" list-type="bulleted">
+
+	
+
+<item id="li1000">
+<link id="a1000" target-id="Preface">
+
+Preface
+
+</link>
+
+
+	
+
+<list id="ul1001" list-type="bulleted">
+
+		
+
+<item id="li1001">
+<link id="a1001" target-id="Viewing_tip">
+
+Viewing tip
+
+</link>
+
+
+<list id="ul1002" list-type="bulleted">
+
+			
+
+<item id="li1002">
+<link id="a1002" target-id="Figures">
+
+Figures
+
+</link>
+
+
+</item>
+
+
+
+			
+
+<item id="li1003">
+<link id="a1003" target-id="Listings">
+
+Listings
+
+</link>
+
+
+</item>
+
+
+		
+
+</list>
+
+
+		
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1004">
+<link id="a1004" target-id="Preview">
+
+Preview
+
+</link>
+
+ 
+
+</item>
+
+
+	
+
+<item id="li1005">
+<link id="a1005" target-id="General_background_information">
+
+General background information
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1006">
+<link id="a1006" target-id="Discussion_and_sample_code">
+
+Discussion and sample code
+
+</link>
+
+
+<list id="ul1003" list-type="bulleted">
+
+		
+
+<item id="li1007">
+<link id="a1007" target-id="The_class_named_Sprite01">
+
+The class named Sprite01
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1008">
+<link id="a1008" target-id="The_class_named_Slick0200">
+
+The class named Slick0200
+
+</link>
+
+
+<list id="ul1004" list-type="bulleted">
+
+			
+
+<item id="li1009">
+<link id="a1009" target-id="The_init_method">
+
+The init method
+
+</link>
+
+
+</item>
+
+
+			
+
+<item id="li1010">
+<link id="a1010" target-id="The_update_method">
+
+The update method
+
+</link>
+
+
+</item>
+
+
+			
+
+<item id="li1011">
+<link id="a1011" target-id="The_render_method">
+
+The render method
+
+</link>
+
+
+</item>
+
+
+		
+
+</list>
+
+
+		
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1012">
+<link id="a1012" target-id="Run_the_program">
+
+Run the program
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1013">
+<link id="a1013" target-id="Summary">
+
+Summary
+
+</link>
+
+ 
+
+</item>
+
+
+	
+
+<item id="li1014">
+<link id="a1014" target-id="Whats_next">
+
+What's next?
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1015">
+<link id="a1015" target-id="Miscellaneous">
+
+Miscellaneous
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1016">
+<link id="a1016" target-id="Complete_program_listing">
+
+Complete program listings
+
+</link>
+
+
+</item>
+
+
+
+
+</list>
+
+
+	
+
+	
+
+</section>
+<section id="h11001">
+<title>
+<emphasis id="Preface" effect="bold">
+
+Preface
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+	
+
+<para id="p1000">
+This module is one in a collection of modules designed to teach you about 
+	the anatomy of a game engine.
+
+</para>
+
+
+
+
+<para id="p1001">
+Although the modules in this collection will concentrate on the Java game 
+library named Slick2D, the 
+concepts involved and the knowledge that you will gain is applicable to 
+different game engines written in different programming languages as well.
+
+</para>
+
+
+
+
+<para id="p1002">
+The purpose of this module is to teach you how to develop a sprite class 
+
+<emphasis id="em1000" effect="italics">
+
+(see 
+
+<link id="a1017" target-id="Listing_11">
+
+Sprite01
+
+</link>
+
+)
+
+</emphasis>
+ from which you can instantiate and 
+animate swarms of sprite objects.
+
+</para>
+
+
+	
+
+<section id="h21000">
+<title>
+<emphasis id="Viewing_tip" effect="bold">
+
+Viewing tip
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1003">
+I recommend that you open another copy of this module in a separate 
+browser window and use the following links to easily find and view the images 
+and listings while you are reading about them.
+
+</para>
+
+
+	
+
+<section id="h31000">
+<title>
+<emphasis id="Figures" effect="bold">
+
+Figures
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<list id="ul1005" list-type="bulleted">
+
+		
+
+<item id="li1017">
+<link id="a1018" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+. Graphic output from program named Slick0200. 
+
+</item>
+
+
+		
+
+<item id="li1018">
+<link id="a1019" target-id="Figure_2">
+
+Figure 2
+
+</link>
+
+. Graphic output from the earlier program. 
+
+</item>
+
+
+
+
+	
+
+</list>
+
+
+	
+
+</section>
+<section id="h31001">
+<title>
+<emphasis id="Listings" effect="bold">
+
+Listings
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<list id="ul1006" list-type="bulleted">
+
+		
+
+<item id="li1019">
+<link id="a1020" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+. Beginning of the class named Sprite01. 
+
+</item>
+
+
+		
+
+<item id="li1020">
+<link id="a1021" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+. Beginning of the class named Slick0200. 
+
+</item>
+
+
+		
+
+<item id="li1021">
+<link id="a1022" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+. Beginning of the init method. 
+
+</item>
+
+
+		
+
+<item id="li1022">
+<link id="a1023" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+. Populate the array. 
+
+</item>
+
+
+		
+
+<item id="li1023">
+<link id="a1024" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+. The update method.
+
+</item>
+
+
+		
+
+<item id="li1024">
+<link id="a1025" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+. The move method of the Sprite01 class.
+
+</item>
+
+
+		
+
+<item id="li1025">
+<link id="a1026" target-id="Listing_7">
+
+Listing 7
+
+</link>
+
+. The edgeBounce method of the Sprite01 class.
+
+</item>
+
+
+		
+
+<item id="li1026">
+<link id="a1027" target-id="Listing_8">
+
+Listing 8
+
+</link>
+
+. The render method.
+
+</item>
+
+
+		
+
+<item id="li1027">
+<link id="a1028" target-id="Listing_9">
+
+Listing 9
+
+</link>
+
+. The draw method of the Sprite01 class.
+
+</item>
+
+
+		
+
+<item id="li1028">
+<link id="a1029" target-id="Listing_10">
+
+Listing 10
+
+</link>
+
+. Source code for the program named Slick0200.
+
+</item>
+
+
+		
+
+<item id="li1029">
+<link id="a1030" target-id="Listing_11">
+
+Listing 11
+
+</link>
+
+. Source code for the sprite class named Sprite01.
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</section>
+</section>
+</section>
+<section id="h11002">
+<title>
+<emphasis id="Preview" effect="bold">
+
+Preview
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1004">
+I will present and explain a program that uses a class named 
+
+<emphasis id="strong1000" effect="bold">
+
+	Sprite01
+
+</emphasis>
+ 
+
+<emphasis id="em1001" effect="italics">
+(see 
+
+<link id="a1031" target-id="Listing_11">
+
+Listing 11
+
+</link>
+
+)
+
+</emphasis>
+ to 
+	produce an animation of 1000 ladybug sprite objects flying around inside the 
+	game window as shown in 
+
+<link id="a1032" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+.
+
+</para>
+
+
+
+
+
+
+
+<table id="table1000" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1000">
+<row id="tr1000">
+<entry id="th1000">
+
+
+
+<emphasis id="Figure_1" effect="bold">
+
+Figure 1
+
+</emphasis>
+
+. Graphic output from program named Slick0200.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1000">
+<row id="tr1001">
+<entry id="td1000">
+
+
+
+<media id="media1000" alt="Missing image." display="block">
+<image id="img1000" mime-type="image/jpeg" src="../../media/slick0200a1.jpg" width="421" height="348"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1005">
+<emphasis id="strong1001" effect="bold">
+The frame rate
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1006">
+As you can see from the text in the upper-left corner of 
+
+<link id="a1033" target-id="Figure_1">
+
+
+Figure 1
+
+</link>
+
+, the program is running at 62 frames per second. My rather old 
+desktop computer can maintain this frame rate up to about 7000 sprite objects. 
+Beyond that, it can no longer handle the computing load and the frame rate 
+begins to decrease.
+
+</para>
+
+
+
+
+<para id="p1007">
+<emphasis id="strong1002" effect="bold">
+What you have learned
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1008">
+In the previous module, you learned how to use objects of the 
+
+<emphasis id="strong1003" effect="bold">
+
+SpriteSheet
+
+</emphasis>
+ class and the 
+
+<emphasis id="strong1004" effect="bold">
+Animation
+
+</emphasis>
+ class to perform 
+relatively complex sprite sheet animations.
+
+</para>
+
+
+
+
+<para id="p1009">
+<emphasis id="strong1005" effect="bold">
+What you will learn
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1010">
+In this module, you will learn how to develop a sprite class from which you 
+can instantiate and animate swarms of sprite objects. In the next two modules, 
+you will learn how to put that class to work.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11003">
+<title>
+<emphasis id="General_background_information" effect="bold">
+
+General 
+	background information
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1011">
+While the Slick2D library provides many useful classes, there is nothing to 
+stop you from developing your own classes to work in combination with the 
+Slick2D library classes. That is the thrust of this module.
+
+</para>
+
+
+
+
+<para id="p1012">
+In an 
+
+<emphasis id="earlier_module" effect="bold">
+
+earlier module
+
+</emphasis>
+
+ titled 
+
+
+<link id="a1034" url="http://cnx.org/contents/c92f070e-494f-4eb1-a0b9-e36abe4359fd">
+
+Slick0150: A first look at sprite motion, collision detection, and timing control
+
+</link>
+
+, you learned how to cause a single sprite to bounce 
+around inside the game window as shown in 
+
+<link id="a1035" target-id="Figure_2">
+
+Figure 2
+
+</link>
+
+.
+
+</para>
+
+
+
+
+
+
+<table id="table1001" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1001">
+<row id="tr1002">
+<entry id="th1001">
+
+
+
+<emphasis id="Figure_2" effect="bold">
+
+Figure 2
+
+</emphasis>
+
+. Graphic output from the earlier program.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1001">
+<row id="tr1003">
+<entry id="td1001">
+
+
+
+<media id="media1001" alt="Missing image." display="block">
+<image id="img1001" mime-type="image/jpeg" src="../../media/slick0200a2.jpg" width="418" height="348"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1013">
+<emphasis id="strong1006" effect="bold">
+Adding many more sprites would have been difficult
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1014">
+While it would have been possible to add more sprites to the 
+animation by expanding the code used in that program, the code would have 
+quickly gotten out of hand without the use of a sprite class and sprite objects.
+
+
+<emphasis id="em1002" effect="italics">
+(To use the common jargon, that program architecture was not very scalable.)
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1015">
+<emphasis id="strong1007" effect="bold">
+Encapsulate complexity in a class
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1016">
+Basically, this program solves that problem by encapsulating many of the 
+properties and methods that are useful for manipulating sprites into a class 
+from which sprite objects can be instantiated. Most of the complexity is 
+encapsulated in the class and thereby removed from the program that uses objects 
+of the class.
+
+</para>
+
+
+
+
+<para id="p1017">
+<emphasis id="strong1008" effect="bold">
+The scenario
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1018">
+This program shows a baseball coach 
+
+<emphasis id="em1003" effect="italics">
+(
+
+</emphasis>
+<link id="a1036" target-id="Figure_1">
+
+
+<emphasis id="em1004" effect="italics">
+Figure 1
+
+</emphasis>
+</link>
+
+) being attacked by a 
+swarm of vicious ladybug sprites.
+
+
+
+<emphasis id="em1005" effect="italics">
+(Don't worry, we will find a way to save the coach in the next module.)
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1019">
+This program uses the class named 
+
+<emphasis id="strong1009" effect="bold">
+Sprite01
+
+</emphasis>
+ to populate
+the game window with 1000 ladybug sprites in different
+colors with different sizes that fly around the game
+window in different directions with different speeds as shown in
+
+
+<link id="a1037" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+.
+
+</para>
+
+
+	
+
+<para id="p1020">
+</para>
+
+
+	
+
+	
+
+</section>
+<section id="h11004">
+<title>
+<emphasis id="Discussion_and_sample_code" effect="bold">
+
+Discussion and sample code
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+	
+
+<section id="h21001">
+<title>
+<emphasis id="The_class_named_Sprite01" effect="bold">
+
+The class named Sprite01
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1021">
+A complete listing of this class is provided in 
+
+<link id="a1038" target-id="Listing_11">
+
+Listing 
+11
+
+</link>
+
+. I will not explain the entire class in detail in this module. Instead, 
+I will provide an overview of the class and then explain various parts of the 
+class as I use them in this and the next two modules.
+
+</para>
+
+
+	
+
+<para id="p1022">
+<emphasis id="strong1010" effect="bold">
+Beginning of the class named Sprite01
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1023">
+The beginning of the class named 
+
+<emphasis id="strong1011" effect="bold">
+Sprite01
+
+</emphasis>
+ down through the 
+constructor is shown in 
+
+<link id="a1039" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1002" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1002">
+
+			
+
+<row id="tr1004">
+
+				
+
+<entry id="th1002">
+<emphasis id="Listing_1" effect="bold">
+
+Listing 1
+
+</emphasis>
+
+. Beginning of the class 
+				named Sprite01.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1002">
+
+			
+
+<row id="tr1005">
+
+				
+
+<entry id="td1002">
+
+
+
+<code id="pre1000" display="block">
+public class Sprite01{
+  Image image = null;//The sprite wears this image
+  float X = 0f;//X-Position of the sprite
+  float Y = 0f;//Y-Position of the sprite
+  float width = 0f;//Width of the sprite
+  float height = 0f;//Height of the sprite
+  float xStep = 1f;//Incremental step size in pixels - X
+  float yStep = 1f;//Incremental step size in pixels - Y
+  float scale = 1f;//Scale factor for draw method
+  Color colorFilter = null;//Color filter for draw method
+  
+  float xDirection = 1.0f;//Move to right for positive
+  float yDirection = 1.0f;//Move down for positive
+  
+  int life = 1;//Used to control life or death of sprite
+  
+  boolean exposed = false;//Used in the contagion program
+  
+  //Constructor
+  public Sprite01(Image image,//Sprite wears this image
+                  float X,//Initial position
+                  float Y,//Initial position
+                  float xDirection,//Initial direction
+                  float yDirection,//Initial direction
+                  float xStep,//Initial step size
+                  float yStep,//Initial step size
+                  float scale,//Scale factor for drawing
+                  Color colorFilter)
+                    throws SlickException {
+
+      //Save incoming parameter values
+      this.image = image;
+      this.X = X;
+      this.Y = Y;
+      this.xDirection = xDirection;
+      this.yDirection = yDirection;
+      this.xStep = xStep;
+      this.yStep = yStep;
+      this.scale = scale;
+      this.colorFilter = colorFilter;
+      
+      //Compute and save width and height of image
+      width = image.getWidth();
+      height = image.getHeight();
+
+  }//end constructor
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1024">
+<emphasis id="strong1012" effect="bold">
+Straightforward code
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1025">
+The code in 
+
+<link id="a1040" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ is straightforward. It simply 
+declares a number of instance variables, most of which become properties of the object. 
+
+<link id="a1041" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ 
+also defines a constructor that receives and saves values for many of those 
+properties.
+
+</para>
+
+
+
+
+<para id="p1026">
+<emphasis id="strong1013" effect="bold">
+The remaining code in Sprite01
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1027">
+If you examine the remaining code in 
+
+<link id="a1042" target-id="Listing_11">
+
+Listing 11
+
+</link>
+
+, 
+you will see that it consists of simple property accessor methods along with 
+some methods that control the behavior of an object of the class. I will explain 
+those behavioral methods when I use them later in this and the next two modules.
+
+</para>
+
+
+
+
+</section>
+<section id="h21002">
+<title>
+<emphasis id="The_class_named_Slick0200" effect="bold">
+
+The class named Slick0200
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1028">
+<emphasis id="strong1014" effect="bold">
+Will discuss in fragments
+
+</emphasis>
+</para>
+
+
+	
+
+<para id="p1029">
+A complete listing of the program named 
+
+<emphasis id="strong1015" effect="bold">
+Slick0200
+
+</emphasis>
+ is provided in
+	
+
+<link id="a1043" target-id="Listing_10">
+
+Listing 10
+
+</link>
+
+. I will break the program down and 
+	explain it in fragments.
+
+</para>
+
+
+
+
+<para id="p1030">
+<emphasis id="strong1016" effect="bold">
+Beginning of the class named Slick0200
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1031">
+The class named Slick0200, down through the 
+
+<emphasis id="strong1017" effect="bold">
+main
+
+</emphasis>
+ method is shown in
+
+
+<link id="a1044" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1003" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1003">
+
+			
+
+<row id="tr1006">
+
+				
+
+<entry id="th1003">
+<emphasis id="Listing_2" effect="bold">
+
+Listing 2
+
+</emphasis>
+
+.  Beginning of the class 
+				named Slick0200.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1003">
+
+			
+
+<row id="tr1007">
+
+				
+
+<entry id="td1003">
+
+
+
+<code id="pre1001" display="block">
+public class Slick0200 extends BasicGame{
+  
+  //Store references to Sprite01 objects here.
+  Sprite01[] sprites = new Sprite01[1000];
+  
+  //Populate this with a ladybug image later.
+  Image image = null;
+  
+  //Populate these variables with the background
+  // image along with the width and height of the
+  // image later.
+  Image background = null;
+  float backgroundWidth;
+  float backgroundHeight;
+  
+  //This object produces random float values for a
+  // variety of purposes.
+  Random random = new Random();
+  
+  //Frame rate we would like to see and maximum frame
+  // rate we will allow.
+  int targetFPS = 60;
+  //----------------------------------------------------//
+
+  public Slick0200(){//constructor
+    //Set the title
+    super("Slick0200, baldwin");
+  }//end constructor
+  //----------------------------------------------------//
+
+  public static void main(String[] args)
+                                    throws SlickException{
+    AppGameContainer app = new AppGameContainer(
+                          new Slick0200(),414,307,false);
+    app.start();
+  }//end main
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1032">
+Everything in 
+
+<link id="a1045" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+ is completely straightforward and should not 
+	require an explanation beyond the embedded comments.
+
+</para>
+
+
+
+
+<section id="h31002">
+<title>
+<emphasis id="The_init_method" effect="bold">
+
+The init method
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1033">
+The 
+
+<emphasis id="strong1018" effect="bold">
+init
+
+</emphasis>
+ method begins in 
+
+<link id="a1046" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1004" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1004">
+
+			
+
+<row id="tr1008">
+
+				
+
+<entry id="th1004">
+<emphasis id="Listing_3" effect="bold">
+
+Listing 3
+
+</emphasis>
+
+.  Beginning of the init 
+				method.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1004">
+
+			
+
+<row id="tr1009">
+
+				
+
+<entry id="td1004">
+
+
+
+<code id="pre1002" display="block">
+  public void init(GameContainer gc)
+                                   throws SlickException {
+
+    //Create and save the background image object. Also
+    // compute and save the width and height of the image.
+    background = new Image("background.jpg");
+    backgroundWidth = background.getWidth();
+    backgroundHeight = background.getHeight();
+
+    //Create and save an Image object of a ladybug. The
+    // sprites will wear this image
+    image = new Image("ladybug.png");
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1034">
+There is also nothing new in 
+
+<link id="a1047" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+. Therefore, 
+	the embedded comments should suffice to explain the code.
+
+</para>
+
+
+
+
+<para id="p1035">
+<emphasis id="strong1019" effect="bold">
+Populate the array
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1036">
+<link id="a1048" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+ uses a 
+
+<emphasis id="strong1020" effect="bold">
+for
+
+</emphasis>
+ loop to 
+populate the array object referred to by the variable named 
+
+<emphasis id="strong1021" effect="bold">
+sprites
+
+</emphasis>
+ that was declared in 
+
+<link id="a1049" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+. 
+The array object is populated with references to objects of the class 
+
+<emphasis id="strong1022" effect="bold">
+Sprite01
+
+</emphasis>
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1005" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1005">
+
+			
+
+<row id="tr1010">
+
+				
+
+<entry id="th1005">
+<emphasis id="Listing_4" effect="bold">
+
+Listing 4
+
+</emphasis>
+
+.  Populate the array.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1005">
+
+			
+
+<row id="tr1011">
+
+				
+
+<entry id="td1005">
+
+
+
+<code id="pre1003" display="block">
+    //Populate the array with references to objects of
+    // the Sprite01 class.
+    for(int cnt = 0;cnt &lt; sprites.length;cnt++){
+      sprites[cnt] = new Sprite01(
+         image,//ladybug image
+         backgroundWidth/2.0f,//initial position
+         backgroundHeight/2.0f,//initial position
+         (random.nextFloat() &gt; 0.5) ? 1f : -1f,//direction
+         (random.nextFloat() &gt; 0.5) ? 1f : -1f,//direction
+         0.1f+random.nextFloat()*2.0f,//step size
+         0.1f+random.nextFloat()*2.0f,//step size
+         random.nextFloat()*0.15f,//scale
+         new Color(random.nextFloat(),//color filter
+                   random.nextFloat(),
+                   random.nextFloat())); 
+    }//end for loop
+
+    gc.setTargetFrameRate(targetFPS);//set frame rate
+
+  }//end init
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1037">
+<emphasis id="strong1023" effect="bold">
+Random values
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1038">
+Note that several of the properties of each 
+
+<emphasis id="strong1024" effect="bold">
+Sprite01
+
+</emphasis>
+ objects 
+is initialized with random values.
+
+</para>
+
+
+
+
+<para id="p1039">
+The use of the 
+
+<emphasis id="strong1025" effect="bold">
+nextFloat
+
+</emphasis>
+ method of the object of the
+	
+
+<emphasis id="strong1026" effect="bold">
+Random
+
+</emphasis>
+ class may be new to you. If so, this method simply 
+	returns a random value between 0.0f and 1.0f each time it is called.
+
+</para>
+
+
+
+
+<para id="p1040">
+<emphasis id="strong1027" effect="bold">
+The conditional operator
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1041">
+If the use of the 
+
+<emphasis id="em1006" effect="italics">
+conditional operator
+
+</emphasis>
+ involving the ? character and 
+the : character is new to you, you will probably need to do some online research 
+in order to understand the use of this operator.
+
+</para>
+
+
+
+
+<para id="p1042">
+Otherwise, the code in 
+
+<link id="a1050" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+ is straightforward 
+and shouldn't require an explanation beyond the embedded comments.
+
+</para>
+
+
+
+
+<para id="p1043">
+<link id="a1051" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+ signals the end of the 
+
+<emphasis id="strong1028" effect="bold">
+init
+
+</emphasis>
+ 
+method.
+
+</para>
+
+
+
+
+</section>
+<section id="h31003">
+<title>
+<emphasis id="The_update_method" effect="bold">
+
+The update method
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1044">
+The update method is shown in its entirety in 
+
+<link id="a1052" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1006" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1006">
+
+			
+
+<row id="tr1012">
+
+				
+
+<entry id="th1006">
+<emphasis id="Listing_5" effect="bold">
+
+Listing 5
+
+</emphasis>
+
+.  The update method.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1006">
+
+			
+
+<row id="tr1013">
+
+				
+
+<entry id="td1006">
+
+
+
+<code id="pre1004" display="block">
+  public void update(GameContainer gc, int delta)
+                                    throws SlickException{
+
+    //Do the following for every sprite in the array
+    for(int cnt = 0;cnt &lt; sprites.length;cnt++){
+      //Ask each sprite to move.
+      sprites[cnt].move();
+
+      //Ask each sprite to bounce off the edge if
+      // necessary.
+      sprites[cnt].edgeBounce(
+                        backgroundWidth,backgroundHeight);
+    }//end for loop
+
+  }//end update
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1045">
+<emphasis id="strong1029" effect="bold">
+Move and bounce
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1046">
+<link id="a1053" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+ uses a 
+
+<emphasis id="strong1030" effect="bold">
+for
+
+</emphasis>
+ loop to access 
+each of the sprite objects, asking each object to 
+
+<emphasis id="em1007" effect="italics">
+move
+
+</emphasis>
+ and to 
+
+<emphasis id="em1008" effect="italics">
+bounce
+
+</emphasis>
+ off the edge of the game window if necessary.
+
+</para>
+
+
+
+
+<para id="p1047">
+<link id="a1054" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+ could hardly be simpler. That is because 
+the necessary complexity has been encapsulated in each object of the 
+
+<emphasis id="strong1031" effect="bold">
+
+Sprite01
+
+</emphasis>
+ class.
+
+</para>
+
+
+
+
+<para id="p1048">
+<emphasis id="strong1032" effect="bold">
+The move method of the Sprite01 class
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1049">
+<link id="a1055" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+ shows the 
+
+<emphasis id="strong1033" effect="bold">
+move
+
+</emphasis>
+ method 
+from the class named 
+
+<emphasis id="strong1034" effect="bold">
+Sprite01
+
+</emphasis>
+.
+
+</para>
+
+
+	
+
+
+	
+
+<table id="table1007" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1007">
+
+			
+
+<row id="tr1014">
+
+				
+
+<entry id="th1007">
+<emphasis id="Listing_6" effect="bold">
+
+Listing 6
+
+</emphasis>
+
+.  The move method of the 
+				Sprite01 class.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1007">
+
+			
+
+<row id="tr1015">
+
+				
+
+<entry id="td1007">
+
+
+
+<code id="pre1005" display="block">
+  public void move(){
+    X += xDirection*xStep;
+    Y += yDirection*yStep;
+  }//end move
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1050">
+The code in 
+
+<link id="a1056" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+ is also simple. However, 
+	in this case, the simplicity is somewhat deceiving. The apparent simplicity 
+	derives from the fact that the four required property values are routinely 
+	maintained by the object and are readily available to the two statements in 
+	the 
+
+<emphasis id="strong1035" effect="bold">
+move
+
+</emphasis>
+ method when needed.
+
+</para>
+
+
+
+
+<para id="p1051">
+<emphasis id="strong1036" effect="bold">
+The edgeBounce method of the Sprite01 class
+
+</emphasis>
+</para>
+
+
+	
+
+<para id="p1052">
+The 
+
+<emphasis id="strong1037" effect="bold">
+edgeBounce
+
+</emphasis>
+ method of the 
+
+<emphasis id="strong1038" effect="bold">
+Sprite01
+
+</emphasis>
+ class is shown in
+	
+
+<link id="a1057" target-id="Listing_7">
+
+Listing 7
+
+</link>
+
+. It is not simple.
+
+</para>
+
+
+
+
+	
+
+<table id="table1008" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1008">
+
+			
+
+<row id="tr1016">
+
+				
+
+<entry id="th1008">
+<emphasis id="Listing_7" effect="bold">
+
+Listing 7
+
+</emphasis>
+
+.  The edgeBounce method of 
+				the Sprite01 class.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1008">
+
+			
+
+<row id="tr1017">
+
+				
+
+<entry id="td1008">
+
+
+
+<code id="pre1006" display="block">
+  public void edgeBounce(float winWidth,float winHeight){
+    //Test for a collision with one of the edges and
+    // cause to sprite to bounce off the edge if a
+    // collision has occurred.
+    if(X + width*scale &gt;= winWidth){
+      //A collision has occurred.
+      xDirection = -1.0f;//reverse direction
+      //Set the position to the right edge less the
+      // width of the sprite.
+      X = winWidth - width*scale;
+    }//end if
+    
+    //Continue testing for collisions with the edges
+    // and take appropriate action.
+    if(X &lt;= 0){
+      xDirection = 1.0f;
+      X = 0;
+    }//end if
+    
+    if(Y + height*scale &gt;= winHeight){
+      yDirection = -1.0f;
+      Y = winHeight - height*scale;
+    }//end if
+    
+    if(Y &lt;= 0){
+      yDirection = 1.0f;
+      Y = 0;
+    }//end if
+  }//end edgeBounce
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1053">
+<emphasis id="strong1039" effect="bold">
+Code that you have seen before
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1054">
+<link id="a1058" target-id="Listing_7">
+
+Listing 7
+
+</link>
+
+ contains essentially the same code that was written into the 
+
+<emphasis id="strong1040" effect="bold">
+
+	update
+
+</emphasis>
+ method of the earlier module mentioned
+	
+
+<link id="a1059" target-id="earlier_module">
+
+above
+
+</link>
+
+. In this 
+	case, however, all of the complexity has been encapsulated into the 
+
+<emphasis id="strong1041" effect="bold">
+
+	Sprite01
+
+</emphasis>
+ class and replaced by a single call to the 
+
+<emphasis id="strong1042" effect="bold">
+
+	edgeBounce
+
+</emphasis>
+ method in the 
+
+<emphasis id="strong1043" effect="bold">
+update
+
+</emphasis>
+ method of the 
+	program named 
+
+<emphasis id="strong1044" effect="bold">
+Slick0200
+
+</emphasis>
+. Thus, the program's 
+
+<emphasis id="strong1045" effect="bold">
+update
+
+</emphasis>
+ 
+method is now much simpler.
+
+</para>
+
+
+	
+
+<para id="p1055">
+That concludes the discussion of the 
+
+<emphasis id="strong1046" effect="bold">
+update
+
+</emphasis>
+ method for 
+	this program.
+
+</para>
+
+
+
+
+</section>
+<section id="h31004">
+<title>
+<emphasis id="The_render_method" effect="bold">
+
+The render method
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1056">
+<link id="a1060" target-id="Listing_8">
+
+Listing 8
+
+</link>
+
+ shows the 
+
+<emphasis id="strong1047" effect="bold">
+render
+
+</emphasis>
+ method for this program.
+
+</para>
+
+
+
+
+	
+
+<table id="table1009" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1009">
+
+			
+
+<row id="tr1018">
+
+				
+
+<entry id="th1009">
+<emphasis id="Listing_8" effect="bold">
+
+Listing 8
+
+</emphasis>
+
+.  The render method.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1009">
+
+			
+
+<row id="tr1019">
+
+				
+
+<entry id="td1009">
+
+
+
+<code id="pre1007" display="block">
+  public void render(GameContainer gc, Graphics g)
+                                    throws SlickException{
+
+    //set the drawing mode to honor transparent pixels
+    g.setDrawMode(g.MODE_NORMAL);
+
+    //Draw the background to erase the previous picture.
+    background.draw(0,0);
+
+    //Draw every sprite in the array.
+    for(int cnt = 0;cnt &lt; sprites.length;cnt++){
+      //Ask the sprite to draw itself.
+      sprites[cnt].draw();
+    }//end for loop
+  }//end render
+
+}//end class Slick0200
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1057">
+<emphasis id="strong1048" effect="bold">
+The draw method of the Sprite01 class
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1058">
+The thing that is new about the code in 
+
+<link id="a1061" target-id="Listing_8">
+
+Listing 8
+
+</link>
+
+ is 
+the call to the 
+
+<emphasis id="strong1049" effect="bold">
+draw
+
+</emphasis>
+ method of the 
+
+<emphasis id="strong1050" effect="bold">
+Sprite01
+
+</emphasis>
+ class. That 
+
+<emphasis id="strong1051" effect="bold">
+
+draw
+
+</emphasis>
+ method is shown in 
+
+<link id="a1062" target-id="Listing_9">
+
+Listing 9
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1010" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1010">
+
+			
+
+<row id="tr1020">
+
+				
+
+<entry id="th1010">
+<emphasis id="Listing_9" effect="bold">
+
+Listing 9
+
+</emphasis>
+
+.  The draw method of the 
+				Sprite01 class.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1010">
+
+			
+
+<row id="tr1021">
+
+				
+
+<entry id="td1010">
+
+
+
+<code id="pre1008" display="block">
+  //This method causes the sprite to be drawn each time
+  // it is called.
+  public void draw(){
+    image.draw(X,Y,scale,colorFilter);
+  }//end draw
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1059">
+<emphasis id="strong1052" effect="bold">
+Little reduction in complexity
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1060">
+In this case, moving the call to the 
+
+<emphasis id="strong1053" effect="bold">
+draw
+
+</emphasis>
+ 
+	method of the 
+
+<emphasis id="strong1054" effect="bold">
+Image
+
+</emphasis>
+ class from the 
+
+<emphasis id="strong1055" effect="bold">
+render
+
+</emphasis>
+ method to the 
+
+<emphasis id="strong1056" effect="bold">
+Sprite01
+
+</emphasis>
+ class didn't 
+	do much to reduce the complexity of the program. However, that is because I 
+	kept the 
+
+<emphasis id="strong1057" effect="bold">
+draw
+
+</emphasis>
+ method in the 
+
+<emphasis id="strong1058" effect="bold">
+Sprite01
+
+</emphasis>
+ class 
+	very simple.
+
+</para>
+
+
+
+
+<para id="p1061">
+I could have made it much more capable and more complex by including 
+additional functionality. For example, I could have caused the 
+
+<emphasis id="strong1059" effect="bold">
+draw
+
+</emphasis>
+ 
+method to call the 
+
+<emphasis id="strong1060" effect="bold">
+
+drawFlash
+
+</emphasis>
+ method 
+
+<emphasis id="em1009" effect="italics">
+(see 
+
+</emphasis>
+
+
+
+<link id="a1063" url="http://cnx.org/contents/c8d91157-8952-40b7-8cca-d15ae4f65214">
+
+
+<emphasis id="em1010" effect="italics">
+Slick0160: Using the draw and drawFlash methods
+
+</emphasis>
+</link>
+
+) of the 
+
+<emphasis id="strong1061" effect="bold">
+Image
+
+</emphasis>
+ class when the 
+
+<emphasis id="strong1062" effect="bold">
+
+life
+
+</emphasis>
+ property value goes to zero. In that case, only a silhouette of 
+the dead sprite would be drawn in place of the actual image of the sprite.
+
+</para>
+
+
+
+
+<para id="p1062">
+That concludes the discussion of the 
+
+<emphasis id="strong1063" effect="bold">
+render
+
+</emphasis>
+ method.
+
+</para>
+
+
+
+
+
+
+</section>
+</section>
+</section>
+<section id="h11005">
+<title>
+<emphasis id="Run_the_program" effect="bold">
+
+Run the program
+
+</emphasis>
+
+
+</title>
+
+
+
+
+
+
+<para id="p1063">
+I encourage you to copy the code from 
+
+<link id="a1064" target-id="Listing_10">
+
+Listing 10
+
+</link>
+
+ and 
+
+
+<link id="a1065" target-id="Listing_11">
+
+Listing 11
+
+</link>
+
+. Compile the code and execute 
+it, 
+making changes, and observing the results of your changes. Make certain that you 
+can explain why your changes behave as they do.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11006">
+<title>
+<emphasis id="Summary" effect="bold">
+
+Summary
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1064">
+In this module, you learned how to develop a sprite class from which you can 
+instantiate and animate swarms of sprite objects.
+
+</para>
+
+
+
+
+</section>
+<section id="h11007">
+<title>
+<emphasis id="Whats_next" effect="bold">
+
+What's next?
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1065">
+In the next module, you will learn how to use the 
+
+<emphasis id="strong1064" effect="bold">
+Sprite01
+
+</emphasis>
+ class 
+from this module to write a predator/prey simulation program involving thousands 
+of sprites, collision detection, and sound effects.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11008">
+<title>
+<emphasis id="Miscellaneous" effect="bold">
+
+Miscellaneous
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1066">
+This section contains a variety of miscellaneous information.
+
+</para>
+
+
+
+
+
+	
+
+<note id="note1000" type="">
+
+
+		
+
+
+			
+
+
+				
+
+<emphasis id="strong1065" effect="bold">
+Housekeeping material
+
+</emphasis>
+
+				
+
+<list id="ul1007" list-type="bulleted">
+
+					
+
+<item id="li1030">
+Module name: Slick0200: Developing a sprite class
+
+</item>
+
+
+					
+
+<item id="li1031">
+File: Slick0200.htm
+
+
+</item>
+
+
+					
+
+<item id="li1032">
+Published: 02/06/13
+
+</item>
+
+
+					
+
+<item id="li1033">
+Revised: 10/03/15
+
+</item>
+
+
+				
+
+</list>
+
+
+				
+
+</note>
+
+			
+
+
+		
+
+
+
+	
+
+
+
+
+
+
+	
+
+<note id="note1001" type="">
+
+
+		
+
+
+			
+
+
+				
+
+<emphasis id="strong1066" effect="bold">
+Disclaimers:
+
+</emphasis>
+<para id="p1067">
+<emphasis id="strong1067" effect="bold">
+Financial
+
+</emphasis>
+: Although the Connexions
+site makes it possible for you to download a PDF file for this
+module at no charge, and also makes it possible for you to
+purchase a pre-printed version of the PDF file, you should be
+aware that some of the HTML elements in this module may not translate well into
+PDF.
+
+</para>
+
+
+				
+
+<para id="p1068">
+I also want you to know that, I receive no financial compensation from the Connexions website even if you purchase 
+	the PDF version of the module.
+
+</para>
+
+
+				
+
+<para id="p1069">
+In the past, unknown individuals have copied my modules from cnx.org, converted them to Kindle books, and 
+				placed them for sale on Amazon.com showing me as the author. I 
+				neither receive compensation for those sales nor do I know who does 
+				receive compensation. If you purchase such a book, please be 
+				aware that it is a copy of a module that is freely 
+				available on cnx.org and that it was made and published without 
+				my prior knowledge.
+
+</para>
+
+
+				
+
+<para id="p1070">
+<emphasis id="strong1068" effect="bold">
+Affiliation
+
+</emphasis>
+: I am a professor of Computer Information 
+	Technology at Austin Community College in Austin, TX.
+	
+
+</para>
+
+
+				
+
+</note>
+
+			
+
+
+		
+
+
+
+	
+
+
+
+
+
+</section>
+<section id="h11009">
+<title>
+<emphasis id="Complete_program_listing" effect="bold">
+
+Complete program listings
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1071">
+Complete listings of the code discussed in this module are provided in
+
+
+<link id="a1066" target-id="Listing_10">
+
+Listing 10
+
+</link>
+
+ and 
+
+<link id="a1067" target-id="Listing_11">
+
+Listing 11
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1011" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1011">
+
+			
+
+<row id="tr1022">
+
+				
+
+<entry id="th1011">
+<emphasis id="Listing_10" effect="bold">
+
+Listing 10
+
+</emphasis>
+
+.  Source code for the 
+				program named Slick0200.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1011">
+
+			
+
+<row id="tr1023">
+
+				
+
+<entry id="td1011">
+
+
+
+<code id="pre1009" display="block">
+
+/*Slick0200.java
+Copyright 2013, R.G.Baldwin
+
+This program shows a baseball coach being attacked by a 
+swarm of vicious ladybugs.
+
+This program uses the class named Sprite01 to populate
+the game window with 1000 ladybug sprites in different
+colors with different sizes that fly around the game
+window in different directions with different speeds.
+
+Tested using JDK 1.7 under WinXP
+*********************************************************/
+
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Color;
+
+import java.util.Random;
+
+public class Slick0200 extends BasicGame{
+  
+  //Store references to Sprite01 objects here.
+  Sprite01[] sprites = new Sprite01[1000];
+  
+  //Populate this with a ladybug image later.
+  Image image = null;
+  
+  //Populate these variables with the background
+  // image along with the width and height of the
+  // image later.
+  Image background = null;
+  float backgroundWidth;
+  float backgroundHeight;
+  
+  //This object produces random float values for a
+  // variety of purposes.
+  Random random = new Random();
+  
+  //Frame rate we would like to see and maximum frame
+  // rate we will allow.
+  int targetFPS = 60;
+  //----------------------------------------------------//
+
+  public Slick0200(){//constructor
+    //Set the title
+    super("Slick0200, baldwin");
+  }//end constructor
+  //----------------------------------------------------//
+
+  public static void main(String[] args)
+                                    throws SlickException{
+    AppGameContainer app = new AppGameContainer(
+                          new Slick0200(),414,307,false);
+    app.start();
+  }//end main
+  //----------------------------------------------------//
+
+  @Override
+  public void init(GameContainer gc)
+                                   throws SlickException {
+
+    //Create and save the background image object. Also
+    // compute and save the width and height of the image.
+    background = new Image("background.jpg");
+    backgroundWidth = background.getWidth();
+    backgroundHeight = background.getHeight();
+
+    //Create and save an Image object of a ladybug. The
+    // sprites will wear this image
+    image = new Image("ladybug.png");
+
+    //Populate the array with references to objects of
+    // the Sprite01 class.
+    for(int cnt = 0;cnt &lt; sprites.length;cnt++){
+      sprites[cnt] = new Sprite01(
+         image,//ladybug image
+         backgroundWidth/2.0f,//initial position
+         backgroundHeight/2.0f,//initial position
+         (random.nextFloat() &gt; 0.5) ? 1f : -1f,//direction
+         (random.nextFloat() &gt; 0.5) ? 1f : -1f,//direction
+         0.1f+random.nextFloat()*2.0f,//step size
+         0.1f+random.nextFloat()*2.0f,//step size
+         random.nextFloat()*0.15f,//scale
+         new Color(random.nextFloat(),//color filter
+                   random.nextFloat(),
+                   random.nextFloat())); 
+    }//end for loop
+
+    gc.setTargetFrameRate(targetFPS);//set frame rate
+
+  }//end init
+  //----------------------------------------------------//
+
+  @Override
+  public void update(GameContainer gc, int delta)
+                                    throws SlickException{
+
+    //Do the following for every sprite in the array
+    for(int cnt = 0;cnt &lt; sprites.length;cnt++){
+      //Ask each sprite to move.
+      sprites[cnt].move();
+
+      //Ask each sprite to bounce off the edge if
+      // necessary.
+      sprites[cnt].edgeBounce(
+                        backgroundWidth,backgroundHeight);
+    }//end for loop
+
+  }//end update
+  //----------------------------------------------------//
+
+  public void render(GameContainer gc, Graphics g)
+                                    throws SlickException{
+
+    //set the drawing mode to honor transparent pixels
+    g.setDrawMode(g.MODE_NORMAL);
+
+    //Draw the background to erase the previous picture.
+    background.draw(0,0);
+
+    //Draw every sprite in the array.
+    for(int cnt = 0;cnt &lt; sprites.length;cnt++){
+      //Ask the sprite to draw itself.
+      sprites[cnt].draw();
+    }//end for loop
+  }//end render
+
+}//end class Slick0200
+//======================================================//
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1072">
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1012" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1012">
+
+			
+
+<row id="tr1024">
+
+				
+
+<entry id="th1012">
+<emphasis id="Listing_11" effect="bold">
+
+Listing 11
+
+</emphasis>
+
+.  Source code for the 
+				sprite class named Sprite01.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1012">
+
+			
+
+<row id="tr1025">
+
+				
+
+<entry id="td1012">
+
+
+
+<code id="pre1010" display="block">
+
+/*Sprite01.java
+Copyright 2013, R.G.Baldwin
+
+An object of this class can be manipulated as a sprite
+in a Slick2D program.
+
+Tested using JDK 1.7 under WinXP
+*********************************************************/
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Color;
+
+public class Sprite01{
+  Image image = null;//The sprite wears this image
+  float X = 0f;//X-Position of the sprite
+  float Y = 0f;//Y-Position of the sprite
+  float width = 0f;//Width of the sprite
+  float height = 0f;//Height of the sprite
+  float xStep = 1f;//Incremental step size in pixels - X
+  float yStep = 1f;//Incremental step size in pixels - Y
+  float scale = 1f;//Scale factor for draw method
+  Color colorFilter = null;//Color filter for draw method
+  
+  float xDirection = 1.0f;//Move to right for positive
+  float yDirection = 1.0f;//Move down for positive
+  
+  int life = 1;//Used to control life or death of sprite
+  
+  boolean exposed = false;//Used in the contagion program
+  
+  //Constructor
+  public Sprite01(Image image,//Sprite wears this image
+                  float X,//Initial position
+                  float Y,//Initial position
+                  float xDirection,//Initial direction
+                  float yDirection,//Initial direction
+                  float xStep,//Initial step size
+                  float yStep,//Initial step size
+                  float scale,//Scale factor for drawing
+                  Color colorFilter)
+                    throws SlickException {
+
+      //Save incoming parameter values
+      this.image = image;
+      this.X = X;
+      this.Y = Y;
+      this.xDirection = xDirection;
+      this.yDirection = yDirection;
+      this.xStep = xStep;
+      this.yStep = yStep;
+      this.scale = scale;
+      this.colorFilter = colorFilter;
+      
+      //Compute and save width and height of image
+      width = image.getWidth();
+      height = image.getHeight();
+
+  }//end constructor
+  //----------------------------------------------------//
+  //The following accessor methods make many of the
+  // important attributes accessible to the using
+  // program.
+  //----------------------------------------------------//
+  
+  public Image getImage(){
+    return image;
+  }//end getSprite
+  //----------------------------------------------------//
+  
+  public void setImage(Image image) throws SlickException{
+    this.image = image;
+    width = image.getWidth();
+    height = image.getHeight();
+  }//end setImage
+  //----------------------------------------------------//
+  
+  public float getWidth(){
+    return width;
+  }//end getWidth
+  //----------------------------------------------------//
+
+  public float getHeight(){
+    return height;
+  }//end getWidth
+  //----------------------------------------------------//
+  
+  public float getX(){
+    return X;
+  }//end getX
+  //----------------------------------------------------//
+  
+  public void setX(float X){
+    this.X = X;
+  }//end setX
+  //----------------------------------------------------//
+  public float getY(){
+    return Y;
+  }//end getY
+  //----------------------------------------------------//
+
+  public void setY(float Y){
+    this.Y = Y;
+  }//end setY
+  //----------------------------------------------------//
+  
+  public float getXDirection(){
+    return xDirection;
+  }// end getXDirection
+  //----------------------------------------------------//
+  
+  public void setXDirection(float xDirection){
+    this.xDirection = xDirection;
+  }//end setXDirection
+  //----------------------------------------------------//
+  
+  public float getYDirection(){
+    return yDirection;
+  }//end getYDirection
+  //----------------------------------------------------//
+  
+  public void setYDirection(float yDirection){
+    this.yDirection = yDirection;
+  }//setYDirection
+  //----------------------------------------------------//
+  
+  public float getXStep(){
+    return xStep;
+  }//end getXStep
+  //----------------------------------------------------//
+  
+  public void setXStep(float xStep){
+    this.xStep = xStep;
+  }//end setXStep
+  //----------------------------------------------------//
+  
+  public float getYStep(){
+    return yStep;
+  }//end getYStep
+  //----------------------------------------------------//
+
+  public void setYStep(float yStep){
+    this.yStep = yStep;
+  }//end setYStep
+  //----------------------------------------------------//
+  
+  public float getScale(){
+    return scale;
+  }//end getScale
+  //----------------------------------------------------//
+
+  public void setScale(float scale){
+    this.scale = scale;
+  }//end setScale
+  //----------------------------------------------------//
+  
+  public Color getColorFilter(){
+    return colorFilter;
+  }//end getColorFilter
+  //----------------------------------------------------//
+  
+  public void setColorFilter(
+                        float red,float green,float blue){
+    colorFilter = new Color(red,green,blue);
+  }//end setColorFilter
+  //----------------------------------------------------//
+ 
+  public int getLife(){
+    return life;
+  }//end getLife
+  //----------------------------------------------------//
+  
+  public void setLife(int life){
+    this.life = life;
+  }//end setLife
+  //----------------------------------------------------//
+  
+  public boolean getExposed(){
+    return exposed;
+  }//end getExposed
+  //----------------------------------------------------//
+  
+  public void setExposed(boolean exposed){
+    this.exposed = exposed;
+  }//end setExposed
+  //----------------------------------------------------//
+  
+  //This method causes the sprite to be drawn each time
+  // it is called.
+  public void draw(){
+    image.draw(X,Y,scale,colorFilter);
+  }//end draw
+  //----------------------------------------------------//
+  
+  //This method detects collisions between this 
+  // rectangular sprite object and another rectangular
+  // sprite object by testing four cases where a
+  // collision could not possibly occur and assuming that
+  // a collision has occurred if none of those cases
+  // are true.
+  public boolean isCollision(Sprite01 other){
+    //Create variable with meaningful names make the
+    // algorithm easier to understand. Can be eliminated
+    // to make the algorithm more efficient.
+    float thisTop = Y;
+    float thisBottom = thisTop + height*scale;
+    float thisLeft = X;
+    float thisRight = thisLeft + width*scale;
+    
+    float otherTop = other.getY();
+    float otherBottom = otherTop + other.getHeight()*other.getScale();
+    float otherLeft = other.getX();
+    float otherRight = otherLeft + other.getWidth()*other.getScale();
+
+    if (thisBottom &lt; otherTop) return(false);
+    if (thisTop &gt; otherBottom) return(false);
+  
+    if (thisRight &lt; otherLeft) return(false);
+    if (thisLeft &gt; otherRight) return(false);
+  
+    return(true);
+
+  }//end isCollision
+  //----------------------------------------------------//
+  
+  public void move(){
+    X += xDirection*xStep;
+    Y += yDirection*yStep;
+  }//end move
+  //----------------------------------------------------//
+  
+  public void edgeBounce(float winWidth,float winHeight){
+    //Test for a collision with one of the edges and
+    // cause to sprite to bounce off the edge if a
+    // collision has occurred.
+    if(X + width*scale &gt;= winWidth){
+      //A collision has occurred.
+      xDirection = -1.0f;//reverse direction
+      //Set the position to the right edge less the
+      // width of the sprite.
+      X = winWidth - width*scale;
+    }//end if
+    
+    //Continue testing for collisions with the edges
+    // and take appropriate action.
+    if(X &lt;= 0){
+      xDirection = 1.0f;
+      X = 0;
+    }//end if
+    
+    if(Y + height*scale &gt;= winHeight){
+      yDirection = -1.0f;
+      Y = winHeight - height*scale;
+    }//end if
+    
+    if(Y &lt;= 0){
+      yDirection = 1.0f;
+      Y = 0;
+    }//end if
+  }//end edgeBounce
+  //----------------------------------------------------//
+
+}//end class Sprite01
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1073">
+-end- 
+
+</para>
+
+
+
+
+
+
+</section>
+</content>
+
+
+
+
+</document>

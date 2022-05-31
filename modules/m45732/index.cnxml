@@ -1,0 +1,3877 @@
+<document xmlns="http://cnx.rice.edu/cnxml"> 
+<title>Slick0120: Starting your program</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45732</md:content-id>
+  <md:title>Slick0120: Starting your program</md:title>
+  <md:abstract>Learn how and why you should extend the BasicGame class instead of implementing the Game interface directly. Learn about the behavior of the constructors for the AppGameContainer class. Learn about the behavior of the setup and getDelta methods that are called by the start method of the AppGameContainer class.</md:abstract>
+  <md:uuid>e44799b4-7c49-4618-920e-b364a04a20fe</md:uuid>
+</metadata>
+
+<content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="h11000">
+<title>
+Table of Contents
+
+</title>
+
+
+
+
+<list id="ul1000" list-type="bulleted">
+
+	
+
+<item id="li1000">
+<link id="a1000" target-id="Preface">
+
+Preface
+
+</link>
+
+
+	
+
+<list id="ul1001" list-type="bulleted">
+
+		
+
+<item id="li1001">
+<link id="a1001" target-id="Viewing_tip">
+
+Viewing tip
+
+</link>
+
+
+<list id="ul1002" list-type="bulleted">
+
+			
+
+<item id="li1002">
+<link id="a1002" target-id="Listings">
+
+Listings
+
+</link>
+
+
+</item>
+
+
+		
+
+</list>
+
+
+		
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1003">
+<link id="a1003" target-id="Preview">
+
+Preview
+
+</link>
+
+ 
+
+</item>
+
+
+	
+
+<item id="li1004">
+<link id="a1004" target-id="General_background_information">
+
+General background information
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1005">
+<link id="a1005" target-id="Discussion_and_sample_code">
+
+Discussion and sample code
+
+</link>
+
+
+<list id="ul1003" list-type="bulleted">
+
+		
+
+<item id="li1006">
+<link id="a1006" target-id="Two_primary_objects">
+
+Two primary 
+		objects
+
+</link>
+
+
+<list id="ul1004" list-type="bulleted">
+
+			
+
+<item id="li1007">
+
+			
+
+<link id="a1007" target-id="Behavior_of_an_object_of_the_AppGameContainer_class">
+
+
+			Behavior of an object of the AppGameContainer class
+
+</link>
+
+
+</item>
+
+
+			
+
+<item id="li1008">
+
+			
+
+<link id="a1008" target-id="Behavior_of_an_object_that_implements_the_Game_interface">
+
+
+			Behavior of an object that implements the Game interface
+
+</link>
+
+
+</item>
+
+
+		
+
+</list>
+
+
+		
+
+</item>
+
+
+		
+
+<item id="li1009">
+
+		
+
+<link id="a1009" target-id="Starting_the_game">
+
+Starting the game
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1010">
+
+		
+
+<link id="a1010" target-id="The_constructors_for_the_AppGameContainer_class">
+
+The 
+		constructors for the AppGameContainer class
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1011">
+
+		
+
+<link id="a1011" target-id="The_setup_method_of_the_AppGameContainer_class">
+
+The setup method of the AppGameContainer class
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1012">
+
+		
+
+<link id="a1012" target-id="The_getDelta_method_of_the_AppGameContainer_class">
+
+The getDelta method of the GameContainer class
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1013">
+
+		
+
+<link id="a1013" target-id="The_gameLoop_method_of_the_AppGameContainer_class">
+
+The gameLoop method of the AppGameContainer class
+
+</link>
+
+
+</item>
+
+
+	
+
+</list>
+
+
+
+
+</item>
+
+
+	
+
+<item id="li1014">
+<link id="a1014" target-id="Run_the_program">
+
+Run the program
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1015">
+<link id="a1015" target-id="Summary">
+
+Summary
+
+</link>
+
+ 
+
+</item>
+
+
+	
+
+<item id="li1016">
+<link id="a1016" target-id="Whats_next">
+
+What's next?
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1017">
+<link id="a1017" target-id="Miscellaneous">
+
+Miscellaneous
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1018">
+<link id="a1018" target-id="Complete_program_listing">
+
+Complete program listing
+
+</link>
+
+
+</item>
+
+
+
+
+</list>
+
+
+	
+
+	
+
+</section>
+<section id="h11001">
+<title>
+<emphasis id="Preface" effect="bold">
+
+Preface
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+	
+
+<para id="p1000">
+This module is one in a collection of modules designed to teach you about 
+	the anatomy of a game engine. 
+
+</para>
+
+
+
+
+<para id="p1001">
+Although the modules in this collection will concentrate on the Java game 
+library named Slick2D, the 
+concepts involved and the knowledge that you will gain is applicable to 
+different game engines written in different programming languages as well.
+
+</para>
+
+
+	
+
+<section id="h21000">
+<title>
+<emphasis id="Viewing_tip" effect="bold">
+
+Viewing tip
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1002">
+I recommend that you open another copy of this module in a separate 
+browser window and use the following links to easily find and view the listings while you are reading about them.
+
+</para>
+
+
+	
+
+<section id="h31000">
+<title>
+<emphasis id="Listings" effect="bold">
+
+Listings
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<list id="ul1005" list-type="bulleted">
+
+		
+
+<item id="li1019">
+<link id="a1019" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+. The main method. 
+
+</item>
+
+
+		
+
+<item id="li1020">
+<link id="a1020" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+. The start method of the AppGameContainer class. 
+
+</item>
+
+
+		
+
+<item id="li1021">
+<link id="a1021" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+. Constructor for the AppGameContainer class that takes a single parameter. 
+
+</item>
+
+
+		
+
+<item id="li1022">
+<link id="a1022" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+. Constructor for the AppGameContainer class that takes four parameters. 
+
+</item>
+
+
+		
+
+<item id="li1023">
+<link id="a1023" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+. The getDelta method of the GameContainer class.
+
+</item>
+
+
+		
+
+<item id="li1024">
+<link id="a1024" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+. Source code for Slick0120a.java
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</section>
+</section>
+</section>
+<section id="h11002">
+<title>
+<emphasis id="Preview" effect="bold">
+
+Preview
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1003">
+The main purpose of this module is to analyze the behavior of the Slick2D game 
+engine when you start a 
+Slick2D game running.
+
+</para>
+
+
+
+
+<para id="p1004">
+<emphasis id="strong1000" effect="bold">
+What you have learned
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1005">
+In previous modules, you learned how to download Slick2D and how to install 
+Slick2D in such a way that you can easily compile and execute Slick2D programs from 
+the command line with no need for a high level IDE such as Eclipse or NetBeans.
+
+</para>
+
+
+
+
+<para id="p1006">
+You also learned what we often mean when we speak of a 
+
+<emphasis id="em1000" effect="italics">
+"game engine"
+
+</emphasis>
+ 
+and how that terminology relates to a 
+
+<emphasis id="em1001" effect="italics">
+"software framework."
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1007">
+You learned how to write a minimal Java application in conjunction with a set 
+of Slick2D jar files to create your own Slick2D game engine. Using that program as 
+an example, you learned about the overall structure of the Slick2D game engine.
+
+</para>
+
+
+
+
+<para id="p1008">
+You learned that game engines are typically 
+
+<emphasis id="em1002" effect="italics">
+service provider
+
+</emphasis>
+ 
+programs and you learned about a common set of services that is provided by most 
+game engines.
+
+</para>
+
+
+
+
+<para id="p1009">
+You learned about the two cooperating objects that form the heart of the 
+Slick2D game engine.
+
+</para>
+
+
+
+
+<list id="ul1006" list-type="bulleted">
+
+	
+
+<item id="li1025">
+An object instantiated from a subclass of the Slick2D class named 
+
+<emphasis id="strong1001" effect="bold">
+GameContainer
+
+</emphasis>
+.
+    
+
+</item>
+
+
+	
+
+<item id="li1026">
+An object instantiated from a class that implements the Slick2D interface named 
+	
+
+<emphasis id="strong1002" effect="bold">
+Game
+
+</emphasis>
+. 
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1010">
+And last but not least, you learned about the five abstract methods declared in the 
+interface named 
+
+<emphasis id="strong1003" effect="bold">
+Game
+
+</emphasis>
+:
+
+</para>
+
+
+
+
+<list id="ul1007" list-type="bulleted">
+
+	
+
+<item id="li1027">
+boolean closeRequested() 
+
+</item>
+
+
+	
+
+<item id="li1028">
+String getTitle()
+
+</item>
+
+
+	
+
+<item id="li1029">
+void init(GameContainer container)
+
+</item>
+
+
+	
+
+<item id="li1030">
+void render(GameContainer container, Graphics g) 
+
+</item>
+
+
+	
+
+<item id="li1031">
+void update(GameContainer container, int delta) 
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1011">
+<emphasis id="strong1004" effect="bold">
+What you will learn
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1012">
+You will learn how and why you should extend the 
+
+<emphasis id="strong1005" effect="bold">
+BasicGame
+
+</emphasis>
+ 
+class instead of implementing the 
+
+<emphasis id="strong1006" effect="bold">
+Game
+
+</emphasis>
+ interface directly.
+
+</para>
+
+
+
+
+<para id="p1013">
+You will learn about the constructors for the 
+
+<emphasis id="strong1007" effect="bold">
+
+AppGameContainer
+
+</emphasis>
+ class.
+
+</para>
+
+
+	
+
+<para id="p1014">
+You learned earlier that you need to call the 
+
+<emphasis id="strong1008" effect="bold">
+start
+
+</emphasis>
+ method 
+	on an object of the 
+
+<emphasis id="strong1009" effect="bold">
+AppGameContainer
+
+</emphasis>
+ class to cause your 
+	Slick2D game program 
+	to start running. You will learn that the 
+
+<emphasis id="strong1010" effect="bold">
+start
+
+</emphasis>
+ method calls the following 
+three methods:
+
+</para>
+
+
+
+
+<list id="ul1008" list-type="bulleted">
+
+	
+
+<item id="li1032">
+setup
+
+</item>
+
+
+	
+
+<item id="li1033">
+getDelta
+
+</item>
+
+
+	
+
+<item id="li1034">
+gameLoop
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1015">
+You will learn about the behavior of the 
+
+<emphasis id="strong1011" effect="bold">
+setup
+
+</emphasis>
+ and 
+
+<emphasis id="strong1012" effect="bold">
+
+getDelta
+
+</emphasis>
+ methods in this module. An explanation of the 
+
+<emphasis id="strong1013" effect="bold">
+gameLoop
+
+</emphasis>
+ 
+method will be deferred until the next module.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11003">
+<title>
+<emphasis id="General_background_information" effect="bold">
+
+General 
+	background information
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1016">
+<link id="a1025" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+ shows the skeleton code for a basic game class named 
+
+<emphasis id="strong1014" effect="bold">
+Slick0120a
+
+</emphasis>
+. This code 
+differs from the skeleton code presented in earlier modules in two important respects:
+
+</para>
+
+
+
+
+<list id="ol1000" list-type="enumerated">
+
+	
+
+<item id="li1035">
+<emphasis id="The_class_named_Slick0120a_extends" effect="bold">
+
+The class named 
+
+<emphasis id="strong1015" effect="bold">
+Slick0120a
+
+</emphasis>
+ extends
+
+</emphasis>
+
+ the 
+	Slick2D 
+class named 
+
+<emphasis id="strong1016" effect="bold">
+BasicGame
+
+</emphasis>
+ instead of extending 
+
+<emphasis id="strong1017" effect="bold">
+Object
+
+</emphasis>
+ 
+	and implementing the Slick2D 
+interface named 
+
+<emphasis id="strong1018" effect="bold">
+Game
+
+</emphasis>
+.
+
+</item>
+
+
+	
+
+<item id="li1036">
+<emphasis id="The_class_named_Slick0120a_does_not_override" effect="bold">
+
+The class named 
+
+<emphasis id="strong1019" effect="bold">
+Slick0120a
+
+</emphasis>
+ does not override
+
+</emphasis>
+
+ the methods 
+named 
+
+<emphasis id="strong1020" effect="bold">
+getTitle
+
+</emphasis>
+ and 
+
+<emphasis id="strong1021" effect="bold">
+closeRequested
+
+</emphasis>
+. 
+
+<emphasis id="em1003" effect="italics">
+(They 
+	are overridden with default behavior in the 
+
+<emphasis id="strong1022" effect="bold">
+BasicGame
+
+</emphasis>
+ 
+	class.)
+
+</emphasis>
+ Instead, it overrides only the following methods that are 
+	declared in the Slick2D 
+
+<emphasis id="strong1023" effect="bold">
+Game
+
+</emphasis>
+ interface:
+
+<list id="ol1001" list-type="enumerated">
+
+		
+
+<item id="li1037">
+init
+
+</item>
+
+
+		
+
+<item id="li1038">
+update
+
+</item>
+
+
+		
+
+<item id="li1039">
+render
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1017">
+<emphasis id="strong1024" effect="bold">
+The class named BasicGame
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1018">
+Regarding the 
+
+<link id="a1026" target-id="The_class_named_Slick0120a_extends">
+
+first item
+
+</link>
+
+ in 
+the above list, while it is technically possible to write a Slick2D game program 
+by implementing the 
+
+<emphasis id="strong1025" effect="bold">
+Game
+
+</emphasis>
+ interface directly, the Slick2D helper 
+class named 
+
+<emphasis id="strong1026" effect="bold">
+BasicGame
+
+</emphasis>
+ implements the 
+
+<emphasis id="strong1027" effect="bold">
+Game
+
+</emphasis>
+ 
+interface and provides a number of useful methods as well. Therefore, by 
+extending the 
+
+<emphasis id="strong1028" effect="bold">
+BasicGame
+
+</emphasis>
+ class, you not only implement the
+
+
+<emphasis id="strong1029" effect="bold">
+Game
+
+</emphasis>
+ interface, you also get the benefit of the methods that are 
+defined in the 
+
+<emphasis id="strong1030" effect="bold">
+BasicGame
+
+</emphasis>
+ class.
+
+</para>
+
+
+
+
+<para id="p1019">
+<emphasis id="strong1031" effect="bold">
+The methods named init, update, 
+and render
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1020">
+Note, however that the 
+
+<emphasis id="strong1032" effect="bold">
+Basic
+
+</emphasis>
+ game class does not define 
+concrete versions of the methods named 
+
+<emphasis id="strong1033" effect="bold">
+init
+
+</emphasis>
+, 
+
+<emphasis id="strong1034" effect="bold">
+update
+
+</emphasis>
+, 
+and 
+
+<emphasis id="strong1035" effect="bold">
+render
+
+</emphasis>
+. Therefore, you are still required to provide 
+concrete versions of those methods in your class that extends the 
+
+<emphasis id="strong1036" effect="bold">
+
+BasicGame
+
+</emphasis>
+ class 
+
+<emphasis id="em1004" effect="italics">
+(or some subclass of that class)
+
+</emphasis>
+. 
+
+</para>
+
+
+
+
+<para id="p1021">
+The class named 
+
+<emphasis id="strong1037" effect="bold">
+Slick0120a
+
+</emphasis>
+ does provide concrete versions of 
+methods as indicated in the
+
+
+<link id="a1027" target-id="The_class_named_Slick0120a_does_not_override">
+
+second item
+
+</link>
+
+ in the 
+above list.
+
+</para>
+
+
+
+
+<para id="p1022">
+<emphasis id="strong1038" effect="bold">
+The methods named getTitle and closeRequested
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1023">
+Further regarding the 
+
+<link id="a1028" target-id="The_class_named_Slick0120a_does_not_override">
+
+second 
+item
+
+</link>
+
+ in the above list, the class named 
+
+<emphasis id="strong1039" effect="bold">
+BasicGame
+
+</emphasis>
+ does 
+provide concrete versions of the methods 
+named 
+
+<emphasis id="strong1040" effect="bold">
+getTitle
+
+</emphasis>
+ and 
+
+<emphasis id="strong1041" effect="bold">
+closeRequested
+
+</emphasis>
+. Therefore, 
+unless you need to provide different behavior for those two methods, you don't 
+need to override them in your new class that extends the 
+
+<emphasis id="strong1042" effect="bold">
+BasicGame
+
+</emphasis>
+ 
+class.
+
+</para>
+
+
+	
+
+	
+
+</section>
+<section id="h11004">
+<title>
+<emphasis id="Discussion_and_sample_code" effect="bold">
+
+Discussion and sample code
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+	
+
+<para id="p1024">
+<link id="a1029" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ shows the 
+
+<emphasis id="strong1043" effect="bold">
+main
+
+</emphasis>
+ method 
+	for our new class named 
+
+<emphasis id="strong1044" effect="bold">
+Slick0120a
+
+</emphasis>
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1000" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1000">
+
+			
+
+<row id="tr1000">
+
+				
+
+<entry id="th1000">
+<emphasis id="Listing_1" effect="bold">
+
+Listing 1
+
+</emphasis>
+
+. 
+
+<emphasis id="Listing_8" effect="bold">
+
+Listing 1
+
+</emphasis>
+
+. The main method.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1000">
+
+			
+
+<row id="tr1001">
+
+				
+
+<entry id="td1000">
+
+
+
+<code id="pre1000" display="block">
+  public static void main(String[] args)
+                                    throws SlickException{
+    AppGameContainer app =
+                   new AppGameContainer(new Slick0120a());
+    app.start();//this statement is required
+  }//end main</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1025">
+We will dissect this code to make certain that we understand what it means 
+	and why we need it.
+
+</para>
+
+
+
+
+<section id="h21001">
+<title>
+<emphasis id="Two_primary_objects" effect="bold">
+
+Two primary objects
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1026">
+You learned in an earlier module that a Slick2D game that runs as an application 
+
+<emphasis id="em1005" effect="italics">
+(not an applet)
+
+</emphasis>
+ 
+consists of at least two cooperating objects:
+
+</para>
+
+
+
+
+<list id="ol1002" list-type="enumerated">
+
+	
+
+<item id="li1040">
+<emphasis id="An_object_instantiated_from_a_subclass_of_the_Slick_class" effect="bold">
+
+An object instantiated from a subclass of the 
+	Slick2D class
+
+</emphasis>
+
+ named 
+
+<emphasis id="strong1045" effect="bold">
+
+	GameContainer
+
+</emphasis>
+.
+
+</item>
+
+
+	
+
+<item id="li1041">
+
+	
+
+<emphasis id="An_object_instantiated_from_a_class_that_implements_the_Slick_interface" effect="bold">
+
+An object instantiated from a class that implements the 
+	Slick2D interface
+
+</emphasis>
+
+ 
+	named 
+
+<emphasis id="strong1046" effect="bold">
+Game
+
+</emphasis>
+.
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<section id="h31001">
+<title>
+<emphasis id="Behavior_of_an_object_of_the_AppGameContainer_class" effect="bold">
+
+Behavior of an 
+object of the AppGameContainer class
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1027">
+The 
+
+<emphasis id="strong1047" effect="bold">
+GameContainer 
+
+</emphasis>
+object 
+
+<emphasis id="em1006" effect="italics">
+(
+
+<link id="a1030" target-id="An_object_instantiated_from_a_subclass_of_the_Slick_class">
+
+item 
+1 above
+
+</link>
+
+)
+
+</emphasis>
+ manages the program startup and the game play after 
+the game program starts running. For example, this is the object that manages 
+the game loop.
+
+</para>
+
+
+
+
+<para id="p1028">
+As shown in 
+
+<link id="a1031" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+, for the program named 
+
+<emphasis id="strong1048" effect="bold">
+
+Slick0120a
+
+</emphasis>
+, this object is an object of the class named 
+
+<emphasis id="strong1049" effect="bold">
+
+AppGameContainer
+
+</emphasis>
+, which extends the class named 
+
+<emphasis id="strong1050" effect="bold">
+GameContainer
+
+</emphasis>
+.
+
+
+</para>
+
+
+
+
+<para id="p1029">
+The 
+
+<emphasis id="strong1051" effect="bold">
+AppGameContainer
+
+</emphasis>
+ class provides many public methods 
+
+<emphasis id="em1007" effect="italics">
+
+(including the method named 
+
+<emphasis id="strong1052" effect="bold">
+start
+
+</emphasis>
+, which is called in
+
+
+<link id="a1032" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+)
+
+</emphasis>
+ by 
+which you can manipulate the behavior of the container object. The 
+authors of the Slick2D library did not intend for you to physically modify the 
+source code in the 
+
+<emphasis id="strong1053" effect="bold">
+GameContainer
+
+</emphasis>
+ class or the 
+
+<emphasis id="strong1054" effect="bold">
+
+AppGameContainer
+
+</emphasis>
+ class.
+
+</para>
+
+
+
+
+</section>
+<section id="h31002">
+<title>
+<emphasis id="Behavior_of_an_object_that_implements_the_Game_interface" effect="bold">
+
+Behavior 
+of an object that implements the Game interface
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1030">
+The behaviors of the methods of the 
+
+<emphasis id="strong1055" effect="bold">
+Game
+
+</emphasis>
+ object 
+
+<emphasis id="em1008" effect="italics">
+(
+
+<link id="a1033" target-id="An_object_instantiated_from_a_class_that_implements_the_Slick_interface">
+
+item 
+2 above
+
+</link>
+
+)
+
+</emphasis>
+ are what distinguishes one 
+Slick2D game from another Slick2D game. 
+
+</para>
+
+
+
+
+<para id="p1031">
+You need not implement the 
+
+<emphasis id="strong1056" effect="bold">
+Game
+
+</emphasis>
+ interface directly. The authors of the 
+Slick2D library 
+provided a helper class named 
+
+<emphasis id="strong1057" effect="bold">
+BasicGame
+
+</emphasis>
+ that implements the
+
+
+<emphasis id="strong1058" effect="bold">
+Game
+
+</emphasis>
+ interface and provides a number of useful methods. They 
+intended for you to extend the 
+
+<emphasis id="strong1059" effect="bold">
+BasicGame
+
+</emphasis>
+ class and to override 
+at least three of the methods declared in the 
+
+<emphasis id="strong1060" effect="bold">
+Game
+
+</emphasis>
+ interface in 
+order to provide the desired behavior for your game..
+
+</para>
+
+
+
+
+<para id="p1032">
+As mentioned earlier, the class named 
+
+<emphasis id="strong1061" effect="bold">
+
+Slick0120a
+
+</emphasis>
+ extends the 
+
+<emphasis id="strong1062" effect="bold">
+BasicGame
+
+</emphasis>
+ class, thereby 
+implementing the 
+
+<emphasis id="strong1063" effect="bold">
+Game
+
+</emphasis>
+ interface and getting the benefit of 
+methods defined in the 
+
+<emphasis id="strong1064" effect="bold">
+BasicGame
+
+</emphasis>
+ class.
+
+</para>
+
+
+
+
+<para id="p1033">
+The code in the 
+
+<emphasis id="strong1065" effect="bold">
+main
+
+</emphasis>
+ method in 
+
+<link id="a1034" target-id="Listing_1">
+
+Listing 
+1
+
+</link>
+
+ instantiates an object of the 
+
+<emphasis id="strong1066" effect="bold">
+
+Slick0120a
+
+</emphasis>
+ class and passes that object's reference to the 
+constructor for the class named 
+
+<emphasis id="strong1067" effect="bold">
+AppGameContainer
+
+</emphasis>
+. Therefore,
+
+
+<link id="a1035" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ instantiates both of the required objects and 
+connects them in the manner intended by the authors of the Slick2D library.
+
+</para>
+
+
+
+
+</section>
+</section>
+<section id="h21002">
+<title>
+<emphasis id="Starting_the_game" effect="bold">
+
+Starting the game
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1034">
+The main purpose of this module is to analyze the behavior of the Slick2D game 
+engine when you start a 
+Slick2D game running.
+
+</para>
+
+
+
+
+<para id="p1035">
+<link id="a1036" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ calls the 
+
+<emphasis id="strong1068" effect="bold">
+start
+
+</emphasis>
+ method on 
+a reference to the 
+
+<emphasis id="strong1069" effect="bold">
+AppGameContainer
+
+</emphasis>
+ object. The source code for 
+the 
+
+<emphasis id="strong1070" effect="bold">
+start
+
+</emphasis>
+ method is shown in 
+
+<link id="a1037" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1001" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1001">
+
+			
+
+<row id="tr1002">
+
+				
+
+<entry id="th1001">
+<emphasis id="Listing_2" effect="bold">
+
+Listing 2
+
+</emphasis>
+
+. The start 
+				method of the AppGameContainer class.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1001">
+
+			
+
+<row id="tr1003">
+
+				
+
+<entry id="td1001">
+
+
+
+<code id="pre1001" display="block">
+  public void start() throws SlickException {
+    try {
+      setup();
+      
+      getDelta();
+      while (running()) {
+        gameLoop();
+      }
+    } finally {
+      destroy();
+    }
+    
+    if (forceExit) {
+      System.exit(0);
+    }
+  }//end start</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1036">
+<emphasis id="strong1071" effect="bold">
+Copyright and license information
+
+</emphasis>
+</para>
+
+
+
+
+
+
+
+	
+
+<note id="note1000" type="">
+
+
+		
+
+
+			
+
+
+				
+
+<emphasis id="strong1072" effect="bold">
+Copyright and license information:
+
+</emphasis>
+
+				
+
+<para id="p1037">
+I was unable to find any copyright or license information in 
+				the zip file that I downloaded from
+				
+
+<link id="a1038" url="http://slick.ninjacave.com/">
+
+http://slick.ninjacave.com/
+
+</link>
+
+. I acknowledge that I am not the 
+				author of the code in that zip file and the copyrights for that 
+				material are held by someone other than myself.
+
+</para>
+
+
+				
+
+</note>
+
+			
+
+
+		
+
+
+
+	
+
+
+
+	
+
+<para id="p1038">
+<emphasis id="strong1073" effect="bold">
+Constructors and methods
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1039">
+This and the next few modules will explore and discuss the constructors 
+	for the 
+
+<emphasis id="strong1074" effect="bold">
+AppGameContainer
+
+</emphasis>
+ class 
+
+<emphasis id="em1009" effect="italics">
+(see
+	
+
+<link id="a1039" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+)
+
+</emphasis>
+ along with salient 
+	aspects of the following methods that are called in 
+
+<link id="a1040" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+:
+
+</para>
+
+
+
+
+<list id="ul1009" list-type="bulleted">
+
+	
+
+<item id="li1042">
+setup
+
+</item>
+
+
+	
+
+<item id="li1043">
+getDelta
+
+</item>
+
+
+	
+
+<item id="li1044">
+gameLoop
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+</section>
+<section id="h21003">
+<title>
+<emphasis id="The_constructors_for_the_AppGameContainer_class" effect="bold">
+
+The constructors 
+for the AppGameContainer class
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1040">
+<link id="a1041" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ instantiates a new object of the 
+
+<emphasis id="strong1075" effect="bold">
+AppGameContainer
+
+</emphasis>
+ class 
+by calling a constructor that takes a single parameter of the Slick2D interface 
+type 
+
+<emphasis id="strong1076" effect="bold">
+Game
+
+</emphasis>
+.
+
+</para>
+
+
+
+
+<para id="p1041">
+The source code for that constructor is shown in 
+
+<link id="a1042" target-id="Listing_3">
+
+Listing 
+3
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1002" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1002">
+
+			
+
+<row id="tr1004">
+
+				
+
+<entry id="th1002">
+<emphasis id="Listing_3" effect="bold">
+
+Listing 3
+
+</emphasis>
+
+. Constructor 
+				for the AppGameContainer class that takes a single parameter.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1002">
+
+			
+
+<row id="tr1005">
+
+				
+
+<entry id="td1002">
+
+
+
+<code id="pre1002" display="block">
+  public AppGameContainer(Game game) throws SlickException {
+    this(game,640,480,false);
+  }//end constructor</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1042">
+<emphasis id="strong1077" effect="bold">
+A constructor with four parameters
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1043">
+The code in 
+
+<link id="a1043" target-id="Listing_3">
+
+Listing 
+3
+
+</link>
+
+ simply calls another overloaded version of the constructor passing four default 
+	parameters that specify a game window of 640x480 pixels.
+
+</para>
+
+
+
+
+<para id="p1044">
+The constructor that takes four parameters is shown in 
+
+<link id="a1044" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1003" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1003">
+
+			
+
+<row id="tr1006">
+
+				
+
+<entry id="th1003">
+<emphasis id="Listing_4" effect="bold">
+
+Listing 4
+
+</emphasis>
+
+. Constructor 
+				for the AppGameContainer class that takes four parameters.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1003">
+
+			
+
+<row id="tr1007">
+
+				
+
+<entry id="td1003">
+
+
+
+<code id="pre1003" display="block">
+  public AppGameContainer(Game game,
+                          int width,
+                          int height,
+                          boolean fullscreen) 
+                                   throws SlickException {
+    super(game);
+    
+    originalDisplayMode = Display.getDisplayMode();
+    
+    setDisplayMode(width,height,fullscreen);
+  }//end constructor</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1045">
+The first parameter is a reference to the game that is to be wrapped by the
+	
+
+<emphasis id="strong1078" effect="bold">
+GameContainer
+
+</emphasis>
+ object. The code in 
+
+<link id="a1045" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+ 
+	passes that reference to its superclass, 
+
+<emphasis id="strong1079" effect="bold">
+GameContainer
+
+</emphasis>
+, 
+	where it is saved in a 
+
+<emphasis id="em1010" effect="italics">
+protected
+
+</emphasis>
+ variable of type 
+
+<emphasis id="strong1080" effect="bold">
+Game
+
+</emphasis>
+ 
+	named 
+
+<emphasis id="strong1081" effect="bold">
+game
+
+</emphasis>
+. As a 
+
+<emphasis id="em1011" effect="italics">
+protected
+
+</emphasis>
+ variable, it is 
+	accessible to all of the methods of the 
+
+<emphasis id="strong1082" effect="bold">
+AppGameContainer
+
+</emphasis>
+ 
+	class for use later.
+
+</para>
+
+
+
+
+<para id="p1046">
+Then 
+
+<link id="a1046" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+ saves the current display mode in a 
+variable named 
+
+<emphasis id="strong1083" effect="bold">
+originalDisplayMode
+
+</emphasis>
+, presumably to be used 
+later.
+
+</para>
+
+
+
+
+<para id="p1047">
+Finally, 
+
+<link id="a1047" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+ calls the method named 
+
+<emphasis id="strong1084" effect="bold">
+
+setDisplayMode
+
+</emphasis>
+ to set the display mode to match the incoming 
+parameters. 
+
+</para>
+
+
+
+
+<para id="p1048">
+<emphasis id="em1012" effect="italics">
+(This is the constructor that you would use if you wanted to cause the 
+size of the game window to be something other than the default of 640 by 480 
+pixels.)
+
+</emphasis>
+</para>
+
+
+
+
+</section>
+<section id="h21004">
+<title>
+<emphasis id="The_setup_method_of_the_AppGameContainer_class" effect="bold">
+
+The setup method of 
+the AppGameContainer class
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1049">
+The 
+
+<emphasis id="strong1085" effect="bold">
+setup
+
+</emphasis>
+ method is fairly long and complicated. Most of the 
+code in the method has to do with the creation and formatting of the game 
+window. I will skip over that code and leave it as an exercise for interested 
+students to analyze.
+
+</para>
+
+
+
+
+<para id="p1050">
+<emphasis id="strong1086" effect="bold">
+Initialization of the game
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1051">
+Finally a statement near the end of the 
+
+<emphasis id="strong1087" effect="bold">
+setup
+
+</emphasis>
+ method calls a 
+method named
+
+<emphasis id="strong1088" effect="bold">
+ init
+
+</emphasis>
+ on a reference to the 
+
+<emphasis id="strong1089" effect="bold">
+Game
+
+</emphasis>
+ 
+object, passing a reference to the object of type 
+
+<emphasis id="strong1090" effect="bold">
+AppGameContainer
+
+</emphasis>
+ 
+as a parameter.
+
+</para>
+
+
+
+
+<para id="p1052">
+This is what we would refer to as a callback that uses the reference to the
+
+
+<emphasis id="strong1091" effect="bold">
+Game
+
+</emphasis>
+ object that was passed to the constructor to call the 
+method named 
+
+<emphasis id="strong1092" effect="bold">
+init
+
+</emphasis>
+ on the 
+
+<emphasis id="strong1093" effect="bold">
+Game
+
+</emphasis>
+ object.
+
+</para>
+
+
+
+
+<para id="p1053">
+The effect is to call the method named 
+
+<emphasis id="strong1094" effect="bold">
+init
+
+</emphasis>
+ belonging to the 
+game program shown in 
+
+<link id="a1048" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+. This causes the initialization code 
+
+<emphasis id="em1013" effect="italics">
+(if 
+any)
+
+</emphasis>
+ that you have written into the overridden 
+
+<emphasis id="strong1095" effect="bold">
+init
+
+</emphasis>
+ method 
+to be executed. If the overridden version of the method has an empty body 
+
+<emphasis id="em1014" effect="italics">
+
+(as in 
+
+</emphasis>
+ 
+
+<link id="a1049" target-id="Listing_6">
+
+
+<emphasis id="em1015" effect="italics">
+Listing 6
+
+</emphasis>
+</link>
+
+
+<emphasis id="em1016" effect="italics">
+)
+
+</emphasis>
+, it 
+simply returns without doing anything. This is how your game gets initialized.
+
+</para>
+
+
+
+
+</section>
+<section id="h21005">
+<title>
+<emphasis id="The_getDelta_method_of_the_AppGameContainer_class" effect="bold">
+
+The getDelta method of the GameContainer class
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1054">
+The 
+
+<emphasis id="strong1096" effect="bold">
+AppGameContainer
+
+</emphasis>
+ 
+class inherits a 
+
+<emphasis id="em1017" effect="italics">
+protected
+
+</emphasis>
+ method named 
+
+<emphasis id="strong1097" effect="bold">
+getDelta
+
+</emphasis>
+ from 
+its superclass named 
+
+<emphasis id="strong1098" effect="bold">
+GameContainer
+
+</emphasis>
+.
+
+</para>
+
+
+
+
+<para id="p1055">
+The 
+
+<emphasis id="strong1099" effect="bold">
+getDelta
+
+</emphasis>
+ method is called from the 
+
+<emphasis id="strong1100" effect="bold">
+start
+
+</emphasis>
+ 
+method shown in 
+
+<link id="a1050" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+.
+
+</para>
+
+
+
+
+<para id="p1056">
+<emphasis id="strong1101" effect="bold">
+What is delta?
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1057">
+An 
+
+<emphasis id="strong1102" effect="bold">
+int
+
+</emphasis>
+ parameter named 
+
+<emphasis id="strong1103" effect="bold">
+delta
+
+</emphasis>
+ is received by 
+the 
+
+<emphasis id="strong1104" effect="bold">
+update
+
+</emphasis>
+ method shown in 
+
+<link id="a1051" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+.
+
+
+<emphasis id="em1018" effect="italics">
+(The 
+
+</emphasis>
+<emphasis id="strong1105" effect="bold">
+<emphasis id="em1019" effect="italics">
+update
+
+</emphasis>
+</emphasis>
+<emphasis id="em1020" effect="italics">
+ method s a concrete 
+version of the method having the same signature that is declared in the 
+
+</emphasis>
+ 
+
+<emphasis id="strong1106" effect="bold">
+
+
+
+<emphasis id="em1021" effect="italics">
+Game
+
+</emphasis>
+</emphasis>
+<emphasis id="em1022" effect="italics">
+ interface.)
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1058">
+According to the documentation for the 
+
+<emphasis id="strong1107" effect="bold">
+update
+
+</emphasis>
+ method in the
+
+
+<emphasis id="strong1108" effect="bold">
+Game
+
+</emphasis>
+ interface, delta is
+
+</para>
+
+
+
+
+<para id="p1059">
+<emphasis id="em1023" effect="italics">
+"The amount of time that has passed since last update in milliseconds"
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1060">
+Having that time available can be valuable in some game programs. For 
+example, you might like for one of the actors to light a fuse on a bomb and have 
+that bomb detonate some given number of milliseconds later. In that case, the 
+program would need real time information to know when to detonate the bomb.
+
+</para>
+
+
+
+
+<para id="p1061">
+<link id="a1052" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+ shows the source code for the 
+
+<emphasis id="strong1109" effect="bold">
+
+getDelta
+
+</emphasis>
+ method.
+
+</para>
+
+
+
+
+	
+
+<table id="table1004" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1004">
+
+			
+
+<row id="tr1008">
+
+				
+
+<entry id="th1004">
+<emphasis id="Listing_5" effect="bold">
+
+Listing 5
+
+</emphasis>
+
+. The getDelta 
+				method of the GameContainer class.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1004">
+
+			
+
+<row id="tr1009">
+
+				
+
+<entry id="td1004">
+
+
+
+<code id="pre1004" display="block">
+  protected int getDelta() {
+    long time = getTime();
+    int delta = (int) (time - lastFrame);
+    lastFrame = time;
+    
+    return delta;
+  }//end getDelta method</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1062">
+Without getting into the details, the method named 
+
+<emphasis id="strong1110" effect="bold">
+getTime
+
+</emphasis>
+ 
+	that is called in 
+
+<link id="a1053" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+ returns the amount of 
+	time, 
+
+<emphasis id="em1024" effect="italics">
+(with a resolution of one millisecond)
+
+</emphasis>
+, that has elapsed 
+	since a historical point in time before the game started running.
+
+</para>
+
+
+
+
+<para id="p1063">
+The 
+
+<emphasis id="strong1111" effect="bold">
+GameContainer
+
+</emphasis>
+ class contains a 
+
+<emphasis id="em1025" effect="italics">
+protected
+
+</emphasis>
+ 
+instance variable of type 
+
+<emphasis id="strong1112" effect="bold">
+long
+
+</emphasis>
+ named 
+
+<emphasis id="strong1113" effect="bold">
+lastFrame
+
+</emphasis>
+ 
+that is used to store a time value.
+
+</para>
+
+
+
+
+<para id="p1064">
+The code in 
+
+<link id="a1054" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+
+</para>
+
+
+
+
+<list id="ul1010" list-type="bulleted">
+
+	
+
+<item id="li1045">
+subtracts the time value stored in 
+
+<emphasis id="strong1114" effect="bold">
+lastFrame
+
+</emphasis>
+ from the 
+	current time, 
+
+</item>
+
+
+	
+
+<item id="li1046">
+converts the time difference to type 
+
+<emphasis id="strong1115" effect="bold">
+int
+
+</emphasis>
+, saving it in
+	
+
+<emphasis id="strong1116" effect="bold">
+delta
+
+</emphasis>
+, and 
+
+</item>
+
+
+	
+
+<item id="li1047">
+stores the current time in 
+
+<emphasis id="strong1117" effect="bold">
+lastFrame
+
+</emphasis>
+. 
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1065">
+The difference between the two time values represents a time interval and 
+that difference is returned as type 
+
+<emphasis id="strong1118" effect="bold">
+int
+
+</emphasis>
+.
+
+</para>
+
+
+
+
+<para id="p1066">
+Various methods in the 
+
+<emphasis id="strong1119" effect="bold">
+AppGameContainer
+
+</emphasis>
+ and 
+
+<emphasis id="strong1120" effect="bold">
+
+GameContainer
+
+</emphasis>
+ classes call the 
+
+<emphasis id="strong1121" effect="bold">
+getDelta
+
+</emphasis>
+ method in such 
+a way that the value of delta represents the time required to update and render 
+one frame when the program is running. 
+
+<emphasis id="em1026" effect="italics">
+(There are some other options as well 
+that I may discuss in a future module.)
+
+</emphasis>
+</para>
+
+
+	
+	
+
+<para id="p1067">
+When the method named 
+
+<emphasis id="strong1122" effect="bold">
+update
+
+</emphasis>
+ is called in 
+	
+
+<link id="a1055" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+, the incoming parameter named 
+
+<emphasis id="strong1123" effect="bold">
+delta
+
+</emphasis>
+ contains the number 
+	of milliseconds that have elapsed since the last time that the 
+
+<emphasis id="strong1124" effect="bold">
+
+	update
+
+</emphasis>
+ method was called.
+
+</para>
+
+
+
+
+<para id="p1068">
+When the method named 
+
+<emphasis id="strong1125" effect="bold">
+getDelta
+
+</emphasis>
+ is called in
+
+
+<link id="a1056" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+, the return value is discarded. This suggests 
+that the call to the 
+
+<emphasis id="strong1126" effect="bold">
+getDelta
+
+</emphasis>
+ method in 
+
+<link id="a1057" target-id="Listing_2">
+
+
+Listing 2
+
+</link>
+
+ is made simply to cause the variable named 
+
+<emphasis id="strong1127" effect="bold">
+lastFrame
+
+</emphasis>
+ 
+to be initialized with time that the 
+
+<emphasis id="strong1128" effect="bold">
+start
+
+</emphasis>
+ method was called.
+
+</para>
+
+
+
+
+</section>
+<section id="h21006">
+<title>
+<emphasis id="The_gameLoop_method_of_the_AppGameContainer_class" effect="bold">
+
+The gameLoop method of the AppGameContainer class
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1069">
+That leaves us with one more method call from 
+
+<link id="a1058" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+ 
+that we need to examine -- 
+
+<emphasis id="strong1129" effect="bold">
+gameLoop
+
+</emphasis>
+. I anticipate that will be 
+a fairly long discussion, so I am going to defer that discussion until the next 
+module.
+
+</para>
+
+
+
+
+
+
+</section>
+</section>
+<section id="h11005">
+<title>
+<emphasis id="Run_the_program" effect="bold">
+
+Run the program
+
+</emphasis>
+
+
+</title>
+
+
+
+
+
+
+<para id="p1070">
+As explained earlier, the skeleton code in 
+
+<link id="a1059" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+ 
+is different from the skeleton code that I presented in earlier modules. 
+Therefore, I encourage you to copy the code from 
+
+<link id="a1060" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+. Compile the code and execute 
+it, 
+making changes, and observing the results of your changes. Make certain that you 
+can explain why your changes behave as they do.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11006">
+<title>
+<emphasis id="Summary" effect="bold">
+
+Summary
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1071">
+The main purpose of this module was to analyze the behavior of the Slick2D game 
+engine when you call the 
+
+<emphasis id="strong1130" effect="bold">
+start
+
+</emphasis>
+ method to cause a Slick2D game 
+program to start running.
+
+</para>
+
+
+
+
+<para id="p1072">
+You learned how and why you should extend the 
+
+<emphasis id="strong1131" effect="bold">
+BasicGame
+
+</emphasis>
+ 
+class instead of implementing the 
+
+<emphasis id="strong1132" effect="bold">
+Game
+
+</emphasis>
+ interface directly.
+
+</para>
+
+
+
+
+<para id="p1073">
+You learned about the behavior of the constructors for the 
+
+<emphasis id="strong1133" effect="bold">
+
+AppGameContainer
+
+</emphasis>
+ class.
+
+</para>
+
+
+
+
+<para id="p1074">
+You learned that the 
+
+<emphasis id="strong1134" effect="bold">
+start
+
+</emphasis>
+ method of the 
+
+<emphasis id="strong1135" effect="bold">
+AppGameContainer
+
+</emphasis>
+ 
+class calls the following 
+three methods:
+
+</para>
+
+
+
+
+<list id="ul1011" list-type="bulleted">
+
+	
+
+<item id="li1048">
+setup
+
+</item>
+
+
+	
+
+<item id="li1049">
+getDelta
+
+</item>
+
+
+	
+
+<item id="li1050">
+gameLoop
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1075">
+You learned about the behavior of the 
+
+<emphasis id="strong1136" effect="bold">
+setup
+
+</emphasis>
+ and 
+
+<emphasis id="strong1137" effect="bold">
+
+getDelta
+
+</emphasis>
+ methods in this module.
+
+</para>
+
+
+
+
+</section>
+<section id="h11007">
+<title>
+<emphasis id="Whats_next" effect="bold">
+
+What's next?
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1076">
+I will provide an explanation of the 
+
+<emphasis id="strong1138" effect="bold">
+gameLoop
+
+</emphasis>
+ method in the next module.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11008">
+<title>
+<emphasis id="Miscellaneous" effect="bold">
+
+Miscellaneous
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1077">
+This section contains a variety of miscellaneous information.
+
+</para>
+
+
+
+
+
+	
+
+<note id="note1001" type="">
+
+
+		
+
+
+			
+
+
+				
+
+<emphasis id="strong1139" effect="bold">
+Housekeeping material
+
+</emphasis>
+
+				
+
+<list id="ul1012" list-type="bulleted">
+
+					
+
+<item id="li1051">
+Module name: Slick0120: Starting your program
+
+</item>
+
+
+					
+
+<item id="li1052">
+File: Slick0120.htm 
+
+</item>
+
+
+					
+
+<item id="li1053">
+Published: 02/04/13
+
+</item>
+
+
+					
+
+<item id="li1054">
+Revised: 06/09/15
+
+</item>
+
+
+				
+
+</list>
+
+
+				
+
+</note>
+
+			
+
+
+		
+
+
+
+	
+
+
+
+
+
+
+	
+
+<note id="note1002" type="">
+
+
+		
+
+
+			
+
+
+				
+
+<emphasis id="strong1140" effect="bold">
+Disclaimers:
+
+</emphasis>
+<para id="p1078">
+<emphasis id="strong1141" effect="bold">
+Financial
+
+</emphasis>
+: Although the Connexions
+site makes it possible for you to download a PDF file for this
+module at no charge, and also makes it possible for you to
+purchase a pre-printed version of the PDF file, you should be
+aware that some of the HTML elements in this module may not translate well into
+PDF.
+
+</para>
+
+
+				
+
+<para id="p1079">
+I also want you to know that, I receive no financial compensation from the Connexions website even if you purchase 
+	the PDF version of the module.
+
+</para>
+
+
+				
+
+<para id="p1080">
+In the past, unknown individuals have copied my modules from cnx.org, converted them to Kindle books, and 
+				placed them for sale on Amazon.com showing me as the author. I 
+				neither receive compensation for those sales nor do I know who does 
+				receive compensation. If you purchase such a book, please be 
+				aware that it is a copy of a module that is freely 
+				available on cnx.org and that it was made and published without 
+				my prior knowledge.
+
+</para>
+
+
+				
+
+<para id="p1081">
+<emphasis id="strong1142" effect="bold">
+Affiliation
+
+</emphasis>
+: I am a professor of Computer Information 
+	Technology at Austin Community College in Austin, TX.
+	
+
+</para>
+
+
+				
+
+</note>
+
+			
+
+
+		
+
+
+
+	
+
+
+
+
+
+</section>
+<section id="h11009">
+<title>
+<emphasis id="Complete_program_listing" effect="bold">
+
+Complete program listing
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1082">
+<link id="a1061" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+ provides a complete listing for the skeleton program named 
+
+<emphasis id="strong1143" effect="bold">
+
+Slick0120a
+
+</emphasis>
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1005" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1005">
+
+			
+
+<row id="tr1010">
+
+				
+
+<entry id="th1005">
+<emphasis id="Listing_6" effect="bold">
+
+Listing 6
+
+</emphasis>
+
+. Source code 
+				for Slick0120a.java.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1005">
+
+			
+
+<row id="tr1011">
+
+				
+
+<entry id="td1005">
+
+
+
+<code id="pre1005" display="block">
+/*Slick0120a.java
+Copyright 2012, R.G.Baldwin
+
+Skeleton code for a basic game.
+
+Tested using JDK 1.7 under WinXP
+*********************************************************/
+
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
+
+public class Slick0120a extends BasicGame{
+
+  public Slick0120a(){
+    //Call to superclass constructor is required.
+    super("Slick0120a, Baldwin.");
+  }//end constructor
+  //----------------------------------------------------//
+
+  public static void main(String[] args)
+                                    throws SlickException{
+    AppGameContainer app =
+                   new AppGameContainer(new Slick0120a());
+    app.start();//this statement is required
+  }//end main
+  //----------------------------------------------------//
+
+  @Override
+  public void init(GameContainer gc)
+                                   throws SlickException {
+    //No initialization needed for this program.
+  }//end init
+  //----------------------------------------------------//
+
+  @Override
+  public void update(GameContainer gc, int delta)
+                                    throws SlickException{
+    //Put game logic here
+  }//end update
+  //----------------------------------------------------//
+
+
+  public void render(GameContainer gc, Graphics g)
+                                    throws SlickException{
+    //Put drawing code here.
+  }//end render
+
+}//end class Slick0120a</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1083">
+-end- 
+
+</para>
+
+
+
+
+
+
+</section>
+</content>
+
+
+
+
+</document>

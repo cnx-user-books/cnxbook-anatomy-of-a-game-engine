@@ -1,0 +1,4062 @@
+<document xmlns="http://cnx.rice.edu/cnxml"> 
+<title>Slick0190: Sprite sheet animation, part 2</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m45753</md:content-id>
+  <md:title>Slick0190: Sprite sheet animation, part 2</md:title>
+  <md:abstract>Learn to use objects of the Slick2D SpriteSheet class and the Animation class to perform more complex spritesheet animation than in the previous module.</md:abstract>
+  <md:uuid>e14be2b6-f829-4c31-95aa-9fa7edad93e0</md:uuid>
+</metadata>
+
+<content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="h11000">
+<title>
+Table of Contents
+
+</title>
+
+
+
+
+<list id="ul1000" list-type="bulleted">
+
+	
+
+<item id="li1000">
+<link id="a1000" target-id="Preface">
+
+Preface
+
+</link>
+
+
+	
+
+<list id="ul1001" list-type="bulleted">
+
+		
+
+<item id="li1001">
+<link id="a1001" target-id="Viewing_tip">
+
+Viewing tip
+
+</link>
+
+
+<list id="ul1002" list-type="bulleted">
+
+			
+
+<item id="li1002">
+<link id="a1002" target-id="Figures">
+
+Figures
+
+</link>
+
+
+</item>
+
+
+
+			
+
+<item id="li1003">
+<link id="a1003" target-id="Listings">
+
+Listings
+
+</link>
+
+
+</item>
+
+
+		
+
+</list>
+
+
+		
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1004">
+<link id="a1004" target-id="Preview">
+
+Preview
+
+</link>
+
+ 
+
+</item>
+
+
+	
+
+<item id="li1005">
+<link id="a1005" target-id="General_background_information">
+
+General background information
+
+</link>
+
+
+<list id="ul1003" list-type="bulleted">
+
+		
+
+<item id="li1006">
+<link id="a1006" target-id="The_SpriteSheet_class">
+
+The SpriteSheet class
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1007">
+<link id="a1007" target-id="The_Animation_class">
+
+The Animation class
+
+</link>
+
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1008">
+<link id="a1008" target-id="Discussion_and_sample_code">
+
+Discussion and sample code
+
+</link>
+
+
+<list id="ul1004" list-type="bulleted">
+
+		
+
+<item id="li1009">
+<link id="a1009" target-id="The_class_named_Slick0190">
+
+The class named Slick0190
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1010">
+<link id="a1010" target-id="The_init_method">
+
+The init method
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1011">
+<link id="a1011" target-id="The_update_method">
+
+The update method
+
+</link>
+
+
+</item>
+
+
+		
+
+<item id="li1012">
+<link id="a1012" target-id="The_render_method">
+
+The render method
+
+</link>
+
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</item>
+
+
+	
+
+<item id="li1013">
+<link id="a1013" target-id="Run_the_program">
+
+Run the program
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1014">
+<link id="a1014" target-id="Summary">
+
+Summary
+
+</link>
+
+ 
+
+</item>
+
+
+	
+
+<item id="li1015">
+<link id="a1015" target-id="Whats_next">
+
+What's next?
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1016">
+<link id="a1016" target-id="Miscellaneous">
+
+Miscellaneous
+
+</link>
+
+
+</item>
+
+
+	
+
+<item id="li1017">
+<link id="a1017" target-id="Complete_program_listing">
+
+Complete program listing
+
+</link>
+
+
+</item>
+
+
+
+
+</list>
+
+
+	
+
+	
+
+</section>
+<section id="h11001">
+<title>
+<emphasis id="Preface" effect="bold">
+
+Preface
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+	
+
+<para id="p1000">
+This module is one in a collection of modules designed to teach you about 
+	the anatomy of a game engine.
+
+</para>
+
+
+
+
+<para id="p1001">
+Although the modules in this collection will concentrate on the Java game 
+library named Slick2D, the 
+concepts involved and the knowledge that you will gain is applicable to 
+different game engines written in different programming languages as well.
+
+</para>
+
+
+
+
+<para id="p1002">
+The purpose of this module is to teach you how to use objects of the 
+
+<emphasis id="strong1000" effect="bold">
+
+SpriteSheet
+
+</emphasis>
+ class and the 
+
+<emphasis id="strong1001" effect="bold">
+Animation
+
+</emphasis>
+ class to perform 
+more complex sprite sheet animations than was the case in the earlier module 
+titled 
+
+<link id="a1018" url="http://cnx.org/contents/0fc6c084-4f60-4497-a2d7-802a396bc985">
+
+Slick0180: Sprite sheet animation, part 1
+
+</link>
+
+.
+
+</para>
+
+
+	
+
+<section id="h21000">
+<title>
+<emphasis id="Viewing_tip" effect="bold">
+
+Viewing tip
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1003">
+I recommend that you open another copy of this module in a separate 
+browser window and use the following links to easily find and view the images 
+and listings while you are reading about them.
+
+</para>
+
+
+	
+
+<section id="h31000">
+<title>
+<emphasis id="Figures" effect="bold">
+
+Figures
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<list id="ul1005" list-type="bulleted">
+
+		
+
+<item id="li1018">
+<link id="a1019" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+. The sprite sheet. 
+
+</item>
+
+
+		
+
+<item id="li1019">
+<link id="a1020" target-id="Figure_2">
+
+Figure 2
+
+</link>
+
+. Sprite running to the right. 
+
+</item>
+
+
+		
+
+<item id="li1020">
+<link id="a1021" target-id="Figure_3">
+
+Figure 3
+
+</link>
+
+. Sprite answering nature's call. 
+
+</item>
+
+
+		
+
+<item id="li1021">
+<link id="a1022" target-id="Figure_4">
+
+Figure 4
+
+</link>
+
+. Sprite running to the left. 
+
+</item>
+
+
+
+
+	
+
+</list>
+
+
+	
+
+</section>
+<section id="h31001">
+<title>
+<emphasis id="Listings" effect="bold">
+
+Listings
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<list id="ul1006" list-type="bulleted">
+
+		
+
+<item id="li1022">
+<link id="a1023" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+. Beginning of the class named Slick0190. 
+
+</item>
+
+
+		
+
+<item id="li1023">
+<link id="a1024" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+. Beginning of the init method. 
+
+</item>
+
+
+		
+
+<item id="li1024">
+<link id="a1025" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+. Begin populating the Animation object. 
+
+</item>
+
+
+		
+
+<item id="li1025">
+<link id="a1026" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+. Add images from the bottom row of 
+
+</item>
+
+
+		
+
+<item id="li1026">
+<link id="a1027" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+. Finish populating the animation object.
+
+</item>
+
+
+		
+
+<item id="li1027">
+<link id="a1028" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+. Beginning of the update method.
+
+</item>
+
+
+		
+
+<item id="li1028">
+<link id="a1029" target-id="Listing_7">
+
+Listing 7
+
+</link>
+
+. Compute display locations for first 20 frames.
+
+</item>
+
+
+		
+
+<item id="li1029">
+<link id="a1030" target-id="Listing_8">
+
+Listing 8
+
+</link>
+
+. Don't change position for middle group of sprite images
+
+</item>
+
+
+		
+
+<item id="li1030">
+<link id="a1031" target-id="Listing_9">
+
+Listing 9
+
+</link>
+
+. Run from right to left.
+
+</item>
+
+
+		
+
+<item id="li1031">
+<link id="a1032" target-id="Listing_10">
+
+Listing 10
+
+</link>
+
+. The render method.
+
+</item>
+
+
+		
+
+<item id="li1032">
+<link id="a1033" target-id="Listing_11">
+
+Listing 11
+
+</link>
+
+. Source code for Slick0190.
+
+</item>
+
+
+	
+
+</list>
+
+
+	
+
+</section>
+</section>
+</section>
+<section id="h11002">
+<title>
+<emphasis id="Preview" effect="bold">
+
+Preview
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1004">
+I will present and explain a program that uses both rows of sprites from the sprite 
+	sheet shown in
+	
+
+<link id="a1034" target-id="Figure_1">
+
+
+	Figure 1
+
+</link>
+
+. The program uses a 
+
+<emphasis id="strong1002" effect="bold">
+SpriteSheet
+
+</emphasis>
+ object and an 
+
+<emphasis id="strong1003" effect="bold">
+
+	Animation
+
+</emphasis>
+ object to produce an animation of a dog playing and 
+	answering nature's call. 
+
+<emphasis id="em1000" effect="italics">
+
+	(Note that the overall sprite sheet image is quite small, and the image 
+	shown in
+	
+
+<link id="a1035" target-id="Figure_1">
+
+
+	Figure 1
+
+</link>
+
+ was enlarged for this presentation.)
+
+</emphasis>
+</para>
+
+
+
+
+
+
+
+<table id="table1000" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1000">
+<row id="tr1000">
+<entry id="th1000">
+
+
+
+<emphasis id="Figure_1" effect="bold">
+
+Figure 1
+
+</emphasis>
+
+. The sprite sheet.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1000">
+<row id="tr1001">
+<entry id="td1000">
+
+
+
+<media id="media1000" alt="Missing image." display="block">
+<image id="img1000" mime-type="image/jpeg" src="../../media/slick0190a1.jpg" width="438" height="171"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1005">
+<emphasis id="strong1004" effect="bold">
+Description of the animation
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1006">
+This animation begins with the sprite running from left to right across the game window. Then the sprite stops on the right side of the game window 
+and answers nature's call. Although it isn't shown here, the sprite turns and 
+faces left during that process. Then the sprite runs from right to left across the game window. This pattern repeats for as long as the program runs, and is 
+illustrated by the three screen shots that follow.
+
+</para>
+
+
+
+
+<para id="p1007">
+<emphasis id="strong1005" effect="bold">
+Sprite running to the right
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1008">
+<link id="a1036" target-id="Figure_2">
+
+Figure 2
+
+</link>
+
+ shows the sprite running from left to right. This is 
+a flipped version of one of the images in the top row of
+	
+
+<link id="a1037" target-id="Figure_1">
+
+
+	Figure 1
+
+</link>
+
+.
+
+</para>
+
+
+
+
+
+
+<table id="table1001" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1001">
+<row id="tr1002">
+<entry id="th1001">
+
+
+
+<emphasis id="Figure_2" effect="bold">
+
+Figure 2
+
+</emphasis>
+
+.  Sprite running to the right.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1001">
+<row id="tr1003">
+<entry id="td1001">
+
+
+
+<media id="media1001" alt="Missing image." display="block">
+<image id="img1001" mime-type="image/jpeg" src="../../media/slick0190a2.jpg" width="456" height="144"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1009">
+<emphasis id="strong1006" effect="bold">
+Sprite answering nature's call
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1010">
+<link id="a1038" target-id="Figure_3">
+
+Figure 3
+
+</link>
+
+ shows the sprite answering nature's call. This 
+is a flipped version of one of images from the bottom row of
+	
+
+<link id="a1039" target-id="Figure_1">
+
+
+	Figure 1
+
+</link>
+
+.
+
+</para>
+
+
+
+
+
+
+<table id="table1002" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1002">
+<row id="tr1004">
+<entry id="th1002">
+
+
+
+<emphasis id="Figure_3" effect="bold">
+
+Figure 3
+
+</emphasis>
+
+.  Sprite answering nature's call.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1002">
+<row id="tr1005">
+<entry id="td1002">
+
+
+
+<media id="media1002" alt="Missing image." display="block">
+<image id="img1002" mime-type="image/jpeg" src="../../media/slick0190a3.jpg" width="457" height="147"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1011">
+<emphasis id="strong1007" effect="bold">
+Sprite running to the left
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1012">
+<link id="a1040" target-id="Figure_4">
+
+Figure 4
+
+</link>
+
+ shows the sprite running from right to left. This is 
+one of the images from the top row of
+	
+
+<link id="a1041" target-id="Figure_1">
+
+
+	Figure 1
+
+</link>
+
+.
+
+</para>
+
+
+
+
+
+
+<table id="table1003" summary="This is a table." pgwide="1">
+<tgroup cols="1">
+
+
+<thead id="thead1003">
+<row id="tr1006">
+<entry id="th1003">
+
+
+
+<emphasis id="Figure_4" effect="bold">
+
+Figure 4
+
+</emphasis>
+
+.  Sprite running to the left.
+
+
+</entry>
+</row>
+</thead>
+
+
+<tbody id="tbody1003">
+<row id="tr1007">
+<entry id="td1003">
+
+
+
+<media id="media1003" alt="Missing image." display="block">
+<image id="img1003" mime-type="image/jpeg" src="../../media/slick0190a4.jpg" width="457" height="144"/>
+</media>
+
+
+
+
+</entry>
+</row>
+</tbody>
+
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1013">
+<emphasis id="strong1008" effect="bold">
+What you have learned
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1014">
+In the 
+
+<link id="a1042" url="http://cnx.org/contents/0fc6c084-4f60-4497-a2d7-802a396bc985">
+
+previous module
+
+</link>
+
+, you learned how to use objects of the 
+
+<emphasis id="strong1009" effect="bold">
+
+SpriteSheet
+
+</emphasis>
+ class and the 
+
+<emphasis id="strong1010" effect="bold">
+Animation
+
+</emphasis>
+ class to perform 
+simple sprite sheet animation. 
+
+</para>
+
+
+
+
+<para id="p1015">
+<emphasis id="strong1011" effect="bold">
+What you will learn
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1016">
+In this module, you will learn how to use objects of the 
+
+<emphasis id="strong1012" effect="bold">
+SpriteSheet
+
+</emphasis>
+ 
+class and the 
+
+<emphasis id="strong1013" effect="bold">
+Animation
+
+</emphasis>
+ class to perform more complex sprite 
+sheet animations than was in the previous module.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11003">
+<title>
+<emphasis id="General_background_information" effect="bold">
+
+General 
+	background information
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<section id="h21001">
+<title>
+<emphasis id="The_SpriteSheet_class" effect="bold">
+
+The SpriteSheet class
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1017">
+There isn't much that's new in this module regarding the 
+
+<emphasis id="strong1014" effect="bold">
+SpriteSheet
+
+</emphasis>
+ 
+class. The program instantiates and populates a 
+
+<emphasis id="strong1015" effect="bold">
+SpriteSheet
+
+</emphasis>
+ 
+object and used the images stored in that object to populate an 
+
+<emphasis id="strong1016" effect="bold">
+
+Animation
+
+</emphasis>
+ object.
+
+</para>
+
+
+
+
+<para id="p1018">
+The 
+
+<emphasis id="strong1017" effect="bold">
+SpriteSheet
+
+</emphasis>
+ object is used in a different way than was 
+the case in the previous module, but that will be explained in conjunction with 
+populating the 
+
+<emphasis id="strong1018" effect="bold">
+Animation
+
+</emphasis>
+ object.
+
+</para>
+
+
+	
+
+</section>
+<section id="h21002">
+<title>
+<emphasis id="The_Animation_class" effect="bold">
+
+The Animation class
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1019">
+An 
+
+<emphasis id="strong1019" effect="bold">
+Animation
+
+</emphasis>
+ object is populated in a significantly 
+	different way in this module than in the previous module.
+
+</para>
+
+
+
+
+<para id="p1020">
+In the previous module, a 
+
+<emphasis id="strong1020" effect="bold">
+SpriteSheet
+
+</emphasis>
+ object's reference was 
+passed to the 
+
+<emphasis id="strong1021" effect="bold">
+Animation
+
+</emphasis>
+ constructor along with a specification 
+of the images to be extracted from the sprite sheet and the amount of time that 
+each image should be displayed. The 
+
+<emphasis id="strong1022" effect="bold">
+Animation
+
+</emphasis>
+ constructor 
+extracted the images from the sprite sheet and populated the new 
+
+<emphasis id="strong1023" effect="bold">
+Animation
+
+</emphasis>
+ object 
+automatically. Among other restrictions, it was necessary that each image be 
+displayed for the same amount of time.
+
+</para>
+
+
+
+
+<para id="p1021">
+<emphasis id="strong1024" effect="bold">
+One image at a time
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1022">
+In this module, an empty 
+
+<emphasis id="strong1025" effect="bold">
+Animation
+
+</emphasis>
+ object is instantiated 
+and then populated one image at a time. 
+
+<emphasis id="em1001" effect="italics">
+(Of course, loops are used to make 
+that process easier.)
+
+</emphasis>
+ Among other things, this makes it possible to:
+
+</para>
+
+
+
+
+<list id="ul1007" list-type="bulleted">
+
+	
+
+<item id="li1033">
+Use multiple copies of the individual images on the sprite sheet
+
+</item>
+
+
+	
+
+<item id="li1034">
+Use flipped versions of the images on the sprite sheet
+
+</item>
+
+
+	
+
+<item id="li1035">
+Specify different display times for the different images on the sprite 
+	sheet
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1023">
+<emphasis id="strong1026" effect="bold">
+Different animation rates
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1024">
+For example, the display times for the images from the bottom row of 
+
+<link id="a1043" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+  are four times greater than the display times for 
+the images from the top row. Thus, the animation slows down when the sprite 
+stops to answer nature's call on the right side of the game window then speeds 
+up again when the sprite starts running from right to left.
+
+</para>
+
+
+	
+
+	
+
+</section>
+</section>
+<section id="h11004">
+<title>
+<emphasis id="Discussion_and_sample_code" effect="bold">
+
+Discussion and sample code
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+	
+
+<section id="h21003">
+<title>
+<emphasis id="The_class_named_Slick0190" effect="bold">
+
+The class named Slick0190
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1025">
+<emphasis id="strong1027" effect="bold">
+Will discuss in fragments
+
+
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1026">
+A complete listing of the program named 
+
+<emphasis id="strong1028" effect="bold">
+Slick0190
+
+</emphasis>
+ is provided in 
+
+
+<link id="a1044" target-id="Listing_11">
+
+Listing 11
+
+</link>
+
+. I will break the program down and discuss it in fragments.
+
+
+
+</para>
+
+
+
+
+<para id="p1027">
+<link id="a1045" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ shows the beginning of the class named 
+
+
+<emphasis id="strong1029" effect="bold">
+Slick0190
+
+</emphasis>
+ down through the 
+
+<emphasis id="strong1030" effect="bold">
+main
+
+</emphasis>
+ method. There 
+is nothing in 
+
+<link id="a1046" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ that should require an 
+explanation beyond the embedded comments. However, it is worth noting that 
+unlike the previous module, 
+
+<link id="a1047" target-id="Listing_1">
+
+Listing 1
+
+</link>
+
+ instantiates a 
+new empty object of the class 
+
+<emphasis id="strong1031" effect="bold">
+Animation
+
+</emphasis>
+ and saves its reference 
+in the instance variable named 
+
+<emphasis id="strong1032" effect="bold">
+animation
+
+</emphasis>
+. This object will be 
+populated with images by the 
+
+<emphasis id="strong1033" effect="bold">
+init
+
+</emphasis>
+ method later.
+
+</para>
+
+
+
+
+	
+
+<table id="table1004" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1004">
+
+			
+
+<row id="tr1008">
+
+				
+
+<entry id="th1004">
+<emphasis id="Listing_1" effect="bold">
+
+Listing 1
+
+</emphasis>
+
+. Beginning of the class named Slick0190.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1004">
+
+			
+
+<row id="tr1009">
+
+				
+
+<entry id="td1004">
+
+
+
+<code id="pre1000" display="block">
+public class Slick0190 extends BasicGame{
+  Image spriteSheetImage = null;
+
+  float spriteSheetWidth;
+  float spriteSheetHeight;
+  int spritesPerRow = 5;
+  int spritesPerColumn = 2;
+  int spriteWidth;
+  int spriteHeight;
+
+  int targetDelta = 16;//msec
+  SpriteSheet spriteSheet;
+  Animation animation = new Animation();
+
+  //Horizontal and vertical drawing coordinates.
+  float spriteX = 0;
+  float spriteY = 0;
+
+  //----------------------------------------------------//
+  public Slick0190(){
+    //Call to superclass constructor is required.
+    super("Slick0190, Baldwin.");
+  }//end constructor
+  //----------------------------------------------------//
+
+  public static void main(String[] args)
+                                    throws SlickException{
+    AppGameContainer app = new AppGameContainer(
+                          new Slick0190(),450,120,false);
+    app.start();//this statement is required
+  }//end main
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+</section>
+<section id="h21004">
+<title>
+<emphasis id="The_init_method" effect="bold">
+
+The init method
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1028">
+Most of the new code in this program is contained in the 
+
+<emphasis id="strong1034" effect="bold">
+init
+
+</emphasis>
+ 
+method, which begins in 
+
+<link id="a1048" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+. However, the code in
+
+
+<link id="a1049" target-id="Listing_2">
+
+Listing 2
+
+</link>
+
+ is not new and should not require an 
+explanation beyond the embedded comments.
+
+</para>
+
+
+
+
+	
+
+<table id="table1005" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1005">
+
+			
+
+<row id="tr1010">
+
+				
+
+<entry id="th1005">
+<emphasis id="Listing_2" effect="bold">
+
+Listing 2
+
+</emphasis>
+
+.  Beginning of the init method.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1005">
+
+			
+
+<row id="tr1011">
+
+				
+
+<entry id="td1005">
+
+
+
+<code id="pre1001" display="block">
+  public void init(GameContainer gc)
+                                   throws SlickException {
+    //Create a SpriteSheet object
+    spriteSheetImage = new Image("Slick0190a1.png");
+    //Enlarge the sprite sheet.
+    Image temp = spriteSheetImage.getScaledCopy(580,224);
+    spriteSheetImage = temp;
+
+    spriteSheetWidth = spriteSheetImage.getWidth();
+    spriteSheetHeight = spriteSheetImage.getHeight();
+    spriteWidth = (int)(spriteSheetWidth/spritesPerRow);
+    spriteHeight =
+                (int)(spriteSheetHeight/spritesPerColumn);
+
+    //Instantiate a new spriteSheet object based on the
+    // width and height of the individual tiles on the
+    // sheet.
+    spriteSheet = new SpriteSheet(spriteSheetImage,
+                                  spriteWidth,
+                                  spriteHeight);
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1029">
+<emphasis id="strong1035" effect="bold">
+Begin populating the Animation object.
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1030">
+The code in 
+
+<link id="a1050" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+ begins the process of 
+populating the Animation object using images extracted from the sprite sheet 
+shown in 
+
+<link id="a1051" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1006" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1006">
+
+			
+
+<row id="tr1012">
+
+				
+
+<entry id="th1006">
+<emphasis id="Listing_3" effect="bold">
+
+Listing 3
+
+</emphasis>
+
+.  Begin populating the Animation object.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1006">
+
+			
+
+<row id="tr1013">
+
+				
+
+<entry id="td1006">
+
+
+
+<code id="pre1002" display="block">
+    //Populate the Animation object
+    //Begin by adding four sets of five sprites from the
+    // top row with the images flipped to face right.
+    for(int cntr = 0;cntr &lt; 4;cntr++){
+      for(int cnt = 0;cnt &lt; 5;cnt++){
+        animation.addFrame(
+              spriteSheet.getSprite(cnt,0).getFlippedCopy(
+                                         true,false),100);
+      }//end inner loop
+    }//end outer loop
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1031">
+The inner loop in 
+
+<link id="a1052" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+ calls the 
+
+<emphasis id="strong1036" effect="bold">
+getSprite
+
+</emphasis>
+ method of the 
+
+<emphasis id="strong1037" effect="bold">
+
+	SpriteSheet
+
+</emphasis>
+ five times in succession to extract each of the images 
+	in the top row in 
+
+<link id="a1053" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+.
+
+</para>
+
+
+
+
+<para id="p1032">
+<emphasis id="strong1038" effect="bold">
+Flip the images
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1033">
+The sprites represented by those five images are facing the wrong direction. 
+Therefore, 
+
+<link id="a1054" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+ calls the 
+
+<emphasis id="strong1039" effect="bold">
+getFlippedCopy
+
+</emphasis>
+ 
+method of the 
+
+<emphasis id="strong1040" effect="bold">
+Image
+
+</emphasis>
+ class to flip the images horizontally 
+before adding them to the contents of the 
+
+<emphasis id="strong1041" effect="bold">
+Animation
+
+</emphasis>
+ object.
+
+</para>
+
+
+
+
+<para id="p1034">
+<emphasis id="strong1042" effect="bold">
+The addFrame method
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1035">
+The version of the 
+
+<emphasis id="strong1043" effect="bold">
+addFrame
+
+</emphasis>
+ method used in
+
+
+<link id="a1055" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+ requires two parameters:
+
+</para>
+
+
+
+
+<list id="ul1008" list-type="bulleted">
+
+	
+
+<item id="li1036">
+A reference to an 
+
+<emphasis id="strong1044" effect="bold">
+Image
+
+</emphasis>
+ object
+
+</item>
+
+
+	
+
+<item id="li1037">
+The time duration in milliseconds that the image should be displayed in 
+	the ongoing animation process
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1036">
+<emphasis id="strong1045" effect="bold">
+The display time duration
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1037">
+The time duration was set to 100 milliseconds for each of the images from the 
+top row of 
+
+<link id="a1056" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+. However, that is not a requirement. 
+You can set a different time duration for every image that you add to an 
+
+<emphasis id="strong1046" effect="bold">
+
+Animation
+
+</emphasis>
+ object if that is required to meet your needs.
+
+</para>
+
+
+
+
+<para id="p1038">
+<emphasis id="strong1047" effect="bold">
+Repeat the process
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1039">
+The outer loop in 
+
+<link id="a1057" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+ causes the process to be 
+repeated four times. Therefore, when the code in 
+
+<link id="a1058" target-id="Listing_3">
+
+Listing 3
+
+</link>
+
+ 
+finishes executing, the 
+
+<emphasis id="strong1048" effect="bold">
+Animation
+
+</emphasis>
+ object contains 20 images made up of four set 
+of the five images in the top row of 
+
+<link id="a1059" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+. These 20 
+images will be used to cause the sprite to run and jump from left to right 
+across the game window.
+
+</para>
+
+
+
+
+<para id="p1040">
+<emphasis id="strong1049" effect="bold">
+Add images from the bottom row of Figure 1
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1041">
+<link id="a1060" target-id="Listing_4">
+
+Listing 4
+
+</link>
+
+ uses essentially the same logic 
+
+<emphasis id="em1002" effect="italics">
+(broken into two nested loops)
+
+</emphasis>
+ 
+to add four sets of images from the bottom row of 
+
+<link id="a1061" target-id="Figure_1">
+
+Figure 1
+
+</link>
+
+. 
+
+</para>
+
+
+
+
+	
+
+<table id="table1007" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1007">
+
+			
+
+<row id="tr1014">
+
+				
+
+<entry id="th1007">
+<emphasis id="Listing_4" effect="bold">
+
+Listing 4
+
+</emphasis>
+
+.  Add images from the bottom row of Figure 1.
+
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1007">
+
+			
+
+<row id="tr1015">
+
+				
+
+<entry id="td1007">
+
+
+
+<code id="pre1003" display="block">
+    //Add two sets of five sprites from the bottom row
+    // with the images flipped to face right.
+    for(int cntr = 0;cntr &lt; 2;cntr++){                       
+      for(int cnt = 0;cnt &lt; 5;cnt++){
+        animation.addFrame(
+              spriteSheet.getSprite(cnt,1).getFlippedCopy(
+                                         true,false),400);
+      }//end inner loop
+    }//end outer loop
+
+    //Add two sets of five sprites from the bottom row
+    // with the images facing left.
+    for(int cntr = 0;cntr &lt; 2;cntr++){
+      for(int cnt = 0;cnt &lt; 5;cnt++){
+        animation.addFrame(
+                        spriteSheet.getSprite(cnt,1),400);
+      }//end inner loop
+    }//end outer loop
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1042">
+<emphasis id="strong1050" effect="bold">
+Flip to face the right
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1043">
+The first two set of images are flipped to face to the right. The last 
+	two sets of images are not flipped. This is the reason for breaking this 
+	process into a pair of nested loops instead of using a single nested loop.
+
+</para>
+
+
+
+
+<para id="p1044">
+If you watch the animation carefully, you will see that the sprite begins 
+answering nature's call facing to the right. Half way through answering nature's 
+call, the sprite spins around and faces to the left. After that, it runs across 
+the screen from right to left.
+
+</para>
+
+
+
+
+<para id="p1045">
+<emphasis id="strong1051" effect="bold">
+The display time duration
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1046">
+Note that the specified time duration for these twenty images is 400 
+milliseconds. Two major changes occur during this part of the animation 
+
+<emphasis id="em1003" effect="italics">
+
+(relative to the previous part)
+
+</emphasis>
+:
+
+</para>
+
+
+
+
+<list id="ul1009" list-type="bulleted">
+
+	
+
+<item id="li1038">
+The sprite does not move horizontally while these 20 images are being 
+	displayed
+
+</item>
+
+
+	
+
+<item id="li1039">
+Each of the 20 images is displayed four times as long as when the sprite 
+	is running.
+
+</item>
+
+
+
+
+</list>
+
+
+
+
+<para id="p1047">
+<emphasis id="strong1052" effect="bold">
+Finish populating the animation object
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1048">
+<link id="a1062" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+ finishes populating the Animation object 
+by adding four more sets of the five images in the top row of 
+
+<link id="a1063" target-id="Figure_1">
+
+
+Figure 1
+
+</link>
+
+. In this case, however, the images are not flipped. Therefore, they 
+are used to cause the sprite to run from right to left across the game window.
+
+</para>
+
+
+
+
+	
+
+<table id="table1008" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1008">
+
+			
+
+<row id="tr1016">
+
+				
+
+<entry id="th1008">
+<emphasis id="Listing_5" effect="bold">
+
+Listing 5
+
+</emphasis>
+
+.  Finish populating the animation object.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1008">
+
+			
+
+<row id="tr1017">
+
+				
+
+<entry id="td1008">
+
+
+
+<code id="pre1004" display="block">
+    //Add four sets of five sprites from the top row with
+    // the images facing left
+    for(int cntr = 0;cntr &lt; 4;cntr++){
+      for(int cnt = 0;cnt &lt; 5;cnt++){
+        animation.addFrame(
+                        spriteSheet.getSprite(cnt,0),100);
+      }//end for loop
+    }//end for loop
+
+    gc.setShowFPS(true);//display FPS
+    //Set frame rate
+    gc.setTargetFrameRate((int)(1000/targetDelta));
+
+  }//end init
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1049">
+<link id="a1064" target-id="Listing_5">
+
+Listing 5
+
+</link>
+
+ also takes care of some common 
+	administrative details at the end, signaling the end of the 
+
+<emphasis id="strong1053" effect="bold">
+init
+
+</emphasis>
+ 
+	method.
+
+</para>
+
+
+	
+	
+
+</section>
+<section id="h21005">
+<title>
+<emphasis id="The_update_method" effect="bold">
+
+The update method
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1050">
+The 
+
+<emphasis id="strong1054" effect="bold">
+update
+
+</emphasis>
+ method begins in 
+
+<link id="a1065" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+. 
+The primary purpose of 
+
+<emphasis id="strong1055" effect="bold">
+update
+
+</emphasis>
+ method in this program is to 
+control the physical placement of each sprite when it is displayed.
+
+</para>
+
+
+
+
+	
+
+<table id="table1009" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1009">
+
+			
+
+<row id="tr1018">
+
+				
+
+<entry id="th1009">
+<emphasis id="Listing_6" effect="bold">
+
+Listing 6
+
+</emphasis>
+
+.  Beginning of the update method.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1009">
+
+			
+
+<row id="tr1019">
+
+				
+
+<entry id="td1009">
+
+
+
+<code id="pre1005" display="block">
+  public void update(GameContainer gc, int delta)
+                                    throws SlickException{
+
+    int stepSize = 15;//Distance the sprite moves
+    int frame = animation.getFrame();//animation frame
+    int oneThird = animation.getFrameCount()/3;
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1051">
+<emphasis id="strong1056" effect="bold">
+The getFrameCount method
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1052">
+On the basis of the previous discussion, we already know that the 
+
+<emphasis id="strong1057" effect="bold">
+
+	Animation
+
+</emphasis>
+ object contains a sequence of 60 images or frames. Rather 
+	than to rely on that knowledge, however, 
+
+<link id="a1066" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+ 
+	calls the 
+
+<emphasis id="strong1058" effect="bold">
+getFrameCount
+
+</emphasis>
+ method on the 
+
+<emphasis id="strong1059" effect="bold">
+Animation
+
+</emphasis>
+ 
+	object to determine the number frames in the object. 
+
+</para>
+
+
+
+
+<para id="p1053">
+<emphasis id="strong1060" effect="bold">
+Three groups of sprites
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1054">
+That value is divided 
+	by 3 and saved in the variable named 
+
+<emphasis id="strong1061" effect="bold">
+oneThird
+
+</emphasis>
+. The 
+	logic that follows is based on dividing the sprites into three equal size 
+	groups and processing them differently depending on whether they fall in the 
+	first, second, or third group.
+
+</para>
+
+
+
+
+<para id="p1055">
+<emphasis id="strong1062" effect="bold">
+Get the current frame number
+
+</emphasis>
+</para>
+
+
+	
+
+<para id="p1056">
+<link id="a1067" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+ calls the 
+
+<emphasis id="strong1063" effect="bold">
+getFrame
+
+</emphasis>
+ 
+	method on the 
+
+<emphasis id="strong1064" effect="bold">
+Animation
+
+</emphasis>
+ object to determine which frame should be displayed 
+	by this iteration of the game loop. That value is saved in the variable 
+	named 
+
+<emphasis id="strong1065" effect="bold">
+frame
+
+</emphasis>
+.
+
+</para>
+
+
+
+
+<para id="p1057">
+<emphasis id="strong1066" effect="bold">
+Compute the display location
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1058">
+Having determined which image is to be displayed, we must then compute the 
+horizontal position within the game window at which to display the image. 
+
+</para>
+
+
+
+
+<para id="p1059">
+<emphasis id="strong1067" effect="bold">
+The display logic
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1060">
+If the current frame is within the first third, the display position assigned 
+to the frame should make it appear that the sprite is running from left to right 
+across the game window. Therefore, the horizontal display coordinate values for 
+the sprites in this group should be proportional to the frame number from 0 
+through 19.
+
+</para>
+
+
+
+
+<para id="p1061">
+If the current frame is within the second third, the horizontal display 
+coordinate should not change. 
+
+<emphasis id="em1004" effect="italics">
+(The sprite should be stationary.)
+
+</emphasis>
+ The sprites in this group are all intended to be 
+displayed in the same location.
+
+</para>
+
+
+
+
+<para id="p1062">
+If the current frame is within the third group, things are a little more 
+complicated. The horizontal display coordinate values assigned to the sprites 
+should make it appear that the sprite is running from right to left across the 
+game window. Therefore, the coordinate value should be equal to the rightmost 
+excursion less a value that is proportional to the frame number, after adjusting 
+the frame number to account for the 20 frames during which the sprites were 
+stationary.
+
+</para>
+
+
+
+
+<para id="p1063">
+This 
+process begins in 
+
+<link id="a1068" target-id="Listing_7">
+
+Listing 7
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1010" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1010">
+
+			
+
+<row id="tr1020">
+
+				
+
+<entry id="th1010">
+<emphasis id="Listing_7" effect="bold">
+
+Listing 7
+
+</emphasis>
+
+.  Compute display locations for first 20 frames.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1010">
+
+			
+
+<row id="tr1021">
+
+				
+
+<entry id="td1010">
+
+
+
+<code id="pre1006" display="block">
+    if(frame &lt; oneThird){
+      //Sprite is moving to the right. Compute the new
+      // position.
+      spriteX = frame*stepSize;
+
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1064">
+<emphasis id="strong1068" effect="bold">
+Figures in the first group
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1065">
+<link id="a1069" target-id="Listing_7">
+
+Listing 7
+
+</link>
+
+ tests to determine if the current 
+	frame is in the first third. If so, it computes a horizontal position 
+	coordinate value as the product of the frame number and the 
+
+<emphasis id="strong1069" effect="bold">
+stepSize
+
+</emphasis>
+ in 
+	pixels, which was defined in 
+
+<link id="a1070" target-id="Listing_6">
+
+Listing 6
+
+</link>
+
+.
+
+</para>
+
+
+
+
+<para id="p1066">
+<emphasis id="strong1070" effect="bold">
+Figures in the middle group
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1067">
+The process of computing the horizontal position coordinate value continues 
+in 
+
+<link id="a1071" target-id="Listing_8">
+
+Listing 8
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1011" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1011">
+
+			
+
+<row id="tr1022">
+
+				
+
+<entry id="th1011">
+<emphasis id="Listing_8" effect="bold">
+
+Listing 8
+
+</emphasis>
+
+.  Don't change position for middle group of sprite images.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1011">
+
+			
+
+<row id="tr1023">
+
+				
+
+<entry id="td1011">
+
+
+
+<code id="pre1007" display="block">
+    }else if(frame &lt; 2*oneThird){
+      //Sprite is stationary. Don't change position
+
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1068">
+<link id="a1072" target-id="Listing_8">
+
+Listing 8
+
+</link>
+
+ tests to determine if the current 
+	frame is in the middle group. If so, it causes the 
+
+<emphasis id="strong1071" effect="bold">
+update
+
+</emphasis>
+ 
+	method to return without changing the horizontal position coordinate value, 
+	thus allowing the sprite to remain in a stationary position.
+
+</para>
+
+
+	
+
+<para id="p1069">
+<emphasis id="strong1072" effect="bold">
+Figures in the third group
+
+</emphasis>
+</para>
+
+
+
+
+<para id="p1070">
+The horizontal position values computed in 
+
+<link id="a1073" target-id="Listing_9">
+
+Listing 9
+
+</link>
+
+ 
+make it appear that the sprite is running from right to left across the game 
+window.
+
+</para>
+
+
+
+
+<para id="p1071">
+This is one of those opportune times when it is appropriate to say that I 
+will leave it as an exercise for the student to dust off their high-school 
+algebra books and figure out how the code in 
+
+<link id="a1074" target-id="Listing_9">
+
+Listing 9
+
+</link>
+
+ 
+achieves the desired result.
+
+</para>
+
+
+
+
+	
+
+<table id="table1012" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1012">
+
+			
+
+<row id="tr1024">
+
+				
+
+<entry id="th1012">
+<emphasis id="Listing_9" effect="bold">
+
+Listing 9
+
+</emphasis>
+
+.  Run from right to left.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1012">
+
+			
+
+<row id="tr1025">
+
+				
+
+<entry id="td1012">
+
+
+
+<code id="pre1008" display="block">
+    }else if(frame &lt; 3*oneThird){
+      //Cause the sprite to turn around and start
+      // moving to the left toward the starting point.
+      //Reduce frame count by number of frames during
+      // which the sprite wasn't moving.
+      frame -= oneThird;
+      //Compute the new position.
+      spriteX = (2*oneThird - frame)*stepSize;
+    }//end else if
+    
+  }//end update
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1072">
+<link id="a1075" target-id="Listing_9">
+
+Listing 9
+
+</link>
+
+ also signals the end of the 
+
+<emphasis id="strong1073" effect="bold">
+
+	update
+
+</emphasis>
+ method.
+
+</para>
+
+
+	
+
+</section>
+<section id="h21006">
+<title>
+<emphasis id="The_render_method" effect="bold">
+
+The render method
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1073">
+Now it's time to realize the benefit of all of the hard work that went into 
+planning for and writing the 
+
+<emphasis id="strong1074" effect="bold">
+code
+
+</emphasis>
+ in the 
+
+<emphasis id="strong1075" effect="bold">
+init
+
+</emphasis>
+ and 
+
+<emphasis id="strong1076" effect="bold">
+
+update
+
+</emphasis>
+ methods. The code in the 
+
+<emphasis id="strong1077" effect="bold">
+render
+
+</emphasis>
+ method, which 
+is shown in 
+
+<link id="a1076" target-id="Listing_10">
+
+Listing 10
+
+</link>
+
+, is almost trivial.
+
+</para>
+
+
+
+
+	
+
+<table id="table1013" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1013">
+
+			
+
+<row id="tr1026">
+
+				
+
+<entry id="th1013">
+<emphasis id="Listing_10" effect="bold">
+
+Listing 10
+
+</emphasis>
+
+.  The render method.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1013">
+
+			
+
+<row id="tr1027">
+
+				
+
+<entry id="td1013">
+
+
+
+<code id="pre1009" display="block">
+  public void render(GameContainer gc, Graphics g)
+                                    throws SlickException{
+    g.setDrawMode(g.MODE_NORMAL);
+    g.setBackground(Color.gray);
+    animation.draw(spriteX,spriteY);
+
+  }//end render
+
+}//end class Slick0190
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+	
+
+<para id="p1074">
+There is nothing left for the 
+
+<emphasis id="strong1078" effect="bold">
+render
+
+</emphasis>
+ method to do other 
+	than to send a message to the 
+
+<emphasis id="strong1079" effect="bold">
+Animation
+
+</emphasis>
+ object once during each iteration 
+	of the game loop asking it to draw the current frame.
+
+</para>
+
+
+
+	
+	
+
+<para id="p1075">
+<link id="a1077" target-id="Listing_10">
+
+Listing 10
+
+</link>
+
+ signals the end of the 
+
+<emphasis id="strong1080" effect="bold">
+render
+
+</emphasis>
+ 
+	method, the end of the 
+
+<emphasis id="strong1081" effect="bold">
+Slick0190
+
+</emphasis>
+ class, and the end of the program.
+
+</para>
+
+
+
+
+
+
+</section>
+</section>
+<section id="h11005">
+<title>
+<emphasis id="Run_the_program" effect="bold">
+
+Run the program
+
+</emphasis>
+
+
+</title>
+
+
+
+
+
+
+<para id="p1076">
+I encourage you to copy the code from 
+
+<link id="a1078" target-id="Listing_11">
+
+Listing 11
+
+</link>
+
+. Compile the code and execute 
+it, 
+making changes, and observing the results of your changes. Make certain that you 
+can explain why your changes behave as they do.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11006">
+<title>
+<emphasis id="Summary" effect="bold">
+
+Summary
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1077">
+In this module, you learned how to use objects of the 
+
+<emphasis id="strong1082" effect="bold">
+SpriteSheet
+
+</emphasis>
+ 
+class and the 
+
+<emphasis id="strong1083" effect="bold">
+Animation
+
+</emphasis>
+ class to perform more complex sprite 
+sheet animations than was the case in the previous module.
+
+</para>
+
+
+
+
+</section>
+<section id="h11007">
+<title>
+<emphasis id="Whats_next" effect="bold">
+
+What's next?
+
+</emphasis>
+
+
+</title>
+
+
+
+
+<para id="p1078">
+In the next module, you will learn how to develop a sprite class from which 
+you can instantiate and animate swarms of sprite objects.
+
+</para>
+
+
+	
+
+</section>
+<section id="h11008">
+<title>
+<emphasis id="Miscellaneous" effect="bold">
+
+Miscellaneous
+
+</emphasis>
+
+
+</title>
+
+
+	
+
+<para id="p1079">
+This section contains a variety of miscellaneous information.
+
+</para>
+
+
+
+
+
+	
+
+<note id="note1000" type="">
+
+
+		
+
+
+			
+
+
+				
+
+<emphasis id="strong1084" effect="bold">
+Housekeeping material
+
+</emphasis>
+
+				
+
+<list id="ul1010" list-type="bulleted">
+
+					
+
+<item id="li1040">
+Module name: Slick0190-Sprite sheet animation, part 2
+
+</item>
+
+
+					
+
+<item id="li1041">
+File: Slick0190.htm
+
+
+</item>
+
+
+					
+
+<item id="li1042">
+Published: 02/06/13
+
+</item>
+
+
+					
+
+<item id="li1043">
+Revised: 09/03/15
+
+</item>
+
+
+				
+
+</list>
+
+
+				
+
+</note>
+
+			
+
+
+		
+
+
+
+	
+
+
+
+
+
+
+	
+
+<note id="note1001" type="">
+
+
+		
+
+
+			
+
+
+				
+
+<emphasis id="strong1085" effect="bold">
+Disclaimers:
+
+</emphasis>
+<para id="p1080">
+<emphasis id="strong1086" effect="bold">
+Financial
+
+</emphasis>
+: Although the Connexions
+site makes it possible for you to download a PDF file for this
+module at no charge, and also makes it possible for you to
+purchase a pre-printed version of the PDF file, you should be
+aware that some of the HTML elements in this module may not translate well into
+PDF.
+
+</para>
+
+
+				
+
+<para id="p1081">
+I also want you to know that, I receive no financial compensation from the Connexions website even if you purchase 
+	the PDF version of the module.
+
+</para>
+
+
+				
+
+<para id="p1082">
+In the past, unknown individuals have copied my modules from cnx.org, converted them to Kindle books, and 
+				placed them for sale on Amazon.com showing me as the author. I 
+				neither receive compensation for those sales nor do I know who does 
+				receive compensation. If you purchase such a book, please be 
+				aware that it is a copy of a module that is freely 
+				available on cnx.org and that it was made and published without 
+				my prior knowledge.
+
+</para>
+
+
+				
+
+<para id="p1083">
+<emphasis id="strong1087" effect="bold">
+Affiliation
+
+</emphasis>
+: I am a professor of Computer Information 
+	Technology at Austin Community College in Austin, TX.
+	
+
+</para>
+
+
+				
+
+</note>
+
+			
+
+
+		
+
+
+
+	
+
+
+
+
+
+</section>
+<section id="h11009">
+<title>
+<emphasis id="Complete_program_listing" effect="bold">
+
+Complete program listing
+
+</emphasis>
+
+
+</title>
+
+
+
+
+
+<para id="p1084">
+A complete listing of the program discussed in this module is provided in
+
+
+<link id="a1079" target-id="Listing_11">
+
+Listing 11
+
+</link>
+
+.
+
+</para>
+
+
+
+
+	
+
+<table id="table1014" summary="This is a table." pgwide="677">
+<tgroup cols="1">
+
+
+		
+
+<thead id="thead1014">
+
+			
+
+<row id="tr1028">
+
+				
+
+<entry id="th1014">
+<emphasis id="Listing_11" effect="bold">
+
+Listing 11
+
+</emphasis>
+
+.  Source code for 
+				Slick0190.
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</thead>
+
+
+		
+
+<tbody id="tbody1014">
+
+			
+
+<row id="tr1029">
+
+				
+
+<entry id="td1014">
+
+
+
+<code id="pre1010" display="block">
+/*Slick0190.java
+Copyright 2013, R.G.Baldwin
+
+Fairly complex animation using a sprite sheet.
+
+Sprite moves to right during first third of the 
+animation. Sprite remains stationary during second third
+of the animation. Sprite moves to the left back to the
+starting point during the last third of the animation.
+
+Much more complicated than Slick0180 for several reasons
+including the following:
+
+The sprite is moved horizontally during a portion but not
+all of the animation. Movement must be synchronized with
+the animation frame counter.
+
+The sprite sheet contains only images of the dog facing
+to the left. However, images of the dog facing to the
+right are also required. This requires that each image
+on the sprite sheet be extracted and flipped horizontally
+before being fed to the Animation object for half of
+the animation sequence.
+
+The display duration for images from the first row is 
+shorter than for images from the second row.
+
+Tested using JDK 1.7 under WinXP
+*********************************************************/
+
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.Color;
+
+public class Slick0190 extends BasicGame{
+  Image spriteSheetImage = null;
+
+  float spriteSheetWidth;
+  float spriteSheetHeight;
+  int spritesPerRow = 5;
+  int spritesPerColumn = 2;
+  int spriteWidth;
+  int spriteHeight;
+
+  int targetDelta = 16;//msec
+  SpriteSheet spriteSheet;
+  Animation animation = new Animation();
+
+  //Horizontal and vertical drawing coordinates.
+  float spriteX = 0;
+  float spriteY = 0;
+
+  //----------------------------------------------------//
+  public Slick0190(){
+    //Call to superclass constructor is required.
+    super("Slick0190, Baldwin.");
+  }//end constructor
+  //----------------------------------------------------//
+
+  public static void main(String[] args)
+                                    throws SlickException{
+    AppGameContainer app = new AppGameContainer(
+                          new Slick0190(),450,120,false);
+    app.start();//this statement is required
+  }//end main
+  //----------------------------------------------------//
+
+  @Override
+  public void init(GameContainer gc)
+                                   throws SlickException {
+    //Create a SpriteSheet object
+    spriteSheetImage = new Image("Slick0190a1.png");
+    //Enlarge the sprite sheet.
+    Image temp = spriteSheetImage.getScaledCopy(580,224);
+    spriteSheetImage = temp;
+
+    spriteSheetWidth = spriteSheetImage.getWidth();
+    spriteSheetHeight = spriteSheetImage.getHeight();
+    spriteWidth = (int)(spriteSheetWidth/spritesPerRow);
+    spriteHeight =
+                (int)(spriteSheetHeight/spritesPerColumn);
+
+    //Instantiate a new spriteSheet object based on the
+    // width and height of the individual tiles on the
+    // sheet.
+    spriteSheet = new SpriteSheet(spriteSheetImage,
+                                  spriteWidth,
+                                  spriteHeight);
+
+    //Populate the Animation object
+    //Begin by adding four sets of five sprites from the
+    // top row with the images flipped to face right.
+    for(int cntr = 0;cntr &lt; 4;cntr++){
+      for(int cnt = 0;cnt &lt; 5;cnt++){
+        animation.addFrame(
+              spriteSheet.getSprite(cnt,0).getFlippedCopy(
+                                         true,false),100);
+      }//end inner loop
+    }//end outer loop
+    
+    //Add two sets of five sprites from the bottom row
+    // with the images flipped to face right.
+    for(int cntr = 0;cntr &lt; 2;cntr++){                       
+      for(int cnt = 0;cnt &lt; 5;cnt++){
+        animation.addFrame(
+              spriteSheet.getSprite(cnt,1).getFlippedCopy(
+                                         true,false),400);
+      }//end inner loop
+    }//end outer loop
+
+    //Add two sets of five sprites from the bottom row
+    // with the images facing left.
+    for(int cntr = 0;cntr &lt; 2;cntr++){
+      for(int cnt = 0;cnt &lt; 5;cnt++){
+        animation.addFrame(
+                        spriteSheet.getSprite(cnt,1),400);
+      }//end inner loop
+    }//end outer loop
+    
+    //Add four sets of five sprites from the top row with
+    // the images facing left
+    for(int cntr = 0;cntr &lt; 4;cntr++){
+      for(int cnt = 0;cnt &lt; 5;cnt++){
+        animation.addFrame(
+                        spriteSheet.getSprite(cnt,0),100);
+      }//end for loop
+    }//end for loop
+
+    gc.setShowFPS(true);//display FPS
+    //Set frame rate
+    gc.setTargetFrameRate((int)(1000/targetDelta));
+
+  }//end init
+  //----------------------------------------------------//
+
+  @Override
+  public void update(GameContainer gc, int delta)
+                                    throws SlickException{
+
+    int stepSize = 15;//Distance the sprite moves
+    int frame = animation.getFrame();//animation frame
+    int oneThird = animation.getFrameCount()/3;
+    
+    //Treat the entire animation in thirds with regard
+    // to sprite movement. Move to the right during first
+    // third. Stay stationary during second third. Move
+    // to left back to starting point during last third.
+    if(frame &lt; oneThird){
+      //Sprite is moving to the right. Compute the new
+      // position.
+      spriteX = frame*stepSize;
+    }else if(frame &lt; 2*oneThird){
+      //Sprite is stationary. Don't change position
+    }else if(frame &lt; 3*oneThird){
+      //Cause the sprite to turn around and start
+      // moving to the left toward the starting point.
+      //Reduce frame count by number of frames during
+      // which the sprite wasn't moving.
+      frame -= oneThird;
+      //Compute the new position.
+      spriteX = (2*oneThird - frame)*stepSize;
+    }//end else if
+    
+  }//end update
+  //----------------------------------------------------//
+
+
+  public void render(GameContainer gc, Graphics g)
+                                    throws SlickException{
+    g.setDrawMode(g.MODE_NORMAL);
+    g.setBackground(Color.gray);
+    animation.draw(spriteX,spriteY);
+
+  }//end render
+
+}//end class Slick0190
+</code>
+
+
+
+				
+
+</entry>
+
+			
+
+</row>
+
+		
+
+</tbody>
+
+
+	
+
+</tgroup>
+</table>
+
+
+
+
+
+
+<para id="p1085">
+-end- 
+
+</para>
+
+
+
+
+
+
+</section>
+</content>
+
+
+
+
+</document>
