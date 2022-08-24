@@ -1,12 +1,13 @@
-<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en">
+<?xml version="1.0"?>
+<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en" authors="Richard Baldwin">
   <metadata xmlns:md="http://cnx.rice.edu/mdml" mdml-version="0.5">
     <md:content-id>col11489</md:content-id>
     <md:title>Anatomy of a Game Engine</md:title>
     <md:language>en</md:language>
     <md:license url="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</md:license>
     <md:uuid>a0e2d2ac-7534-4994-ba68-7063820f42d6</md:uuid>
-<md:slug>anatomy-of-a-game-engine</md:slug>
-</metadata>
+    <md:slug>anatomy-of-a-game-engine</md:slug>
+  </metadata>
   <col:content>
     <col:module document="m45726"/>
     <col:module document="m45728"/>
